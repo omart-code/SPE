@@ -30,9 +30,9 @@ if(!isset($_SESSION))
                     <?php
                     if (isset($_SESSION['user'])){?>
                      <li class="nav-item">
-                    <a class="nav-link" href="../spe/index.php?action=logout"><h3>Logout</h3></a>
+                    <a class="nav-link" href="../index.php?action=logout"><h3>Logout</h3></a><!--  problema de logout dependiendo donde estes la ruta no es buena -->
                     </li>
-                   
+                  
                     <?php } ?>
                 </ul>
             </div>

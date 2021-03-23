@@ -10,16 +10,16 @@ if(isset($_GET['action'])) {
 switch ($action) {
 
         case 'view-teacher':
-        include __DIR__ . '/controllers/c_teacher.php';
-        break;
+            include __DIR__ . '/controllers/c_teacher.php';
+            break;
 
         case 'view-student':
             include __DIR__ . '/controllers/c_student.php';
             break;
 
-            case 'view-internships':
-                include __DIR__ . '/controllers/c_view_internships.php';
-                break;
+        case 'view-internships':
+            include __DIR__ . '/controllers/c_view_internships.php';
+            break;
 
 
         case 'login_done':

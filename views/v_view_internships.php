@@ -9,7 +9,7 @@
 <body>
     <?php include __DIR__ . '../../includes/header.php'; ?>
     <div class="main-container row col-12 p-5">
-    <h1>VISTA DE ESTANCIES DE PRÀCTIQUES</h1>
+    <h1>VISTA DE ESTADES DE PRÀCTIQUES</h1>
     <table class="table table-bordered">
         <thead>
             <tr>

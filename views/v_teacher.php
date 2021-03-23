@@ -9,30 +9,9 @@
 <body>
     <?php include __DIR__ . '../../includes/header.php'; ?>
     <?php echo "Bienvenido " . $_SESSION["user"]["nombre"] . " " . $_SESSION["user"]["apellido"] ?>
-    <div class="main-container row col-12 p-5">
-    
-        <table>
-                <thead>
-                    <tr>
-                        <td>Niu</td>
-                        <td>Nom</td>
-                        <td>Cognom</td>
-                        <td>Telefon</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        foreach ($users as $user) {
-                            echo "<tr>";
-                            echo "<td>".$user['niu']."</td>";
-                            echo "<td>".$user['nombre']."</td>";
-                            echo "<td>".$user['apellido']."</td>";
-                            echo "<td>".$user['telefono']."</td>";
-                            echo "</tr>";
-                        }
-                    ?>
-                </tbody>
-        </table>
+    <div class="main-container">
+    <h1>VISTA DEL PROFESOR</h1>
+    <h5>ESTADES PENDENTS DE REVISAR</h5>
     </div>
 <?php include __DIR__ . '../../includes/footer.php'; ?>
 </body>
