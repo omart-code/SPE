@@ -6,7 +6,7 @@ $niu = $_POST['niu'];
 $password = $_POST['password'];
 
 
-$u = login($niu);
+$u = login($niu, $password);
 
     if(empty($u)){
         echo "El usuario no existe";

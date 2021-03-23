@@ -17,6 +17,11 @@ switch ($action) {
             include __DIR__ . '/controllers/c_student.php';
             break;
 
+            case 'view-internships':
+                include __DIR__ . '/controllers/c_view_internships.php';
+                break;
+
+
         case 'login_done':
             include __DIR__ . '/controllers/c_login_done.php';
             break;

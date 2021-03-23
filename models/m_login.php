@@ -2,11 +2,13 @@
 require ('models/m_connection.php');
 
 $niu = $_POST['niu'];
+$password = $_POST['password'];
 
-function login($niu){
+//function that returns the user data that want to do a login
+function login($niu, $password){
     $conn = connection();
    
-    $query = $conn->query("SELECT * FROM usuarios WHERE niu  = '$niu'");
+    $query = $conn->query("SELECT * FROM usuarios WHERE niu  = '$niu' AND password = '$password'");
 
    
     $i = 0;
