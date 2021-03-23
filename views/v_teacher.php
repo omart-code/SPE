@@ -15,6 +15,7 @@
                         <td>Niu</td>
                         <td>Nom</td>
                         <td>Cognom</td>
+                        <td>Telefon</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,8 +23,9 @@
                         foreach ($users as $user) {
                             echo "<tr>";
                             echo "<td>".$user['niu']."</td>";
-                            echo "<td>".$user['nom']."</td>";
-                            echo "<td>".$user['cognom']."</td>";
+                            echo "<td>".$user['nombre']."</td>";
+                            echo "<td>".$user['apellido']."</td>";
+                            echo "<td>".$user['telefono']."</td>";
                             echo "</tr>";
                         }
                     ?>

@@ -1,10 +1,11 @@
 <?php
-require('models/m_connection.php');
+require_once dirname( __DIR__ ) . '/models/m_connection.php';
+
 
 //function that returns the users from the db
 function getUsers(){
     $conn = connection();
-    $query = $conn->query('SELECT * FROM usuaris');
+    $query = $conn->query('SELECT * FROM usuarios');
 
     $users = [];
 

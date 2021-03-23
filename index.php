@@ -13,8 +13,12 @@ switch ($action) {
         include __DIR__ . '/controllers/c_teacher.php';
         break;
 
+        case 'login_done':
+            include __DIR__ . '/controllers/c_login_done.php';
+            break;
+
         default:
-        include __DIR__ . '/controllers/c_teacher.php';
+        include __DIR__ . '/controllers/c_login.php';
         break;
 
 }
