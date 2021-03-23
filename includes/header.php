@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <div class="header">
     <div class="custom-navbar">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -18,6 +21,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Administració</a>
                     </li>
+                   
+                 
+                    <?php
+                    if (isset($_SESSION['user'])){?>
+                     <li class="nav-item">
+                    <a class="nav-link" href="../index.php?action=logout">Logout</a>
+                    </li>
+                   
+                    <?php } ?>
                 </ul>
             </div>
         </nav>

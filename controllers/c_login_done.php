@@ -1,7 +1,7 @@
 <?php
 
 include __DIR__ . '../../models/m_login.php';
-
+session_start();
 $niu = $_POST['niu'];
 $password = $_POST['password'];
 

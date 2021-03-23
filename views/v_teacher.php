@@ -8,7 +8,9 @@
 </head>
 <body>
     <?php include __DIR__ . '../../includes/header.php'; ?>
+    <?php echo "Bienvenido " . $_SESSION["user"]["nombre"] . " " . $_SESSION["user"]["apellido"] ?>
     <div class="main-container row col-12 p-5">
+    
         <table>
                 <thead>
                     <tr>

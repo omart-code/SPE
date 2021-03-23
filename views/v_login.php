@@ -16,7 +16,7 @@
   <div id="formContent">
    
     <!-- Login Form -->
-    <!--<form method="POST" action="/SPE/controllers/c_login_done.php"> -->$_COOKIE
+   <h1>Login</h1>
     <form method="POST" action="../spe/index.php?action=login_done">
       <input type="text" id="niu" class="fadeIn second" name="niu" placeholder="niu">
       <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
@@ -25,7 +25,7 @@
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-      <a class="underlineHover" href="#">Forgot Password?</a>
+      <a class="underlineHover" href="#">Olvidaste de la contraseña?</a>
     </div>
 
   </div>
