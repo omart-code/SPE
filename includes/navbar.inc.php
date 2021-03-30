@@ -21,7 +21,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php"><h3>Login</h3></a>
+                        <a class="nav-link" href="<?php echo LOGIN ?>"><h3>Login</h3></a>
                     </li>
                   
                 </ul>

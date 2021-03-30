@@ -50,6 +50,29 @@ class UserRepository {
         }
         return $users_total;
     }
+
+    public static function getUserByNiu($conn, $niu){
+        $user = null;
+
+        if(isset($conn)){
+            try{
+                include_once 'User.inc.php';
+                $sql = "SELECT * FROM usuarios WHERE niu = :niu";
+                $stmt = $conn -> prepare($sql);
+                $stmt ->bindParam(':niu', $niu, PDO::PARAM_STR);
+                $stmt -> execute();
+                $res = $stmt-> fetch();
+
+                if(!empty($res)){
+                    $user = new User( $res['niu'], $res['password'], $res['nombre'], $res['apellido'], $res['email'], $res['telefono'], $res['id_tipo_usuario']);
+                }
+            }catch (PDOException $ex){
+                print 'ERROR'. $ex->getMessage();
+            }
+        }
+
+        return $user;
+    }
    
 
 }

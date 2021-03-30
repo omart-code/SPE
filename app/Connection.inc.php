@@ -7,12 +7,13 @@ class Connection {
         if(!isset(self::$conn)){
             try{
                 include_once 'config.inc.php';
-                self::$conn = new PDO("mysql:host=$name_server; dbname=$name_bd", $name_user, $password );
+                self::$conn = new PDO("mysql:host=localhost; dbname=spext", 'root', '' );
                 self::$conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 self::$conn -> exec('SET CHARACTER SET utf8');
+               
              
             }catch (Exception $e){
-                print "ERROR: " . $ex->getMessage() . "<br>";
+                print "ERROR: " . $e->getMessage() . "<br>";
                 die();
             }
         }
