@@ -57,7 +57,7 @@ class UserRepository {
         if(isset($conn)){
             try{
                 include_once 'User.inc.php';
-                $sql = "SELECT * FROM usuarios WHERE niu = :niu";
+                $sql = "SELECT * FROM usuarios u WHERE u.niu = :niu";
                 $stmt = $conn -> prepare($sql);
                 $stmt ->bindParam(':niu', $niu, PDO::PARAM_STR);
                 $stmt -> execute();

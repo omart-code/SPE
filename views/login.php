@@ -1,10 +1,10 @@
 <?php
-include_once 'app/config.inc.php';
-include_once 'app/Connection.inc.php';
-include_once 'includes/libraries.inc.php';
-include_once 'app/LoginValidator.inc.php';
-include_once 'app/Redirection.inc.php';
-include_once 'app/Session.inc.php';
+include_once '../app/config.inc.php';
+include_once '../app/Connection.inc.php';
+include_once '../includes/libraries.inc.php';
+include_once '../app/LoginValidator.inc.php';
+include_once '../app/Redirection.inc.php';
+include_once '../app/Session.inc.php';
 
 if(ControlSession::sessionStarted()){
   Redirection::redirect(SERVER);
@@ -19,7 +19,7 @@ if(isset($_POST['enviar'])){
  //Redirigir a la pagina que toque
 
 
-    ControlSession::startSession($validator->getUser()->getUserNiu, $validator->getUser()->getUserType());
+    ControlSession::startSession($validator->getUser()->getUserNiu(), $validator->getUser()->getUserType());
     if($_SESSION['id_tipo_usuario'] == '1'){
       Redirection::redirect(TEACHER);
     }
@@ -38,7 +38,7 @@ if(isset($_POST['enviar'])){
  
 }
 $title = 'Login';
-include_once 'includes/doc-declaration.inc.php';
+include_once '../includes/doc-declaration.inc.php';
 ?>
 
 <div class="wrapper fadeInDown md-5 p-5">
@@ -69,6 +69,7 @@ include_once 'includes/doc-declaration.inc.php';
 
   </div>
 </div>
-<?php include_once 'includes/footer.inc.php'?>
+<?php include_once '../includes/footer.inc.php'?>
 </body>
 </html>
+

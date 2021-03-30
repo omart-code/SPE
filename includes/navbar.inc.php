@@ -1,4 +1,8 @@
+<?php
 
+include_once __DIR__ . '/../app/Session.inc.php';
+include_once __DIR__ . '/../app/config.inc.php';
+?>
 <div class="header">
     <div class="custom-navbar">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -9,20 +13,46 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><h3>Inici</h3><span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                        <a class="nav-link" href="<?php echo SERVER ?>"><h3>Inici</h3><span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.php?action=view-internships"><h3>Estades</h3></a>
-                    </li>
+                    <?php
+                    if(ControlSession::sessionStarted()){
+                        if($_SESSION['id_tipo_usuario'] == '1'){
+                        ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo INTERNSHIPS?>"><h3>Estades</h3></a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><h3>Administració</h3></a>
+                        </li>
+                        <?php
+                     }
+                        else if ($_SESSION['id_tipo_usuario'] == '2'){
+                        ?>
+                        
+                        <?php
+                     }
+                    }
+                    ?>
                     
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><h3>Administració</h3></a>
-                    </li>
-
-                    <li class="nav-item">
+                    <?php 
+                    if(ControlSession::sessionStarted()){
+                        ?>
+                        <li class="nav-item">
+                        <a class="nav-link" href="<?php echo LOGOUT ?>"><h3>Logout</h3></a>
+                        </li>
+                    <?php
+                    }else{
+                        ?>
+                        <li class="nav-item">
                         <a class="nav-link" href="<?php echo LOGIN ?>"><h3>Login</h3></a>
-                    </li>
+                        </li>
+                        <?php
+                    }
+                    ?>
+                    
                   
                 </ul>
             </div>

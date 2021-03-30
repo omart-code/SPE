@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <?php include __DIR__ . '../../includes/libraries.php'; ?>
+    <?php include '../includes/libraries.inc.php'; ?>
 </head>
 <body>
-    <?php include __DIR__ . '../../includes/header.php'; ?>
+    <?php include '../includes/navbar.inc.php'; ?>
     <div class="main-container row col-12 p-5">
     <h1>VISTA DE ESTADES DE PRÀCTIQUES</h1>
     <table class="table table-bordered">
@@ -35,6 +35,6 @@
         </tbody>
     </table>   
     </div>
-<?php include __DIR__ . '../../includes/footer.php'; ?>
+<?php include '../includes/footer.inc.php'; ?>
 </body>
 </html>
