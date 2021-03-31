@@ -11,7 +11,7 @@ include_once '../includes/doc-declaration.inc.php'; ?>
       
        <?php echo "Bienvenido " . $_SESSION["niu"]. " " . $_SESSION["id_tipo_usuario"] ?> 
        <?php
-        $listaUsersModificados[] = UserController::getUsersModificados(Connection::getConnection());
+        $listUsers[] = UserController::getUsers(Connection::getConnection());
        ?>
         <div class="main-container">
         <h1>VISTA DEL ESTUDIANT</h1>
