@@ -9,7 +9,7 @@ include_once '../controllers/InternshipController.inc.php';
 <?php include_once '../includes/navbar.inc.php'; ?>
     
         
-      <?php echo "Bienvenido " . $_SESSION["niu"]. " " . $_SESSION["id_tipo_usuario"];
+      <?php   echo "Benvingut " . $_SESSION["nombre"]. " " . $_SESSION["niu"];
        Connection::openConnection(); 
        $internships = InternshipController::getTeacherInternships(Connection::getConnection(), $_SESSION["niu"]); ?>
         <div class="main-container">
@@ -22,7 +22,7 @@ include_once '../controllers/InternshipController.inc.php';
             <tr>
             <th scope="col">ID Estancia</th>
             <th scope="col">Niu Estudiant</th>
-            <th scope="col">Niu Profesor</th>
+            <th scope="col">Nom Estudiant</th>
             <th scope="col">Data Inici</th>
             <th scope="col">Data Fi</th>
             </tr>
@@ -31,10 +31,11 @@ include_once '../controllers/InternshipController.inc.php';
                      <?php
                     
                         foreach ($internships as $internship) {
+                          $student = InternshipController::getInternshipStudent(Connection::getConnection(),  $internship->getNiuStudent());
                             echo "<tr>";
                             echo "<th scope='row'>".$internship->getIdInternship()."</td>";
                             echo "<td>".$internship->getNiuStudent()."</td>";
-                            echo "<td>".$internship->getNiuTeacher()."</td>";
+                            echo "<td>".$student->getStudentName(). " ". $student->getStudentSurname()."</td>";
                             echo "<td>".$internship->getStartDate()."</td>";
                             echo "<td>".$internship->getEndDate()."</td>";
                             echo "</tr>";

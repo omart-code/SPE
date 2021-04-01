@@ -1,6 +1,7 @@
 <?php
 class InternshipModel {
 
+    //Muestra los datos de estancia relativos a un niu de estudiante
     public static function getStudentInternship($conn, $niu_estudiante){
         $internship = null;
 
@@ -27,6 +28,7 @@ class InternshipModel {
             return $internship;
      }
 
+     //Muestra las estancias que pertenecen a un profesor
      public static function getTeacherInternships($conn, $niu_profesor){
         $internships = null;
 
@@ -57,7 +59,6 @@ class InternshipModel {
             return $internships;
      }
 
-     
 
 }
 ?>

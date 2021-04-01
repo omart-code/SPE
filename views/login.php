@@ -19,7 +19,7 @@ if(isset($_POST['enviar'])){
  //Redirigir a la pagina que toque
 
 
-    ControlSession::startSession($validator->getUser()->getUserNiu(), $validator->getUser()->getUserType());
+    ControlSession::startSession($validator->getUser()->getUserNiu(), $validator->getUser()->getUserType(), $validator->getUser()->getUserName());
     if($_SESSION['id_tipo_usuario'] == '1'){
       Redirection::redirect(TEACHER);
     }

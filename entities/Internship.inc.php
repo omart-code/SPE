@@ -13,7 +13,7 @@ class Internship {
 
     public function __construct($id_estancia, $niu_estudiante, $niu_profesor, $fecha_inicio,
      $fecha_fin, $id_tutor_externo, $id_empresa, $nota, $finalizada) {
-         
+
         $this -> id_estancia = $id_estancia;
         $this -> niu_estudiante = $niu_estudiante;
         $this -> niu_profesor = $niu_profesor;
@@ -49,7 +49,7 @@ class Internship {
         return $this -> id_tutor_externo;
     }
 
-    public function getCompany(){
+    public function getIdCompany(){
         return $this -> id_empresa;
     }
 
