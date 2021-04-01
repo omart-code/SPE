@@ -5,6 +5,7 @@ class User {
     private $password;
     private $nombre;
     private $apellido;
+    private $email;
     private $telefono;
     private $tipo_usuario;
 
@@ -13,7 +14,7 @@ class User {
         $this -> password = $password;
         $this -> nombre = $nombre;
         $this -> apellido = $apellido;
-        $this -> telefono = $email;
+        $this -> email = $email;
         $this -> telefono = $telefono;
         $this -> tipo_usuario= $tipo_usuario;
     }
@@ -44,6 +45,35 @@ class User {
 
     public function getUserType(){
         return $this -> tipo_usuario;
+    }
+
+    public function setUserNiu($niu){
+        $this->niu = $niu;
+    }
+
+    public function setUserPassword($password){
+        $this->password = $password;
+    }
+
+    public function setUserName($nombre){
+        $this->nombre = $nombre;
+    }
+
+    public function setUserSurname($apellido){
+        $this->apellido = $apellido;
+    }
+
+    public function setUserTelf($telefono){
+        $this->telefono = $telefono;
+    }
+
+    public function setUserEmail($email){
+        $this->email = $email;
+    }
+
+    public function setUserType($tipo_usuario){
+        $this->tipo_usuario = $tipo_usuario;
+
     }
 }
 ?>

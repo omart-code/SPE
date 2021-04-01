@@ -8,7 +8,7 @@ class UserModel {
 
             try{
 
-                include_once 'User.inc.php';
+                include_once '../entities/User.inc.php';
                 $sql = "SELECT * FROM usuarios";
                 $stmt = $conn -> prepare($sql);
                 $stmt -> execute();
