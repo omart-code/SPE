@@ -38,11 +38,15 @@ class Internship {
     }
 
     public function getStartDate(){
-        return $this -> fecha_inicio;
+        $startDate = DateTime::createFromFormat('Y-m-d', $this->fecha_inicio);
+        $startDate = $startDate->format('d-m-Y');
+        return $startDate;
     }
 
     public function getEndDate(){
-        return $this -> fecha_fin;
+        $endDate = DateTime::createFromFormat('Y-m-d', $this->fecha_fin);
+        $endDate = $endDate->format('d-m-Y');
+        return $endDate;
     }
 
     public function getIdExternalTeacher(){

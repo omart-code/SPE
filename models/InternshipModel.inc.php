@@ -59,6 +59,8 @@ class InternshipModel {
             return $internships;
      }
 
+   
+
 
 }
 ?>

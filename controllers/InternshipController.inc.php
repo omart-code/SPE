@@ -52,6 +52,34 @@ class InternshipController {
         return $student;
     }
 
+    //Devuelve el porcentaje de progreso a partir de las fechas
+    public static function calculatePercentage($conn, $niu_estudiante){
+        $internship = InternshipModel::getStudentInternship($conn, $niu_estudiante);
+        //Cogemos las fechas bien formateadas de las estancias
+        $startDate = $internship -> getStartDate();
+        $endDate = $internship ->getEndDate();
+        //Las pasamos a objeto Datetime para poder calcular los dias de diferencia
+        $datetime1 = new DateTime($startDate);
+        $datetime2 = new DateTime($endDate);
+        $interval = $datetime1->diff($datetime2);
+        $dif = $interval->format('%a');
+        $totalDays = (int)$dif;
+        //Obtenemos fecha actual
+        $day = date("d");
+        $month = date("m");
+        $year = date("Y");
+        $currentDate = "$day-$month-$year";
+        $currentDate = new DateTime($currentDate);
+        //Calculamos la diferencia entre el dia actual y el dia que empezaste
+        $int = $currentDate->diff($datetime1);
+        $difCurrent = $int->format('%a');
+        $restDays = (int)$difCurrent;
+        //Creo que es asi
+        $percentage = $restDays / $totalDays *100;
+        $percentage = round($percentage, 2);
+        return $percentage;
+    }
+
    
 
 
