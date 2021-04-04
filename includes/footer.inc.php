@@ -1,4 +1,4 @@
-<footer class="bg-dark fixed-bottom">
+<footer class=" mb-2 bg-dark text-white fixed-bottom">
   <div class="row text-center">
      <div class="col-md-4">
      </div>

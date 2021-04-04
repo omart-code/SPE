@@ -10,11 +10,9 @@ include_once '../includes/navbar.inc.php';
 
         
       
-        echo "Benvingut " . $_SESSION["nombre"]. " " . $_SESSION["niu"];?>
-       <br>
-       <br>
        
-        <?php
+       
+        
         Connection::openConnection(); 
         $internship = InternshipController::getStudentInternship(Connection::getConnection(), $_SESSION["niu"]);
         $extTeacher = InternshipController::getTeacherExternal(Connection::getConnection(),  $internship->getIdExternalTeacher());
@@ -24,46 +22,59 @@ include_once '../includes/navbar.inc.php';
        
        ?>
       
-        <div class="main-container">
+        <div class="container">
+        <?php echo "<h4>Benvingut " . $_SESSION["nombre"]. " " . $_SESSION["niu"]; "</h4>"?>
+       <br>
+       <br>
         <h1>VISTA DEL ESTUDIANT</h1>
         <br>
         <h5>INFORMACIÓ DE LA TEVA ESTANCIA</h5>
         <br>
         </div>
-        <table class="table table-bordered">
-        <thead>
-            <tr>
-            <th scope="col">ID Estancia</th>
-            <th scope="col">Niu Estudiant</th>
-            <th scope="col">Niu Tutor</th>
-            <th scope="col">Data Inici</th>
-            <th scope="col">Data Fi</th>
-            <th scope="col">Nom Tutor Extern</th>
-            <th scope="col">Nom Tutor</th>
-            <th scope="col">Nom Empresa</th>
-            <th scope="col">Percentatje</th>
-            </tr>
-        </thead>
-         <tbody>
-                     <?php
-                            echo "<tr>";
-                            echo "<th scope='row'>".$internship->getIdInternship()."</td>";
-                            echo "<td>".$internship->getNiuStudent()."</td>";
-                            echo "<td>".$internship->getNiuTeacher()."</td>";
-                            echo "<td>".$internship->getStartDate()."</td>";
-                            echo "<td>".$internship->getEndDate()."</td>";
-                            echo "<td>".$extTeacher->getName(). " ". $extTeacher->getSurname()."</td>";
-                            echo "<td>".$teacher->getTeacherName(). " ". $teacher->getTeacherSurname()."</td>";
-                            echo "<td>".$company->getCompanyName()."</td>";
-                            echo "<td>" .$percentage. '%'."</td>";
-                            echo "</tr>";  
-                    ?>
-        </tbody>
-    </table>   
-    <h5>El teu progrés</h5>
-        <div class="progress">
-        <div class="progress-bar  bg-success" role="progressbar" style="width: <?php echo $percentage ?>%"  aria-valuenow="<?php echo $percentage ?>"  aria-valuemin="0" aria-valuemax="100"><?php echo $percentage ?>%</div>
+        <!-- Datos del estudiante -->
+        <div class="container">
+                <div class="row">
+                        <div class="col-md-4"><?php echo "<h4>".$teacher->getTeacherName(). " ". $teacher->getTeacherSurname()."</h4>" ?></div>
+                        <div class="col-md-4"><?php echo "<h4>".$extTeacher->getName(). " ". $extTeacher->getSurname()."</h4>"?></div>
+                        <div class="col-md-4"><h4>Dates de l'estada</h4></div>
+                </div>
+                <div class="row">
+                        <br>
+                        <br>
+                        <div class="col-md-4"><h5><b>Tutor acadèmic</b></h5></div>
+                        <div class="col-md-4"><h5><b>Tutor extern</b></h5></div>
+                        <div class="col-md-4"></div>
+                </div>
+                <div class="row">
+                        <div class="col-md-4"><?php echo "<b>Correu electrònic: </b> ".$teacher->getTeacherEmail(); ?></div>
+                        <div class="col-md-4"><?php echo "<b>Correu electrònic: </b> ".$extTeacher->getEmail(); ?></div>
+                        <div class="col-md-4"><?php echo "<b>Data d'inici: </b> ". $internship->getStartDate(); ?></div>
+                </div>
+                <div class="row">
+                        <div class="col-md-4"><?php echo "<b>Telèfon: </b> ".$teacher->getTeacherTelf(); ?></div>
+                        <div class="col-md-4"><?php echo "<b>Telèfon: </b> ".$extTeacher->getTelf(); ?> </div>
+                        <div class="col-md-4"><?php echo "<b>Data de finalització: </b> ".$internship->getEndDate(); ?></div>
+                </div>
+                <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4"><?php echo "<b>Empresa: </b> ".$company->getCompanyName(); ?></div>
+                        <div class="col-md-4"></div>
+                </div>
+
         </div>
+        <br>
+        <br>
+    <div class="progress-container">
+        <h5>El teu progrés</h5>
+                <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo $percentage ?>%"  aria-valuenow="<?php echo $percentage ?>"  aria-valuemin="0" aria-valuemax="100"><?php echo $percentage ?>%</div>
+                        </div>
+                </div>
+    </div>
+    <br>
+    <br>
+    <div class="comentaries-tutor">
+        <h5>Comentaris del tutor/a:</h5>
     </div>
         
       
