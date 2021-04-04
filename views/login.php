@@ -26,6 +26,14 @@ if(isset($_POST['enviar'])){
     else if ($_SESSION['id_tipo_usuario'] == '2'){
       Redirection::redirect(STUDENT);
     }
+    else if ($_SESSION['id_tipo_usuario'] == '3'){
+      Redirection::redirect(COORDINATOR);
+    }
+    else if ($_SESSION['id_tipo_usuario'] == '4'){
+      Redirection::redirect(ADMIN);
+    }
+
+    
     
       //queda coordinador y admin
      
