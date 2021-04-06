@@ -49,6 +49,7 @@ $title = 'Login';
 include_once '../includes/doc-declaration.inc.php';
 ?>
 
+<div class="container">
 <div class="wrapper fadeInDown md-5 p-5">
   <div id="formContent">
    
@@ -76,6 +77,7 @@ include_once '../includes/doc-declaration.inc.php';
     </div>
 
   </div>
+</div>
 </div>
 <?php include_once '../includes/footer.inc.php'?>
 </body>

@@ -18,25 +18,25 @@ include_once __DIR__ . '/../app/config.inc.php';
                     </li>
                     <?php
                     if(ControlSession::sessionStarted()){
-                        if($_SESSION['id_tipo_usuario'] == '1'){
+                        if($_SESSION['id_tipo_usuario'] == '1' || $_SESSION['id_tipo_usuario'] == '3' || $_SESSION['id_tipo_usuario'] == '4'){
                         ?>
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo INTERNSHIPS?>"><h3>Estades</h3></a>
                         </li>
-                        
+                       <?php }?>
+                       <?php 
+                        if($_SESSION['id_tipo_usuario'] == '3' || $_SESSION['id_tipo_usuario'] == '4'){
+                        ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><h3>Administració</h3></a>
+                            <a class="nav-link" href="<?php echo ADMINISTRATION?>"><h3>Administració</h3></a>
                         </li>
+                        <?php } ?>
                         <?php
-                     }
-                        else if ($_SESSION['id_tipo_usuario'] == '2'){
+                        if ($_SESSION['id_tipo_usuario'] == '2'){
                         ?>
                         
-                        <?php
-                     }
-                    }
-                    ?>
-                    
+                        <?php }?>
+                    <?php } ?>
                     <?php 
                     if(ControlSession::sessionStarted()){
                         ?>

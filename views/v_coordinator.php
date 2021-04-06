@@ -9,10 +9,11 @@ include_once '../controllers/InternshipController.inc.php';
 <?php include_once '../includes/navbar.inc.php'; ?>
     
         
-      <?php   echo "Benvingut " . $_SESSION["nombre"]. " " . $_SESSION["niu"];
+  
+        <div class="container">
+        <?php   echo "Benvingut " . $_SESSION["nombre"]. " " . $_SESSION["niu"];
        Connection::openConnection(); 
        //$internships = InternshipController::getTeacherInternships(Connection::getConnection(), $_SESSION["niu"]); ?>
-        <div class="main-container">
         <h1>VISTA DEL COORDINADOR</h1>
         <h5>ESTADES PENDENTS DE REVISAR</h5>
         
