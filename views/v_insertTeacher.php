@@ -4,6 +4,7 @@ $title = 'ADD TEACHER';
 include_once '../includes/doc-declaration.inc.php'; 
 include_once '../app/Connection.inc.php';
 include_once '../controllers/TeacherController.inc.php';
+include_once '../app/Redirection.inc.php';
 ?>
 
 <?php include_once '../includes/navbar.inc.php'; ?>
@@ -14,6 +15,7 @@ include_once '../controllers/TeacherController.inc.php';
        Connection::openConnection(); 
         TeacherController::insertTeacher(Connection::getConnection(), $_POST["nomProfessor"], $_POST["cognomProfessor"], $_POST["niuProfessor"], 
          $_POST["telefonProfessor"], $_POST["emailProfessor"], $_POST["departamentProfessor"]);
+         Redirection::redirect(ADMINISTRATION);
       }
        ?>
         <div class="container">
@@ -34,7 +36,7 @@ include_once '../controllers/TeacherController.inc.php';
             <br>
             <br>
 
-            <form method="POST" action="<?php echo ADMINISTRATION ?>">
+            <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Nom</label>
                 <input type="text" class="form-control" name="nomProfessor" placeholder="ex: Joan">
