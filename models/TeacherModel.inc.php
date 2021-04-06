@@ -33,7 +33,7 @@ class TeacherModel{
         if(isset($conn)){
             try{
                 include_once '../entities/Teacher.inc.php';
-                $sql = "INSERT INTO profesores p (p.niu_profesor, p.nombre, p.apellido, p.email, p.telefono, p.id_departamento)
+                $sql = "INSERT INTO profesores (niu_profesor, nombre, apellido, email, telefono, id_departamento)
                 VALUES (:niu_profesor, :nombre, :apellido,:email, :telefono, :id_departamento)";
                 $stmt = $conn -> prepare($sql);
                 $stmt ->bindParam(':niu_profesor', $niu_profesor, PDO::PARAM_STR);

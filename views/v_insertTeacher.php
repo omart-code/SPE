@@ -3,60 +3,72 @@ include_once '../includes/libraries.inc.php';
 $title = 'ADD TEACHER';
 include_once '../includes/doc-declaration.inc.php'; 
 include_once '../app/Connection.inc.php';
-include_once '../controllers/InternshipController.inc.php';
+include_once '../controllers/TeacherController.inc.php';
 ?>
 
 <?php include_once '../includes/navbar.inc.php'; ?>
     
         
       <?php
+      if(isset($_POST['enviarProfessor'])){
        Connection::openConnection(); 
-       // $internships = InternshipController::getTeacherInternships(Connection::getConnection(), $_SESSION["niu"]); ?>
+        TeacherController::insertTeacher(Connection::getConnection(), $_POST["nomProfessor"], $_POST["cognomProfessor"], $_POST["niuProfessor"], 
+         $_POST["telefonProfessor"], $_POST["emailProfessor"], $_POST["departamentProfessor"]);
+      }
+       ?>
         <div class="container">
-        <h1>VISTA DE AFEGIR UN PROFESOR</h1>
+            <h1>VISTA DE AFEGIR UN PROFESOR</h1>
 
-        <br>
-        <br>
+            <br>
+            <br>
 
-        <div class="card text-center">
-            <div class="card-body">
-                <h5 class="card-title">Nou professor</h5>
-                <p class="card-text">Afegeix un nou professor a aquest curs</p>
-                
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Nou professor</h5>
+                    <p class="card-text">Afegeix un nou professor a aquest curs</p>
+                    
+                </div>
             </div>
-        </div>
 
+            
+            <br>
+            <br>
+
+            <form method="POST" action="<?php echo ADMINISTRATION ?>">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Nom</label>
+                <input type="text" class="form-control" name="nomProfessor" placeholder="ex: Joan">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Cognom/s</label>
+                <input type="text" class="form-control" name="cognomProfessor" placeholder="ex: Martorell" ></input>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">NIU</label>
+                <input type="text" class="form-control" name="niuProfessor" placeholder="ex: 1111111">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">E-mail</label>
+                <input type="email" class="form-control" name="emailProfessor" placeholder="ex: joanmartorel@gmail.com"></input>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Telèfon</label>
+                <input type="text" class="form-control" name="telefonProfessor" placeholder="ex: 666666666">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Departament</label>
+                <select class="form-control" name="departamentProfessor">
+                <option selected>Open this select menu</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="3">4</option>
+            </select>
+            </div>
+            
+            <button type="submit" class="btn btn-success" name="enviarProfessor">Afegeix</button>
+            </form>
         
-        <br>
-        <br>
-
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Nom</label>
-            <input type="email" class="form-control" name="nomProfessor" placeholder="name@example.com">
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Cognom/s</label>
-            <textarea class="form-control" name="cognomProfessor"></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">NIU</label>
-            <input type="email" class="form-control" name="niuProfessor" placeholder="name@example.com">
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">E-mail</label>
-            <textarea class="form-control" name="emailProfessor"></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Telèfon</label>
-            <input type="email" class="form-control" name="telefonProfessor" placeholder="name@example.com">
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Departament</label>
-            <textarea class="form-control" name="departamentProfessor"></textarea>
-        </div>
-        <button type="submit" class="btn btn-success">Afegeix</button>
-         
-      
         </div>
         
       

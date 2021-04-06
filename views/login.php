@@ -34,8 +34,7 @@ if(isset($_POST['enviar'])){
     }
 
     
-    
-      //queda coordinador y admin
+
      
     
   }else{
