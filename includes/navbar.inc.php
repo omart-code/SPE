@@ -28,7 +28,7 @@ include_once __DIR__ . '/../app/config.inc.php';
                         if($_SESSION['id_tipo_usuario'] == '3' || $_SESSION['id_tipo_usuario'] == '4'){
                         ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo ADMINISTRATION?>"><h3>Administració</h3></a>
+                            <a class="nav-link" href="<?php echo TEACHERS?>"><h3>Administració</h3></a>
                         </li>
                         <?php } ?>
                         <?php

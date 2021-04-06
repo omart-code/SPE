@@ -15,7 +15,7 @@ include_once '../app/Redirection.inc.php';
        Connection::openConnection(); 
         TeacherController::insertTeacher(Connection::getConnection(), $_POST["nomProfessor"], $_POST["cognomProfessor"], $_POST["niuProfessor"], 
          $_POST["telefonProfessor"], $_POST["emailProfessor"], $_POST["departamentProfessor"]);
-         Redirection::redirect(ADMINISTRATION);
+         Redirection::redirect(TEACHERS);
 
          //TAL VEZ TAMBIEN TIENES QUE HACER EL INSERT EN LA TABLA USUARIOS, NO SOLO EN PROFESOREES!!!!!!
       }
@@ -25,6 +25,19 @@ include_once '../app/Redirection.inc.php';
 
             <br>
             <br>
+
+            <ul class="nav nav-tabs ">
+                    <li class="nav-item">
+                        <a class="nav-link active" style="color: #28a745;" aria-current="page" href="<?php echo TEACHERS?>"><h6>Professorat</h6></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #28a745;" href="<?php echo DEPARTMENTS?>"><h6>Departaments</h6></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #28a745;" href="<?php echo ADDCOURSE?>"><h6>Nou Curs</h6></a>
+                    </li>
+                
+              </ul>
 
             <div class="card text-center">
                 <div class="card-body">

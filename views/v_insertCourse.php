@@ -1,6 +1,6 @@
 <?php 
 include_once '../includes/libraries.inc.php';
-$title = 'ADD TEACHER';
+$title = 'ADD COURSE';
 include_once '../includes/doc-declaration.inc.php'; 
 include_once '../app/Connection.inc.php';
 include_once '../controllers/CourseController.inc.php';
@@ -14,7 +14,7 @@ include_once '../app/Redirection.inc.php';
       if(isset($_POST['enviarCurs'])){
        Connection::openConnection(); 
        CourseController::insertCourse(Connection::getConnection(), $_POST["nomCurs"], $_POST["dataIniciCurs"], $_POST["dataFiCurs"]);
-       Redirection::redirect(ADMINISTRATION);
+       Redirection::redirect(TEACHERS);
 
          //TAL VEZ TAMBIEN TIENES QUE HACER EL INSERT EN LA TABLA USUARIOS, NO SOLO EN PROFESOREES!!!!!!
       }
@@ -24,6 +24,19 @@ include_once '../app/Redirection.inc.php';
 
             <br>
             <br>
+
+            <ul class="nav nav-tabs ">
+                    <li class="nav-item">
+                        <a class="nav-link " style="color: #28a745;" aria-current="page" href="<?php echo TEACHERS?>"><h6>Professorat</h6></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #28a745;" href="<?php echo DEPARTMENTS?>"><h6>Departaments</h6></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" style="color: #28a745;" href="<?php echo ADDCOURSE?>"><h6>Nou Curs</h6></a>
+                    </li>
+                
+             </ul>
 
             <div class="card text-center">
                 <div class="card-body">

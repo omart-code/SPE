@@ -9,8 +9,10 @@ define("STUDENT", SERVER. "/views/v_student.php");
 define("COORDINATOR", SERVER. "/views/v_coordinator.php");
 define("ADMIN", SERVER. "/views/v_admin.php");
 define("INTERNSHIPS", SERVER. "/views/v_view_internships.php");
-define("ADMINISTRATION", SERVER. "/views/v_administration.php");
+define("TEACHERS", SERVER. "/views/v_teachers.php");
+define("DEPARTMENTS", SERVER. "/views/v_departments.php");
 define("ADDTEACHER", SERVER. "/views/v_insertTeacher.php");
+define("ADDDEPARTMENT", SERVER. "/views/v_insertDepartment.php");
 define("ADDCOURSE", SERVER. "/views/v_insertCourse.php");
 
 //resources
