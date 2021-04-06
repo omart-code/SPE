@@ -23,7 +23,7 @@ include_once '../controllers/InternshipController.inc.php';
                 <a class="nav-link" style="color: #28a745;" href="#"><h6>Departaments</h6></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" style="color: #28a745;" href="#"><h6>Nou Curs</h6></a>
+                <a class="nav-link" style="color: #28a745;" href="<?php echo ADDCOURSE?>"><h6>Nou Curs</h6></a>
             </li>
            
         </ul>

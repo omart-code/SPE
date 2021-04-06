@@ -28,7 +28,7 @@ class TeacherModel{
 
     //Inserta un profesor en la BD
     public static function insertTeacher($conn, $nombre, $apellido, $niu_profesor,  $telefono, $email, $id_departamento){
-       
+        //TAL VEZ TAMBIEN TIENES QUE HACER EL INSERT EN LA TABLA USUARIOS, NO SOLO EN PROFESORES!!!!!!
 
         if(isset($conn)){
             try{

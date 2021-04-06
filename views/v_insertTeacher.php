@@ -16,6 +16,8 @@ include_once '../app/Redirection.inc.php';
         TeacherController::insertTeacher(Connection::getConnection(), $_POST["nomProfessor"], $_POST["cognomProfessor"], $_POST["niuProfessor"], 
          $_POST["telefonProfessor"], $_POST["emailProfessor"], $_POST["departamentProfessor"]);
          Redirection::redirect(ADMINISTRATION);
+
+         //TAL VEZ TAMBIEN TIENES QUE HACER EL INSERT EN LA TABLA USUARIOS, NO SOLO EN PROFESOREES!!!!!!
       }
        ?>
         <div class="container">
