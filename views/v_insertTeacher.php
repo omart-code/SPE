@@ -20,7 +20,7 @@ include_once '../app/Redirection.inc.php';
          //TAL VEZ TAMBIEN TIENES QUE HACER EL INSERT EN LA TABLA USUARIOS, NO SOLO EN PROFESOREES!!!!!!
       }
        ?>
-        <div class="container">
+        <div class="container h-100">
             <h1>VISTA DE AFEGIR UN PROFESOR</h1>
 
             <br>
@@ -34,7 +34,7 @@ include_once '../app/Redirection.inc.php';
                         <a class="nav-link" style="color: #28a745;" href="<?php echo DEPARTMENTS?>"><h6>Departaments</h6></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="color: #28a745;" href="<?php echo ADDCOURSE?>"><h6>Nou Curs</h6></a>
+                        <a class="nav-link" style="color: #28a745;" href="<?php echo COURSES?>"><h6>Nou Curs</h6></a>
                     </li>
                 
               </ul>

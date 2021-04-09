@@ -1,6 +1,6 @@
 <?php
 
-class Company {
+class Course {
 
     private $id_curso;
     private $nombre;

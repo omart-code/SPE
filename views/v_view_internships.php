@@ -8,9 +8,9 @@
 </head>
 <body>
     <?php include '../includes/navbar.inc.php'; ?>
-    <div class="main-container row col-12 p-5">
+    <div class="container h-100">
     <h1>VISTA DE ESTADES DE PRÀCTIQUES</h1>
-    <table class="table table-bordered">
+    <!-- <table class="table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
             <th scope="col">ID Estancia</th>
@@ -22,7 +22,7 @@
         </thead>
          <tbody>
                      <?php
-                        foreach ($internships as $internship) {
+                       /* foreach ($internships as $internship) {
                             echo "<tr>";
                             echo "<th scope='row'>".$internship['id_estancia']."</td>";
                             echo "<td>".$internship['niu_estudiante']."</td>";
@@ -30,10 +30,10 @@
                             echo "<td>".$internship['fecha_inicio']."</td>";
                             echo "<td>".$internship['fecha_fin']."</td>";
                             echo "</tr>";
-                        }
+                        }*/
                     ?>
         </tbody>
-    </table>   
+    </table>    -->
     </div>
 <?php include '../includes/footer.inc.php'; ?>
 </body>

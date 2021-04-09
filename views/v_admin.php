@@ -12,7 +12,7 @@ include_once '../controllers/InternshipController.inc.php';
       <?php   echo "Benvingut " . $_SESSION["nombre"]. " " . $_SESSION["niu"];
        Connection::openConnection(); 
        // $internships = InternshipController::getTeacherInternships(Connection::getConnection(), $_SESSION["niu"]); ?>
-        <div class="container">
+        <div class="container h-100">
         <h1>VISTA DEL ADMINISTRADOR</h1>
         <h5>ESTADES PENDENTS DE REVISAR</h5>
         

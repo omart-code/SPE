@@ -1,3 +1,8 @@
+/*GENERICO*/
+
+body { padding-bottom: 70px;
+        background-color: red; }
+
 /*VISTA ESTUDIANTE*/
 .progress-container, .comentaries-tutor{
     width: 50%;

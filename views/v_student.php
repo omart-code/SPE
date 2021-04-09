@@ -22,7 +22,7 @@ include_once '../includes/navbar.inc.php';
        
        ?>
       
-        <div class="container">
+        <div class="container h-100">
         <?php echo "<h4>Benvingut " . $_SESSION["nombre"]. " " . $_SESSION["niu"]; "</h4>"?>
        <br>
        <br>

@@ -10,5 +10,12 @@ class TeacherController {
         
     }
 
+    public function getTeachers($conn){
+        
+        $teachers = TeacherModel::getTeachers($conn);
+        return $teachers;
+            
+        }
+
 }
 ?>

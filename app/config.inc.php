@@ -11,6 +11,7 @@ define("ADMIN", SERVER. "/views/v_admin.php");
 define("INTERNSHIPS", SERVER. "/views/v_view_internships.php");
 define("TEACHERS", SERVER. "/views/v_teachers.php");
 define("DEPARTMENTS", SERVER. "/views/v_departments.php");
+define("COURSES", SERVER. "/views/v_courses.php");
 define("ADDTEACHER", SERVER. "/views/v_insertTeacher.php");
 define("ADDDEPARTMENT", SERVER. "/views/v_insertDepartment.php");
 define("ADDCOURSE", SERVER. "/views/v_insertCourse.php");

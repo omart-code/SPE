@@ -1,6 +1,6 @@
 <?php
 
-class Company {
+class Department {
 
     private $id_departamento;
     private $nombre;
