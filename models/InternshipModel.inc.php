@@ -29,6 +29,37 @@ class InternshipModel {
      }
 
      //Muestra las estancias que pertenecen a un profesor
+     public static function getInternships($conn){
+        $internships = null;
+
+            if(isset($conn)){
+                try{
+                    include_once '../entities/Internship.inc.php';
+                    $sql = "SELECT * FROM estancias";
+                    $stmt = $conn -> prepare($sql);
+                    
+                    $stmt -> execute();
+                    $res = $stmt-> fetchAll();
+                    if(count($res)){
+                        foreach($res as $intern){
+                            $internships[] = new Internship(
+                                $intern['id_estancia'], $intern['niu_estudiante'], $intern['niu_profesor'], $intern['fecha_inicio'], 
+                                $intern['fecha_fin'], $intern['id_tutor_externo'], $intern['id_empresa'], $intern['nota'], $intern['finalizada'],
+                                );
+                        } 
+                     }else{
+                            print 'No hi ha estancies disponibles';
+                        }
+                    
+                }catch (PDOException $ex){
+                    print 'ERROR'. $ex->getMessage();
+                }
+            }
+
+            return $internships;
+     }
+
+     //Muestra las estancias que pertenecen a un profesor
      public static function getTeacherInternships($conn, $niu_profesor){
         $internships = null;
 

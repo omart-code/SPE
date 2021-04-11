@@ -9,6 +9,13 @@ include_once '../app/Connection.inc.php';
 
 
 class InternshipController {
+    //Devuelve todas las estancias
+    public function getInternships($conn){
+        
+        $internships = InternshipModel::getInternships($conn);
+
+        return $internships;
+    }
 
     //Devuelve los datos de una estancia de un estudiante
     public function getStudentInternship($conn, $niu_estudiante){

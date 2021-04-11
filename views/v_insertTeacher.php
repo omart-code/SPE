@@ -25,7 +25,6 @@ include_once '../app/Redirection.inc.php';
              $_POST["telefonProfessor"], $_POST["emailProfessor"], 1);
              Redirection::redirect(TEACHERS);
     
-            // TAL VEZ TAMBIEN TIENES QUE HACER EL INSERT EN LA TABLA USUARIOS, NO SOLO EN PROFESOREES!!!!!!
           }
       
       }
@@ -97,7 +96,7 @@ include_once '../app/Redirection.inc.php';
             <br>
             <button type="submit" class="btn btn-success" name="enviarProfessor">Afegeix</button>
             </form>
-           <?php var_dump($_POST) ?>
+          
         
         </div>
         

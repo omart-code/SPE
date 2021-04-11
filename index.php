@@ -15,7 +15,5 @@ if($parts[1] == 'spe'){
 
 } 
 
-//Vigila esto que ha hecho es un principio de enrutador, pero esta inacabado, video 35 a ver como lo soluciona. Aun falta arreglar logout..
-
 
 ?>
