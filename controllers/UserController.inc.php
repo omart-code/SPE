@@ -10,14 +10,9 @@ class UserController {
         return $userList;
     }
 
-    /* public function getUsersModificados($conn){
-        
-        $listaUsuarios[] = UserModel::getUsers($conn);
-
-        $listaUsuarios[0] = null;
-
-        return $listaUsuarios;
-    } */
+   public function insertUser($conn, $niu, $nombre, $apellido, $telefono, $email, $id_tipo_usuario){
+       UserModel::insertUser($conn, $niu, $nombre, $apellido, $telefono, $email, $id_tipo_usuario);
+   }
 
 }
 ?>

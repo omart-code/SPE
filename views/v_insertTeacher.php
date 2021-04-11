@@ -4,6 +4,8 @@ $title = 'ADD TEACHER';
 include_once '../includes/doc-declaration.inc.php'; 
 include_once '../app/Connection.inc.php';
 include_once '../controllers/TeacherController.inc.php';
+include_once '../controllers/UserController.inc.php';
+include_once '../controllers/DepartmentController.inc.php';
 include_once '../app/Redirection.inc.php';
 ?>
 
@@ -12,12 +14,20 @@ include_once '../app/Redirection.inc.php';
         
       <?php
       if(isset($_POST['enviarProfessor'])){
-       Connection::openConnection(); 
-        TeacherController::insertTeacher(Connection::getConnection(), $_POST["nomProfessor"], $_POST["cognomProfessor"], $_POST["niuProfessor"], 
-         $_POST["telefonProfessor"], $_POST["emailProfessor"], $_POST["departamentProfessor"]);
-         Redirection::redirect(TEACHERS);
-
-         //TAL VEZ TAMBIEN TIENES QUE HACER EL INSERT EN LA TABLA USUARIOS, NO SOLO EN PROFESOREES!!!!!!
+          if(isset($_POST['departamentProfessor'])){
+            Connection::openConnection(); 
+            $department = DepartmentController::getDepartmentByName(Connection::getConnection(), $_POST['departamentProfessor']);
+            $departmentId = $department->getDepartmentId();
+            echo $departmentId;
+            TeacherController::insertTeacher(Connection::getConnection(), $_POST["nomProfessor"], $_POST["cognomProfessor"], $_POST["niuProfessor"], 
+             $_POST["telefonProfessor"], $_POST["emailProfessor"], $departmentId);
+             UserController::insertUser(Connection::getConnection(), $_POST["niuProfessor"], $_POST["nomProfessor"], $_POST["cognomProfessor"],
+             $_POST["telefonProfessor"], $_POST["emailProfessor"], 1);
+             Redirection::redirect(TEACHERS);
+    
+            // TAL VEZ TAMBIEN TIENES QUE HACER EL INSERT EN LA TABLA USUARIOS, NO SOLO EN PROFESOREES!!!!!!
+          }
+      
       }
        ?>
         <div class="container h-100">
@@ -72,19 +82,22 @@ include_once '../app/Redirection.inc.php';
                 <label for="exampleFormControlInput1" class="form-label">Telèfon</label>
                 <input type="text" class="form-control" name="telefonProfessor" placeholder="ex: 666666666">
             </div>
-            <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Departament</label>
-                <select class="form-control" name="departamentProfessor">
-                <option selected>Open this select menu</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="3">4</option>
+            <?php Connection::openConnection(); 
+            $departments = DepartmentController::getDepartments(Connection::getConnection());  ?>
+            <div> 
+            <label>Departament</label>
+            <select name="departamentProfessor" class="form-control" aria-label=".form-select-lg example">
+            <option selected>Sel·lecciona un departament</option>
+            <?php foreach ($departments as $key => $dep) { ?>
+                <option value="<?php echo $dep->getDepartmentName()?>"><?php echo $dep->getDepartmentName() ?></option>
+            <?php } ?>
             </select>
-            </div>
-            
+            </div>          
+            <br>
+            <br>
             <button type="submit" class="btn btn-success" name="enviarProfessor">Afegeix</button>
             </form>
+           <?php var_dump($_POST) ?>
         
         </div>
         
