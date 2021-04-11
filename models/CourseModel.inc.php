@@ -56,6 +56,32 @@
     
            
         }
+         //Devuelve un curso a partir del nombre
+         public static function getCourseByNameAndDate($conn, $nombre, $fecha_inicio, $fecha_fin){
+            $course = null;
+    
+            if(isset($conn)){
+                try{
+                    include_once '../entities/Course.inc.php';
+                    $sql = "SELECT * FROM cursos WHERE nombre = :nombre AND fecha_inicio = :fecha_inicio AND fecha_fin = :fecha_fin";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+                    $stmt ->bindParam(':fecha_inicio', $fecha_inicio, PDO::PARAM_STR);
+                    $stmt ->bindParam(':fecha_fin', $fecha_fin, PDO::PARAM_STR);
+                    $stmt -> execute();
+                    $res = $stmt-> fetch();
+    
+                    if(!empty($res)){
+                        $course = new Course( $res['id_curso'],$res['nombre'],$res['fecha_inicio'], $res['fecha_fin']);
+                    }
+                }catch (PDOException $ex){
+                    print 'ERROR'. $ex->getMessage();
+                }
+            }
+    
+            return $course;
+        }
+       
        
        
     }

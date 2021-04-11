@@ -5,6 +5,7 @@ include_once '../includes/doc-declaration.inc.php';
 include_once '../app/Connection.inc.php';
 include_once '../controllers/CourseController.inc.php';
 include_once '../controllers/DegreeController.inc.php';
+include_once '../controllers/DegreeCourseController.inc.php';
 include_once '../app/Redirection.inc.php';
 ?>
 
@@ -13,11 +14,24 @@ include_once '../app/Redirection.inc.php';
         
       <?php
       if(isset($_POST['enviarCurs'])){
-       Connection::openConnection(); 
-       CourseController::insertCourse(Connection::getConnection(), $_POST["nomCurs"], $_POST["dataIniciCurs"], $_POST["dataFiCurs"]);
-       Redirection::redirect(COURSES);
-
-         //TAL VEZ TAMBIEN TIENES QUE HACER EL INSERT EN LA TABLA USUARIOS, NO SOLO EN PROFESOREES!!!!!!
+        Connection::openConnection(); 
+        //inserto un curso en la tabla cursos
+       
+        CourseController::insertCourse(Connection::getConnection(), $_POST["nomCurs"], $_POST["dataIniciCurs"], $_POST["dataFiCurs"]);
+        //obtengo grado seleccioando en el option
+        $degree = DegreeController::getDegreeByName(Connection::getConnection(), $_POST["grauSelec"]);
+        //obtengo su id
+        $degreeId = $degree->getDegreeId();
+        //obtengo id  del curso antes insertado
+        $course = CourseController:: getCourseByNameAndDate(Connection::getConnection(), $_POST["nomCurs"], $_POST["dataIniciCurs"], $_POST["dataFiCurs"]);
+        $courseId = $course ->getCourseId();
+        //genero la concatenación para el nombre del curso_grado
+        $degreeCourseName = $degree->getDegreeName(). ' / ' . $course->getCourseName();
+        //inserto curso grado
+        DegreeCourseController::insertDegreeCourse(Connection::getConnection(), $courseId, $degreeId, $degreeCourseName, 0);
+        Redirection::redirect(COURSES);
+         //HABRIA QUE COMPROBAR SI EL CURSO YA EXISTE QUE NO LO INSERTE
+         
       }
        ?>
         <div class="container h-100">
@@ -51,18 +65,20 @@ include_once '../app/Redirection.inc.php';
             <br>
             <br>
 
-                <?php Connection::openConnection(); 
+            <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+            <?php Connection::openConnection(); 
             $degrees = DegreeController::getDegrees(Connection::getConnection());  ?>
             <div> <!-- Recoge los cursos de la bd, haz entity, model y controller y inserta en las options -->
             <label>Sel·lecciona Grau</label>
-            <select class="form-control" aria-label=".form-select-lg example">
+            <select name="grauSelec" class="form-control" aria-label=".form-select-lg example">
             <option selected>Sel·lecciona un grau</option>
             <?php foreach ($degrees as $key => $degree) { ?>
-                <option value="<?php echo $key?>"><?php echo $degree->getDegreeName() ?></option>
+                <option value="<?php echo $degree->getDegreeName()?>"><?php echo $degree->getDegreeName() ?></option>
             <?php } ?>
             
             </select>
             </div>
+            <br>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Nom</label>
                 <input type="text" class="form-control" name="nomCurs" placeholder="ex: 2020-2021">
@@ -78,7 +94,7 @@ include_once '../app/Redirection.inc.php';
             
             <button type="submit" class="btn btn-success" name="enviarCurs">Afegeix</button>
             </form>
-        
+      
         </div>
         
       

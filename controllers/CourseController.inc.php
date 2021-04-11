@@ -16,6 +16,11 @@ class CourseController {
             
     }
 
+    public function getCourseByNameAndDate($conn, $nombre, $fecha_inicio, $fecha_fin){
+        $course = CourseModel::getCourseByNameAndDate($conn, $nombre, $fecha_inicio, $fecha_fin);
+        return $course;
+    }
+
    
 
 }
