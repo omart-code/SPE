@@ -55,6 +55,30 @@
     
            
         }
+
+         //Devuelve un departamento a partir del nombre
+         public static function getDepartmentByName($conn, $nombre){
+            $department = null;
+    
+            if(isset($conn)){
+                try{
+                    include_once '../entities/Department.inc.php';
+                    $sql = "SELECT * FROM departamentos WHERE nombre = :nombre";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+                    $stmt -> execute();
+                    $res = $stmt-> fetch();
+    
+                    if(!empty($res)){
+                        $department = new Department( $res['id_departamento'],$res['nombre'],$res['siglas']);
+                    }
+                }catch (PDOException $ex){
+                    print 'ERROR'. $ex->getMessage();
+                }
+            }
+    
+            return $department;
+        }
        
     }
 

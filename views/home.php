@@ -16,7 +16,7 @@ include_once 'includes/doc-declaration.inc.php'; ?>
         Connection::closeConnection(); */
         ?>
       
-<?php include_once 'includes/footer.inc.php'; ?>
+
 
 </body>
 </html>

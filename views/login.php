@@ -78,7 +78,7 @@ include_once '../includes/doc-declaration.inc.php';
   </div>
 </div>
 </div>
-<?php include_once '../includes/footer.inc.php'?>
+
 </body>
 </html>
 

@@ -14,5 +14,10 @@ class DepartmentController {
        return $departments;
     }
 
+    public function  getDepartmentByName($conn, $nombre){
+        $department = DepartmentModel:: getDepartmentByName($conn, $nombre);
+        return $department;
+    }
+
 }
 ?>

@@ -22,7 +22,7 @@ include_once '../includes/navbar.inc.php';
        
        ?>
       
-        <div class="container h-100">
+        <div class="container">
         <?php echo "<h4>Benvingut " . $_SESSION["nombre"]. " " . $_SESSION["niu"]; "</h4>"?>
        <br>
        <br>
@@ -78,4 +78,4 @@ include_once '../includes/navbar.inc.php';
     </div>
         
       
-<?php include_once '../includes/footer.inc.php'; ?>
+

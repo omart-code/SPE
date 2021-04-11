@@ -10,5 +10,10 @@ class DegreeController {
         
     }
 
+    public function getDegreeByName($conn, $nombre){
+        $degree = DegreeModel::getDegreeByName($conn, $nombre);
+        return $degree;
+    }
+
 }
 ?>

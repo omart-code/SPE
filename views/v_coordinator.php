@@ -35,4 +35,3 @@ include_once '../controllers/InternshipController.inc.php';
         </div>
         
       
-<?php include_once '../includes/footer.inc.php'; ?>

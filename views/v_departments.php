@@ -45,7 +45,8 @@ include_once '../controllers/CourseController.inc.php';
         <br>
         <br>
 
-        <?php Connection::openConnection(); 
+       <!--  <?php
+       /* Connection::openConnection(); 
         $courses = CourseController::getCourses(Connection::getConnection());  ?>
         <div>
         <h5>Sel·lecciona Curs</h5>
@@ -53,10 +54,10 @@ include_once '../controllers/CourseController.inc.php';
         <option selected>Sel·lecciona un curs</option>
         <?php foreach ($courses as $key => $course) { ?>
             <option value="<?php echo $key?>"><?php echo $course->getCourseName() ?></option>
-        <?php } ?>
+        <?php } */ ?>
            
         </select>
-        </div>
+        </div> -->
 
         <br>
         <br>
@@ -69,9 +70,11 @@ include_once '../controllers/CourseController.inc.php';
         <option selected>Sel·lecciona un grau</option>
         <?php foreach ($degrees as $key => $degree) { ?>
             <option value="<?php echo $key?>"><?php echo $degree->getDegreeName() ?></option>
-        <?php } ?>
+        <?php }
+         ?>
            
         </select>
+        
         </div>
 
         <!--   FALTA QUE CUANDO ESCOJAS CURSO Y GRADO, EL PROFESOR SEA DE ESE CURSO Y GRADO -->
@@ -114,4 +117,4 @@ include_once '../controllers/CourseController.inc.php';
         </script>
         
       
-        <?php include_once '../includes/footer.inc.php'; ?>
+       

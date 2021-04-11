@@ -89,4 +89,3 @@ include_once '../app/Redirection.inc.php';
         </div>
         
       
-<?php include_once '../includes/footer.inc.php'; ?>
