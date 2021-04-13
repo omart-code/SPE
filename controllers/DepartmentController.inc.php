@@ -19,5 +19,10 @@ class DepartmentController {
         return $department;
     }
 
+    public function  getDepartmentByDegree($conn, $id_grado){
+        $departments = DepartmentModel:: getDepartmentByDegree($conn, $id_grado);
+        return $departments;
+    }
+
 }
 ?>

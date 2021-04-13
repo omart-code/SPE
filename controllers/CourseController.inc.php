@@ -16,6 +16,14 @@ class CourseController {
             
     }
 
+     //devuelve  cursos sin repetirse de la bd
+     public function getCoursesName($conn){
+        $courses = [];
+        $courses = CourseModel::getCoursesName($conn);
+        return $courses;
+            
+    }
+
     public function getCourseByNameAndDate($conn, $nombre, $fecha_inicio, $fecha_fin){
         $course = CourseModel::getCourseByNameAndDate($conn, $nombre, $fecha_inicio, $fecha_fin);
         return $course;

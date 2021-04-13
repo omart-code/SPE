@@ -79,6 +79,38 @@
     
             return $department;
         }
+
+         //Devuelve un departamento a partir del nombre
+         public static function getDepartmentByDegree($conn, $id_grado){
+            $departments = null;
+    
+            if(isset($conn)){
+                try{
+                    include_once '../entities/Department.inc.php';
+                    include_once '../entities/DegreeDepartment.inc.php';
+                    $sql = "SELECT d.nombre, d.siglas
+                    FROM departamentos_grado dg
+                    INNER JOIN departamentos d ON d.id_departamento = dg.id_departamento
+                    WHERE dg.id_grado = :id_grado;";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':id_grado', $id_grado, PDO::PARAM_STR);
+                    $stmt -> execute();
+                    $res = $stmt-> fetchAll();
+                    if(count($res)){
+                        foreach($res as $depart){
+                            $departments[] = $depart;
+                        } 
+                     }else{
+                            print 'No hi ha departaments disponibles';
+                        }
+                }catch (PDOException $ex){
+                    print 'ERROR'. $ex->getMessage();
+                }
+            }
+    
+            return $departments;
+        }
+       
        
     }
 

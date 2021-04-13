@@ -56,6 +56,36 @@
     
            
         }
+
+        //Obtener todos los cursos disponibles
+        public static function getCoursesName($conn){
+           
+    
+            $courses = null;
+    
+            if(isset($conn)){
+                try{
+                    include_once '../entities/Course.inc.php';
+                    $sql = "SELECT DISTINCT nombre FROM cursos";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt -> execute();
+                    $res = $stmt-> fetchAll();
+                    if(count($res)){
+                        foreach($res as $course){
+                            $courses[] = $course;
+                        } 
+                     }else{
+                            print 'No hi ha cursos disponibles';
+                        }
+                }catch (PDOException $ex){
+                    print 'ERROR'. $ex->getMessage();
+                }
+            }
+    
+            return $courses;
+    
+           
+        }
          //Devuelve un curso a partir del nombre
          public static function getCourseByNameAndDate($conn, $nombre, $fecha_inicio, $fecha_fin){
             $course = null;

@@ -48,13 +48,13 @@ include_once '../controllers/TeacherController.inc.php';
         <br>
 
         <?php Connection::openConnection(); 
-        $courses = CourseController::getCourses(Connection::getConnection());  ?>
+        $courses = CourseController::getCoursesName(Connection::getConnection());  ?>
         <div> 
         <h5>Sel·lecciona Curs</h5>
         <select class="form-control" aria-label=".form-select-lg example">
         <option selected>Sel·lecciona un curs</option>
         <?php foreach ($courses as $key => $course) { ?>
-            <option value="<?php echo $key?>"><?php echo $course->getCourseName() ?></option>
+            <option value="<?php echo $key?>"><?php echo $course['nombre'] ?></option>
         <?php } ?>
            
         </select>
