@@ -31,12 +31,25 @@
              <h1>VISTA DE UNA ESTADA CONCRETA</h1>
             <br>
             <br>
+        
              <div class="row">
                         <br>
                         <br>
-                        <div class="col-md-4"><h4><b>Alumne</b></h4></div>
-                        <div class="col-md-4"><h4><b>Tutor extern</b></h4></div>
-                        <div class="col-md-4"><h4><b>Dates de l'estada</b></h4></div>
+                        <div class="col-md-4"><h4><b>Alumne
+                        <a type="button" class="button" data-toggle="modal" data-target="#alumno" style="color: #28a745">
+                        <i class="fa fa-edit"></i>
+                        </a>
+                        </b></h4>
+                        
+                        </div>
+                        <div class="col-md-4"><h4><b>Tutor extern
+                        <a type="button" class="button" data-toggle="modal" data-target="#profesor-externo" style="color: #28a745">
+                        <i class="fa fa-edit"></i>
+                        </a></b></h4></div>
+                        <div class="col-md-4"><h4><b>Dates de l'estada</b>
+                        <a type="button" class="button" data-toggle="modal" data-target="#fechas" style="color: #28a745">
+                        <i class="fa fa-edit"></i>
+                        </a></h4></div>
                 </div>
                 <div class="row">
                         <div class="col-md-4"><?php echo "<h5>".$student->getStudentName(). " ". $student->getStudentSurname()."</h5>" ?></div>
@@ -140,6 +153,95 @@
     } ?>
         </div>
    
+   <!--     MODAL ALUMNE -->
+   <div class="modal fade" id="alumno" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modificar Alumne</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Nom:</label>
+                        <input type="text" class="form-control" id="nombre-alumno">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Cognom:</label>
+                        <input class="form-control" id="apellido-alumno"></input>
+                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Tanca</button>
+                    <button type="button" class="btn btn-success">Modifica</button>
+                </div>
+                </div>
+            </div>
+    </div>
+
+     <!--     MODAL PROFESOR EXTERNO -->
+   <div class="modal fade" id="profesor-externo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modificar Professor Extern</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Nom:</label>
+                        <input type="text" class="form-control" id="nombre-alumno">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Cognom:</label>
+                        <input class="form-control" id="apellido-alumno"></input>
+                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Tanca</button>
+                    <button type="button" class="btn btn-success">Modifica</button>
+                </div>
+                </div>
+            </div>
+    </div>
+
+       <!--     MODAL FECHAS -->
+   <div class="modal fade" id="fechas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modificar Dates de la Estada</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Data d'inici:</label>
+                        <input type="text" class="form-control" id="nombre-alumno">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Data de finalització:</label>
+                        <input class="form-control" id="apellido-alumno"></input>
+                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Tanca</button>
+                    <button type="button" class="btn btn-success">Modifica</button>
+                </div>
+                </div>
+            </div>
+    </div>
         
    
 </body>
