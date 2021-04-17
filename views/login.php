@@ -61,7 +61,7 @@ include_once '../includes/doc-declaration.inc.php';
           echo 'value="' . $_POST['niu'] . '"';
         }
         ?>
-      <input type="text" id="password" class="fadeIn third" name="password" placeholder="password" >
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" >
       <?php
             if (isset($_POST['enviar'])){
             $validator -> showError();

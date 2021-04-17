@@ -14,7 +14,16 @@ include_once __DIR__ . '/../app/config.inc.php';
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                        <a class="nav-link" href="<?php echo SERVER ?>"><h3>Inici</h3><span class="sr-only">(current)</span></a>
+                        <a class="nav-link" <?php  if(ControlSession::sessionStarted()){
+                        if($_SESSION['id_tipo_usuario'] == '1'){ ?>
+                            href="<?php echo TEACHER ?>"><h3>Inici</h3><span class="sr-only">(current)</span></a>
+                        <?php } else if ($_SESSION['id_tipo_usuario'] == '3') { ?>
+                            href=" <?php echo COORDINATOR ?>"><h3>Inici</h3><span class="sr-only">(current)</span></a>
+                        <?php } else { ?>
+                             href=" <?php echo SERVER ?>"><h3>Inici</h3><span class="sr-only">(current)</span></a>
+                       <?php } ?>
+                        <?php } ?>
+                       
                     </li>
                     <?php
                     if(ControlSession::sessionStarted()){

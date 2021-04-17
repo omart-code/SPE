@@ -6,7 +6,7 @@ include_once '../app/Redirection.inc.php';
 include_once '../app/Session.inc.php';
 
 ControlSession::closeSession();
-Redirection::redirect(SERVER);
+Redirection::redirect(LOGIN);
 
 
 ?>
