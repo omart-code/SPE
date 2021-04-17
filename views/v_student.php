@@ -3,6 +3,7 @@ include_once '../includes/libraries.inc.php';
 include_once '../controllers/UserController.inc.php';
 include_once '../controllers/InternshipController.inc.php';
 include_once '../models/InternshipModel.inc.php';
+include_once '../controllers/CommentController.inc.php';
 include_once '../app/Connection.inc.php';
 $title = 'STUDENT';
 include_once '../includes/doc-declaration.inc.php';
@@ -30,21 +31,23 @@ include_once '../includes/navbar.inc.php';
         <br>
         <h5>INFORMACIÓ DE LA TEVA ESTANCIA</h5>
         <br>
+        <br>
         </div>
         <!-- Datos del estudiante -->
         <div class="container">
                 <div class="row">
-                        <div class="col-md-4"><?php echo "<h4>".$teacher->getTeacherName(). " ". $teacher->getTeacherSurname()."</h4>" ?></div>
-                        <div class="col-md-4"><?php echo "<h4>".$extTeacher->getName(). " ". $extTeacher->getSurname()."</h4>"?></div>
-                        <div class="col-md-4"><h4>Dates de l'estada</h4></div>
+                        <br>
+                        <br>
+                        <div class="col-md-4"><h4><b>Tutor acadèmic</b></h4></div>
+                        <div class="col-md-4"><h4><b>Tutor extern</b></h4></div>
+                        <div class="col-md-4"><h4><b>Dates de l'estada</b></h4></div>
                 </div>
                 <div class="row">
-                        <br>
-                        <br>
-                        <div class="col-md-4"><h5><b>Tutor acadèmic</b></h5></div>
-                        <div class="col-md-4"><h5><b>Tutor extern</b></h5></div>
-                        <div class="col-md-4"></div>
+                        <div class="col-md-4"><?php echo "<h5>".$teacher->getTeacherName(). " ". $teacher->getTeacherSurname()."</h5>" ?></div>
+                        <div class="col-md-4"><?php echo "<h5>".$extTeacher->getName(). " ". $extTeacher->getSurname()."</h5>"?></div>
+                        <div class="col-md-4"><h4></h4></div>
                 </div>
+                
                 <div class="row">
                         <div class="col-md-4"><?php echo "<b>Correu electrònic: </b> ".$teacher->getTeacherEmail(); ?></div>
                         <div class="col-md-4"><?php echo "<b>Correu electrònic: </b> ".$extTeacher->getEmail(); ?></div>
@@ -73,9 +76,47 @@ include_once '../includes/navbar.inc.php';
     </div>
     <br>
     <br>
-    <div class="comentaries-tutor">
-        <h5>Comentaris del tutor/a:</h5>
-    </div>
+    <div class="comentaries-tutor container">
+            <h5>Comentaris del tutor/a:</h5> 
+            <?php  Connection::openConnection(); 
+               $comments = CommentController:: getPublicComments(Connection::getConnection(), $internship->getIdInternship());  
+               if($comments !== null) {?>
+            <table id="comentaris-alumne" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                        <th scope="col">Data</th>
+                        <th scope="col">Comentari</th>
+                    
+                        </tr>
+                    </thead>
+                    <tbody>
+    
+                    <?php
+                        foreach ($comments as $comment) {
+                        
+                            echo "<tr>";
+                            echo "<th scope='row'>".$comment->getCommentDate()."</td>";
+                            echo "<td>".$comment->getCommentMessage()."</td>";
+                            
+                            echo "</tr>";
+                        }
+               
+            
+                   
+                        
+                    ?>
+        </tbody>
+    </table>
+    <?php }else{ 
+        echo "<h6> No hi ha comentaris a mostrar </h6>";
+    } ?>   
+</div>
+<script>
+$(document).ready(function() {
+            $('#comentaris-tutor').DataTable();
+        } );
+</script>
+        </div>
         
       
 

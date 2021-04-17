@@ -16,7 +16,8 @@ include_once '../controllers/InternshipController.inc.php';
                 <?php echo "<h4>Benvingut " . $_SESSION["nombre"]. " " . $_SESSION["niu"]; "</h4>"?>
                 <h1>VISTA DEL PROFESOR</h1>
                 <h5>ESTADES PENDENTS DE REVISAR</h5>
-                
+                <br>
+                <br>
                 <div class="row">
                     <?php
                     //AQUI MUESTRAS TODAS LAS ESTANCIAS DE UN PROFESOR, FALTA CONTROLAR LAS QUE TENGAN TAREAS PENDIENTES.

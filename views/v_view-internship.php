@@ -29,20 +29,21 @@
              <!-- Datos del estudiante -->
              <div class="container">
              <h1>VISTA DE UNA ESTADA CONCRETA</h1>
-             <br>
-             <br>
-                <div class="row">
-                        <div class="col-md-4"><?php echo "<h4>".$student->getStudentName(). " ". $student->getStudentSurname()."</h4>" ?></div>
-                        <div class="col-md-4"><?php echo "<h4>".$extTeacher->getName(). " ". $extTeacher->getSurname()."</h4>"?></div>
-                        <div class="col-md-4"><h4>Dates de l'estada</h4></div>
+            <br>
+            <br>
+             <div class="row">
+                        <br>
+                        <br>
+                        <div class="col-md-4"><h4><b>Alumne</b></h4></div>
+                        <div class="col-md-4"><h4><b>Tutor extern</b></h4></div>
+                        <div class="col-md-4"><h4><b>Dates de l'estada</b></h4></div>
                 </div>
                 <div class="row">
-                        <br>
-                        <br>
-                        <div class="col-md-4"><h5><b>Alumne</b></h5></div>
-                        <div class="col-md-4"><h5><b>Tutor extern</b></h5></div>
+                        <div class="col-md-4"><?php echo "<h5>".$student->getStudentName(). " ". $student->getStudentSurname()."</h5>" ?></div>
+                        <div class="col-md-4"><?php echo "<h5>".$extTeacher->getName(). " ". $extTeacher->getSurname()."</h5>"?></div>
                         <div class="col-md-4"></div>
                 </div>
+                
                 <div class="row">
                         <div class="col-md-4"><?php echo "<b>Correu electrònic: </b> ".$student->getStudentEmail(); ?></div>
                         <div class="col-md-4"><?php echo "<b>Correu electrònic: </b> ".$extTeacher->getEmail(); ?></div>
@@ -95,9 +96,14 @@
         <br>
         <br>
 
+       
+
         <div class="comentaries-tutor container">
             <h5>Comentaris del tutor/a:</h5> 
-            <table id="comentaris" class="table table-striped table-bordered">
+            <?php  Connection::openConnection(); 
+               $comments = CommentController:: getComments(Connection::getConnection(), $internship->getIdInternship());  
+               if($comments !== null) {?>
+            <table id="comentaris-tutor" class="table table-striped table-bordered">
                     <thead>
                         <tr>
                         <th scope="col">Data</th>
@@ -110,16 +116,18 @@
                     <?php
                     
                         
-                        Connection::openConnection(); 
-                        $comments = CommentController:: getComments(Connection::getConnection(), $internship->getIdInternship()); 
-                        foreach ($comments as $comment) {
+                       
+                       
+                            foreach ($comments as $comment) {
                         
-                            echo "<tr>";
-                            echo "<th scope='row'>".$comment->getCommentDate()."</td>";
-                            echo "<td>".$comment->getCommentMessage()."</td>";
-                            
-                            echo "</tr>";
-                        }
+                                echo "<tr>";
+                                echo "<th scope='row'>".$comment->getCommentDate()."</td>";
+                                echo "<td>".$comment->getCommentMessage()."</td>";
+                                
+                                echo "</tr>";
+                            }
+                        
+                        
                
             
                    
@@ -127,15 +135,19 @@
                     ?>
         </tbody>
     </table>   
-
+    <?php }else{ 
+        echo "<h6> No hi ha comentaris a mostrar </h6>";
+    } ?>
         </div>
-
+   
+        
+   
 </body>
 
 <script>
 $(document).ready(function() {
-            $('#comentaris').DataTable();
+            $('#comentaris-tutor').DataTable();
         } );
-        </script>
+</script>
         
 </html>

@@ -10,5 +10,12 @@ class CommentController {
         
     }
 
+    public function getPublicComments($conn, $id_estancia){
+        $comments = [];
+        $comments = CommentModel::getPublicComments($conn, $id_estancia);
+        return $comments;
+
+    }
+
 }
 ?>

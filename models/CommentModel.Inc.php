@@ -20,7 +20,7 @@
                             $comments[] = new Comment(
                                 $comment['id_comentario'], $comment['mensaje'], $comment['fecha'], $comment['tipo'], $comment['id_estancia'], $comment['categoria'] );
                             }}else{
-                                print 'No hi ha comentaris disponibles';
+                                $comments = null;
                             }
                 }catch (PDOException $ex){
                     print 'ERROR'. $ex->getMessage();
@@ -37,8 +37,8 @@
     
             if(isset($conn)){
                 try{
-                    include_once '../entities/Comments.inc.php';
-                    $sql = "SELECT * FROM comentarios c WHERE c.id_estancia = :id_estancia AND c.tipo = público";
+                    include_once '../entities/Comment.inc.php';
+                    $sql = "SELECT * FROM comentarios c WHERE c.id_estancia = :id_estancia AND c.tipo = 1";
                     $stmt = $conn -> prepare($sql);
                     $stmt ->bindParam(':id_estancia', $id_estancia, PDO::PARAM_STR);
                     $stmt -> execute();
@@ -49,7 +49,7 @@
                             $comments[] = new Comment(
                                 $comment['id_comentario'], $comment['mensaje'], $comment['fecha'], $comment['tipo'], $comment['id_estancia'], $comment['categoria'] );
                             }}else{
-                                print 'No hi ha comentaris disponibles';
+                               $comments = null;
                             }
                 }catch (PDOException $ex){
                     print 'ERROR'. $ex->getMessage();
