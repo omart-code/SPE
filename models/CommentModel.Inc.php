@@ -58,6 +58,37 @@
     
             return $comments;
         }
+
+         //Inserta un comentario
+         public static function insertComment($conn, $mensaje, $tipo, $id_estancia, $categoria ){
+           
+            $fecha = date("Y-m-d");
+            if($tipo == 'Públic'){
+                $tipo = 1;
+            }else{
+                $tipo = 2;
+            }
+            if(isset($conn)){
+                try{
+                    include_once '../entities/Comment.inc.php';
+
+                    $sql = "INSERT INTO comentarios (mensaje, fecha, tipo, id_estancia, categoria)
+                    VALUES (:mensaje, :fecha, :tipo, :id_estancia, :categoria)";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':mensaje', $mensaje, PDO::PARAM_STR);
+                    $stmt ->bindParam(':fecha', $fecha, PDO::PARAM_STR);
+                    $stmt ->bindParam(':tipo', $tipo, PDO::PARAM_STR);
+                    $stmt ->bindParam(':id_estancia', $id_estancia, PDO::PARAM_STR);
+                    $stmt ->bindParam(':categoria', $categoria, PDO::PARAM_STR);
+                    $stmt -> execute();
+                    
+                }catch (PDOException $ex){
+                    print 'ERROR'. $ex->getMessage();
+                }
+            }
+    
+           
+        }
        
     }
 

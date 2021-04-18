@@ -17,5 +17,9 @@ class CommentController {
 
     }
 
+    public function insertComment($conn, $mensaje, $tipo, $id_estancia, $categoria ){
+        CommentModel::insertComment($conn, $mensaje, $tipo, $id_estancia, $categoria );
+    }
+
 }
 ?>
