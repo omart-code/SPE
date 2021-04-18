@@ -67,16 +67,22 @@ include_once '../includes/navbar.inc.php';
         </div>
         <br>
         <br>
-    <div class="progress-container">
+        <div class="container">
         <h5>El teu progrés</h5>
                 <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo $percentage ?>%"  aria-valuenow="<?php echo $percentage ?>"  aria-valuemin="0" aria-valuemax="100"><?php echo $percentage ?>%</div>
+                        <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo $percentage ?>%"  aria-valuenow="<?php echo $percentage ?>"  aria-valuemin="0" aria-valuemax="100"><?php 
+                         if($percentage >100){
+                            echo 100;
+                        }else{
+                            echo $percentage;
+                        } ?>%</div>
                         </div>
                 </div>
-    </div>
+        </div>
+
     <br>
     <br>
-    <div class="comentaries-tutor container">
+    <div class="container">
             <h5>Comentaris del tutor/a:</h5> 
             <?php  Connection::openConnection(); 
                $comments = CommentController:: getPublicComments(Connection::getConnection(), $internship->getIdInternship());  

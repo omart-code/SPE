@@ -11,12 +11,13 @@
     include_once '../controllers/PhaseController.inc.php';
     include_once '../controllers/CommentController.inc.php';
     include_once '../controllers/StudentController.inc.php';
+    include_once '../controllers/ExternalTeacherController.inc.php';
     include_once '../models/InternshipModel.inc.php';
     include_once '../app/Connection.inc.php'; ?>
 </head>
 <body>
    
-  
+<?php include_once '../includes/navbar.inc.php'; ?>
   <?php 
    Connection::openConnection(); 
    $internship = InternshipController::getStudentInternship(Connection::getConnection(), $_GET["niu"]);
@@ -175,10 +176,15 @@
                     Connection::openConnection();
                    
                     StudentController::updateStudentByNiu(Connection::getConnection(), $internship->getNiuStudent(), $_POST['nombreAlumno'], $_POST['apellidoAlumno'], $_POST['emailAlumno'], $_POST['telefonoAlumno']);
-                    
+                    //SE DEBERIA TAMBIEN ACTUALIZAR EL USUARIO CORRESPONDIENTE A ESE STUDENT??!!
             }
 
-            //FALTA PARA PROFESOR EXTERNO
+            if(isset($_POST['modificaProfesor'])){
+                Connection::openConnection();
+                   
+                ExternalTeacherController::updateExternalTeacherById(Connection::getConnection(), $internship->getIdExternalTeacher(), $_POST['nombreProfesor'], $_POST['apellidoProfesor'],
+                $_POST['emailProfesor'], $_POST['telefonoProfesor']);
+            }
 
             if(isset($_POST['modificaFechas'])){
                 Connection::openConnection();
@@ -242,7 +248,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="profesorForm" method="POST" action=<?php echo VIEWINTERNSHIP.'?niu='.$internship->getNiuStudent()?> name="alumno" role="form">
+                    <form id="profesorForm" method="POST" action=<?php echo VIEWINTERNSHIP.'?niu='.$internship->getNiuStudent()?> name="profesor" role="form">
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Nom:</label>
                             <input type="text" class="form-control" id="nombre-alumno" name="nombreProfesor">
@@ -259,15 +265,12 @@
                             <label for="message-text" class="col-form-label">Telèfon:</label>
                             <input class="form-control" id="telefono-alumno" name="telefonoProfesor"></input>
                         </div>
-                        <div class="form-group">
-                            <label for="message-text" class="col-form-label">Empresa:</label>
-                            <input class="form-control" id="telefono-alumno" name="telefonoAlumno"></input>
-                        </div>
+                       
                    
                        
                         <div class="modal-footer">
                             <button type="button" class="btn btn-success" data-dismiss="modal">Tanca</button>
-                            <button type="submit" id="submit" class="btn btn-success" name="modificaAlumno">Modifica</button>
+                            <button type="submit" id="submit" class="btn btn-success" name="modificaProfesor">Modifica</button>
                         
                         </div>
                      </form>
@@ -289,7 +292,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="fechasForm" method="POST" action=<?php echo VIEWINTERNSHIP.'?niu='.$internship->getNiuStudent()?> name="alumno" role="form">
+                    <form id="fechasForm" method="POST" action=<?php echo VIEWINTERNSHIP.'?niu='.$internship->getNiuStudent()?> name="fechas" role="form">
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Data d'inici</label>
                             <input type="date" class="form-control" id="fecha-inicio" name="fechaInicio">

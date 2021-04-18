@@ -1,11 +1,11 @@
 $(document).ready(function() {
 
-    //Por cada estancia
+    //Al clicar  el boton revisa de una estancia
 
         $(".revisa").click(function(e) {
             e.preventDefault();
          
-            //guardamos el id de la categoria en una variable
+            //cogemos el niu
             var niu = $(this).attr('student-niu');
             
            $(".container").empty();
