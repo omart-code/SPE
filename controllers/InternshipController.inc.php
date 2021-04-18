@@ -16,6 +16,10 @@ class InternshipController {
 
         return $internships;
     }
+    //Actualiza las fechas de estancia de un estudiante en funcion del niu
+    function updateInternshipDates($conn, $niu_estudiante, $fecha_inicio, $fecha_fin){
+        InternshipModel::updateInternshipDates($conn, $niu_estudiante, $fecha_inicio, $fecha_fin);
+    }
 
     //Devuelve los datos de una estancia de un estudiante
     public function getStudentInternship($conn, $niu_estudiante){

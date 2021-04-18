@@ -16,7 +16,7 @@ $(document).ready(function() {
                 success:
                     function (respuesta) {
                        
-                        $(".container").html(respuesta);
+                        $(".pagina").html(respuesta);
                        
                         
                     }

@@ -5,7 +5,7 @@ include_once '../includes/doc-declaration.inc.php';
 include_once '../app/Connection.inc.php';
 include_once '../controllers/InternshipController.inc.php';
 ?>
-
+<div class="pagina">
 <?php include_once '../includes/navbar.inc.php'; ?>
     
         
@@ -30,7 +30,6 @@ include_once '../controllers/InternshipController.inc.php';
                         <div class="col-md-4 mb-3">
                             <div class="card" >
                                 <div class="card-header">
-                                <?php echo "<h5>".$internship->getIdInternship()."</h5>" ?>
                                 <?php echo "<h5>".$student->getStudentName(). " ". $student->getStudentSurname()."</h5>" ?>
                                 </div>
                                 <div class="card-body">
@@ -42,9 +41,11 @@ include_once '../controllers/InternshipController.inc.php';
                         </div>  
                             
                         <?php }?>
+                        
                 </div>
            
         </div>
+</div>
 
 
         

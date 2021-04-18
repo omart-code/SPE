@@ -28,6 +28,29 @@ class InternshipModel {
             return $internship;
      }
 
+      //Actualiza los fechas de estancia en funcion del niu del estudiante que hace la estancia
+      public static function updateInternshipDates($conn, $niu_estudiante, $fecha_inicio, $fecha_fin){
+        $student = null;
+
+        if(isset($conn)){
+            try{
+                include_once '../entities/Student.inc.php';
+                $sql = "UPDATE estancias SET fecha_inicio=:fecha_inicio, fecha_fin=:fecha_fin WHERE niu_estudiante = :niu_estudiante";
+                $stmt = $conn -> prepare($sql);
+                $stmt ->bindParam(':niu_estudiante', $niu_estudiante, PDO::PARAM_STR);
+                $stmt ->bindParam(':fecha_inicio', $fecha_inicio, PDO::PARAM_STR);
+                $stmt ->bindParam(':fecha_fin', $fecha_fin, PDO::PARAM_STR);
+                
+                $stmt -> execute();
+              
+            }catch (PDOException $ex){
+                print 'ERROR'. $ex->getMessage();
+            }
+        }
+
+       
+    }
+
      //Muestra las estancias que pertenecen a un profesor
      public static function getInternships($conn){
         $internships = null;

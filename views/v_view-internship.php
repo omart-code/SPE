@@ -10,6 +10,7 @@
     include_once '../controllers/InternshipController.inc.php';
     include_once '../controllers/PhaseController.inc.php';
     include_once '../controllers/CommentController.inc.php';
+    include_once '../controllers/StudentController.inc.php';
     include_once '../models/InternshipModel.inc.php';
     include_once '../app/Connection.inc.php'; ?>
 </head>
@@ -26,6 +27,8 @@
    $percentage = InternshipController::calculatePercentage(Connection::getConnection(), $_GET['niu']);
    $phases = PhaseController::getPhases(Connection::getConnection());
    ?>
+
+
              <!-- Datos del estudiante -->
              <div class="container">
              <h1>VISTA DE UNA ESTADA CONCRETA</h1>
@@ -36,18 +39,18 @@
                         <br>
                         <br>
                         <div class="col-md-4"><h4><b>Alumne
-                        <a type="button" class="button" data-toggle="modal" data-target="#alumno" style="color: #28a745">
+                        <a type="button" class="button" data-toggle="modal" data-target="#modalAlumno" style="color: #28a745">
                         <i class="fa fa-edit"></i>
                         </a>
                         </b></h4>
                         
                         </div>
                         <div class="col-md-4"><h4><b>Tutor extern
-                        <a type="button" class="button" data-toggle="modal" data-target="#profesor-externo" style="color: #28a745">
+                        <a type="button" class="button" data-toggle="modal" data-target="#modalProfesor" style="color: #28a745">
                         <i class="fa fa-edit"></i>
                         </a></b></h4></div>
                         <div class="col-md-4"><h4><b>Dates de l'estada</b>
-                        <a type="button" class="button" data-toggle="modal" data-target="#fechas" style="color: #28a745">
+                        <a type="button" class="button" data-toggle="modal" data-target="#modalFechas" style="color: #28a745">
                         <i class="fa fa-edit"></i>
                         </a></h4></div>
                 </div>
@@ -80,7 +83,12 @@
         <div class="progress-container container">
         <h5>El teu progrés</h5>
                 <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo $percentage ?>%"  aria-valuenow="<?php echo $percentage ?>"  aria-valuemin="0" aria-valuemax="100"><?php echo $percentage ?>%</div>
+                        <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo $percentage ?>%"  aria-valuenow="<?php echo $percentage ?>"  aria-valuemin="0" aria-valuemax="100"><?php 
+                         if($percentage >100){
+                            echo 100;
+                        }else{
+                            echo $percentage;
+                        } ?>%</div>
                         </div>
                 </div>
         </div>
@@ -88,8 +96,8 @@
         <br>
         <br>
       <!--   AQUI TENDRÁS QUE HACER QUE CUANDO UNA FASE SE COMPLETE SE PONGA EN VERDE, Y SI NO ES ASI EN ROJO -->
-      <!-- HACER UN ACORDEON QUE MUESTRE POR CADA FASE SU TABLA DE TAREAS -->
-    
+      <!-- HACER UN ACORDEON QUE MUESTRE POR CADA FASE SU TABLA DE TAREAS DE MOMENTO NO VA -->
+        <div class="container">
         <?php foreach ($phases as $phase) { ?>
            
             <div class="alert alert-secondary" role="alert">
@@ -103,7 +111,7 @@
             <br>
            
         <?php }?>
-
+        </div>
     
     
         <br>
@@ -152,9 +160,36 @@
         echo "<h6> No hi ha comentaris a mostrar </h6>";
     } ?>
         </div>
-   
+        
+       
+
+
+       <!--  FUNCIONA UPDATE, PERO CUANDO CIERRAS EL MODAL TE LLEVA A LA PAGINA DE LA ESTANCIA SIN VER LA NAVBAR!!!!!!!! -->
+      
+ <!--   LÓGICA DE ACTUALIZAR ENVIO DATOS MODAL BASE DE DATOS -->
+
+        <?php
+            
+            if(isset($_POST['modificaAlumno'])){
+                
+                    Connection::openConnection();
+                   
+                    StudentController::updateStudentByNiu(Connection::getConnection(), $internship->getNiuStudent(), $_POST['nombreAlumno'], $_POST['apellidoAlumno'], $_POST['emailAlumno'], $_POST['telefonoAlumno']);
+                    
+            }
+
+            //FALTA PARA PROFESOR EXTERNO
+
+            if(isset($_POST['modificaFechas'])){
+                Connection::openConnection();
+                   
+                InternshipController::updateInternshipDates(Connection::getConnection(), $internship->getNiuStudent(), $_POST['fechaInicio'], $_POST['fechaFinal']);
+            }
+       ?>
+
    <!--     MODAL ALUMNE -->
-   <div class="modal fade" id="alumno" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div id="modificarAlumno">
+        <div class="modal fade" id="modalAlumno" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -164,85 +199,121 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Nom:</label>
-                        <input type="text" class="form-control" id="nombre-alumno">
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Cognom:</label>
-                        <input class="form-control" id="apellido-alumno"></input>
-                    </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Tanca</button>
-                    <button type="button" class="btn btn-success">Modifica</button>
+                    <form id="alumnoForm" method="POST" action=<?php echo VIEWINTERNSHIP.'?niu='.$internship->getNiuStudent()?> name="alumno" role="form">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Nom:</label>
+                            <input type="text" class="form-control" id="nombre-alumno" name="nombreAlumno">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Cognom:</label>
+                            <input class="form-control" id="apellido-alumno" name="apellidoAlumno"></input>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Email:</label>
+                            <input class="form-control" id="email-alumno" name="emailAlumno"></input>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Telèfon:</label>
+                            <input class="form-control" id="telefono-alumno" name="telefonoAlumno"></input>
+                        </div>
+                   
+                       
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Tanca</button>
+                            <button type="submit" id="submit" class="btn btn-success" name="modificaAlumno">Modifica</button>
+                        
+                        </div>
+                     </form>
                 </div>
                 </div>
             </div>
+        </div>
     </div>
 
      <!--     MODAL PROFESOR EXTERNO -->
-   <div class="modal fade" id="profesor-externo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div id="modificarProfesor">
+        <div class="modal fade" id="modalProfesor" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modificar Professor Extern</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Modificar Professor</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Nom:</label>
-                        <input type="text" class="form-control" id="nombre-alumno">
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Cognom:</label>
-                        <input class="form-control" id="apellido-alumno"></input>
-                    </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Tanca</button>
-                    <button type="button" class="btn btn-success">Modifica</button>
+                    <form id="profesorForm" method="POST" action=<?php echo VIEWINTERNSHIP.'?niu='.$internship->getNiuStudent()?> name="alumno" role="form">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Nom:</label>
+                            <input type="text" class="form-control" id="nombre-alumno" name="nombreProfesor">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Cognom:</label>
+                            <input class="form-control" id="apellido-alumno" name="apellidoProfesor"></input>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Email:</label>
+                            <input class="form-control" id="email-alumno" name="emailProfesor"></input>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Telèfon:</label>
+                            <input class="form-control" id="telefono-alumno" name="telefonoProfesor"></input>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Empresa:</label>
+                            <input class="form-control" id="telefono-alumno" name="telefonoAlumno"></input>
+                        </div>
+                   
+                       
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Tanca</button>
+                            <button type="submit" id="submit" class="btn btn-success" name="modificaAlumno">Modifica</button>
+                        
+                        </div>
+                     </form>
                 </div>
                 </div>
             </div>
+        </div>
     </div>
 
        <!--     MODAL FECHAS -->
-   <div class="modal fade" id="fechas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div id="modificarFechas">
+        <div class="modal fade" id="modalFechas" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modificar Dates de la Estada</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Modificar les dates de l'estada</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Data d'inici:</label>
-                        <input type="text" class="form-control" id="nombre-alumno">
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Data de finalització:</label>
-                        <input class="form-control" id="apellido-alumno"></input>
-                    </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Tanca</button>
-                    <button type="button" class="btn btn-success">Modifica</button>
+                    <form id="fechasForm" method="POST" action=<?php echo VIEWINTERNSHIP.'?niu='.$internship->getNiuStudent()?> name="alumno" role="form">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Data d'inici</label>
+                            <input type="date" class="form-control" id="fecha-inicio" name="fechaInicio">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Data de finalització:</label>
+                            <input class="form-control" type="date" id="fecha-final" name="fechaFinal"></input>
+                        </div>
+                        
+                   
+                       
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Tanca</button>
+                            <button type="submit" id="submit" class="btn btn-success" name="modificaFechas">Modifica</button>
+                        
+                        </div>
+                     </form>
                 </div>
                 </div>
             </div>
+        </div>
     </div>
         
+
    
 </body>
 
