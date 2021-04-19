@@ -35,7 +35,7 @@ include_once '../controllers/InternshipController.inc.php';
                                 <div class="card-body">
                                     <h6 class="card-title">Data d'inici: <?php echo $internship->getStartDate() ?></h6>
                                     <h6 class="card-title">Data de finalització <?php echo $internship->getEndDate() ?></h6>
-                                    <a href="#" name="revisa" class="btn btn-success revisa" student-niu="<?php echo  $internship->getNiuStudent(); ?>">Revisa</a>
+                                    <a href="./v_view-internship.php?niu=<?php  echo  $internship->getNiuStudent(); ?>" name="revisa" class="btn btn-success" student-niu="<?php echo  $internship->getNiuStudent(); ?>">Revisa</a>
                                 </div>
                             </div>
                         </div>  

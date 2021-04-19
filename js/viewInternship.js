@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     //Al clicar  el boton revisa de una estancia
-
+/* 
         $(".revisa").click(function(e) {
             e.preventDefault();
          
@@ -24,7 +24,7 @@ $(document).ready(function() {
 
             })
  
-        });
+        }); */
     });
 
 

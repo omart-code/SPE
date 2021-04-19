@@ -31,6 +31,7 @@
              <!-- Datos del estudiante -->
              <div class="container">
              <h1>VISTA DE UNA ESTADA CONCRETA</h1>
+           
             <br>
             <br>
         
@@ -194,16 +195,24 @@
             }
 
             //LA INSERCION  DEL COMENTARIO LA HACE PERO SI RECARGAS LA PAGINA SE VUELVE A INSERTAR,
-            if(isset($_POST['insertaComentario'])){
+
+            if (!empty($_POST)) {
+                if (!empty($_POST['textoComentario'])) {
+                    Connection::openConnection();
+                    CommentController::insertComment(Connection::getConnection(),$_POST['textoComentario'], $_POST['tipoComentario'], $internship->getIdInternship(), 'especial');
+                   
+                }
+            }
+            
+            /* if(isset($_POST['insertaComentario'])){
                 Connection::openConnection();
                    
                 CommentController::insertComment(Connection::getConnection(),$_POST['textoComentario'], $_POST['tipoComentario'], $internship->getIdInternship(), 'especial');
-              
                
-            }
+            } */
        ?>
 
-   <!--     MODAL ALUMNE -->
+   <!--     MODAL ALUMNE --> 
    <div id="modificarAlumno">
         <div class="modal fade" id="modalAlumno" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -215,7 +224,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="alumnoForm" method="POST" action=<?php echo VIEWINTERNSHIP.'?niu='.$internship->getNiuStudent()?> name="alumno" role="form">
+                    <form id="alumnoForm" method="POST"  name="alumno" role="form">
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Nom:</label>
                             <input type="text" class="form-control" id="nombre-alumno" name="nombreAlumno">
@@ -258,7 +267,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="profesorForm" method="POST" action=<?php echo VIEWINTERNSHIP.'?niu='.$internship->getNiuStudent()?> name="profesor" role="form">
+                    <form id="profesorForm" method="POST"  name="profesor" role="form">
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Nom:</label>
                             <input type="text" class="form-control" id="nombre-alumno" name="nombreProfesor">
@@ -302,7 +311,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="fechasForm" method="POST" action=<?php echo VIEWINTERNSHIP.'?niu='.$internship->getNiuStudent()?> name="fechas" role="form">
+                    <form id="fechasForm" method="POST"  name="fechas" role="form">
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Data d'inici</label>
                             <input type="date" class="form-control" id="fecha-inicio" name="fechaInicio">
@@ -338,7 +347,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="comentariosForm" method="POST" action=<?php echo VIEWINTERNSHIP.'?niu='.$internship->getNiuStudent()?> name="comentarios" role="form">
+                    <form id="comentariosForm" method="POST"  name="comentarios" role="form">
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Tipus de comentari:</label>
                             <select name="tipoComentario" class="form-control" aria-label=".form-select-lg example">
