@@ -100,7 +100,7 @@
         <br>
         <br>
       <!--   AQUI TENDRÁS QUE HACER QUE CUANDO UNA FASE SE COMPLETE SE PONGA EN VERDE, Y SI NO ES ASI EN ROJO -->
-      <!-- HACER UN ACORDEON QUE MUESTRE POR CADA FASE SU TABLA DE TAREAS DE MOMENTO NO VA -->
+      <!-- HACER UN ACORDEON QUE MUESTRE POR CADA FASE SU TABLA DE TAREAS, LO HACE PERO FALTA DAR FORMATO Y CONTROLAR CREAR FILAS PESE A NO TENER VALORES-->
         <div class="container">
         
            
@@ -112,14 +112,15 @@
             </div>
 
             <div  style="display:none;" class="faseInicial table-responsive" >
-                <table class="table text-center table-bordered" style="width:100%" >
+                <table class="table  table-bordered" >
                         <thead>
                         <tr>
                         <th scope="col">Nom tasca</th>
-                        <th scope="col">Data prevista</th>
-                        <th scope="col">Data activitat 1</th>
-                        <th scope="col">Data activitat 2</th>
-                        <th scope="col">Data activitat 3</th>
+                        <th >Data prevista</th>
+                        <th >Data activitat 1</th>
+                        <th >Data activitat 2</th>
+                        <th >Data activitat 3</th>
+                        <th scope="col" hidden>Informació</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -127,21 +128,25 @@
                                 Connection::openConnection();
                                 $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 1);
                                 $tasksInternship = InternshipTaskController::getInternshipTasksByPhase(Connection::getConnection(), $internship->getIdInternship(), 1);
-                              
+                               
                                foreach($tasks as $task){
                                     echo "<tr>";
-                                    echo "<th scope='row'>".$task->getTaskName()."</td>";
+                                    echo "<td class='text-justify'>".$task->getTaskName()."</td>";
+                                    
                                     foreach ($tasksInternship as $taskInternship) {
-                                        if($task->getTaskId() == $taskInternship->getTaskId()){
-                                            echo "<td>".$taskInternship->getTaskDate()."</td>";
+                                       if($task->getTaskId() == $taskInternship->getTaskId()){
+                                            echo "<td><b>".$taskInternship->getTaskDate()."</b></td>";
                                             echo "<td>".$taskInternship->getAction1Date()."</td>";
                                             echo "<td>".$taskInternship->getAction2Date()."</td>";
                                             echo "<td>".$taskInternship->getAction3Date()."</td>";
+                                            echo "<td><a href='' type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>";
                                             echo "</tr>";
-                                        }
-                                       
+                                           
+                                       }
+                                      
                                     } 
                                     
+                                   
                                }
 
                              
@@ -160,7 +165,7 @@
             </div>
 
             <div  style="display:none;" class="faseSeguiment table-responsive" >
-                <table class="table text-center table-bordered" style="width:100%" >
+                <table class="table table-bordered"  >
                         <thead>
                         <tr>
                         <th scope="col">Nom tasca</th>
@@ -168,6 +173,7 @@
                         <th scope="col">Data activitat 1</th>
                         <th scope="col">Data activitat 2</th>
                         <th scope="col">Data activitat 3</th>
+                        <th scope="col" hidden>Informació</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -177,18 +183,22 @@
                                 $tasksInternship = InternshipTaskController::getInternshipTasksByPhase(Connection::getConnection(), $internship->getIdInternship(), 2);
                                 foreach($tasks as $task){
                                     echo "<tr>";
-                                    echo "<th scope='row'>".$task->getTaskName()."</td>";
+                                    echo "<td class='text-justify'>".$task->getTaskName()."</td>";
+                                    
                                     foreach ($tasksInternship as $taskInternship) {
                                         if($task->getTaskId() == $taskInternship->getTaskId()){
-                                            echo "<td>".$taskInternship->getTaskDate()."</td>";
+                                            echo "<td><b>".$taskInternship->getTaskDate()."</b></td>";
                                             echo "<td>".$taskInternship->getAction1Date()."</td>";
                                             echo "<td>".$taskInternship->getAction2Date()."</td>";
                                             echo "<td>".$taskInternship->getAction3Date()."</td>";
                                             echo "</tr>";
+                                            echo "<td><a href='' type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>";
+                                            echo "</tr>";
                                         }
-                                       
+                                      
                                     } 
-                                    
+                                   
+                                   
                                }
                                 ?>
                     </tbody>
@@ -206,7 +216,7 @@
                 </div>
             </div>
             <div  style="display:none;" class="faseFinal table-responsive" >
-                <table class="table text-center table-bordered" style="width:100%" >
+                <table class="table table-bordered"  >
                         <thead>
                         <tr>
                         <th scope="col">Nom tasca</th>
@@ -214,6 +224,7 @@
                         <th scope="col">Data activitat 1</th>
                         <th scope="col">Data activitat 2</th>
                         <th scope="col">Data activitat 3</th>
+                        <th scope="col" hidden>Informació</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -224,18 +235,19 @@
                               
                                 foreach($tasks as $task){
                                     echo "<tr>";
-                                    echo "<th scope='row'>".$task->getTaskName()."</td>";
+                                    echo "<td class='text-justify'>".$task->getTaskName()."</td>";
                                     foreach ($tasksInternship as $taskInternship) {
                                         if($task->getTaskId() == $taskInternship->getTaskId()){
-                                            echo "<td>".$taskInternship->getTaskDate()."</td>";
+                                            echo "<td><b>".$taskInternship->getTaskDate()."</b></td>";
                                             echo "<td>".$taskInternship->getAction1Date()."</td>";
                                             echo "<td>".$taskInternship->getAction2Date()."</td>";
                                             echo "<td>".$taskInternship->getAction3Date()."</td>";
+                                            echo "<td><a href='' type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>";
                                             echo "</tr>";
                                         }
-                                       
+                                      
                                     } 
-                                    
+                                
                                }
 
                                
