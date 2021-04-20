@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>VIEW INTERNSHIP</title>
     <?php 
+    include_once '../includes/doc-declaration.inc.php';
     include '../includes/libraries.inc.php';
     include_once '../controllers/UserController.inc.php';
     include_once '../controllers/InternshipController.inc.php';
@@ -12,6 +14,8 @@
     include_once '../controllers/CommentController.inc.php';
     include_once '../controllers/StudentController.inc.php';
     include_once '../controllers/ExternalTeacherController.inc.php';
+    include_once '../controllers/InternshipTaskController.inc.php';
+    include_once '../controllers/TaskController.inc.php';
     include_once '../models/InternshipModel.inc.php';
     include_once '../app/Connection.inc.php'; 
     include_once '../app/Redirection.inc.php';?>
@@ -98,21 +102,155 @@
       <!--   AQUI TENDRÁS QUE HACER QUE CUANDO UNA FASE SE COMPLETE SE PONGA EN VERDE, Y SI NO ES ASI EN ROJO -->
       <!-- HACER UN ACORDEON QUE MUESTRE POR CADA FASE SU TABLA DE TAREAS DE MOMENTO NO VA -->
         <div class="container">
-        <?php foreach ($phases as $phase) { ?>
+        
            
             <div class="alert alert-secondary" role="alert">
-                <?php echo "<h4>". $phase->getPhaseName() ."</h4>" ?>
+                <h4>Fase Inicial</h4>
                 <div class="text-right">
-                <button class="btn btn-success mostra-tasques"  href="<?php echo "#".$phase->getPhaseName(); ?>" role="button">Consulta</button>
+                <button class="btn btn-success" id="faseInicial" role="button">Consulta</button>
                 </div>
-                
             </div>
- 
+
+            <div  style="display:none;" class="faseInicial table-responsive" >
+                <table class="table text-center table-bordered" style="width:100%" >
+                        <thead>
+                        <tr>
+                        <th scope="col">Nom tasca</th>
+                        <th scope="col">Data prevista</th>
+                        <th scope="col">Data activitat 1</th>
+                        <th scope="col">Data activitat 2</th>
+                        <th scope="col">Data activitat 3</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                <?php
+                                Connection::openConnection();
+                                $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 1);
+                                $tasksInternship = InternshipTaskController::getInternshipTasksByPhase(Connection::getConnection(), $internship->getIdInternship(), 1);
+                              
+                               foreach($tasks as $task){
+                                    echo "<tr>";
+                                    echo "<th scope='row'>".$task->getTaskName()."</td>";
+                                    foreach ($tasksInternship as $taskInternship) {
+                                        if($task->getTaskId() == $taskInternship->getTaskId()){
+                                            echo "<td>".$taskInternship->getTaskDate()."</td>";
+                                            echo "<td>".$taskInternship->getAction1Date()."</td>";
+                                            echo "<td>".$taskInternship->getAction2Date()."</td>";
+                                            echo "<td>".$taskInternship->getAction3Date()."</td>";
+                                            echo "</tr>";
+                                        }
+                                       
+                                    } 
+                                    
+                               }
+
+                             
+                                ?>
+                    </tbody>
+                </table>
+            </div>
+
+            <br>
+
+            <div class="alert alert-secondary" role="alert">
+                <h4>Fase de Seguiment</h4>
+                <div class="text-right">
+                <button class="btn btn-success" id="faseSeguiment" role="button">Consulta</button>
+                </div>
+            </div>
+
+            <div  style="display:none;" class="faseSeguiment table-responsive" >
+                <table class="table text-center table-bordered" style="width:100%" >
+                        <thead>
+                        <tr>
+                        <th scope="col">Nom tasca</th>
+                        <th scope="col">Data prevista</th>
+                        <th scope="col">Data activitat 1</th>
+                        <th scope="col">Data activitat 2</th>
+                        <th scope="col">Data activitat 3</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                <?php
+                                 Connection::openConnection();
+                                 $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 2);
+                                $tasksInternship = InternshipTaskController::getInternshipTasksByPhase(Connection::getConnection(), $internship->getIdInternship(), 2);
+                                foreach($tasks as $task){
+                                    echo "<tr>";
+                                    echo "<th scope='row'>".$task->getTaskName()."</td>";
+                                    foreach ($tasksInternship as $taskInternship) {
+                                        if($task->getTaskId() == $taskInternship->getTaskId()){
+                                            echo "<td>".$taskInternship->getTaskDate()."</td>";
+                                            echo "<td>".$taskInternship->getAction1Date()."</td>";
+                                            echo "<td>".$taskInternship->getAction2Date()."</td>";
+                                            echo "<td>".$taskInternship->getAction3Date()."</td>";
+                                            echo "</tr>";
+                                        }
+                                       
+                                    } 
+                                    
+                               }
+                                ?>
+                    </tbody>
+                </table>
+            </div>
+
+           
+
+            <br>
+
+            <div class="alert alert-secondary" role="alert">
+                <h4>Fase Final</h4>
+                <div class="text-right">
+                <button class="btn btn-success" id="faseFinal" role="button">Consulta</button>
+                </div>
+            </div>
+            <div  style="display:none;" class="faseFinal table-responsive" >
+                <table class="table text-center table-bordered" style="width:100%" >
+                        <thead>
+                        <tr>
+                        <th scope="col">Nom tasca</th>
+                        <th scope="col">Data prevista</th>
+                        <th scope="col">Data activitat 1</th>
+                        <th scope="col">Data activitat 2</th>
+                        <th scope="col">Data activitat 3</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                <?php
+                                Connection::openConnection();
+                                $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 3);
+                                $tasksInternship = InternshipTaskController::getInternshipTasksByPhase(Connection::getConnection(), $internship->getIdInternship(), 3);
+                              
+                                foreach($tasks as $task){
+                                    echo "<tr>";
+                                    echo "<th scope='row'>".$task->getTaskName()."</td>";
+                                    foreach ($tasksInternship as $taskInternship) {
+                                        if($task->getTaskId() == $taskInternship->getTaskId()){
+                                            echo "<td>".$taskInternship->getTaskDate()."</td>";
+                                            echo "<td>".$taskInternship->getAction1Date()."</td>";
+                                            echo "<td>".$taskInternship->getAction2Date()."</td>";
+                                            echo "<td>".$taskInternship->getAction3Date()."</td>";
+                                            echo "</tr>";
+                                        }
+                                       
+                                    } 
+                                    
+                               }
+
+                               
+                                ?>
+                    </tbody>
+                </table>
+            </div>
             <br>
            
-        <?php }?>
+           
+
+       
         </div>
     
+       
     
         <br>
         <br>
@@ -375,6 +513,7 @@
 
    
 </body>
+<script type="text/javascript" src="../js/showTasks.js"></script>
 <script>
 $(document).ready(function() {
             $('#comentaris-tutor').DataTable();

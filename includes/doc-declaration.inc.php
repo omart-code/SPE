@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/styles.css">
-    <script type="text/javascript" src="../js/viewInternship.js"></script>
-    <script type="text/javascript" src="../js/submitStudentForm.js"></script>
+    <script type="text/javascript" src="../js/showTasks.js"></script>
     <?php
     if(!isset($title) || empty($title)){
       $title = 'SPE';
