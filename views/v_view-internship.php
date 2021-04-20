@@ -129,22 +129,22 @@
                                 $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 1);
                                 $tasksInternship = InternshipTaskController::getInternshipTasksByPhase(Connection::getConnection(), $internship->getIdInternship(), 1);
                                
-                               foreach($tasks as $task){
-                                    echo "<tr>";
-                                    echo "<td class='text-justify'>".$task->getTaskName()."</td>";
+                               foreach($tasks as $task){ ?>
+                                    <tr>
+                                    <td class='text-justify'><?php echo $task->getTaskName(); ?></td>
                                     
-                                    foreach ($tasksInternship as $taskInternship) {
-                                       if($task->getTaskId() == $taskInternship->getTaskId()){
-                                            echo "<td><b>".$taskInternship->getTaskDate()."</b></td>";
-                                            echo "<td>".$taskInternship->getAction1Date()."</td>";
-                                            echo "<td>".$taskInternship->getAction2Date()."</td>";
-                                            echo "<td>".$taskInternship->getAction3Date()."</td>";
-                                            echo "<td><a href='' type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>";
-                                            echo "</tr>";
+                                    <?php foreach ($tasksInternship as $taskInternship) {
+                                       if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
+                                                  <td><b> <?php echo $taskInternship->getTaskDate() ?></b></td>
+                                                  <td> <?php echo $taskInternship->getAction1Date() ?></td>
+                                                  <td> <?php echo $taskInternship->getAction2Date() ?></td>
+                                                  <td> <?php echo $taskInternship->getAction3Date() ?></td>
+                                                  <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId(); ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>
+                                                 </tr>
                                            
-                                       }
+                                       <?php }
                                       
-                                    } 
+                                   } 
                                     
                                    
                                }
@@ -177,29 +177,32 @@
                         </tr>
                     </thead>
                     <tbody>
-                                <?php
-                                 Connection::openConnection();
-                                 $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 2);
+                    <?php
+                                Connection::openConnection();
+                                $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 2);
                                 $tasksInternship = InternshipTaskController::getInternshipTasksByPhase(Connection::getConnection(), $internship->getIdInternship(), 2);
-                                foreach($tasks as $task){
-                                    echo "<tr>";
-                                    echo "<td class='text-justify'>".$task->getTaskName()."</td>";
+                               
+                               foreach($tasks as $task){ ?>
+                                    <tr>
+                                    <td class='text-justify'><?php echo $task->getTaskName(); ?></td>
                                     
-                                    foreach ($tasksInternship as $taskInternship) {
-                                        if($task->getTaskId() == $taskInternship->getTaskId()){
-                                            echo "<td><b>".$taskInternship->getTaskDate()."</b></td>";
-                                            echo "<td>".$taskInternship->getAction1Date()."</td>";
-                                            echo "<td>".$taskInternship->getAction2Date()."</td>";
-                                            echo "<td>".$taskInternship->getAction3Date()."</td>";
-                                            echo "</tr>";
-                                            echo "<td><a href='' type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>";
-                                            echo "</tr>";
-                                        }
+                                    <?php foreach ($tasksInternship as $taskInternship) {
+                                       if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
+                                                  <td><b> <?php echo $taskInternship->getTaskDate() ?></b></td>
+                                                  <td> <?php echo $taskInternship->getAction1Date() ?></td>
+                                                  <td> <?php echo $taskInternship->getAction2Date() ?></td>
+                                                  <td> <?php echo $taskInternship->getAction3Date() ?></td>
+                                                  <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId(); ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>
+                                                 </tr>
+                                           
+                                       <?php }
                                       
-                                    } 
-                                   
+                                   } 
+                                    
                                    
                                }
+
+                             
                                 ?>
                     </tbody>
                 </table>
@@ -228,29 +231,32 @@
                         </tr>
                     </thead>
                     <tbody>
-                                <?php
+                    <?php
                                 Connection::openConnection();
                                 $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 3);
                                 $tasksInternship = InternshipTaskController::getInternshipTasksByPhase(Connection::getConnection(), $internship->getIdInternship(), 3);
-                              
-                                foreach($tasks as $task){
-                                    echo "<tr>";
-                                    echo "<td class='text-justify'>".$task->getTaskName()."</td>";
-                                    foreach ($tasksInternship as $taskInternship) {
-                                        if($task->getTaskId() == $taskInternship->getTaskId()){
-                                            echo "<td><b>".$taskInternship->getTaskDate()."</b></td>";
-                                            echo "<td>".$taskInternship->getAction1Date()."</td>";
-                                            echo "<td>".$taskInternship->getAction2Date()."</td>";
-                                            echo "<td>".$taskInternship->getAction3Date()."</td>";
-                                            echo "<td><a href='' type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>";
-                                            echo "</tr>";
-                                        }
+                               
+                               foreach($tasks as $task){ ?>
+                                    <tr>
+                                    <td class='text-justify'><?php echo $task->getTaskName(); ?></td>
+                                    
+                                    <?php foreach ($tasksInternship as $taskInternship) {
+                                       if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
+                                                  <td><b> <?php echo $taskInternship->getTaskDate() ?></b></td>
+                                                  <td> <?php echo $taskInternship->getAction1Date() ?></td>
+                                                  <td> <?php echo $taskInternship->getAction2Date() ?></td>
+                                                  <td> <?php echo $taskInternship->getAction3Date() ?></td>
+                                                  <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId(); ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>
+                                                 </tr>
+                                           
+                                       <?php }
                                       
-                                    } 
-                                
+                                   } 
+                                    
+                                   
                                }
 
-                               
+                             
                                 ?>
                     </tbody>
                 </table>

@@ -10,6 +10,16 @@ class TaskController {
         
     }
 
+    public function getTaskById($conn, $id_tarea){ 
+        $task = TaskModel::getTaskById($conn, $id_tarea);
+        return $task;
+    }
+    
+    public function getTasksActions($conn, $id_tarea){
+        $actions = TaskModel::getTasksActions($conn, $id_tarea);
+        return $actions;
+    }
+
 
 }
 ?>

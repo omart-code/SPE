@@ -13,7 +13,7 @@ class Phase {
     }
 
     public function getPhaseId(){
-        return $this -> id_Etapa;
+        return $this -> id_etapa;
     }
 
     public function getPhaseName(){
