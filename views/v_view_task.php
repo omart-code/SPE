@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <?php include '../includes/libraries.inc.php';
+    <?php
+    $title = 'TASK';
+    include '../includes/libraries.inc.php';
+     include '../includes/doc-declaration.inc.php';
      include_once '../controllers/TaskController.inc.php';
+     include_once '../controllers/TeacherMessageController.inc.php';
+     include_once '../app/Redirection.inc.php';
      include_once '../app/Connection.inc.php'; 
-    $title = 'TASK'; ?>
+    ?>
 </head>
 <body>
     <?php include '../includes/navbar.inc.php'; ?>
@@ -40,14 +44,74 @@
             ?>
          </ol>
          
+         
          </div>
          <br>
          <br>
-         <div class="message">
-         <?php /* echo $task->getTaskMessage(); */ ?>
+         <div class="mensaje">
+             <?php
+                Connection::openConnection();
+                $message = TeacherMessageController::getTeacherMessageById(Connection::getConnection(), $_GET['task'], $_SESSION["niu"]);
+               
+                echo $message->getTeacherMessageMessage();
+               
+
+            ?>
          </div>
-       
+         <div class="buttons text-right">
+         <button class="btn btn-success" id="editar" role="button">
+              Editar
+         </button>
+         <button class="btn btn-success" id="restablecer" role="button">
+              Restablir
+         </button>
+         </div>
+
+        <br><br>
+
+        </div>
+         
+        <?php 
+        
+             if(isset($_POST['aceptarMensaje'])){
+                TeacherMessageController::updateTeacherMessageByTask(Connection::getConnection(), $_GET['task'], $_POST['editordata'], $_SESSION["niu"]);
+               
+                //HACE MODIFICACION DEL COMENTARIO, PERO EL MISMO PROBLEMA DE SIEMPRE DE LA REDIRECCION.
+             }
+
+        ?>
+
+        <div class="container">
+         
+            
+                <div class="editor" style="display:none;">
+                    <form class="form" method="post">
+                    <label name="guia"><b>Guia:</b></label><br><br>
+                        <textarea id="summernote" name="editordata">
+                        <?php echo $message->getTeacherMessageMessage() ?>
+                        </textarea>
+                
+                    <br><br>
+                    <div class="aceptar text-right">
+                    <button type="submit" name="aceptarMensaje" class="btn btn-success">Acceptar</button> <br><br>
+                    </div>
+                   
+                    </form>
+                    <div class="cancelar text-right">
+                    <button class="btn btn-secondary" id="cancelar" role="button">Cancelar</button>
+                    </div>
+                    
+                </div>
+                   
+        </div>
     </div>
 
 </body>
 </html>
+
+<script>
+      $('#summernote').summernote({
+        tabsize: 2,
+        height: 200
+      });
+    </script>

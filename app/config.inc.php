@@ -16,7 +16,7 @@ define("COURSES", SERVER. "/views/v_courses.php");
 define("ADDTEACHER", SERVER. "/views/v_insertTeacher.php");
 define("ADDDEPARTMENT", SERVER. "/views/v_insertDepartment.php");
 define("ADDCOURSE", SERVER. "/views/v_insertCourse.php");
-
+define("TASK", SERVER. "/views/v_view_task.php");
 //resources
 define("CSS", SERVER. "/css/");
 define("JS", SERVER. "/js/");

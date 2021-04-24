@@ -18,9 +18,9 @@ include_once __DIR__ . '/../app/config.inc.php';
                         if($_SESSION['id_tipo_usuario'] == '1'){ ?>
                             href="<?php echo TEACHER ?>"><h3>Inici</h3><span class="sr-only">(current)</span></a>
                         <?php } else if ($_SESSION['id_tipo_usuario'] == '3') { ?>
-                            href=" <?php echo COORDINATOR ?>"><h3>Inici</h3><span class="sr-only">(current)</span></a>
+                            href="<?php echo COORDINATOR ?>"><h3>Inici</h3><span class="sr-only">(current)</span></a>
                         <?php } else { ?>
-                             href=" <?php echo SERVER ?>"><h3>Inici</h3><span class="sr-only">(current)</span></a>
+                             href="<?php echo SERVER ?>"><h3>Inici</h3><span class="sr-only">(current)</span></a>
                        <?php } ?>
                         <?php } ?>
                        
