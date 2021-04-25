@@ -401,7 +401,7 @@
                        
                         <div class="modal-footer">
                             <button type="button" class="btn btn-success" data-dismiss="modal">Tanca</button>
-                            <button type="submit" id="submit" class="btn btn-success" name="modificaAlumno">Modifica</button>
+                            <button type="submit" id="submitAlumno" class="btn btn-success" name="modificaAlumno">Modifica</button>
                         
                         </div>
                      </form>
@@ -426,26 +426,26 @@
                     <form id="profesorForm" method="POST"  name="profesor" role="form">
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Nom:</label>
-                            <input type="text" class="form-control" id="nombre-alumno" name="nombreProfesor">
+                            <input type="text" class="form-control" id="nombre-profesor" name="nombreProfesor">
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Cognom:</label>
-                            <input class="form-control" id="apellido-alumno" name="apellidoProfesor"></input>
+                            <input class="form-control" id="apellido-profesor" name="apellidoProfesor"></input>
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Email:</label>
-                            <input class="form-control" id="email-alumno" name="emailProfesor"></input>
+                            <input class="form-control" id="email-profesor" name="emailProfesor"></input>
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Telèfon:</label>
-                            <input class="form-control" id="telefono-alumno" name="telefonoProfesor"></input>
+                            <input class="form-control" id="telefono-profesor" name="telefonoProfesor"></input>
                         </div>
                        
                    
                        
                         <div class="modal-footer">
                             <button type="button" class="btn btn-success" data-dismiss="modal">Tanca</button>
-                            <button type="submit" id="submit" class="btn btn-success" name="modificaProfesor">Modifica</button>
+                            <button type="submit" id="submitProfesor" class="btn btn-success" name="modificaProfesor">Modifica</button>
                         
                         </div>
                      </form>
@@ -481,7 +481,7 @@
                        
                         <div class="modal-footer">
                             <button type="button" class="btn btn-success" data-dismiss="modal">Tanca</button>
-                            <button type="submit" id="submit" class="btn btn-success" name="modificaFechas">Modifica</button>
+                            <button type="submit" id="submitFecha" class="btn btn-success" name="modificaFechas">Modifica</button>
                         
                         </div>
                      </form>
@@ -534,7 +534,7 @@
 <script type="text/javascript" src="../js/showTasks.js"></script>
 <script>
 $(document).ready(function() {
-            $('#comentaris-tutor').DataTable();
+    $('#comentaris-tutor').DataTable();
 } );
 
 

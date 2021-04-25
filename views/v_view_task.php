@@ -62,9 +62,10 @@
          <button class="btn btn-success" id="editar" role="button">
               Editar
          </button>
-         <button class="btn btn-success" id="restablecer" role="button">
+         <button class="btn btn-success restablecer" id="restablecer" role="button">
               Restablir
          </button>
+         <!-- TODO: AL HACER RESTABLECER SALE EL MODAL DE RESTABLECER, HACER QUE AL ACEPTAR UPDATE DE TABLA MENSAJES PROFESOR, POR EL CONTENIDO DE MENSAJES PLANTILLA + REFRESH -->
          </div>
 
         <br><br>
@@ -76,7 +77,7 @@
              if(isset($_POST['aceptarMensaje'])){
                 TeacherMessageController::updateTeacherMessageByTask(Connection::getConnection(), $_GET['task'], $_POST['editordata'], $_SESSION["niu"]);
                
-                //HACE MODIFICACION DEL COMENTARIO, PERO EL MISMO PROBLEMA DE SIEMPRE DE LA REDIRECCION.
+                //TODO: HACE MODIFICACION DEL COMENTARIO, PERO EL MISMO PROBLEMA DE SIEMPRE DE LA REDIRECCION Y REFRESH PAGINA
              }
 
         ?>

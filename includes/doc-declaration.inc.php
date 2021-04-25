@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/styles.css">
     <script type="text/javascript" src="../js/showTasks.js"></script>
     <script type="text/javascript" src="../js/showEditMessage.js"></script>
+    <script type="text/javascript" src="../js/restoreMessage.js"></script>
     <?php
     if(!isset($title) || empty($title)){
       $title = 'SPE';
