@@ -9,6 +9,11 @@ class InternshipTaskController {
         return $internshipTasks;
         
     }
+    public function getInternshipTasksByInternshipId($conn, $id_estancia){
+        $internshipTasks = [];
+        $internshipTasks = InternshipTaskModel::getInternshipTasksByInternshipId($conn, $id_estancia);
+        return $internshipTasks;
+    }
 
 
 }

@@ -15,15 +15,15 @@
 </head>
 <body>
     <?php include '../includes/navbar.inc.php'; ?>
+    <br>
     <div class="container h-100">
-    <h1>VISTA DE UNA TASCA</h1>
         <div class="card text-center">
                 <div class="card-body">
                 <?php
                    Connection::openConnection();
                    $task = TaskController::getTaskById(Connection::getConnection(), $_GET['task']);
                 ?>
-                    <h2 class="card-text"><b>Informació del pas - <?php echo $task->getTaskName(); ?></b> </h2>
+                    <h2 class="card-text"><b>Informació de la tasca - <?php echo $task->getTaskName(); ?></b> </h2>
                    
                 </div>
     
@@ -105,6 +105,10 @@
                 </div>
                    
         </div>
+        <div class="container">
+        <button type="button" class=" btn btn-secondary" onclick="history.back(-1)"><i class="fas fa-arrow-left"></i> Torna Enrere</button>
+        </div>
+       
     </div>
 
 </body>

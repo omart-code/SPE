@@ -10,6 +10,12 @@ class TaskController {
         
     }
 
+    public function getTasksByDegreeCourse($conn, $id_curso_grado){
+        $tasks = [];
+        $tasks = TaskModel::getTasksByDegreeCourse($conn, $id_curso_grado);
+        return $tasks;
+    }
+
     public function getTaskById($conn, $id_tarea){ 
         $task = TaskModel::getTaskById($conn, $id_tarea);
         return $task;

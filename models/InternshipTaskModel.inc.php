@@ -37,6 +37,39 @@
            
         }
 
+        public static function getInternshipTasksByInternshipId($conn, $id_estancia){
+            $internshipTasks = [];
+     
+             if(isset($conn)){
+                 try{
+                     include_once '../entities/InternshipTask.inc.php';
+                     $sql = "SELECT *
+                     FROM tareas_estancias te
+                     WHERE te.id_estancia = :id_estancia;";
+                     $stmt = $conn -> prepare($sql);
+                     $stmt ->bindParam(':id_estancia', $id_estancia, PDO::PARAM_STR);  
+                     $stmt -> execute();
+                     $res = $stmt-> fetchAll();
+                     if(count($res)){
+                         foreach($res as $intTask){
+                             $internshipTasks[] = new InternshipTask(null, null,
+                                 null, $intTask['id_tarea'],  $intTask['fecha_prevista_tarea'], $intTask['fecha_realiz_accion1'],$intTask['fecha_realiz_accion2'], 
+                                 $intTask['fecha_realiz_accion3'],
+                                 );
+                         } 
+                      }else{
+                             print '';
+                         }
+                     
+                 }catch (PDOException $ex){
+                     print 'ERROR'. $ex->getMessage();
+                 }
+             }
+             return $internshipTasks;
+            
+         }
+ 
+
     }
 
 ?>

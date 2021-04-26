@@ -135,22 +135,48 @@
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
-                                                  <td><b> <?php echo $taskInternship->getTaskDate() ?></b></td>
-                                                  <td> <?php echo $taskInternship->getAction1Date() ?></td>
-                                                  <td> <?php echo $taskInternship->getAction2Date() ?></td>
-                                                  <td> <?php echo $taskInternship->getAction3Date() ?></td>
+                                                  <td> 
+                                                  <?php if($taskInternship->getTaskDate() != null){
+                                                         echo "<b>".$taskInternship->getTaskDate()."</b>" ;
+                                                  }else{ echo "Sense data";
+                                                  } ?>
+                                                  </td>
+                                                  <td> <?php if($taskInternship->getAction1Date() != null){
+                                                      echo $taskInternship->getAction1Date();
+                                                    }else{ ?>
+                                                        <div class="check text-center">
+                                                        <a role="button" class="button text-center"><i class="fas fa-check" style="color:green; font-size: 1.5em;"></i><a>
+                                                        </div>
+                                                      
+                                                    <?php } ?>
+                                                    </td>
+                                                  <td><?php if($taskInternship->getAction2Date() != null){
+                                                      echo $taskInternship->getAction2Date();
+                                                    }else{ ?>
+                                                        <div class="check text-center">
+                                                        <a role="button" class="button text-center"><i class="fas fa-check" style="color:green; font-size: 1.5em;"></i><a>
+                                                        </div>
+                                                      
+                                                    <?php } ?></td>
+                                                  <td> <?php if($taskInternship->getAction3Date() != null){
+                                                      echo $taskInternship->getAction3Date();
+                                                    }else{ ?>
+                                                        <div class="check text-center">
+                                                        <a role="button" class="button text-center"><i class="fas fa-check" style="color:green; font-size: 1.5em;"></i><a>
+                                                        </div>
+                                                      
+                                                    <?php } ?></td>
                                                   <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId(); ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>
                                                  </tr>
                                            
                                        <?php }
                                       
-                                   } 
-                                    
+                                   }
                                    
-                               }
+                               }?>
 
-                             
-                                ?>
+                                
+                            
                     </tbody>
                 </table>
             </div>
@@ -188,10 +214,36 @@
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
-                                                  <td><b> <?php echo $taskInternship->getTaskDate() ?></b></td>
-                                                  <td> <?php echo $taskInternship->getAction1Date() ?></td>
-                                                  <td> <?php echo $taskInternship->getAction2Date() ?></td>
-                                                  <td> <?php echo $taskInternship->getAction3Date() ?></td>
+                                                  <td> <?php if($taskInternship->getTaskDate() != null){
+                                                         echo "<b>".$taskInternship->getTaskDate()."</b>" ;
+                                                  }else{
+                                                     echo "Sense data";
+                                                 } ?>
+                                                 </td>
+                                                  <td> <?php if($taskInternship->getAction1Date() != null){
+                                                      echo $taskInternship->getAction1Date();
+                                                    }else{ ?>
+                                                        <div class="check text-center">
+                                                        <a role="button" class="button text-center"><i class="fas fa-check" style="color:green; font-size: 1.5em;"></i><a>
+                                                        </div>
+                                                      
+                                                    <?php } ?></td>
+                                                  <td> <?php if($taskInternship->getAction2Date() != null){
+                                                      echo $taskInternship->getAction2Date();
+                                                    }else{ ?>
+                                                        <div class="check text-center">
+                                                        <a role="button" class="button text-center"><i class="fas fa-check" style="color:green; font-size: 1.5em;"></i><a>
+                                                        </div>
+                                                      
+                                                    <?php } ?></td>
+                                                  <td> <?php if($taskInternship->getAction3Date() != null){
+                                                      echo $taskInternship->getAction3Date();
+                                                    }else{ ?>
+                                                        <div class="check text-center">
+                                                        <a role="button" class="button text-center"><i class="fas fa-check" style="color:green; font-size: 1.5em;"></i><a>
+                                                        </div>
+                                                      
+                                                    <?php } ?></td>
                                                   <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId(); ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>
                                                  </tr>
                                            
@@ -200,10 +252,8 @@
                                    } 
                                     
                                    
-                               }
-
-                             
-                                ?>
+                               }?>
+                            
                     </tbody>
                 </table>
             </div>
@@ -242,22 +292,48 @@
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
-                                                  <td><b> <?php echo $taskInternship->getTaskDate() ?></b></td>
-                                                  <td> <?php echo $taskInternship->getAction1Date() ?></td>
-                                                  <td> <?php echo $taskInternship->getAction2Date() ?></td>
-                                                  <td> <?php echo $taskInternship->getAction3Date() ?></td>
+                                                  <td> <?php if($taskInternship->getTaskDate() != null){
+                                                         echo "<b>".$taskInternship->getTaskDate()."</b>" ;
+                                                  }else{ 
+                                                   echo "Sense data";
+                                                 } ?>
+                                                 </td>
+                                                  <td> <?php if($taskInternship->getAction1Date() != null){
+                                                      echo $taskInternship->getAction1Date();
+                                                    }else{ ?>
+                                                        <div class="check text-center">
+                                                        <a role="button" class="button text-center"><i class="fas fa-check" style="color:green; font-size: 1.5em;"></i><a>
+                                                        </div>
+                                                      
+                                                    <?php } ?></td>
+                                                  <td> <?php if($taskInternship->getAction2Date() != null){
+                                                      echo $taskInternship->getAction2Date();
+                                                    }else{ ?>
+                                                        <div class="check text-center">
+                                                        <a role="button" class="button text-center"><i class="fas fa-check" style="color:green; font-size: 1.5em;"></i><a>
+                                                        </div>
+                                                      
+                                                    <?php } ?></td>
+                                                  <td> <?php if($taskInternship->getAction3Date() != null){
+                                                      echo $taskInternship->getAction3Date();
+                                                    }else{ ?>
+                                                        <div class="check text-center">
+                                                        <a role="button" class="button text-center"><i class="fas fa-check" style="color:green; font-size: 1.5em;"></i><a>
+                                                        </div>
+                                                      
+                                                    <?php } ?></td>
                                                   <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId(); ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>
                                                  </tr>
                                            
-                                       <?php }
+                                       <?php }else{ ?>
+                                          
+                                      <?php } ?>
                                       
-                                   } 
+                                   <?php } ?>
                                     
                                    
-                               }
-
+                               <?php } ?>
                              
-                                ?>
                     </tbody>
                 </table>
             </div>

@@ -31,6 +31,35 @@
             return $tasks;
         }
 
+        //Devuelve todas las tareas en función del curso grado correspondiente
+        public static function getTasksByDegreeCourse($conn, $id_curso_grado){
+            $tasks = null;
+    
+            if(isset($conn)){
+                try{
+                    include_once '../entities/Task.inc.php';
+                    $sql = "SELECT * FROM tareas WHERE id_curso_grado = :id_curso_grado";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
+                    $stmt -> execute();
+                    $res = $stmt-> fetchAll();
+    
+                    if(count($res)){
+                        foreach($res as $task){
+                            $tasks[] = new Task(
+                                $task['id_tarea'], $task['id_etapa'], $task['id_curso_grado'],$task['nombre'],$task['informacion'],
+                                $task['mensaje'],$task['accion1'],$task['accion2'],$task['accion3'], $task['numero_acciones']);
+                            }}else{
+                                print '';
+                            }
+                }catch (PDOException $ex){
+                    print 'ERROR'. $ex->getMessage();
+                }
+            }
+    
+            return $tasks;
+        }
+
         //Devuelve la información de la tarea a partir de su id
         public static function getTaskById($conn, $id_tarea){ 
         
