@@ -11,9 +11,10 @@
 </head>
 <body>
     <?php include '../includes/navbar.inc.php'; ?>
-    <div class="container h-100">
+    <div class="container">
     <h1>VISTA DE ESTADES DE PRÀCTIQUES</h1>
-    
+    </div>
+    <div class="table" style="width:80%; margin-right:auto; margin-left:auto;">
     <table id="internships" class="table table-bordered">
                     <thead>
                         <tr>
@@ -26,7 +27,9 @@
                                 echo "<th>" .$task->getTaskName();"</th>";
                             
                             } 
+                                echo "<th> Info </th>";
                              ?> 
+
                     
                         </tr>
                     </thead>
@@ -56,11 +59,11 @@
         </tbody>
     </table>   
 
-
     </div>
+
 
         
-    </div>
+
 
 </body>
 
