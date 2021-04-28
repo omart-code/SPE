@@ -7,9 +7,10 @@ include_once '../controllers/DepartmentController.inc.php';
 include_once '../controllers/DegreeController.inc.php';
 include_once '../controllers/DegreeDepartmentController.inc.php';
 include_once '../app/Redirection.inc.php';
+include_once '../includes/navbar.inc.php';
 ?>
 
-<?php include_once '../includes/navbar.inc.php'; ?>
+
     
         
       <?php
@@ -28,14 +29,14 @@ include_once '../app/Redirection.inc.php';
             $departmentId = $department ->getDepartmentId();
             //inserto en departamentos_grado su id departamento y su id grado
             DegreeDepartmentController::insertDegreeDepartment(Connection::getConnection(), $departmentId, $degreeId);
-            Redirection::redirect(DEPARTMENTS);
+            echo '<script>window.location.replace("'.DEPARTMENTS.'")</script>';
         }
       
 
          
       }
        ?>
-        <div class="container h-100">
+        <div class="container">
             <h1>VISTA DE AFEGIR UN NOU DEPARTAMENT</h1>
 
             <br>
@@ -52,7 +53,7 @@ include_once '../app/Redirection.inc.php';
                         <a class="nav-link" style="color: #28a745;" href="<?php echo COURSES?>"><h6>Nou Curs</h6></a>
                     </li>
                 
-        </ul>
+            </ul>
 
             <div class="card text-center">
                 <div class="card-body">
@@ -99,6 +100,10 @@ include_once '../app/Redirection.inc.php';
 
          
         
+        </div>
+
+        <div class="container">
+        <button type="button" class=" btn btn-secondary" onclick="history.back(-1)"><i class="fas fa-arrow-left"></i> Torna Enrere</button>
         </div>
         
       

@@ -7,9 +7,9 @@ include_once '../controllers/TeacherController.inc.php';
 include_once '../controllers/UserController.inc.php';
 include_once '../controllers/DepartmentController.inc.php';
 include_once '../app/Redirection.inc.php';
+include_once '../includes/navbar.inc.php';
 ?>
 
-<?php include_once '../includes/navbar.inc.php'; ?>
     
         
       <?php
@@ -23,7 +23,7 @@ include_once '../app/Redirection.inc.php';
              $_POST["telefonProfessor"], $_POST["emailProfessor"], $departmentId);
              UserController::insertUser(Connection::getConnection(), $_POST["niuProfessor"], $_POST["nomProfessor"], $_POST["cognomProfessor"],
              $_POST["telefonProfessor"], $_POST["emailProfessor"], 1);
-             Redirection::redirect(TEACHERS);
+             echo '<script>window.location.replace("'.TEACHERS.'")</script>';
     
           }
       
@@ -98,6 +98,12 @@ include_once '../app/Redirection.inc.php';
             </form>
           
         
+        
+</div>
+
+        <div class="container">
+        <button type="button" class=" btn btn-secondary" onclick="history.back(-1)"><i class="fas fa-arrow-left"></i> Torna Enrere</button>
         </div>
+      
         
       

@@ -350,7 +350,7 @@
         <br>
 
         <div class="container text-right">
-             <button class="btn btn-success escriu-comentari" data-toggle="modal" data-target="#modalComentario" role="button">Afegir Comentari</button>
+             <a href="../views/v_insertComment.php?niu=<?php  echo $internship->getNiuStudent() ?>&id=<?php  echo $internship->getIdInternship() ?>" class="btn btn-success escriu-comentari" role="button">Afegir Comentari</a>
         </div>
       
         
@@ -426,22 +426,7 @@
                 InternshipController::updateInternshipDates(Connection::getConnection(), $internship->getNiuStudent(), $_POST['fechaInicio'], $_POST['fechaFinal']);
             }
 
-            //LA INSERCION  DEL COMENTARIO LA HACE PERO SI RECARGAS LA PAGINA SE VUELVE A INSERTAR,
 
-            if (!empty($_POST)) {
-                if (!empty($_POST['textoComentario'])) {
-                    Connection::openConnection();
-                    CommentController::insertComment(Connection::getConnection(),$_POST['textoComentario'], $_POST['tipoComentario'], $internship->getIdInternship(), 'especial');
-                   
-                }
-            }
-            
-            /* if(isset($_POST['insertaComentario'])){
-                Connection::openConnection();
-                   
-                CommentController::insertComment(Connection::getConnection(),$_POST['textoComentario'], $_POST['tipoComentario'], $internship->getIdInternship(), 'especial');
-               
-            } */
        ?>
 
    <!--     MODAL ALUMNE --> 
@@ -567,42 +552,7 @@
         </div>
     </div>
 
-   <!--  MODAL AÑADIR COMENTARIO -->
-    <div id="insertarComentario">
-        <div class="modal fade" id="modalComentario" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Afegeix un comentari</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="comentariosForm" method="POST"  name="comentarios" role="form">
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Tipus de comentari:</label>
-                            <select name="tipoComentario" class="form-control" aria-label=".form-select-lg example">
-                                <option selected>Públic</option>
-                                <option>Privat</option>
-                            </select>
-                        </div>
-                        <div class="form-group mt-5 mb-5">
-                            <label for="message-text" class="col-form-label">Comentari:</label>
-                            <textarea class="form-control" name="textoComentario"></textarea>
-                        </div> 
-                        
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">Tanca</button>
-                            <button type="submit" id="submit" class="btn btn-success" name="insertaComentario">Afegeix</button>
-                        
-                        </div>
-                     </form>
-                </div>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
         
 
    

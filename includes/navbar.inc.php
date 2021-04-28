@@ -1,8 +1,6 @@
 <?php
-
 include_once __DIR__ . '/../app/Session.inc.php';
-include_once __DIR__ . '/../app/config.inc.php';
-?>
+include_once __DIR__ . '/../app/config.inc.php'; ?>
 <div class="header">
     <div class="custom-navbar">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -13,56 +11,39 @@ include_once __DIR__ . '/../app/config.inc.php';
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                        <a class="nav-link" <?php  if(ControlSession::sessionStarted()){
-                        if($_SESSION['id_tipo_usuario'] == '1'){ ?>
-                            href="<?php echo TEACHER ?>"><h3>Inici</h3><span class="sr-only">(current)</span></a>
-                        <?php } else if ($_SESSION['id_tipo_usuario'] == '3') { ?>
-                            href="<?php echo COORDINATOR ?>"><h3>Inici</h3><span class="sr-only">(current)</span></a>
-                        <?php } else { ?>
-                             href="<?php echo SERVER ?>"><h3>Inici</h3><span class="sr-only">(current)</span></a>
-                       <?php } ?>
-                        <?php } ?>
-                       
-                    </li>
-                    <?php
-                    if(ControlSession::sessionStarted()){
-                        if($_SESSION['id_tipo_usuario'] == '1' || $_SESSION['id_tipo_usuario'] == '3' || $_SESSION['id_tipo_usuario'] == '4'){
-                        ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo INTERNSHIPS?>"><h3>Estades</h3></a>
-                        </li>
-                       <?php }?>
-                       <?php 
-                        if($_SESSION['id_tipo_usuario'] == '3' || $_SESSION['id_tipo_usuario'] == '4'){
-                        ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo TEACHERS?>"><h3>Administració</h3></a>
-                        </li>
-                        <?php } ?>
-                        <?php
-                        if ($_SESSION['id_tipo_usuario'] == '2'){
-                        ?>
+                    <li class="nav-item">
+                        <?php  if(ControlSession::sessionStarted()):
+                            if($_SESSION['id_tipo_usuario'] == '1'): ?>
+                            <a class="nav-link"  href="http://localhost/spe/views/v_teacher.php"><h3>Inici</h3><span class="sr-only">(current)</span></a>
+                            <?php elseif($_SESSION['id_tipo_usuario'] == '3'):?>
+                            <a class="nav-link" href="http://localhost/spe/views/v_coordinator.php"><h3>Inici</h3><span class="sr-only">(current)</span></a>
+                            <?php elseif($_SESSION['id_tipo_usuario'] == '4'):?>
+                            <a class="nav-link" href="http://localhost/spe/views/v_admin.php"><h3>Inici</h3><span class="sr-only">(current)</span></a>
+                            <?php else:?>
+                                <a class="nav-link" href="http://localhost/spe/views/v_student.php"><h3>Inici</h3><span class="sr-only">(current)</span></a>
+                            <?php endif;?>
+                        <?php endif;?>
                         
-                        <?php }?>
-                    <?php } ?>
-                    <?php 
-                    if(ControlSession::sessionStarted()){
-                        ?>
+                    </li>
+                    <?php if(ControlSession::sessionStarted()):
+                        if($_SESSION['id_tipo_usuario'] == '1' || $_SESSION['id_tipo_usuario'] == '3' || $_SESSION['id_tipo_usuario'] == '4'):?>
                         <li class="nav-item">
-                        <a class="nav-link" href="<?php echo LOGOUT ?>"><h3>Logout</h3></a>
+                            <a class="nav-link" href="http://localhost/spe/views/v_view_internships.php"><h3>Estades</h3></a>
                         </li>
-                    <?php
-                    }else{
-                        ?>
+                       <?php endif;?>
+                       <?php if($_SESSION['id_tipo_usuario'] == '3' || $_SESSION['id_tipo_usuario'] == '4'):?>
+                       <li class="nav-item">
+                       <a class="nav-link" href="http://localhost/spe/views/v_teachers.php"><h3>Administració</h3></a>
+                        </li>
+                        <?php endif;?>
                         <li class="nav-item">
-                        <a class="nav-link" href="<?php echo LOGIN ?>"><h3>Login</h3></a>
+                        <a class="nav-link" href="http://localhost/spe/views/logout.php"><h3>Logout</h3></a>
                         </li>
-                        <?php
-                    }
-                    ?>
-                    
-                  
+                    <?php else: ?>
+                    <li class="nav-item">
+                    <a class="nav-link" href="http://localhost/spe/views/login.php"><h3>Login</h3></a>
+                    </li>
+                   <?php endif;?>        
                 </ul>
             </div>
         </nav>

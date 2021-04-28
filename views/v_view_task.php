@@ -76,6 +76,7 @@
         
              if(isset($_POST['aceptarMensaje'])){
                 TeacherMessageController::updateTeacherMessageByTask(Connection::getConnection(), $_GET['task'], $_POST['editordata'], $_SESSION["niu"]);
+                echo '<script>window.location.replace("'.TASK."?task=".$_GET['task'].'")</script>';
                
                 //TODO: HACE MODIFICACION DEL COMENTARIO, PERO EL MISMO PROBLEMA DE SIEMPRE DE LA REDIRECCION Y REFRESH PAGINA
              }
@@ -119,4 +120,4 @@
         tabsize: 2,
         height: 200
       });
-    </script>
+</script>

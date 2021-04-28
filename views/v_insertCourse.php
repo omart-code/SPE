@@ -7,9 +7,10 @@ include_once '../controllers/CourseController.inc.php';
 include_once '../controllers/DegreeController.inc.php';
 include_once '../controllers/DegreeCourseController.inc.php';
 include_once '../app/Redirection.inc.php';
+include_once '../includes/navbar.inc.php';
 ?>
 
-<?php include_once '../includes/navbar.inc.php'; ?>
+
     
         
       <?php
@@ -29,7 +30,8 @@ include_once '../app/Redirection.inc.php';
         $degreeCourseName = $degree->getDegreeName(). ' / ' . $course->getCourseName();
         //inserto curso grado
         DegreeCourseController::insertDegreeCourse(Connection::getConnection(), $courseId, $degreeId, $degreeCourseName, 0);
-        Redirection::redirect(COURSES);
+      
+        echo '<script>window.location.replace("'.COURSES.'")</script>';
          //HABRIA QUE COMPROBAR SI EL CURSO YA EXISTE QUE NO LO INSERTE
          
       }
@@ -95,6 +97,10 @@ include_once '../app/Redirection.inc.php';
             <button type="submit" class="btn btn-success" name="enviarCurs">Afegeix</button>
             </form>
       
+        </div>
+
+        <div class="container">
+        <button type="button" class=" btn btn-secondary" onclick="history.back(-1)"><i class="fas fa-arrow-left"></i> Torna Enrere</button>
         </div>
         
       
