@@ -85,7 +85,7 @@
         <br>
 
         <div class="progress-container container">
-        <h5>El teu progrés</h5>
+        <h5>Progrés del alumne:</h5>
                 <div class="progress">
                         <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo $percentage ?>%"  aria-valuenow="<?php echo $percentage ?>"  aria-valuemin="0" aria-valuemax="100"><?php 
                          if($percentage >100){
@@ -363,6 +363,7 @@
                     <thead>
                         <tr>
                         <th scope="col">Data</th>
+                        <th scope="col">Categoria</th>
                         <th scope="col">Comentari</th>
                     
                         </tr>
@@ -378,6 +379,7 @@
                         
                                 echo "<tr>";
                                 echo "<th scope='row'>".$comment->getCommentDate()."</td>";
+                                echo "<td>".$comment->getCommentCategory()."</td>";
                                 echo "<td>".$comment->getCommentMessage()."</td>";
                                 
                                 echo "</tr>";
@@ -408,22 +410,28 @@
             if(isset($_POST['modificaAlumno'])){
                 
                     Connection::openConnection();
-                   
-                    StudentController::updateStudentByNiu(Connection::getConnection(), $internship->getNiuStudent(), $_POST['nombreAlumno'], $_POST['apellidoAlumno'], $_POST['emailAlumno'], $_POST['telefonoAlumno']);
+                     $mention = $_POST['mencionAlumno'];
+                     $mentionId = StudentController::getMentionId(Connection::getConnection(), $mention);
+                    StudentController::updateStudentByNiu(Connection::getConnection(), $internship->getNiuStudent(), $_POST['nombreAlumno'], $_POST['apellidoAlumno'], $_POST['emailAlumno'], $_POST['telefonoAlumno'], $mentionId);
                     //SE DEBERIA TAMBIEN ACTUALIZAR EL USUARIO CORRESPONDIENTE A ESE STUDENT??!!
+                    echo '<script> window.location.replace("'.VIEWINTERNSHIP."?niu=".$internship->getNiuStudent().'")</script>';
+          
             }
 
             if(isset($_POST['modificaProfesor'])){
                 Connection::openConnection();
-                   
+                $nombreEmpresa = $_POST['empresaProfesor'];
+                ExternalTeacherController::updateCompanyNameById(Connection::getConnection(), $extTeacher->getIdCompany(), $nombreEmpresa);
                 ExternalTeacherController::updateExternalTeacherById(Connection::getConnection(), $internship->getIdExternalTeacher(), $_POST['nombreProfesor'], $_POST['apellidoProfesor'],
                 $_POST['emailProfesor'], $_POST['telefonoProfesor']);
+                echo '<script> window.location.replace("'.VIEWINTERNSHIP."?niu=".$internship->getNiuStudent().'")</script>';
             }
 
             if(isset($_POST['modificaFechas'])){
                 Connection::openConnection();
                    
                 InternshipController::updateInternshipDates(Connection::getConnection(), $internship->getNiuStudent(), $_POST['fechaInicio'], $_POST['fechaFinal']);
+                echo '<script> window.location.replace("'.VIEWINTERNSHIP."?niu=".$internship->getNiuStudent().'")</script>';
             }
 
 
@@ -443,20 +451,37 @@
                 <div class="modal-body">
                     <form id="alumnoForm" method="POST"  name="alumno" role="form">
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Nom:</label>
-                            <input type="text" class="form-control" id="nombre-alumno" name="nombreAlumno">
+                            <label for="recipient-name" class="col-form-label"><b>Nom:</b></label>
+                            <input type="text" class="form-control" id="nombre-alumno" value="<?php echo $student->getStudentName() ?>" name="nombreAlumno">
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">Cognom:</label>
-                            <input class="form-control" id="apellido-alumno" name="apellidoAlumno"></input>
+                            <label for="message-text" class="col-form-label"><b>Cognoms:</b></label>
+                            <input class="form-control" id="apellido-alumno" name="apellidoAlumno" value="<?php echo $student->getStudentSurname() ?>"></input>
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">Email:</label>
-                            <input class="form-control" id="email-alumno" name="emailAlumno"></input>
+                            <label for="message-text" class="col-form-label"><b>Email:</b></label>
+                            <input class="form-control" id="email-alumno" name="emailAlumno" value="<?php echo $student->getStudentEmail() ?>"></input>
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">Telèfon:</label>
-                            <input class="form-control" id="telefono-alumno" name="telefonoAlumno"></input>
+                            <label for="message-text" class="col-form-label"><b>Telèfon:</b></label>
+                            <input class="form-control" id="telefono-alumno" name="telefonoAlumno" value="<?php echo $student->getStudentTelf() ?>"></input>
+                        </div>
+                        
+                        <div class="form-group">
+                        <label for="message-text" class="col-form-label"><b>Menció:</b></label>
+                        <select name="mencionAlumno" class="form-control" aria-label=".form-select-lg example">
+
+                        <?php $mentions = StudentController::getMentionsByStudentDegree(Connection::getConnection(),$student->getStudentDegree()) ;
+                        
+                            foreach ($mentions as $key => $mention) { ?>
+                                    <option <?php if($mention['id_mencion'] == $student->getStudentMention()){
+                                        echo 'selected';
+                                    } ?>> <?php echo  $mention['nombre'] ?></option>
+                                
+                        <?php  } ?>
+                    
+                        </select>
+                            
                         </div>
                    
                        
@@ -486,20 +511,26 @@
                 <div class="modal-body">
                     <form id="profesorForm" method="POST"  name="profesor" role="form">
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Nom:</label>
-                            <input type="text" class="form-control" id="nombre-profesor" name="nombreProfesor">
+                            <label for="recipient-name" class="col-form-label"><b>Nom:</b></label>
+                            <input type="text" class="form-control" id="nombre-profesor" name="nombreProfesor" value="<?php echo $extTeacher->getName(); ?>">
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">Cognom:</label>
-                            <input class="form-control" id="apellido-profesor" name="apellidoProfesor"></input>
+                            <label for="message-text" class="col-form-label"><b>Cognom:</b></label>
+                            <input class="form-control" id="apellido-profesor" name="apellidoProfesor" value="<?php echo $extTeacher->getSurname(); ?>"></input>
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">Email:</label>
-                            <input class="form-control" id="email-profesor" name="emailProfesor"></input>
+                            <label for="message-text" class="col-form-label"><b>Email:</b></label>
+                            <input class="form-control" id="email-profesor" name="emailProfesor" value="<?php echo $extTeacher->getEmail(); ?>"></input>
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">Telèfon:</label>
-                            <input class="form-control" id="telefono-profesor" name="telefonoProfesor"></input>
+                            <label for="message-text" class="col-form-label"><b>Telèfon:<b></label>
+                            <input class="form-control" id="telefono-profesor" name="telefonoProfesor" value="<?php echo $extTeacher->getTelf(); ?>"></input>
+                        </div>
+                        <div class="form-group">
+                             <?php $idEmpresa = $extTeacher->getIdCompany(); 
+                                    $nombreEmpresa = ExternalTeacherController::getExternalTeacherCompany(Connection::getConnection(), $idEmpresa)?>
+                            <label for="message-text" class="col-form-label"><b>Empresa:<b></label>
+                            <input class="form-control" id="empresa-profesor" name="empresaProfesor" value="<?php echo $nombreEmpresa ?>"></input>
                         </div>
                        
                    

@@ -51,6 +51,29 @@
     
            
         }
+
+        public function getExternalTeacherCompany($conn, $id_empresa){
+            $empresa = null;
+    
+            if(isset($conn)){
+                try{
+                    include_once '../entities/Company.inc.php';
+                    $sql = "SELECT nombre FROM empresas WHERE id_empresa = :id_empresa";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':id_empresa', $id_empresa, PDO::PARAM_STR);
+                    $stmt -> execute();
+                    $res = $stmt-> fetch();
+    
+                    if(!empty($res)){
+                        $empresa = $res['nombre'];
+                    }
+                }catch (PDOException $ex){
+                    print 'ERROR'. $ex->getMessage();
+                }
+            }
+    
+            return $empresa;
+        }
         
  }
 

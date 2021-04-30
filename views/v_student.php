@@ -24,13 +24,8 @@ include_once '../includes/navbar.inc.php';
        ?>
       
         <div class="container">
-        <?php echo "<h4>Benvingut " . $_SESSION["nombre"]. " " . $_SESSION["niu"]; "</h4>"?>
-       <br>
-       <br>
-        <h1>VISTA DEL ESTUDIANT</h1>
         <br>
-        <h5>INFORMACIÓ DE LA TEVA ESTANCIA</h5>
-        <br>
+        <?php echo "<h4>Hola " . $_SESSION["nombre"]. ",</h4>"?>
         <br>
         </div>
         <!-- Datos del estudiante -->
@@ -68,14 +63,14 @@ include_once '../includes/navbar.inc.php';
         <br>
         <br>
         <div class="container">
-        <h5>El teu progrés</h5>
+        <h5>El teu progrés:</h5>
                 <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo $percentage ?>%"  aria-valuenow="<?php echo $percentage ?>"  aria-valuemin="0" aria-valuemax="100"><?php 
+                        <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo $percentage ?>%"  aria-valuenow="<?php echo $percentage?>"  aria-valuemin="0" aria-valuemax="100"><?php 
                          if($percentage >100){
-                            echo 100;
+                            echo "<b>100%</b>";
                         }else{
-                            echo $percentage;
-                        } ?>%</div>
+                            echo "<b>".$percentage."% </b>";
+                        } ?></div>
                         </div>
                 </div>
         </div>
@@ -87,12 +82,11 @@ include_once '../includes/navbar.inc.php';
             <?php  Connection::openConnection(); 
                $comments = CommentController:: getPublicComments(Connection::getConnection(), $internship->getIdInternship());  
                if($comments !== null) {?>
-            <table id="comentaris-alumne" class="table table-striped table-bordered">
+            <table id="comentaris-tutor" class="table table-striped table-bordered">
                     <thead>
                         <tr>
                         <th scope="col">Data</th>
                         <th scope="col">Comentari</th>
-                    
                         </tr>
                     </thead>
                     <tbody>

@@ -16,7 +16,7 @@ include_once '../includes/navbar.inc.php';
       if(isset($_POST['enviarComentari'])){
          
             Connection::openConnection(); 
-            CommentController::insertComment(Connection::getConnection(),$_POST['textoComentario'], $_POST['tipoComentario'],$_SESSION['internshipId'], 'especial');
+            CommentController::insertComment(Connection::getConnection(),$_POST['textoComentario'], $_POST['tipoComentario'],$_SESSION['internshipId'], $_POST['categoriaComentario']);
             echo '<script> window.location.replace("'.VIEWINTERNSHIP."?niu=".$_SESSION['niuStudent'].'")</script>';
           }
       
@@ -45,14 +45,20 @@ include_once '../includes/navbar.inc.php';
             <form method="POST">
           
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Tipus de comentari:</label>
+                        <label for="recipient-name" class="col-form-label"><b>Tipus de comentari:</b></label>
                         <select name="tipoComentario" class="form-control" aria-label=".form-select-lg example">
                             <option selected>Públic</option>
                             <option>Privat</option>
                         </select>
+                        <label for="recipient-name" class="col-form-label"><b>Categoria del comentari:</b></label>
+                        <select name="categoriaComentario" class="form-control" aria-label=".form-select-lg example">
+                            <option selected>Estudiant</option>
+                            <option>Empresa</option>
+                            <option>Coordinació</option>
+                        </select>
                     </div>
                     <div class="form-group mt-5 mb-5">
-                        <label for="message-text" class="col-form-label">Comentari:</label>
+                        <label for="message-text" class="col-form-label"><b>Comentari:</b></label>
                         <textarea  id="summernote" class="form-control" name="textoComentario"></textarea>
                     </div> 
                     

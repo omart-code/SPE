@@ -25,6 +25,25 @@
     
             return $company;
         }
+
+        public static function updateCompanyNameById($conn, $id_empresa, $nombre){
+          
+    
+            if(isset($conn)){
+                try{
+                    $sql = "UPDATE empresas SET nombre=:nombre WHERE id_empresa = :id_empresa";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':id_empresa', $id_empresa, PDO::PARAM_STR);
+                    $stmt ->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+                    $stmt -> execute();
+                  
+                }catch (PDOException $ex){
+                    print 'ERROR'. $ex->getMessage();
+                }
+            }
+    
+           
+        }
        
     }
 

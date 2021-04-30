@@ -17,6 +17,15 @@ class ExternalTeacherController {
 
     }
 
+    public function getExternalTeacherCompany($conn, $id_empresa){
+        $empresa = ExternalTeacherModel::getExternalTeacherCompany($conn, $id_empresa);
+        return $empresa;
+    }
+
+    public function updateCompanyNameById($conn, $id_empresa, $nombre){
+        CompanyModel::updateCompanyNameById($conn, $id_empresa, $nombre);
+    }
+
 }
 ?>
 
