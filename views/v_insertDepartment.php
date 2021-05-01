@@ -19,7 +19,7 @@ include_once '../includes/navbar.inc.php';
             
             Connection::openConnection(); 
             //inserto en departamento
-            DepartmentController::insertDepartment(Connection::getConnection(), $_POST["nomDepartament"], $_POST["siglas"]);
+            DepartmentController::insertDepartment(Connection::getConnection(), $_POST["nomDepartament"], $_POST["siglas"], $_POST["identificador"]);
             //obtengo grado a partir de su nombre
             $degree = DegreeController::getDegreeByName(Connection::getConnection(), $_POST["grauSelec"]);
             //obtengo su id
@@ -75,7 +75,7 @@ include_once '../includes/navbar.inc.php';
             <?php Connection::openConnection(); 
             $degrees = DegreeController::getDegrees(Connection::getConnection());  ?>
             <div> <!-- Recoge los cursos de la bd, haz entity, model y controller y inserta en las options -->
-            <label>Sel·lecciona Grau</label>
+            <label><b>Sel·lecciona Grau</b></label>
             <select name="grauSelec" class="form-control" aria-label=".form-select-lg example">
             <option selected>Sel·lecciona un grau</option>
             <?php foreach ($degrees as $key => $degree) { ?>
@@ -86,13 +86,17 @@ include_once '../includes/navbar.inc.php';
             </div>
             <br>
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Nom Departament</label>
+                <label for="exampleFormControlInput1" class="form-label"><b>Nom Departament</b></label>
                 <input type="text" class="form-control" name="nomDepartament" placeholder="ex: Ciències de les Ones">
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Sigles</label>
+                <label for="exampleFormControlTextarea1" class="form-label"><b>Sigles</b></label>
                 <input type="text" class="form-control" name="siglas" placeholder="ex: CDLO" ></input>
-           
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label"><b>Identificador</b></label>
+                <input type="text" class="form-control" name="identificador" placeholder="ex: 921" ></input>
+            </div>
             <br>
             <br>
             <button type="submit" class="btn btn-success" name="enviarDepartament">Afegeix</button>

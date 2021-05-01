@@ -3,18 +3,18 @@
     class DepartmentModel{
 
         //Inserta un nuevo departamento
-        public static function insertDepartment($conn, $nombre, $siglas ){
+        public static function insertDepartment($conn, $nombre, $siglas, $identificador ){
            
     
             if(isset($conn)){
                 try{
                     include_once '../entities/Department.inc.php';
-                    $sql = "INSERT INTO departamentos (nombre, siglas)
-                    VALUES (:nombre, :siglas)";
+                    $sql = "INSERT INTO departamentos (nombre, siglas, identificador)
+                    VALUES (:nombre, :siglas, :identificador)";
                     $stmt = $conn -> prepare($sql);
                     $stmt ->bindParam(':nombre', $nombre, PDO::PARAM_STR);
                     $stmt ->bindParam(':siglas', $siglas, PDO::PARAM_STR);
-                   
+                    $stmt ->bindParam(':identificador', $identificador, PDO::PARAM_STR);
                     $stmt -> execute();
                     
                 }catch (PDOException $ex){
@@ -70,7 +70,7 @@
                     $res = $stmt-> fetch();
     
                     if(!empty($res)){
-                        $department = new Department( $res['id_departamento'],$res['nombre'],$res['siglas']);
+                        $department = new Department( $res['id_departamento'],$res['nombre'],$res['siglas'], $res['identificador']);
                     }
                 }catch (PDOException $ex){
                     print 'ERROR'. $ex->getMessage();

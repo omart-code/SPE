@@ -23,6 +23,12 @@ class InternshipController {
         return $infos;
     }
 
+    //Devuelve los nombres y apellidos de los alumnos que hacen estancias 
+    public function getInfoInternships($conn){
+        $infos = InternshipModel::getInfoInternships($conn);
+        return $infos;
+    }
+
     //Actualiza las fechas de estancia de un estudiante en funcion del niu
     function updateInternshipDates($conn, $niu_estudiante, $fecha_inicio, $fecha_fin){
         InternshipModel::updateInternshipDates($conn, $niu_estudiante, $fecha_inicio, $fecha_fin);

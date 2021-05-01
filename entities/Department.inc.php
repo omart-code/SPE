@@ -5,13 +5,15 @@ class Department {
     private $id_departamento;
     private $nombre;
     private $siglas;
+    private $identificador;
    
  
 
-    public function __construct($id_departamento, $nombre, $siglas){
+    public function __construct($id_departamento, $nombre, $siglas, $identificador){
         $this -> id_departamento = $id_departamento;
         $this -> nombre = $nombre;
         $this -> siglas = $siglas;
+        $this -> identificador = $identificador;
        
     }
 
@@ -25,6 +27,10 @@ class Department {
 
     public function getDepartmentAcronym(){
         return $this -> siglas;
+    }
+
+    public function getDepartmentIdentificator(){
+        return $this -> identificador;
     }
 
     
@@ -41,6 +47,10 @@ class Department {
 
     public function setDepartmentAcronym($siglas){
         $this->siglas = $siglas;
+    }
+
+    public function setDepartmentIdentificator($identificador){
+        $this->siglas = $identificador;
     }
 
 

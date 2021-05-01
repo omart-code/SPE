@@ -138,12 +138,29 @@ class InternshipModel {
      }
     }
 
-     
+    public static function getInfoInternships($conn){
+        $infos = null;
+        if(isset($conn)){
+           try{
+               
+               $sql = "SELECT es.nombre, es.apellido, es.niu_estudiante, e.id_estancia FROM estancias e INNER JOIN estudiantes es ON es.niu_estudiante = e.niu_estudiante WHERE e.niu_profesor LIKE '1%'";
+               $stmt = $conn -> prepare($sql);
+               $stmt -> execute();
+               $res = $stmt-> fetchAll();
+               if(count($res)){
+                   foreach($res as $info){
+                       $infos[] = $info;
+                   } 
+                }else{
+                       print 'No hi ha info disponible';
+                   }
+               
+           }catch (PDOException $ex){
+               print 'ERROR'. $ex->getMessage();
+           }
+           return $infos;
+         }
 
-
-
-   
-
-
+    }
 }
 ?>

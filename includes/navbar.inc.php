@@ -26,7 +26,7 @@ include_once __DIR__ . '/../app/config.inc.php'; ?>
                         
                     </li>
                     <?php if(ControlSession::sessionStarted()):
-                        if($_SESSION['id_tipo_usuario'] == '1' || $_SESSION['id_tipo_usuario'] == '3' || $_SESSION['id_tipo_usuario'] == '4'):?>
+                        if($_SESSION['id_tipo_usuario'] == '1'):?>
                         <li class="nav-item">
                             <a class="nav-link" href="http://localhost/spe/views/v_view_internships.php"><h3>Estades</h3></a>
                         </li>
