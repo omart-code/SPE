@@ -34,7 +34,12 @@ class Comment {
     }
 
     public function getCommentType(){
-        return $this -> tipo;
+        if($this->tipo == '1'){
+            return 'Públic';
+        }else{
+            return 'Privat';
+        }
+        
     }
 
     public function getCommentInternshipId(){

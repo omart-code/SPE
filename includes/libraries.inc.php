@@ -16,6 +16,11 @@ echo '
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+<script src="https://kit.fontawesome.com/7ce56be44b.js" crossorigin="anonymous"></script>
+<script src="textEditor.js"></script>
+<link href="suneditor/css/suneditor.css" rel="stylesheet">
+<script src="suneditor/js/suneditor.js"></script>
 
 '
 ?>

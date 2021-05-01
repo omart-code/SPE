@@ -120,7 +120,6 @@
                         <th >Data activitat 1</th>
                         <th >Data activitat 2</th>
                         <th >Data activitat 3</th>
-                        <th scope="col" hidden>Informació</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -131,7 +130,7 @@
                                
                                foreach($tasks as $task){ ?>
                                     <tr>
-                                    <td class='text-justify'><?php echo $task->getTaskName(); ?></td>
+                                    <td class='text-justify'><a style="text-decoration:none;" href="./v_view_task.php?task=<?php echo $task->getTaskId();?> "><?php echo $task->getTaskName(); ?> </a></td>
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
@@ -166,7 +165,7 @@
                                                         </div>
                                                       
                                                     <?php } ?></td>
-                                                  <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId(); ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>
+                
                                                  </tr>
                                            
                                        <?php }
@@ -210,7 +209,7 @@
                                
                                foreach($tasks as $task){ ?>
                                     <tr>
-                                    <td class='text-justify'><?php echo $task->getTaskName(); ?></td>
+                                    <td class='text-justify'><a style="text-decoration:none;" href="./v_view_task.php?task=<?php echo $task->getTaskId();?> "><?php echo $task->getTaskName(); ?> </a></td>
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
@@ -244,7 +243,7 @@
                                                         </div>
                                                       
                                                     <?php } ?></td>
-                                                  <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId(); ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>
+                                                
                                                  </tr>
                                            
                                        <?php }
@@ -288,7 +287,7 @@
                                
                                foreach($tasks as $task){ ?>
                                     <tr>
-                                    <td class='text-justify'><?php echo $task->getTaskName(); ?></td>
+                                    <td class='text-justify'><a style="text-decoration:none;" href="./v_view_task.php?task=<?php echo $task->getTaskId();?> "><?php echo $task->getTaskName(); ?> </a></td>
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
@@ -322,7 +321,7 @@
                                                         </div>
                                                       
                                                     <?php } ?></td>
-                                                  <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId(); ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>
+                                                 
                                                  </tr>
                                            
                                        <?php }else{ ?>
@@ -364,6 +363,7 @@
                         <tr>
                         <th scope="col">Data</th>
                         <th scope="col">Categoria</th>
+                        <th scope="col">Tipus</th>
                         <th scope="col">Comentari</th>
                     
                         </tr>
@@ -380,6 +380,7 @@
                                 echo "<tr>";
                                 echo "<th scope='row'>".$comment->getCommentDate()."</td>";
                                 echo "<td>".$comment->getCommentCategory()."</td>";
+                                echo "<td>".$comment->getCommentType()."</td>";
                                 echo "<td>".$comment->getCommentMessage()."</td>";
                                 
                                 echo "</tr>";

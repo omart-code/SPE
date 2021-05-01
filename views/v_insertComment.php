@@ -60,7 +60,10 @@ include_once '../includes/navbar.inc.php';
                     <div class="form-group mt-5 mb-5">
                         <label for="message-text" class="col-form-label"><b>Comentari:</b></label>
                         <textarea  id="summernote" class="form-control" name="textoComentario"></textarea>
-                    </div> 
+            
+                      
+                    </div>
+                  
                     
                     
                         
@@ -75,11 +78,15 @@ include_once '../includes/navbar.inc.php';
 
 <script>
 $('#summernote').summernote({
-        tabsize: 2,
-        height: 200
-      });
+    toolbar: [
+    // [groupName, [list of button]]
+    ['style', ['bold', 'italic', 'underline', 'clear']],
+    ['font', ['strikethrough', 'superscript', 'subscript']],
+    ['fontsize', ['fontsize']],
+    ['color', ['color']],
+    ['para', ['ul', 'ol', 'paragraph']],
+    ['height', ['height']]
+  ]
+      })
 </script>
-        
-</div>
-        
-      
+

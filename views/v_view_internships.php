@@ -14,7 +14,7 @@
     <div class="container">
     <h1>VISTA DE ESTADES DE PRÀCTIQUES</h1>
     </div>
-    <div class="table" style="width:80%; margin-right:auto; margin-left:auto;">
+    <div class="container ">
     <table id="internships" class="table table-bordered">
                     <thead>
                         <tr>
@@ -27,7 +27,7 @@
                                 echo "<th>" .$task->getTaskName();"</th>";
                             
                             } 
-                                echo "<th> Info </th>";
+                               
                              ?> 
 
                     
@@ -40,15 +40,15 @@
                        
                         Connection::openConnection(); 
                         $infos = InternshipController::getInfoInternshipsByTeacher(Connection::getConnection(), $_SESSION['niu']);
-                        foreach ($infos as $info) {
+                        foreach ($infos as $info) { ?>
                         
-                            echo "<tr>";
-                            echo "<th scope='row'>".$info['nombre'].' '.$info['apellido']."</td>";
-                            $tasksInternship = InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(), $info['id_estancia']);
+                            <tr>
+                            <th scope='row'><a style="text-decoration:none;" href="./v_view-internship.php?niu=<?php echo $info['niu_estudiante']?>"> <?php echo $info['nombre'].' '.$info['apellido'] ?> </a></td>
+                            <?php $tasksInternship = InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(), $info['id_estancia']);
                             foreach ($tasksInternship as $taskInternship){ ?>
                                 <td><?php echo $taskInternship->getTaskDate(); ?></td>
                             <?php } ?>
-                             <td><a href="./v_view-internship.php?niu=<?php echo $info['niu_estudiante']; ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>
+                             
                             <?php echo "</tr>";
                            
 
