@@ -57,14 +57,26 @@
                
 
             ?>
+
+            <?php  if(isset($_POST['restablecer'])){
+                     TeacherMessageController::restoreMessageByTask(Connection::getConnection(),$_GET['task']);
+                     echo '<script>window.location.replace("'.TASK."?task=".$_GET['task']."&niu=".$_GET['niu'].'")</script>';
+            }
+
+            ?>
+
          </div>
          <div class="buttons text-right">
          <button class="btn btn-success" id="editar" role="button">
               Editar
          </button>
-         <button class="btn btn-success restablecer" id="restablecer" role="button">
+         <br>
+         <br>
+         <form method="POST">
+         <button class="btn btn-success" id="restablecer" name="restablecer" role="button">
               Restablir
          </button>
+         </form>
          <!-- TODO: AL HACER RESTABLECER SALE EL MODAL DE RESTABLECER, HACER QUE AL ACEPTAR UPDATE DE TABLA MENSAJES PROFESOR, POR EL CONTENIDO DE MENSAJES PLANTILLA + REFRESH -->
          </div>
 
@@ -76,7 +88,7 @@
         
              if(isset($_POST['aceptarMensaje'])){
                 TeacherMessageController::updateTeacherMessageByTask(Connection::getConnection(), $_GET['task'], $_POST['editordata'], $_SESSION["niu"]);
-                echo '<script>window.location.replace("'.TASK."?task=".$_GET['task'].'")</script>';
+                echo '<script>window.location.replace("'.TASK."?task=".$_GET['task']."&niu=".$_GET['niu'].'")</script>';
                
              }
 
@@ -106,7 +118,7 @@
                    
         </div>
         <div class="container">
-        <button type="button" class=" btn btn-secondary" onclick="history.back(-1)"><i class="fas fa-arrow-left"></i> Torna Enrere</button>
+        <button type="button" class=" btn btn-secondary" onclick="gotoInternshipPage()"><i class="fas fa-arrow-left"></i> Torna Enrere</button>
         </div>
        
     </div>
@@ -126,4 +138,10 @@ $('#summernote').summernote({
     ['height', ['height']]
   ]
       })
+</script>
+<script>
+function gotoInternshipPage(){
+    console.log('se clica el boton');
+    window.location.replace("<?php echo VIEWINTERNSHIP.'?niu='.$_GET['niu'] ?> ")
+}
 </script>

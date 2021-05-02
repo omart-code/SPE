@@ -14,6 +14,10 @@ class TeacherMessageController {
         TeacherMessageModel::updateTeacherMessageByTask($conn, $id_tarea, $mensaje, $niu_profesor);
     }
 
+    public function restoreMessageByTask($conn, $id_tarea){
+        TeacherMessageModel::restoreMessageByTask($conn, $id_tarea);
+    }
+
 
 }
 ?>

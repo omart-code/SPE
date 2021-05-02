@@ -18,9 +18,7 @@ echo '
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 <script src="https://kit.fontawesome.com/7ce56be44b.js" crossorigin="anonymous"></script>
-<script src="textEditor.js"></script>
-<link href="suneditor/css/suneditor.css" rel="stylesheet">
-<script src="suneditor/js/suneditor.js"></script>
+
 
 '
 ?>

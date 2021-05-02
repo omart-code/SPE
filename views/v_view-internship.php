@@ -130,7 +130,7 @@
                                
                                foreach($tasks as $task){ ?>
                                     <tr>
-                                    <td class='text-justify'><a style="text-decoration:none;" href="./v_view_task.php?task=<?php echo $task->getTaskId();?> "><?php echo $task->getTaskName(); ?> </a></td>
+                                    <td class='text-justify'><a style="text-decoration:none;" href="./v_view_task.php?task=<?php echo $task->getTaskId();?>&niu=<?php echo $_GET['niu'] ?> "><?php echo $task->getTaskName(); ?> </a></td>
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
@@ -209,7 +209,7 @@
                                
                                foreach($tasks as $task){ ?>
                                     <tr>
-                                    <td class='text-justify'><a style="text-decoration:none;" href="./v_view_task.php?task=<?php echo $task->getTaskId();?> "><?php echo $task->getTaskName(); ?> </a></td>
+                                    <td class='text-justify'><a style="text-decoration:none;" href="./v_view_task.php?task=<?php echo $task->getTaskId()?>&niu=<?php echo $_GET['niu']?> "><?php echo $task->getTaskName(); ?> </a></td>
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
@@ -287,7 +287,7 @@
                                
                                foreach($tasks as $task){ ?>
                                     <tr>
-                                    <td class='text-justify'><a style="text-decoration:none;" href="./v_view_task.php?task=<?php echo $task->getTaskId();?> "><?php echo $task->getTaskName(); ?> </a></td>
+                                    <td class='text-justify'><a style="text-decoration:none;" href="./v_view_task.php?task=<?php echo $task->getTaskId()?>&niu=<?php echo $_GET['niu']?> "><?php echo $task->getTaskName(); ?> </a></td>
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>

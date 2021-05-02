@@ -46,6 +46,25 @@
     
            
         }
+
+        //Restablece el mensaje del profesor a su valor original
+        public static function restoreMessageByTask($conn, $id_tarea){
+    
+            if(isset($conn)){
+                try{
+                    include_once '../entities/TeacherMessage.inc.php';
+                    $sql = "UPDATE mensajes_profesor mp INNER JOIN tareas t ON mp.id_tarea = t.id_tarea SET mp.mensaje = t.mensaje WHERE t.id_tarea = :id_tarea";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':id_tarea', $id_tarea, PDO::PARAM_STR);
+                    $stmt -> execute();
+                  
+                }catch (PDOException $ex){
+                    print 'ERROR'. $ex->getMessage();
+                }
+            }
+    
+           
+        }
        
     }
 
