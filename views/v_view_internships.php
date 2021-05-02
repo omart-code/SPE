@@ -13,8 +13,8 @@
     <?php include '../includes/navbar.inc.php'; ?>
     <div class="container">
     <h1>VISTA DE ESTADES DE PRÀCTIQUES</h1>
-    </div>
-    <div class="container ">
+    <br>
+    <div>
     <table id="internships" class="table table-bordered">
                     <thead>
                         <tr>
@@ -60,7 +60,7 @@
     </table>   
 
     </div>
-
+ </div>
 
         
 

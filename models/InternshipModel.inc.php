@@ -17,7 +17,7 @@ class InternshipModel {
                     if(!empty($res)){
                         $internship = new Internship(
                             $res['id_estancia'], $res['niu_estudiante'], $res['niu_profesor'], $res['fecha_inicio'], 
-                            $res['fecha_fin'], $res['id_tutor_externo'], $res['id_empresa'], $res['nota'], $res['finalizada'],
+                            $res['fecha_fin'], $res['id_tutor_externo'], $res['id_empresa'], $res['nota'], $res['finalizada'], $res['id_curso_grado'],
                             );
                     }
                 }catch (PDOException $ex){
@@ -67,7 +67,7 @@ class InternshipModel {
                         foreach($res as $intern){
                             $internships[] = new Internship(
                                 $intern['id_estancia'], $intern['niu_estudiante'], $intern['niu_profesor'], $intern['fecha_inicio'], 
-                                $intern['fecha_fin'], $intern['id_tutor_externo'], $intern['id_empresa'], $intern['nota'], $intern['finalizada'],
+                                $intern['fecha_fin'], $intern['id_tutor_externo'], $intern['id_empresa'], $intern['nota'], $intern['finalizada'], $intern['id_curso_grado'],
                                 );
                         } 
                      }else{
@@ -98,7 +98,7 @@ class InternshipModel {
                         foreach($res as $intern){
                             $internships[] = new Internship(
                                 $intern['id_estancia'], $intern['niu_estudiante'], $intern['niu_profesor'], $intern['fecha_inicio'], 
-                                $intern['fecha_fin'], $intern['id_tutor_externo'], $intern['id_empresa'], $intern['nota'], $intern['finalizada'],
+                                $intern['fecha_fin'], $intern['id_tutor_externo'], $intern['id_empresa'], $intern['nota'], $intern['finalizada'], $intern['id_curso_grado']
                                 );
                         } 
                      }else{

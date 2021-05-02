@@ -549,36 +549,36 @@
     </div>
 
        <!--     MODAL FECHAS -->
-       <div id="modificarFechas">
+    <div id="modificarFechas">
         <div class="modal fade" id="modalFechas" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modificar les dates de l'estada</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="fechasForm" method="POST"  name="fechas" role="form">
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Data d'inici</label>
-                            <input type="date" class="form-control" id="fecha-inicio" name="fechaInicio">
-                        </div>
-                        <div class="form-group">
-                            <label for="message-text" class="col-form-label">Data de finalització:</label>
-                            <input class="form-control" type="date" id="fecha-final" name="fechaFinal"></input>
-                        </div>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><b>Modificar les dates de l'estada</b></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="fechasForm" method="POST"  name="fechas" role="form">
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label"><b>Data d'inici:</b></label>
+                                <input type="date" class="form-control" id="fecha-inicio"  name="fechaInicio">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label"><b>Data de finalització:</b></label>
+                                <input class="form-control" type="date" id="fecha-final"  name="fechaFinal"></input>
+                            </div>
+                            
+                    
                         
-                   
-                       
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">Tanca</button>
-                            <button type="submit" id="submitFecha" class="btn btn-success" name="modificaFechas">Modifica</button>
-                        
-                        </div>
-                     </form>
-                </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-dismiss="modal">Tanca</button>
+                                <button type="submit" id="submitFecha" class="btn btn-success" name="modificaFechas">Modifica</button>
+                            
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
