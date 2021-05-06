@@ -140,11 +140,11 @@
                                                   }else{ echo "Sense data";
                                                   } ?>
                                                   </td>
-                                                  <td> <?php if($taskInternship->getAction1Date() != null){
+                                                  <td id="taskDone"> <?php if($taskInternship->getAction1Date() != null){
                                                       echo $taskInternship->getAction1Date();
                                                     }else{ ?>
-                                                        <div class="check text-center">
-                                                        <a role="button" class="button text-center"><i class="fas fa-check" style="color:green; font-size: 1.5em;"></i><a>
+                                                        <div id="taskDone" class="check text-center" >
+                                                        <a role="button" class="button text-center"><i class="fas fa-check" id="taskDone"  style="color:green; font-size: 1.5em;"></i><a>
                                                         </div>
                                                       
                                                     <?php } ?>
@@ -590,11 +590,17 @@
    
 </body>
 <script type="text/javascript" src="../js/showTasks.js"></script>
+<script type="text/javascript" src="../js/taskDone.js"></script>
+
 <script>
 $(document).ready(function() {
-    $('#comentaris-tutor').DataTable();
-} );
-
+    $('#comentaris-tutor').DataTable({
+                "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Catalan.json"
+             }
+            });
+           
+        } );
 
 </script>
 

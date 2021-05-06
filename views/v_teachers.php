@@ -106,8 +106,14 @@ include_once '../controllers/TeacherController.inc.php';
     <script>
 
 $(document).ready(function() {
-    $('#teachers').DataTable();
-} );
+    $('#teachers').DataTable({
+                "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Catalan.json"
+             }
+            });
+           
+        } );;
+
 </script>
     
 

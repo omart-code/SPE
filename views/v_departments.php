@@ -129,7 +129,12 @@ include_once '../controllers/CourseController.inc.php';
         <script>
 
         $(document).ready(function() {
-            $('#departments').DataTable();
+            $('#departments').DataTable({
+                "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Catalan.json"
+             }
+            });
+           
         } );
         </script>
         

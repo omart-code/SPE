@@ -113,7 +113,12 @@ include_once '../includes/navbar.inc.php';
 </div>
 <script>
 $(document).ready(function() {
-            $('#comentaris-tutor').DataTable();
+            $('#comentaris-tutor').DataTable({
+                "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Catalan.json"
+             }
+            });
+           
         } );
 </script>
         </div>

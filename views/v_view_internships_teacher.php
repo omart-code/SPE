@@ -4,16 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <?php include '../includes/libraries.inc.php'; ?>
-    <?php include '../controllers/InternshipController.inc.php'; ?>
-    <?php include '../controllers/TaskController.inc.php'; ?>
-    <?php include '../controllers/InternshipTaskController.inc.php'; ?>
+    <?php include '../includes/libraries.inc.php'; 
+    include '../controllers/InternshipController.inc.php'; 
+    include '../controllers/TaskController.inc.php';
+    include '../controllers/InternshipTaskController.inc.php'; 
+    include '../controllers/DegreeCourseController.inc.php';
+    include '../controllers/DegreeCourseTeacherController.inc.php';
+    ?>
 </head>
 <body>
     <?php include '../includes/navbar.inc.php'; ?>
     <div class="container">
     <h1>VISTA DE ESTADES DE PRÀCTIQUES</h1>
     <br>
+    <div class="container">
+<br>
+    <h1>Estades del curs</h1>
+    <br>
+    <br>
+    <?php
+    Connection::openConnection();
+    //TIENES LIO CON ESTE SELECT DEBES COGER TODOS LOS PROFESORES CURSOS GRADOS DE ESTE NIU, COGES SU ID_CURSO_GRADO
+    //TAMBIEN TIENES QUE MOSTRAR EL CONTENIDO DE LA TABLA EN FUNCION DEL SELECT MIRA COORDINATOR QUE ESTÁ HECHO
+    $degreeCourses = DegreeCourseTeacherController::getDegreeCourseTeacherByNiu(Connection::getConnection(), $_SESSION['niu']);
+    ?>
+
+   
+         <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+            <select id="cursosEstancias" class="selectpicker form-control" name="cursogradoEstancias" required="true">
+            
+                <?php 
+            
+                Connection::openConnection();
+               
+                $degreeCoursesByDegree = DegreeCourseController::getDegreeCoursesByDegree(Connection::getConnection(), 1);?> <!-- QUEDA COGERLO EL ID_GRADO DE PROFESOR MEDIANTE PROFESOR CURSO -->
+                        <option value="null" selected>Sel·lecciona un curs i grau</option>
+                    
+                  <?php  foreach ($degreeCoursesByDegree as $degreeCourse) { ?>
+                        <option value="<?php echo $degreeCourse->getDegreeCourseId()?>"><?php echo $degreeCourse->getDegreeCourseName()?></option>
+                    <?php }?>
+                
+            </select>
+            <br>
+            <div class="text-right">
+                 <button type="submit" class="btn btn-success" name="cercaEstades">Cerca Estades</button>
+            </div>
+            <br>
+       
+         </form>
+        
+</div>
     <div>
     <table id="internships" class="table table-bordered">
                     <thead>
@@ -70,7 +110,13 @@
         <script>
 
         $(document).ready(function() {
-            $('#internships').DataTable();
+            $('#internships').DataTable({
+                "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Catalan.json"
+             }
+            });
+           
         } );
         </script>
 </html>
+
