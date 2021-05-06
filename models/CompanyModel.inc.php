@@ -19,7 +19,7 @@
                         $company = new Company( $res['id_empresa'], $res['nif'], $res['nombre'], $res['email'], $res['telefono'], $res['direccion'], $res['responsable']);
                     }
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     
@@ -38,7 +38,7 @@
                     $stmt -> execute();
                   
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     

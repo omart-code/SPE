@@ -18,7 +18,7 @@
                     $stmt -> execute();
                     
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     

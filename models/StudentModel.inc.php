@@ -19,7 +19,7 @@
                         $student = new Student( $res['niu_estudiante'],$res['nombre'],$res['apellido'], $res['email'], $res['telefono'] ,$res['id_mencion'] ,$res['id_grado']);
                     }
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     
@@ -44,7 +44,7 @@
                     $stmt -> execute();
                   
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     
@@ -67,7 +67,7 @@
                         $mention=  $res['nombre'];
                     }
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     
@@ -92,7 +92,7 @@
                                 print 'No hi ha mencions disponibles';
                             }
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     
@@ -115,11 +115,37 @@
                         $mention=  $res['id_mencion'];
                     }
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     
             return $mention;
+        }
+
+
+         //función que inserta un nuevo estudiante, aunque no todos los campos..
+        public static function insertStudent($conn, $niu_estudiante, $nombre, $apellido){
+            
+        
+            if(isset($conn)){
+                try{
+                    
+                    $sql = "INSERT INTO estudiantes (niu_estudiante, nombre, apellido)
+                    VALUES (:niu_estudiante, :nombre, :apellido)";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':niu_estudiante', $niu_estudiante, PDO::PARAM_STR);
+                    $stmt ->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+                    $stmt ->bindParam(':apellido', $apellido, PDO::PARAM_STR);
+                    
+                
+                    $stmt -> execute();
+                    
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
+
+        
         }
 
         

@@ -21,7 +21,7 @@ class InternshipModel {
                             );
                     }
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
 
@@ -44,7 +44,7 @@ class InternshipModel {
                 $stmt -> execute();
               
             }catch (PDOException $ex){
-                print 'ERROR'. $ex->getMessage();
+                echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
             }
         }
 
@@ -75,7 +75,7 @@ class InternshipModel {
                         }
                     
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
 
@@ -106,7 +106,7 @@ class InternshipModel {
                         }
                     
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
 
@@ -132,19 +132,20 @@ class InternshipModel {
                     }
                 
             }catch (PDOException $ex){
-                print 'ERROR'. $ex->getMessage();
+                echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
             }
             return $infos;
      }
     }
 
-    public static function getInfoInternships($conn){
+    public static function getInfoInternships($conn, $id_curso_grado){
         $infos = null;
         if(isset($conn)){
            try{
                
-               $sql = "SELECT es.nombre, es.apellido, es.niu_estudiante, e.id_estancia FROM estancias e INNER JOIN estudiantes es ON es.niu_estudiante = e.niu_estudiante WHERE e.niu_profesor LIKE '1%'";
+               $sql = "SELECT es.nombre, es.apellido, es.niu_estudiante, e.id_estancia, e.id_curso_grado FROM estancias e INNER JOIN estudiantes es ON es.niu_estudiante = e.niu_estudiante WHERE e.niu_profesor LIKE '1%' AND e.id_curso_grado = :id_curso_grado";
                $stmt = $conn -> prepare($sql);
+               $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
                $stmt -> execute();
                $res = $stmt-> fetchAll();
                if(count($res)){
@@ -152,15 +153,42 @@ class InternshipModel {
                        $infos[] = $info;
                    } 
                 }else{
-                       print 'No hi ha info disponible';
+                       print '';
                    }
                
            }catch (PDOException $ex){
-               print 'ERROR'. $ex->getMessage();
+            echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
            }
            return $infos;
          }
 
     }
+
+    //función que inserta una nueva estancia, aunque no todos los campos..
+    public static function insertInternship($conn, $niu_estudiante, $niu_profesor, $fecha_inicio, $fecha_fin, $id_curso_grado){
+           
+    
+        if(isset($conn)){
+            try{
+                
+                $sql = "INSERT INTO estancias (niu_estudiante, niu_profesor, fecha_inicio, fecha_fin, id_curso_grado)
+                VALUES (:niu_estudiante, :niu_profesor, :fecha_inicio, :fecha_fin, :id_curso_grado)";
+                $stmt = $conn -> prepare($sql);
+                $stmt ->bindParam(':niu_estudiante', $niu_estudiante, PDO::PARAM_STR);
+                $stmt ->bindParam(':niu_profesor', $niu_profesor, PDO::PARAM_STR);
+                $stmt ->bindParam(':fecha_inicio', $fecha_inicio, PDO::PARAM_STR);
+                $stmt ->bindParam(':fecha_fin', $fecha_fin, PDO::PARAM_STR);
+                $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
+               
+                $stmt -> execute();
+                
+            }catch (PDOException $ex){
+                echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+            }
+        }
+
+       
+    }
+
 }
 ?>

@@ -18,7 +18,7 @@
                     $stmt -> execute();
                     
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     
@@ -47,7 +47,7 @@
                             print 'No hi ha departaments disponibles';
                         }
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     
@@ -73,7 +73,7 @@
                         $department = new Department( $res['id_departamento'],$res['nombre'],$res['siglas'], $res['identificador']);
                     }
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     
@@ -104,7 +104,7 @@
                             print 'No hi ha departaments disponibles';
                         }
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     

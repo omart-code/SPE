@@ -24,7 +24,7 @@
                             print 'No hi ha graus disponibles';
                         }
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     
@@ -50,7 +50,7 @@
                         $degree = new Degree( $res['id_grado'],$res['nombre'],$res['siglas'], $res['horas'], $res['codigo_asignatura']);
                     }
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     

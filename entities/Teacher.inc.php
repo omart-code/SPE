@@ -18,7 +18,7 @@ class Teacher {
     }
 
     public function getTeacherNiu(){
-        return $niu_profesor -> niu_profesor;
+        return $this -> niu_profesor;
     }
 
     public function getTeacherName(){

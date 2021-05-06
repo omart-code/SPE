@@ -7,6 +7,8 @@ include_once '../controllers/InternshipController.inc.php';
 include_once '../controllers/TaskController.inc.php';
 include_once '../controllers/TeacherController.inc.php';
 include_once '../controllers/InternshipTaskController.inc.php';
+include_once '../controllers/StudentController.inc.php';
+include_once '../controllers/UserController.inc.php';
 include_once '../controllers/DegreeCourseController.inc.php';
 include_once '../controllers/CoordinatorController.inc.php';
 ?>
@@ -26,41 +28,48 @@ include_once '../controllers/CoordinatorController.inc.php';
     $coordinator = CoordinatorController::getCoordinatorByNiu( Connection::getConnection() , $_SESSION['niu']);
     ?>
 
-    <?php if(isset($_POST['cursoEstancias'])){
-        //SI SELECTOR DE CURSO GRADO SELECCIONADO, PONER $_SESSION['curso'] = nombreCurso, y poner activo en la base de datos
-    }
-    
-    ?>
-    
+   
          <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
-            <select id="cursosEstancias" class="selectpicker form-control" name="cursoEstancias" required="true">
+            <select id="cursosEstancias" class="selectpicker form-control" name="cursogradoEstancias" required="true">
             
                 <?php 
             
                 Connection::openConnection();
-                $degreeCoursesByDegree = DegreeCourseController::getDegreeCoursesByDegree(Connection::getConnection(), $coordinator->getCoordinatorDegreeId());
-            
-                    foreach ($degreeCoursesByDegree as $degreeCourse) { ?>
+                $degreeCoursesByDegree = DegreeCourseController::getDegreeCoursesByDegree(Connection::getConnection(), $coordinator->getCoordinatorDegreeId());?>
+                        <option value="null" selected>Sel·lecciona un curs i grau</option>
+                    
+                  <?php  foreach ($degreeCoursesByDegree as $degreeCourse) { ?>
                         <option value="<?php echo $degreeCourse->getDegreeCourseId()?>"><?php echo $degreeCourse->getDegreeCourseName()?></option>
                     <?php }?>
                 
             </select>
+            <br>
+            <div class="text-right">
+                 <button type="submit" class="btn btn-success" name="cercaEstades">Cerca Estades</button>
+            </div>
+            <br>
+       
          </form>
         
 </div>
-   <!--  LA TABLA DEBE RENDERIZAR LAS ESTANCIAS DEL CURSO GRADO SELECCIONADO EN EL SELECT DE ARRIBA, AUN HAY QUE CAMBIAR -->
-<div class="container ">
-        <table id="internships" class="table table-bordered">
+   <!--  YA SE COGE EL CURSO GRADO DEL SELECT DE ARRIBA, SE PUEDE PULIR -->
+   <?php  if(isset($_POST['cercaEstades'])){
+       if($_POST['cursogradoEstancias'] !== 'null'){?>
+            <div class="container ">
+                <table id="internships" class="table table-bordered">
                     <thead>
                         <tr>
                         <th scope="col">Nom</th>
                         <?php Connection::openConnection();
-                             $tasks = TaskController::getTasksByDegreeCourse(Connection::getConnection(), 1); //SE DEBE PASAR CURSO GRADO POR SELECT DE LA PÁGINA
-                             foreach ($tasks as $task) {
+                             $tasks = TaskController::getTasksByDegreeCourse(Connection::getConnection(), $_POST['cursogradoEstancias']);
+                             if(!empty($tasks)){
+                                foreach ($tasks as $task) {
                         
                                
-                                echo "<th>" .$task->getTaskName();"</th>";
-                            
+                                    echo "<th>" .$task->getTaskName();"</th>";
+                                 }
+                             } else {
+                                echo "<b>No s'han definit tasques encara per aquest curs</b><br>";
                             } 
                                
                              ?> 
@@ -74,27 +83,37 @@ include_once '../controllers/CoordinatorController.inc.php';
                     
                        
                         Connection::openConnection(); 
-                        $infos = InternshipController::getInfoInternships(Connection::getConnection());
-                        foreach ($infos as $info) { ?>
-                        
-                            <tr>
-                            <th scope='row'><a style="text-decoration:none;" href="./v_view-internship.php?niu=<?php echo $info['niu_estudiante']?>"> <?php echo $info['nombre'].' '.$info['apellido'] ?> </a></td>
-                            <?php $tasksInternship = InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(), $info['id_estancia']);
-                            foreach ($tasksInternship as $taskInternship){ ?>
-                                <td><?php echo $taskInternship->getTaskDate(); ?></td>
-                            <?php } ?>
-                             
-                            <?php echo "</tr>";
-                           
+                        $infos = InternshipController::getInfoInternships(Connection::getConnection(), $_POST['cursogradoEstancias']);
+                        if(!empty($infos)){
+                            foreach ($infos as $info) { ?>
+                                
+                                <tr>
+                                <th scope='row'><a style="text-decoration:none;" href="./v_view-internship.php?niu=<?php echo $info['niu_estudiante']?>"> <?php echo $info['nombre'].' '.$info['apellido'] ?> </a></td>
+                                <?php $tasksInternship = InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(), $info['id_estancia']);
+                                foreach ($tasksInternship as $taskInternship){ ?>
+                                    <td><?php echo $taskInternship->getTaskDate(); ?></td>
+                                <?php } ?>
+                                
+                                <?php echo "</tr>";
+                            
 
 
+                            }
+                        }else{
+                            echo "<b>No hi ha informació disponible encara de les estancies</b><br><br><br><br>";
                         }
               
                     ?>
-            </tbody>
-        </table>   
+                    </tbody>
+                </table>   
 
-</div>
+            </div>
+      <?php } else{ ?>
+                <div class="container"><b>No hi ha estancies a mostrar per aquest curs i grau</b></div>
+               <br>
+            <?php }
+        }?>
+    
 
 <!-- MODAL INSERTAR ESTANCIA -->
 <div id="insertarEstancia">
@@ -122,7 +141,7 @@ include_once '../controllers/CoordinatorController.inc.php';
                          ?>
         
                         <select name="grauCursSelec" class="form-control" aria-label=".form-select-lg example">
-                        <!--  ESTO YA ESTÁ BIEN, YA PILLAS EL ID CURSO GRADO DESDE EL POST -->
+                       
                             <?php 
                     
                             Connection::openConnection();
@@ -137,7 +156,15 @@ include_once '../controllers/CoordinatorController.inc.php';
                     <br>
                     <div class="form-group">
                         <label for="exampleFormControlInput1" class="form-label"><b>Niu Estudiant:</b></label>
-                        <input type="text" class="form-control" name="nomDepartament" placeholder="ex: 1234567" pattern="[0-9]{7}" title="El niu ha de tenir 7 digits">
+                        <input type="text" class="form-control" name="niuEstudiant" placeholder="ex: 1234567" pattern="[0-9]{7}" title="El niu ha de tenir 7 digits">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="form-label"><b>Nom Estudiant:</b></label>
+                        <input type="text" class="form-control" name="nomEstudiant" placeholder="ex: Joan">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="form-label"><b>Cognoms Estudiant:</b></label>
+                        <input type="text" class="form-control" name="cognomEstudiant" placeholder="ex: Martínez Pérez">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1" class="form-label"><b>Profesor:</b></label>
@@ -176,6 +203,7 @@ include_once '../controllers/CoordinatorController.inc.php';
                     <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal">Tanca</button>
                                 <button type="submit" id="enviarEstancia" class="btn btn-success" name="EnviarEstancia">Afegeix</button>
+                               
                             
                     </div>
                     </form>
@@ -193,7 +221,16 @@ include_once '../controllers/CoordinatorController.inc.php';
         <?php 
 
             if(isset($_POST['EnviarEstancia'])){
-              /*   ESTAS POR AQUI */
+               //Inserta en estancias la estancia
+               InternshipController::insertInternship(Connection::getConnection(), $_POST['niuEstudiant'], $_POST['profesorSelec'], 
+                $_POST['fechaInicio'], $_POST['fechaFinal'], $_POST['grauCursSelec']);
+
+                //Inserta el estudiante
+                StudentController::insertStudent(Connection::getConnection(), $_POST['niuEstudiant'],$_POST['nomEstudiant'], $_POST['cognomEstudiant']);
+                //Inserta este estudiante en los usuarios
+                UserController::insertUser(Connection::getConnection(), $_POST['niuEstudiant'], $_POST['nomEstudiant'],$_POST['cognomEstudiant'], '', '', 2);
+                echo '<script>window.location.replace("'.COORDINATOR.'")</script>';
+               
             }
         ?>
 
@@ -208,4 +245,5 @@ include_once '../controllers/CoordinatorController.inc.php';
             $('#internships').DataTable();
         } );
         </script>
+
 </html>

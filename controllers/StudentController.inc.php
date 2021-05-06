@@ -23,9 +23,14 @@ class StudentController {
 
     }
 
+    //Obtiene la id de mencion a partir del nombre
     public function getMentionId($conn, $nombre){
         $mentionId = StudentModel::getMentionId($conn, $nombre);
         return $mentionId;
+    }
+
+    public function insertStudent($conn, $niu_estudiante, $nombre, $apellido){
+        StudentModel::insertStudent($conn, $niu_estudiante, $nombre, $apellido);
     }
 }
 ?>

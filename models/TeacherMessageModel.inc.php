@@ -19,7 +19,7 @@
                         $message = new TeacherMessage( $res['id_mensaje_profesor'],$res['id_tarea'],$res['mensaje'], $res['niu_profesor']);
                     }
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     
@@ -40,7 +40,7 @@
                     $stmt -> execute();
                   
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     
@@ -59,7 +59,7 @@
                     $stmt -> execute();
                   
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     

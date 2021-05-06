@@ -27,7 +27,7 @@ class UserModel {
 
                 
             }catch(PDOException $ex){
-                print 'ERROR'. $ex ->getMessage();
+                echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
             }
         }
         return $users;
@@ -67,7 +67,7 @@ class UserModel {
                     $user = new User( $res['niu'], $res['password'], $res['nombre'], $res['apellido'], $res['email'], $res['telefono'], $res['id_tipo_usuario']);
                 }
             }catch (PDOException $ex){
-                print 'ERROR'. $ex->getMessage();
+                echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
             }
         }
 
@@ -93,7 +93,7 @@ class UserModel {
                     $stmt -> execute();
                     
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     

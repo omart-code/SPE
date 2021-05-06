@@ -19,7 +19,7 @@
                     $stmt -> execute();
                     
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     
@@ -48,7 +48,7 @@
                             print 'No hi ha cursos disponibles';
                         }
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     
@@ -78,7 +78,7 @@
                             print 'No hi ha cursos disponibles';
                         }
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     
@@ -105,7 +105,7 @@
                         $course = new Course( $res['id_curso'],$res['nombre'],$res['fecha_inicio'], $res['fecha_fin']);
                     }
                 }catch (PDOException $ex){
-                    print 'ERROR'. $ex->getMessage();
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }
             }
     

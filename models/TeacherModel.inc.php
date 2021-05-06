@@ -19,7 +19,7 @@ class TeacherModel{
                     $teacher = new Teacher( $res['niu_profesor'], $res['nombre'], $res['apellido'], $res['email'], $res['telefono'], $res['id_departamento']);
                 }
             }catch (PDOException $ex){
-                print 'ERROR'. $ex->getMessage();
+                echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
             }
         }
 
@@ -48,7 +48,7 @@ class TeacherModel{
                         print 'No hi ha departaments disponibles';
                     }
             }catch (PDOException $ex){
-                print 'ERROR'. $ex->getMessage();
+                echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
             }
         }
 
@@ -76,7 +76,7 @@ class TeacherModel{
                 $stmt -> execute();
                 
             }catch (PDOException $ex){
-                print 'ERROR'. $ex->getMessage();
+                echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
             }
         }
 

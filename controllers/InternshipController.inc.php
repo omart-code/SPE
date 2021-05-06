@@ -16,6 +16,10 @@ class InternshipController {
 
         return $internships;
     }
+    //Inserta una nueva estancia, aunque no todos los campos
+    public function insertInternship($conn, $niu_estudiante, $niu_profesor, $fecha_inicio, $fecha_fin, $id_curso_grado){
+        InternshipModel::insertInternship($conn, $niu_estudiante, $niu_profesor, $fecha_inicio, $fecha_fin, $id_curso_grado);
+    }
 
     //Devuelve los nombres y apellidos de los alumnos que hacen estancias de un profesor
     public function getInfoInternshipsByTeacher($conn, $niu_profesor){
@@ -24,8 +28,8 @@ class InternshipController {
     }
 
     //Devuelve los nombres y apellidos de los alumnos que hacen estancias 
-    public function getInfoInternships($conn){
-        $infos = InternshipModel::getInfoInternships($conn);
+    public function getInfoInternships($conn, $id_curso_grado){
+        $infos = InternshipModel::getInfoInternships($conn, $id_curso_grado);
         return $infos;
     }
 
