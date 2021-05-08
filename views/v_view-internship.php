@@ -129,6 +129,8 @@
                                     <td class='text-justify'><b><?php echo $task->getTaskName(); ?></b></td>
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
+                                        $fecha_prevista = InternshipTaskController::calculateTaskDate($internship->getNormalStartDate(), $internship->getNormalEndDate(), $task->getTaskPercentage());
+                                        InternshipTaskController::updateTaskDate(Connection::getConnection(), $task->getTaskId(), $internship->getIdInternship(), $fecha_prevista);
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
                                                   <td> 
                                                   <?php if($taskInternship->getTaskDate() != null){
@@ -204,6 +206,8 @@
                                     <td class='text-justify'><b><?php echo $task->getTaskName(); ?></b></td>
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
+                                         $fecha_prevista = InternshipTaskController::calculateTaskDate($internship->getNormalStartDate(), $internship->getNormalEndDate(), $task->getTaskPercentage());
+                                         InternshipTaskController::updateTaskDate(Connection::getConnection(), $task->getTaskId(), $internship->getIdInternship(), $fecha_prevista);
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
                                                   <td> <?php if($taskInternship->getTaskDate() != null){
                                                          echo "<b>".$taskInternship->getTaskDate()."</b>" ;
@@ -279,6 +283,8 @@
                                     <td class='text-justify'><b><?php echo $task->getTaskName(); ?></b></td>
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
+                                         $fecha_prevista = InternshipTaskController::calculateTaskDate($internship->getNormalStartDate(), $internship->getNormalEndDate(), $task->getTaskPercentage());
+                                         InternshipTaskController::updateTaskDate(Connection::getConnection(), $task->getTaskId(), $internship->getIdInternship(), $fecha_prevista);
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
                                                   <td> <?php if($taskInternship->getTaskDate() != null){
                                                          echo "<b>".$taskInternship->getTaskDate()."</b>" ;

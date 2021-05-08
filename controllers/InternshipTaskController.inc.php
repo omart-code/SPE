@@ -17,7 +17,6 @@ class InternshipTaskController {
 
     //calcula la fecha prevista de una tarea pasando las fechas de la estancia y el porcentaje
     public function calculateTaskDate($fecha_inicio, $fecha_fin, $porcentaje){
-        $porcentaje = '5';//esta linea la podras quitar que es para setear un porcentaje cualquiera
         $porcentaje = (int)$porcentaje;
         //Calculamos diferencia dias entre fecha inicio y fecha final
         $datetime1 = new DateTime($fecha_inicio);
@@ -40,7 +39,7 @@ class InternshipTaskController {
 
     //funcion para actualizar la fecha prevista dada una estancia y una tarea
     public function updateTaskDate($conn, $id_tarea, $id_estancia, $fecha_prevista){
-        Internship::updateTaskDate($conn, $id_tarea, $id_estancia, $fecha_prevista) ;
+        InternshipTaskModel::updateTaskDate($conn, $id_tarea, $id_estancia, $fecha_prevista) ;
     }
 
 

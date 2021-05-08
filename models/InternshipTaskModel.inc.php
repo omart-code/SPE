@@ -76,7 +76,7 @@
             if(isset($conn)){
                 try{
                    
-                    $sql = "UPDATE tareas_estancias SET fecha_prevista=:fecha_prevista WHERE id_tarea = :id_tarea AND id_estancia = :id_estancia";
+                    $sql = "UPDATE tareas_estancias SET fecha_prevista_tarea=:fecha_prevista WHERE id_tarea = :id_tarea AND id_estancia = :id_estancia";
                     $stmt = $conn -> prepare($sql);
                     $stmt ->bindParam(':id_tarea', $id_tarea, PDO::PARAM_STR);
                     $stmt ->bindParam(':id_estancia', $id_estancia, PDO::PARAM_STR);
