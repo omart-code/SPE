@@ -3,14 +3,15 @@ include_once 'includes/libraries.inc.php';
 include_once 'app/config.inc.php';
 include_once 'app/Connection.inc.php';
 $title = 'INDEX';
-include_once 'includes/doc-declaration.inc.php'; ?>
+include_once 'includes/doc-declaration.inc.php'; 
+include_once 'includes/navbar.inc.php'?>
+
 <body>
-<?php include_once './includes/navbar.inc.php'; ?>
+
         <div class="container">
         <h1>BENVINGUT A LA EINA DE SEGUIMENT DE PRÀCTIQUES EXTERNES</h1>
 
-        <h3>Navega-hi per la barra de navegació per a consultar dades</h3>
-        </div>
+        <h2>Accedeix al sistema fent login a la aplicacició</h2>
      
         <?php
         /* include_once 'app/Connection.inc.php';

@@ -54,6 +54,8 @@ include_once '../includes/doc-declaration.inc.php';
    
     <!-- Login Form -->
    <h1>Login</h1>
+
+   
     <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
       <input type="text" id="niu" class="fadeIn second" name="niu" placeholder="niu" >
       <?php
@@ -67,7 +69,7 @@ include_once '../includes/doc-declaration.inc.php';
             $validator -> showError();
             }
           ?>
-      <input type="submit" name="enviar" class="fadeIn fourth" value="Log In">
+      <input type="submit" role="button" name="enviar" class="fadeIn fourth btn btn-success" value="Log In">
     </form>
 
     <!-- Remind Passowrd -->
