@@ -125,7 +125,6 @@
                     <tbody>
                                 <?php
                                 Connection::openConnection();
-                                echo ("es una prueba")
                                 $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 1);
                                 $tasksInternship = InternshipTaskController::getInternshipTasksByPhase(Connection::getConnection(), $internship->getIdInternship(), 1);
                                
