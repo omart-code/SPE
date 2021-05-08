@@ -12,8 +12,9 @@ class Task {
     private $accion2;
     private $accion3;
     private $numero_acciones;
+    private $porcentaje
    
-    public function __construct($id_tarea, $id_etapa,$id_curso_grado, $nombre,  $informacion, $mensaje,  $accion1, $accion2,  $accion3,  $numero_acciones ){
+    public function __construct($id_tarea, $id_etapa,$id_curso_grado, $nombre,  $informacion, $mensaje,  $accion1, $accion2,  $accion3,  $numero_acciones, $porcentaje ){
         $this -> id_tarea = $id_tarea;
         $this -> id_etapa = $id_etapa;
         $this -> id_curso_grado = $id_curso_grado;
@@ -24,6 +25,8 @@ class Task {
         $this -> accion2 = $accion2;
         $this -> accion3 = $accion3;
         $this -> numero_acciones = $numero_acciones;
+        $this -> porcentaje = $porcentaje;
+       
        
     }
 
@@ -70,6 +73,10 @@ class Task {
 
     public function getTaskNumActions(){
         return $this -> numero_acciones;
+    }
+
+    public function getTaskPercentage(){
+        return $this -> porcentaje;
     }
 
     public function setTaskId($id_tarea){

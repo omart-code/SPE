@@ -125,6 +125,7 @@
                     <tbody>
                                 <?php
                                 Connection::openConnection();
+                              //pon aqui luego lo del setTaskdate
                                 $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 1);
                                 $tasksInternship = InternshipTaskController::getInternshipTasksByPhase(Connection::getConnection(), $internship->getIdInternship(), 1);
                                
@@ -133,6 +134,10 @@
                                     <td class='text-justify'><b><?php echo $task->getTaskName(); ?></b></td>
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
+                                         //aqui ira lo del setTaskdate, le pasas porcentaje de task
+                                         $fecha_prevista = InternShipTaskController::calculateTaskDate($internship->getNormalStartDate(), $internship->getNormalEndDate(), $task->getTaskPercentage());
+                                         var_dump($fecha_prevista);
+                                         //InternshipTaskController::updateTaskDate(Connection::getConnection(), $task->getTaskId(), $internship->getIdInternship(), $fecha_prevista);
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
                                                   <td> 
                                                   <?php if($taskInternship->getTaskDate() != null){
@@ -290,6 +295,7 @@
                                     <td class='text-justify'><b><?php echo $task->getTaskName(); ?></b></td>
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
+                                       
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
                                                   <td> <?php if($taskInternship->getTaskDate() != null){
                                                          echo "<b>".$taskInternship->getTaskDate()."</b>" ;
@@ -400,7 +406,7 @@
         </div>
         
        
-
+      <?php  InternShipTaskController::calculateTaskDate(Connection::getConnection(), $internship->getNormalStartDate(), $internship->getNormalEndDate(), '5'); ?>
 
        
       

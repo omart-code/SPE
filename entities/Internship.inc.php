@@ -45,10 +45,18 @@ class Internship {
         return $startDate;
     }
 
+    public function getNormalStartDate(){
+        return $this-> fecha_inicio;
+    }
+
     public function getEndDate(){
         $endDate = DateTime::createFromFormat('Y-m-d', $this->fecha_fin);
         $endDate = $endDate->format('d-m-Y');
         return $endDate;
+    }
+
+    public function getNormalEndDate(){
+        return $this-> fecha_fin;
     }
 
     public function getIdExternalTeacher(){

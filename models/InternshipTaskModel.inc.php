@@ -68,6 +68,30 @@
              return $internshipTasks;
             
          }
+
+         //Actualiza o setea las fechas previstas de realicación de las tareas en funcion de la tarea y la estancia
+        public static function updateTaskDate($conn, $id_tarea, $id_estancia, $fecha_prevista){
+            $student = null;
+    
+            if(isset($conn)){
+                try{
+                   
+                    $sql = "UPDATE tareas_estancias SET fecha_prevista=:fecha_prevista WHERE id_tarea = :id_tarea AND id_estancia = :id_estancia";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':id_tarea', $id_tarea, PDO::PARAM_STR);
+                    $stmt ->bindParam(':id_estancia', $id_estancia, PDO::PARAM_STR);
+                    $stmt ->bindParam(':fecha_prevista', $fecha_prevista, PDO::PARAM_STR);
+                   
+                    $stmt -> execute();
+                  
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
+    
+           
+        }
+
  
 
     }
