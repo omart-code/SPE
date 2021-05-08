@@ -79,11 +79,9 @@
                         <div class="col-md-4"><?php echo "<b>Empresa: </b> ".$company->getCompanyName(); ?></div>
                         <div class="col-md-4"></div>
                 </div>
-
         </div>
         <br>
         <br>
-
         <div class="progress-container container">
         <h5>Progrés del alumne:</h5>
                 <div class="progress">
@@ -96,7 +94,6 @@
                         </div>
                 </div>
         </div>
-
         <br>
         <br>
       <!--   AQUI TENDRÁS QUE HACER QUE CUANDO UNA FASE SE COMPLETE SE PONGA EN VERDE, Y SI NO ES ASI EN ROJO -->
@@ -110,7 +107,6 @@
                 <button class="btn btn-success" id="faseInicial" role="button">Consulta</button>
                 </div>
             </div>
-
             <div  style="display:none;" class="faseInicial table-responsive" >
                 <table class="table  table-bordered" >
                         <thead>
@@ -125,19 +121,14 @@
                     <tbody>
                                 <?php
                                 Connection::openConnection();
-                              //pon aqui luego lo del setTaskdate
                                 $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 1);
                                 $tasksInternship = InternshipTaskController::getInternshipTasksByPhase(Connection::getConnection(), $internship->getIdInternship(), 1);
-                               
+
                                foreach($tasks as $task){ ?>
                                     <tr>
                                     <td class='text-justify'><b><?php echo $task->getTaskName(); ?></b></td>
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
-                                         //aqui ira lo del setTaskdate, le pasas porcentaje de task
-                                         $fecha_prevista = InternShipTaskController::calculateTaskDate($internship->getNormalStartDate(), $internship->getNormalEndDate(), $task->getTaskPercentage());
-                                         var_dump($fecha_prevista);
-                                         //InternshipTaskController::updateTaskDate(Connection::getConnection(), $task->getTaskId(), $internship->getIdInternship(), $fecha_prevista);
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
                                                   <td> 
                                                   <?php if($taskInternship->getTaskDate() != null){
@@ -178,22 +169,18 @@
                                    }
                                    
                                }?>
-
                                 
                             
                     </tbody>
                 </table>
             </div>
-
             <br>
-
             <div class="alert alert-secondary" role="alert">
                 <h4>Fase de Seguiment</h4>
                 <div class="text-right">
                 <button class="btn btn-success" id="faseSeguiment" role="button">Consulta</button>
                 </div>
             </div>
-
             <div  style="display:none;" class="faseSeguiment table-responsive" >
                 <table class="table table-bordered"  >
                         <thead>
@@ -261,11 +248,8 @@
                     </tbody>
                 </table>
             </div>
-
            
-
             <br>
-
             <div class="alert alert-secondary" role="alert">
                 <h4>Fase Final</h4>
                 <div class="text-right">
@@ -295,7 +279,6 @@
                                     <td class='text-justify'><b><?php echo $task->getTaskName(); ?></b></td>
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
-                                       
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
                                                   <td> <?php if($taskInternship->getTaskDate() != null){
                                                          echo "<b>".$taskInternship->getTaskDate()."</b>" ;
@@ -345,7 +328,6 @@
             <br>
            
            
-
        
         </div>
     
@@ -353,7 +335,6 @@
     
         <br>
         <br>
-
         <div class="container text-right">
              <a href="../views/v_insertComment.php?niu=<?php  echo $internship->getNiuStudent() ?>&id=<?php  echo $internship->getIdInternship() ?>" class="btn btn-success escriu-comentari" role="button">Afegir Comentari</a>
         </div>
@@ -406,12 +387,9 @@
         </div>
         
        
-      <?php  InternShipTaskController::calculateTaskDate(Connection::getConnection(), $internship->getNormalStartDate(), $internship->getNormalEndDate(), '5'); ?>
-
        
       
  <!--   LÓGICA DE ACTUALIZAR ENVIO DATOS MODAL BASE DE DATOS -->
-
         <?php
             
             if(isset($_POST['modificaAlumno'])){
@@ -424,7 +402,6 @@
                     echo '<script> window.location.replace("'.VIEWINTERNSHIP."?niu=".$internship->getNiuStudent().'")</script>';
           
             }
-
             if(isset($_POST['modificaProfesor'])){
                 Connection::openConnection();
                 $nombreEmpresa = $_POST['empresaProfesor'];
@@ -433,17 +410,13 @@
                 $_POST['emailProfesor'], $_POST['telefonoProfesor']);
                 echo '<script> window.location.replace("'.VIEWINTERNSHIP."?niu=".$internship->getNiuStudent().'")</script>';
             }
-
             if(isset($_POST['modificaFechas'])){
                 Connection::openConnection();
                    
                 InternshipController::updateInternshipDates(Connection::getConnection(), $internship->getNiuStudent(), $_POST['fechaInicio'], $_POST['fechaFinal']);
                 echo '<script> window.location.replace("'.VIEWINTERNSHIP."?niu=".$internship->getNiuStudent().'")</script>';
             }
-
-
        ?>
-
    <!--     MODAL ALUMNE --> 
    <div id="modificarAlumno">
         <div class="modal fade" id="modalAlumno" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -477,7 +450,6 @@
                         <div class="form-group">
                         <label for="message-text" class="col-form-label"><b>Menció:</b></label>
                         <select name="mencionAlumno" class="form-control" aria-label=".form-select-lg example">
-
                         <?php $mentions = StudentController::getMentionsByStudentDegree(Connection::getConnection(),$student->getStudentDegree()) ;
                         
                             foreach ($mentions as $key => $mention) { ?>
@@ -503,7 +475,6 @@
             </div>
         </div>
     </div>
-
      <!--     MODAL PROFESOR EXTERNO -->
      <div id="modificarProfesor">
         <div class="modal fade" id="modalProfesor" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -553,7 +524,6 @@
             </div>
         </div>
     </div>
-
        <!--     MODAL FECHAS -->
     <div id="modificarFechas">
         <div class="modal fade" id="modalFechas" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -589,15 +559,12 @@
             </div>
         </div>
     </div>
-
 </div>
         
-
    
 </body>
 <script type="text/javascript" src="../js/showTasks.js"></script>
 <script type="text/javascript" src="../js/taskDone.js"></script>
-
 <script>
 $(document).ready(function() {
     $('#comentaris-tutor').DataTable({
@@ -607,9 +574,6 @@ $(document).ready(function() {
             });
            
         } );
-
 </script>
-
-
         
 </html>

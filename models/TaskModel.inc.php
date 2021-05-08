@@ -19,7 +19,7 @@
                         foreach($res as $task){
                             $tasks[] = new Task(
                                 $task['id_tarea'], $task['id_etapa'], $task['id_curso_grado'],$task['nombre'],$task['informacion'],
-                                $task['mensaje'],$task['accion1'],$task['accion2'],$task['accion3'], $task['numero_acciones']);
+                                $task['mensaje'],$task['accion1'],$task['accion2'],$task['accion3'], $task['numero_acciones'], $task['porcentaje']);
                             }}else{
                                 print '';
                             }
@@ -48,7 +48,7 @@
                         foreach($res as $task){
                             $tasks[] = new Task(
                                 $task['id_tarea'], $task['id_etapa'], $task['id_curso_grado'],$task['nombre'],$task['informacion'],
-                                $task['mensaje'],$task['accion1'],$task['accion2'],$task['accion3'], $task['numero_acciones']);
+                                $task['mensaje'],$task['accion1'],$task['accion2'],$task['accion3'], $task['numero_acciones'], $task['porcentaje']);
                             }}else{
                                 print '';
                             }
@@ -77,7 +77,7 @@
                     if(!empty($res)){
                         $task = new Task(
                             $res['id_tarea'], $res['id_etapa'], $res['id_curso_grado'],$res['nombre'],$res['informacion'],
-                            $res['mensaje'],$res['accion1'],$res['accion2'],$res['accion3'], $res['numero_acciones']);
+                            $res['mensaje'],$res['accion1'],$res['accion2'],$res['accion3'], $res['numero_acciones'], $res['porcentaje']);
                     }
                 }catch (PDOException $ex){
                     echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";

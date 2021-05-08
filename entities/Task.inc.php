@@ -12,9 +12,9 @@ class Task {
     private $accion2;
     private $accion3;
     private $numero_acciones;
-    private $porcentaje
+    private $porcentaje;
    
-    public function __construct($id_tarea, $id_etapa,$id_curso_grado, $nombre,  $informacion, $mensaje,  $accion1, $accion2,  $accion3,  $numero_acciones, $porcentaje ){
+    public function __construct($id_tarea, $id_etapa, $id_curso_grado, $nombre,  $informacion, $mensaje,  $accion1, $accion2,  $accion3,  $numero_acciones, $porcentaje ){
         $this -> id_tarea = $id_tarea;
         $this -> id_etapa = $id_etapa;
         $this -> id_curso_grado = $id_curso_grado;
