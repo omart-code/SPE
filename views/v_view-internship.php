@@ -130,7 +130,7 @@
                                
                                foreach($tasks as $task){ ?>
                                     <tr>
-                                    <td class='text-justify'><a style="text-decoration:none;" href="./v_view_task.php?task=<?php echo $task->getTaskId();?>&niu=<?php echo $_GET['niu'] ?> "><?php echo $task->getTaskName(); ?> </a></td>
+                                    <td class='text-justify'><b><?php echo $task->getTaskName(); ?></b></td>
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
@@ -165,7 +165,7 @@
                                                         </div>
                                                       
                                                     <?php } ?></td>
-                
+                                                    <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId(); ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>      
                                                  </tr>
                                            
                                        <?php }
@@ -209,7 +209,7 @@
                                
                                foreach($tasks as $task){ ?>
                                     <tr>
-                                    <td class='text-justify'><a style="text-decoration:none;" href="./v_view_task.php?task=<?php echo $task->getTaskId()?>&niu=<?php echo $_GET['niu']?> "><?php echo $task->getTaskName(); ?> </a></td>
+                                    <td class='text-justify'><b><?php echo $task->getTaskName(); ?></b></td>
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
@@ -243,7 +243,7 @@
                                                         </div>
                                                       
                                                     <?php } ?></td>
-                                                
+                                                    <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId(); ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>
                                                  </tr>
                                            
                                        <?php }
@@ -287,7 +287,7 @@
                                
                                foreach($tasks as $task){ ?>
                                     <tr>
-                                    <td class='text-justify'><a style="text-decoration:none;" href="./v_view_task.php?task=<?php echo $task->getTaskId()?>&niu=<?php echo $_GET['niu']?> "><?php echo $task->getTaskName(); ?> </a></td>
+                                    <td class='text-justify'><b><?php echo $task->getTaskName(); ?></b></td>
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
@@ -321,7 +321,7 @@
                                                         </div>
                                                       
                                                     <?php } ?></td>
-                                                 
+                                                    <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId(); ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>
                                                  </tr>
                                            
                                        <?php }else{ ?>
