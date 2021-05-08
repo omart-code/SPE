@@ -125,6 +125,7 @@
                     <tbody>
                                 <?php
                                 Connection::openConnection();
+                                echo ("es una prueba")
                                 $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 1);
                                 $tasksInternship = InternshipTaskController::getInternshipTasksByPhase(Connection::getConnection(), $internship->getIdInternship(), 1);
                                
@@ -136,7 +137,7 @@
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
                                                   <td> 
                                                   <?php if($taskInternship->getTaskDate() != null){
-                                                         echo "<b>".$taskInternship->getTaskDate()."</b>" ;
+                                                         echo "<b>".$taskInternship->getTaskDate()."</b>"   ;
                                                   }else{ echo "Sense data";
                                                   } ?>
                                                   </td>
