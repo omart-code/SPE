@@ -11,10 +11,9 @@ class InternshipTask{
     private $fecha_realiz_accion2;
     private $fecha_realiz_accion3;
    
-    public function __construct($id_tarea_estancia = null, $id_estancia = null, $nombre = null, $id_tarea,  $fecha_prevista_tarea,  $fecha_realiz_accion1,  $fecha_realiz_accion2, $fecha_realiz_accion3){
+    public function __construct($id_tarea_estancia , $id_estancia, $id_tarea,  $fecha_prevista_tarea,  $fecha_realiz_accion1,  $fecha_realiz_accion2, $fecha_realiz_accion3){
         $this -> id_tarea_estancia = $id_tarea_estancia;
         $this -> id_estancia = $id_estancia;
-        $this -> nombre = $nombre;
         $this -> id_tarea = $id_tarea;
         $this -> fecha_prevista_tarea = $fecha_prevista_tarea;
         $this -> fecha_realiz_accion1 = $fecha_realiz_accion1;
@@ -31,9 +30,7 @@ class InternshipTask{
     public function getInternshipId(){
         return $this -> id_estancia;
     }
-    public function getInternshipTaskName(){
-        return $this -> nombre;
-    } 
+  
 
     public function getTaskId(){
         return $this -> id_tarea;
@@ -95,9 +92,7 @@ class InternshipTask{
     public function setInternshipId($id_estancia){
         $this->id_estancia = $id_estancia;
     }
-    public function setInternshipTaskName($nombre){
-        $this->nombre = $nombre;
-    }
+    
     public function setTaskId($id_tarea){
         $this->id_tarea = $id_tarea;
     }

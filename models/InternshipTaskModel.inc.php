@@ -52,8 +52,7 @@
                      $res = $stmt-> fetchAll();
                      if(count($res)){
                          foreach($res as $intTask){
-                             $internshipTasks[] = new InternshipTask(null, null,
-                                 null, $intTask['id_tarea'],  $intTask['fecha_prevista_tarea'], $intTask['fecha_realiz_accion1'],$intTask['fecha_realiz_accion2'], 
+                             $internshipTasks[] = new InternshipTask($intTask['id_tarea_estancia'],  $intTask['id_estancia'], $intTask['id_tarea'],  $intTask['fecha_prevista_tarea'], $intTask['fecha_realiz_accion1'],$intTask['fecha_realiz_accion2'], 
                                  $intTask['fecha_realiz_accion3'],
                                  );
                          } 
@@ -90,6 +89,31 @@
             }
     
            
+        }
+
+        public static function insertInternshipTasksByInternship($conn, $id_estancia){
+            if(isset($conn)){
+                try{
+                    include_once '../entities/Course.inc.php';
+                    $sql = "INSERT INTO tareas_estancias (id_estancia, id_tarea)
+                    VALUES 
+                     (:id_estancia, '1'),
+                     (:id_estancia, '2'),
+                     (:id_estancia, '3'),
+                     (:id_estancia, '4'),
+                     (:id_estancia, '5'),
+                     (:id_estancia, '6'),
+                     (:id_estancia, '7'),
+                     (:id_estancia, '8'),
+                     (:id_estancia, '9'); ";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':id_estancia', $id_estancia, PDO::PARAM_STR);
+                    $stmt -> execute();
+                    
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
         }
 
  

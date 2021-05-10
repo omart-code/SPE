@@ -229,7 +229,16 @@ include_once '../controllers/CoordinatorController.inc.php';
                 StudentController::insertStudent(Connection::getConnection(), $_POST['niuEstudiant'],$_POST['nomEstudiant'], $_POST['cognomEstudiant']);
                 //Inserta este estudiante en los usuarios
                 UserController::insertUser(Connection::getConnection(), $_POST['niuEstudiant'], $_POST['nomEstudiant'],$_POST['cognomEstudiant'], '', '', 2);
-                echo '<script>window.location.replace("'.COORDINATOR.'")</script>';
+                //Recupera la ultima estancia introducida gracias al niu estudiante
+                $internship = InternshipController::getStudentInternship(Connection::getConnection(), $_POST['niuEstudiant']);
+                //Creo sus 9 tareas para esa estancia
+                InternshipTaskController::insertInternshipTasksByInternship(Connection::getConnection(), $internship->getIdInternship());
+                //Recupero sus 9 tareas acabadas de crear
+                $internshipTasks= InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(),$internship->getIdInternship());
+                //Calculo sus fechas previstas y las actualizo
+                InternshipTaskController::updateTasksDates($internship->getNormalStartDate(), $internship->getNormalEndDate(), $internshipTasks);
+
+                //echo '<script>window.location.replace("'.COORDINATOR.'")</script>';
 
               /*   QUEDA HACER UN MODAL DE LOADING Y QUE COMPRUEBE SI REALMENTE SE PUEDE INSERTAR LA ESTANCIA Y MOSTRAR UN ALERT DE QUE NO SE HA PODIDO */
                

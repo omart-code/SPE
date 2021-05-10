@@ -1,5 +1,6 @@
 <?php
 include_once '../models/InternshipTaskModel.inc.php';
+include_once '../models/TaskModel.inc.php';
 
 class InternshipTaskController {
 
@@ -15,6 +16,17 @@ class InternshipTaskController {
         return $internshipTasks;
     }
 
+       //funcion para actualizar la fecha prevista dada una estancia y una tarea
+       public function updateTaskDate($conn, $id_tarea, $id_estancia, $fecha_prevista){
+        InternshipTaskModel::updateTaskDate($conn, $id_tarea, $id_estancia, $fecha_prevista) ;
+    }
+
+    //funcion que añade por cada estancia 9 tareas asignadas a esa estancia
+    public function insertInternshipTasksByInternship($conn, $id_estancia){
+        InternshipTaskModel::insertInternshipTasksByInternship($conn, $id_estancia);
+    }
+
+/* 
     //calcula la fecha prevista de una tarea pasando las fechas de la estancia y el porcentaje
     public function calculateTaskDate($fecha_inicio, $fecha_fin, $porcentaje){
         $porcentaje = (int)$porcentaje;
@@ -36,12 +48,31 @@ class InternshipTaskController {
        //ESTA ES LA FECHA QUE TIENES QUE INSERTAR EN FECHA PREVISTA POR CADA TAREA!
 
     }
+ */
+    public function updateTasksDates($fecha_inicio, $fecha_fin, $tareas_estancia){
+         foreach ($tareas_estancia as $tarea_estancia) {
+            $task = TaskModel::getTaskById(Connection::getConnection(), $tarea_estancia-> getTaskId());
+            $porcentaje = $task->getTaskPercentage();
+            $porcentaje = (int)$porcentaje;
+            //Calculamos diferencia dias entre fecha inicio y fecha final
+            $datetime1 = new DateTime($fecha_inicio);
+            $datetime2 = new DateTime($fecha_fin);
+            $interval = $datetime1->diff($datetime2);
+            $dif = $interval->format('%a');
+            $totalDays = (int)$dif;
+            $percentageDays = $totalDays * ($porcentaje*0.01);
+            $percentageDays = (int)$percentageDays;
+            //Hasta aqui tenemos el porcentaje correcto, en teoria hay que sumar los porcentaje days a la fecha inicio
+            $fecha_prevista = date("Y-m-d",strtotime($fecha_inicio."+".$percentageDays."days"));
+             //ESTA ES LA FECHA QUE TIENES QUE INSERTAR EN FECHA PREVISTA POR CADA TAREA!
+            InternshipTaskController::updateTaskDate(Connection::getConnection(), $tarea_estancia-> getTaskId(), $tarea_estancia->getInternshipId(), $fecha_prevista);
+         }
+      
+ 
 
-    //funcion para actualizar la fecha prevista dada una estancia y una tarea
-    public function updateTaskDate($conn, $id_tarea, $id_estancia, $fecha_prevista){
-        InternshipTaskModel::updateTaskDate($conn, $id_tarea, $id_estancia, $fecha_prevista) ;
     }
 
+ 
 
 }
 ?>
