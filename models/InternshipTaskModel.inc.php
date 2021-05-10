@@ -20,9 +20,9 @@
                     $res = $stmt-> fetchAll();
                     if(count($res)){
                         foreach($res as $intTask){
-                            $internshipTasks[] = new InternshipTask(null, null,
-                                null, $intTask['id_tarea'],  $intTask['fecha_prevista_tarea'], $intTask['fecha_realiz_accion1'],$intTask['fecha_realiz_accion2'], 
-                                $intTask['fecha_realiz_accion3'],
+                            //TIENES QUE MODIFICAR ESTO
+                            $internshipTasks[] = new InternshipTask(null, null, $intTask['id_tarea'],  $intTask['fecha_prevista_tarea'], $intTask['fecha_realiz_accion1'],$intTask['fecha_realiz_accion2'], 
+                            $intTask['fecha_realiz_accion3'],
                                 );
                         } 
                      }else{

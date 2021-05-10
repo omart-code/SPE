@@ -122,8 +122,9 @@
                                 <?php
                                 Connection::openConnection();
                                 $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 1);
+                                //la estancia esta bien var_dump($internship);
                                 $tasksInternship = InternshipTaskController::getInternshipTasksByPhase(Connection::getConnection(), $internship->getIdInternship(), 1);
-                                //falla esto mirar la funcion anterior var_dump($tasksInternship);
+                               
                                foreach($tasks as $task){ ?>
                                     <tr>
                                     <td class='text-justify'><b><?php echo $task->getTaskName(); ?></b></td>
