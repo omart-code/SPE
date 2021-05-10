@@ -11,7 +11,8 @@ include_once '../controllers/InternshipController.inc.php';
         
       <?php   
        Connection::openConnection(); 
-       $internships = InternshipController::getTeacherInternships(Connection::getConnection(), $_SESSION["niu"]); ?>
+       $internships = InternshipController::getTeacherInternships(Connection::getConnection(), $_SESSION["niu"]); 
+        ?>
         <div class="container h-100">
                 <?php echo "<h4>Benvingut " . $_SESSION["nombre"]. " " . $_SESSION["niu"]; "</h4>"?>
                 <h1>VISTA DEL PROFESOR</h1>
