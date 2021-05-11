@@ -593,17 +593,17 @@ $( document ).ready(function() {
      
        var tasca = task[0];
        var fecha = task[1];
-       var dataActual = new Date();/* 
+       /* var dataActual = new Date(); 
        dataActual = dataActual.toLocaleDateString('es-ES');
        var dataActualModificada = dataActual.split("/");
        dataActual = dataActualModificada[2] + "-" + dataActualModificada[1] + "-" + dataActualModificada[0]; */
        
-        console.log(dataActual);
+       
         
         $.ajax({
             type: "POST",
             url: "../ajax/updateActionDate.php",
-            data: { estancia: estancia, tarea: tasca, actionDate: fecha, currentDate: dataActual},
+            data: { estancia: estancia, tarea: tasca, actionDate: fecha},
             dataType: "json",
             success: function(data){
                 console.log(data);
