@@ -122,7 +122,7 @@
                                 <?php
                                 Connection::openConnection();
                                 $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 1);
-                                //la estancia esta bien var_dump($internship);
+                              
                                 $tasksInternship = InternshipTaskController::getInternshipTasksByPhase(Connection::getConnection(), $internship->getIdInternship(), 1);
                                
                                foreach($tasks as $task){ ?>
@@ -138,7 +138,7 @@
                                                   }else{ echo "Sense data";
                                                   } ?>
                                                   </td>
-                                                  <td class="taskDone" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"> <?php if($taskInternship->getAction1Date() != null){
+                                                  <td class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"> <?php if($taskInternship->getAction1Date() != null){
                                                       echo $taskInternship->getAction1Date();
                                                     }else{ ?>
                                                         <div class="check text-center" >
@@ -147,7 +147,7 @@
                                                       
                                                     <?php } ?>
                                                     </td>
-                                                  <td class="taskDone" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>"><?php if($taskInternship->getAction2Date() != null){
+                                                  <td class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>"><?php if($taskInternship->getAction2Date() != null){
                                                       echo $taskInternship->getAction2Date();
                                                     }else{ ?>
                                                         <div class="check text-center">
@@ -155,7 +155,7 @@
                                                         </div>
                                                       
                                                     <?php } ?></td>
-                                                  <td class="taskDone" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"> <?php if($taskInternship->getAction3Date() != null){
+                                                  <td class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"> <?php if($taskInternship->getAction3Date() != null){
                                                       echo $taskInternship->getAction3Date();
                                                     }else{ ?>
                                                         <div class="taskDone" class="check text-center">
@@ -214,7 +214,7 @@
                                                      echo "Sense data";
                                                  } ?>
                                                  </td>
-                                                  <td class="taskDone" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"> <?php if($taskInternship->getAction1Date() != null){
+                                                  <td class="taskDone"  niu="<?php echo $internship->getNiuStudent() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"> <?php if($taskInternship->getAction1Date() != null){
                                                       echo $taskInternship->getAction1Date();
                                                     }else{ ?>
                                                         <div class="taskDone" class="check text-center">
@@ -222,7 +222,7 @@
                                                         </div>
                                                       
                                                     <?php } ?></td>
-                                                  <td class="taskDone estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>""> <?php if($taskInternship->getAction2Date() != null){
+                                                  <td class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>""> <?php if($taskInternship->getAction2Date() != null){
                                                       echo $taskInternship->getAction2Date();
                                                     }else{ ?>
                                                         <div class="taskDone" class="check text-center">
@@ -230,7 +230,7 @@
                                                         </div>
                                                       
                                                     <?php } ?></td>
-                                                  <td class="taskDone" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"> <?php if($taskInternship->getAction3Date() != null){
+                                                  <td class="taskDone"  niu="<?php echo $internship->getNiuStudent() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"> <?php if($taskInternship->getAction3Date() != null){
                                                       echo $taskInternship->getAction3Date();
                                                     }else{ ?>
                                                         <div class="taskDone" class="check text-center">
@@ -290,7 +290,7 @@
                                                    echo "Sense data";
                                                  } ?>
                                                  </td>
-                                                  <td class="taskDone" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"> <?php if($taskInternship->getAction1Date() != null){
+                                                  <td class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"> <?php if($taskInternship->getAction1Date() != null){
                                                       echo $taskInternship->getAction1Date();
                                                     }else{ ?>
                                                         <div class="taskDone" class="check text-center">
@@ -298,7 +298,7 @@
                                                         </div>
                                                       
                                                     <?php } ?></td>
-                                                  <td class="taskDone" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>"> <?php if($taskInternship->getAction2Date() != null){
+                                                  <td class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>"> <?php if($taskInternship->getAction2Date() != null){
                                                       echo $taskInternship->getAction2Date();
                                                     }else{ ?>
                                                         <div class="taskDone" class="check text-center">
@@ -306,7 +306,7 @@
                                                         </div>
                                                       
                                                     <?php } ?></td>
-                                                  <td class="taskDone" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"> <?php if($taskInternship->getAction3Date() != null){
+                                                  <td class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"> <?php if($taskInternship->getAction3Date() != null){
                                                       echo $taskInternship->getAction3Date();
                                                     }else{ ?>
                                                         <div class="taskDone" class="check text-center">
@@ -581,42 +581,7 @@ $(document).ready(function() {
 </script>
 <script>
 
-$( document ).ready(function() {
-    $(".taskDone").click(function () {
-    
-       $(this).css('background-color', '#D4EDDA');
-      
-       var id = this.getAttribute('id');
-       var estancia = this.getAttribute('estancia');
-     
-       var task = id.split('-')
-     
-       var tasca = task[0];
-       var fecha = task[1];
-       /* var dataActual = new Date(); 
-       dataActual = dataActual.toLocaleDateString('es-ES');
-       var dataActualModificada = dataActual.split("/");
-       dataActual = dataActualModificada[2] + "-" + dataActualModificada[1] + "-" + dataActualModificada[0]; */
-       
-       
-        
-        $.ajax({
-            type: "POST",
-            url: "../ajax/updateActionDate.php",
-            data: { estancia: estancia, tarea: tasca, actionDate: fecha, fechaActual: '2021'},
-            dataType: "json",
-            success: function(data){
-                console.log(data);
-            }
-        });
-      
 
-
-
-
-       
-     });
-});
 
   
 </script>

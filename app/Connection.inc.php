@@ -1,7 +1,7 @@
 <?php
 
 class Connection {
-    private static $conn;
+    public static $conn;
     
     public static function openConnection(){
         if(!isset(self::$conn)){
