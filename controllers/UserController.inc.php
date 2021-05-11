@@ -14,5 +14,9 @@ class UserController {
        UserModel::insertUser($conn, $niu, $nombre, $apellido, $telefono, $email, $id_tipo_usuario);
    }
 
+   public function updateStudentByNiu($conn, $niu, $nombre, $apellido,  $telefono, $email, $id_tipo_usuario){
+       UserModel::updateStudentByNiu($conn, $niu, $nombre, $apellido,  $telefono, $email, $id_tipo_usuario);
+   }
+
 }
 ?>

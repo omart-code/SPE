@@ -39,7 +39,7 @@
             <br>
             <br>
         
-             <div class="row">
+            <div class="row">
                         <br>
                         <br>
                         <div class="col-md-4"><h4><b>Alumne
@@ -60,23 +60,40 @@
                 </div>
                 <div class="row">
                         <div class="col-md-4"><?php echo "<h5>".$student->getStudentName(). " ". $student->getStudentSurname()."</h5>" ?></div>
-                        <div class="col-md-4"><?php echo "<h5>".$extTeacher->getName(). " ". $extTeacher->getSurname()."</h5>"?></div>
+                        <div class="col-md-4"><?php if($extTeacher !=null){
+                                  echo "<h5>".$extTeacher->getName(). " ". $extTeacher->getSurname()."</h5>";
+                        }else{
+                            echo "<h5> </h5>";
+                        }
+                          ?></div>
                         <div class="col-md-4"></div>
                 </div>
                 
                 <div class="row">
                         <div class="col-md-4"><?php echo "<b>Correu electrònic: </b> ".$student->getStudentEmail(); ?></div>
-                        <div class="col-md-4"><?php echo "<b>Correu electrònic: </b> ".$extTeacher->getEmail(); ?></div>
+                        <div class="col-md-4"><?php if($extTeacher !=null){
+                                  echo "<b>Correu electrònic: </b> " .$extTeacher->getEmail();
+                        }else{
+                            echo "<b>Correu electrònic: </b>";
+                        } ?></div>
                         <div class="col-md-4"><?php echo "<b>Data d'inici: </b> ". $internship->getStartDate(); ?></div>
                 </div>
                 <div class="row">
                         <div class="col-md-4"><?php echo "<b>Telèfon: </b> ".$student->getStudentTelf(); ?></div>
-                        <div class="col-md-4"><?php echo "<b>Telèfon: </b> ".$extTeacher->getTelf(); ?> </div>
+                        <div class="col-md-4"><?php if($extTeacher !=null){
+                                  echo "<b>Telèfon: </b> ".$extTeacher->getTelf();
+                        }else{
+                            echo "<b>Telèfon: </b>";
+                        } ?> </div>
                         <div class="col-md-4"><?php echo "<b>Data de finalització: </b> ".$internship->getEndDate(); ?></div>
                 </div>
                 <div class="row">
                         <div class="col-md-4"></div>
-                        <div class="col-md-4"><?php echo "<b>Empresa: </b> ".$company->getCompanyName(); ?></div>
+                        <div class="col-md-4"><?php if($company !=null){
+                                  echo "<b>Empresa: </b> ".$company->getCompanyName();
+                        }else{
+                            echo "<b>Empresa: </b>";
+                        }?></div>
                         <div class="col-md-4"></div>
                 </div>
         </div>
@@ -290,7 +307,7 @@
                                                    echo "Sense data";
                                                  } ?>
                                                  </td>
-                                                  <td class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"> <?php if($taskInternship->getAction1Date() != null){
+                                                  <td class="taskDone"  niu="<?php echo $internship->getNiuStudent() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"> <?php if($taskInternship->getAction1Date() != null){
                                                       echo $taskInternship->getAction1Date();
                                                     }else{ ?>
                                                         <div class="taskDone" class="check text-center">
@@ -402,17 +419,31 @@
                      $mention = $_POST['mencionAlumno'];
                      $mentionId = StudentController::getMentionId(Connection::getConnection(), $mention);
                     StudentController::updateStudentByNiu(Connection::getConnection(), $internship->getNiuStudent(), $_POST['nombreAlumno'], $_POST['apellidoAlumno'], $_POST['emailAlumno'], $_POST['telefonoAlumno'], $mentionId);
-                    //SE DEBERIA TAMBIEN ACTUALIZAR EL USUARIO CORRESPONDIENTE A ESE STUDENT??!!
+                    
+                    UserController::updateStudentByNiu(Connection::getConnection(), $internship->getNiuStudent(),$_POST['nombreAlumno'],$_POST['apellidoAlumno'], $_POST['telefonoAlumno'], $_POST['emailAlumno'], 2);
                     echo '<script> window.location.replace("'.VIEWINTERNSHIP."?niu=".$internship->getNiuStudent().'")</script>';
           
             }
             if(isset($_POST['modificaProfesor'])){
                 Connection::openConnection();
                 $nombreEmpresa = $_POST['empresaProfesor'];
-                ExternalTeacherController::updateCompanyNameById(Connection::getConnection(), $extTeacher->getIdCompany(), $nombreEmpresa);
-                ExternalTeacherController::updateExternalTeacherById(Connection::getConnection(), $internship->getIdExternalTeacher(), $_POST['nombreProfesor'], $_POST['apellidoProfesor'],
-                $_POST['emailProfesor'], $_POST['telefonoProfesor']);
-                echo '<script> window.location.replace("'.VIEWINTERNSHIP."?niu=".$internship->getNiuStudent().'")</script>';
+                if($extTeacher !== null){
+                    ExternalTeacherController::updateCompanyNameById(Connection::getConnection(), $extTeacher->getIdCompany(), $nombreEmpresa);
+                    ExternalTeacherController::updateExternalTeacherById(Connection::getConnection(), $internship->getIdExternalTeacher(), $_POST['nombreProfesor'], $_POST['apellidoProfesor'],
+                    $_POST['emailProfesor'], $_POST['telefonoProfesor']);
+                    echo '<script> window.location.replace("'.VIEWINTERNSHIPCOORD."?niu=".$internship->getNiuStudent().'")</script>';
+                }else{
+                  
+                    Connection::openConnection();
+                    CompanyController::insertCompany(Connection::getConnection(), $_POST['empresaProfesor']);
+                    $empresa = CompanyController::getCompanyByName(Connection::getConnection(), $_POST['empresaProfesor']);
+                   
+                    ExternalTeacherController::insertTeacher(Connection::getConnection(), $_POST['nombreProfesor'], $_POST['apellidoProfesor'], $_POST['telefonoProfesor'],  $_POST['emailProfesor'], $empresa->getCompanyId());
+                    $profesor = ExternalTeacherController::getExternalTeacherByName(Connection::getConnection(), $_POST['nombreProfesor'],  $_POST['apellidoProfesor'] );
+                   
+                    InternshipController::updateInternshipTeacherAndCompany(Connection::getConnection(), $internship->getNiuStudent(), $profesor->getIdTeacher(), $empresa->getCompanyId());
+                    echo '<script> window.location.replace("'.VIEWINTERNSHIPCOORD."?niu=".$internship->getNiuStudent().'")</script>';
+                }
             }
             if(isset($_POST['modificaFechas'])){
                 Connection::openConnection();

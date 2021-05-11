@@ -190,6 +190,27 @@ class InternshipModel {
        
     }
 
+    public static function updateInternshipTeacherAndCompany($conn, $niu_estudiante, $id_tutor_externo, $id_empresa){
+        
+        if(isset($conn)){
+            try{
+              
+                $sql = "UPDATE estancias SET id_tutor_externo=:id_tutor_Externo, id_empresa=:id_empresa WHERE niu_estudiante = :niu_estudiante";
+                $stmt = $conn -> prepare($sql);
+                $stmt ->bindParam(':niu_estudiante', $niu_estudiante, PDO::PARAM_STR);
+                $stmt ->bindParam(':id_tutor_externo', $id_tutor_externo, PDO::PARAM_STR);
+                $stmt ->bindParam(':id_empresa', $id_empresa, PDO::PARAM_STR);
+                
+                $stmt -> execute();
+              
+            }catch (PDOException $ex){
+                echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+            }
+        }
+
+       
+    }
+
     
 
 }

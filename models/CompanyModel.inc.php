@@ -74,7 +74,7 @@
                     include_once '../entities/Company.inc.php';
                     $sql = "SELECT * FROM empresas e WHERE e.nombre = :nombre";
                     $stmt = $conn -> prepare($sql);
-                    $stmt ->bindParam(':nombre', $id_empresa, PDO::PARAM_STR);
+                    $stmt ->bindParam(':nombre', $nombre, PDO::PARAM_STR);
                     $stmt -> execute();
                     $res = $stmt-> fetch();
     

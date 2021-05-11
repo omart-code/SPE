@@ -38,6 +38,10 @@ class InternshipController {
         InternshipModel::updateInternshipDates($conn, $niu_estudiante, $fecha_inicio, $fecha_fin);
     }
 
+    public function updateInternshipTeacherAndCompany($conn, $niu_estudiante, $id_tutor_externo, $id_empresa){
+        InternshipModel::updateInternshipTeacherAndCompany($conn, $niu_estudiante, $id_tutor_externo, $id_empresa);
+    }
+
     //Devuelve los datos de una estancia de un estudiante
     public function getStudentInternship($conn, $niu_estudiante){
         

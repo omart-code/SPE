@@ -93,7 +93,7 @@
                         <div class="col-md-4"><?php if($company !=null){
                                   echo "<b>Empresa: </b> ".$company->getCompanyName();
                         }else{
-                            echo "<b>Telèfon: </b>";
+                            echo "<b>Empresa: </b>";
                         }?></div>
                         <div class="col-md-4"></div>
                 </div>
@@ -156,28 +156,28 @@
                                                   }else{ echo "Sense data";
                                                   } ?>
                                                   </td>
-                                                  <td id="taskDone"> <?php if($taskInternship->getAction1Date() != null){
+                                                  <td class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"> <?php if($taskInternship->getAction1Date() != null){
                                                       echo $taskInternship->getAction1Date();
                                                     }else{ ?>
-                                                        <div id="taskDone" class="check text-center" >
-                                                        <a role="button" class="button text-center"><i class="fas fa-check" id="taskDone"  style="color:green; font-size: 1.5em;"></i><a>
+                                                        <div class="check text-center" >
+                                                      
                                                         </div>
                                                       
                                                     <?php } ?>
                                                     </td>
-                                                  <td><?php if($taskInternship->getAction2Date() != null){
+                                                  <td class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>"><?php if($taskInternship->getAction2Date() != null){
                                                       echo $taskInternship->getAction2Date();
                                                     }else{ ?>
                                                         <div class="check text-center">
-                                                        <a role="button" class="button text-center"><i class="fas fa-check" style="color:green; font-size: 1.5em;"></i><a>
+                                                      
                                                         </div>
                                                       
                                                     <?php } ?></td>
-                                                  <td> <?php if($taskInternship->getAction3Date() != null){
+                                                  <td class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"> <?php if($taskInternship->getAction3Date() != null){
                                                       echo $taskInternship->getAction3Date();
                                                     }else{ ?>
-                                                        <div class="check text-center">
-                                                        <a role="button" class="button text-center"><i class="fas fa-check" style="color:green; font-size: 1.5em;"></i><a>
+                                                        <div class="taskDone" class="check text-center">
+                                                       
                                                         </div>
                                                       
                                                     <?php } ?></td>
@@ -232,27 +232,27 @@
                                                      echo "Sense data";
                                                  } ?>
                                                  </td>
-                                                  <td> <?php if($taskInternship->getAction1Date() != null){
+                                                  <td class="taskDone"  niu="<?php echo $internship->getNiuStudent() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"> <?php if($taskInternship->getAction1Date() != null){
                                                       echo $taskInternship->getAction1Date();
                                                     }else{ ?>
-                                                        <div class="check text-center">
-                                                        <a role="button" class="button text-center"><i class="fas fa-check" style="color:green; font-size: 1.5em;"></i><a>
+                                                        <div class="taskDone" class="check text-center">
+                                                       
                                                         </div>
                                                       
                                                     <?php } ?></td>
-                                                  <td> <?php if($taskInternship->getAction2Date() != null){
+                                                  <td class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>""> <?php if($taskInternship->getAction2Date() != null){
                                                       echo $taskInternship->getAction2Date();
                                                     }else{ ?>
-                                                        <div class="check text-center">
-                                                        <a role="button" class="button text-center"><i class="fas fa-check" style="color:green; font-size: 1.5em;"></i><a>
+                                                        <div class="taskDone" class="check text-center">
+                                                       
                                                         </div>
                                                       
                                                     <?php } ?></td>
-                                                  <td> <?php if($taskInternship->getAction3Date() != null){
+                                                  <td class="taskDone"  niu="<?php echo $internship->getNiuStudent() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"> <?php if($taskInternship->getAction3Date() != null){
                                                       echo $taskInternship->getAction3Date();
                                                     }else{ ?>
-                                                        <div class="check text-center">
-                                                        <a role="button" class="button text-center"><i class="fas fa-check" style="color:green; font-size: 1.5em;"></i><a>
+                                                        <div class="taskDone" class="check text-center">
+                                                      
                                                         </div>
                                                       
                                                     <?php } ?></td>
@@ -301,49 +301,48 @@
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
                                       
-                                       if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
-                                                  <td> <?php if($taskInternship->getTaskDate() != null){
-                                                         echo "<b>".$taskInternship->getTaskDate()."</b>" ;
-                                                  }else{ 
-                                                   echo "Sense data";
-                                                 } ?>
-                                                 </td>
-                                                  <td> <?php if($taskInternship->getAction1Date() != null){
-                                                      echo $taskInternship->getAction1Date();
-                                                    }else{ ?>
-                                                        <div class="check text-center">
-                                                        <a role="button" class="button text-center"><i class="fas fa-check" style="color:green; font-size: 1.5em;"></i><a>
-                                                        </div>
+                                      if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
+                                                 <td > <?php if($taskInternship->getTaskDate() != null){
+                                                        echo "<b>".$taskInternship->getTaskDate()."</b>" ;
+                                                 }else{ 
+                                                  echo "Sense data";
+                                                } ?>
+                                                </td>
+                                                 <td class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"> <?php if($taskInternship->getAction1Date() != null){
+                                                     echo $taskInternship->getAction1Date();
+                                                   }else{ ?>
+                                                       <div class="taskDone" class="check text-center">
                                                       
-                                                    <?php } ?></td>
-                                                  <td> <?php if($taskInternship->getAction2Date() != null){
-                                                      echo $taskInternship->getAction2Date();
-                                                    }else{ ?>
-                                                        <div class="check text-center">
-                                                        <a role="button" class="button text-center"><i class="fas fa-check" style="color:green; font-size: 1.5em;"></i><a>
-                                                        </div>
+                                                       </div>
+                                                     
+                                                   <?php } ?></td>
+                                                 <td class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>"> <?php if($taskInternship->getAction2Date() != null){
+                                                     echo $taskInternship->getAction2Date();
+                                                   }else{ ?>
+                                                       <div class="taskDone" class="check text-center">
                                                       
-                                                    <?php } ?></td>
-                                                  <td> <?php if($taskInternship->getAction3Date() != null){
-                                                      echo $taskInternship->getAction3Date();
-                                                    }else{ ?>
-                                                        <div class="check text-center">
-                                                        <a role="button" class="button text-center"><i class="fas fa-check" style="color:green; font-size: 1.5em;"></i><a>
-                                                        </div>
+                                                       </div>
+                                                     
+                                                   <?php } ?></td>
+                                                 <td class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"> <?php if($taskInternship->getAction3Date() != null){
+                                                     echo $taskInternship->getAction3Date();
+                                                   }else{ ?>
+                                                       <div class="taskDone" class="check text-center">
                                                       
-                                                    <?php } ?></td>
-                                                    <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId()."&niu=".$internship->getNiuStudent() ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>
-                                                 </tr>
-                                           
-                                       <?php }else{ ?>
+                                                       </div>
+                                                     
+                                                   <?php } ?></td>
+                                                   <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId()."&niu=".$internship->getNiuStudent() ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>
+                                                </tr>
                                           
-                                      <?php } ?>
-                                      
-                                   <?php } ?>
-                                    
+                                      <?php }else{ ?>
+                                         
+                                     <?php } ?>
+                                     
+                                  <?php } ?>
                                    
-                               <?php } ?>
-                             
+                                  
+                              <?php } ?>
                     </tbody>
                 </table>
             </div>
@@ -418,23 +417,30 @@
                      $mention = $_POST['mencionAlumno'];
                      $mentionId = StudentController::getMentionId(Connection::getConnection(), $mention);
                     StudentController::updateStudentByNiu(Connection::getConnection(), $internship->getNiuStudent(), $_POST['nombreAlumno'], $_POST['apellidoAlumno'], $_POST['emailAlumno'], $_POST['telefonoAlumno'], $mentionId);
-                    //SE DEBERIA TAMBIEN ACTUALIZAR EL USUARIO CORRESPONDIENTE A ESE STUDENT??!!
+                   
+                    UserController::updateStudentByNiu(Connection::getConnection(), $internship->getNiuStudent(),$_POST['nombreAlumno'],$_POST['apellidoAlumno'], $_POST['telefonoAlumno'], $_POST['emailAlumno'], 2);
                     echo '<script> window.location.replace("'.VIEWINTERNSHIPCOORD."?niu=".$internship->getNiuStudent().'")</script>';
           
             }
             if(isset($_POST['modificaProfesor'])){
                 Connection::openConnection();
                 $nombreEmpresa = $_POST['empresaProfesor'];
-                if(isset($extTeacher)){
+                if($extTeacher !== null){
                     ExternalTeacherController::updateCompanyNameById(Connection::getConnection(), $extTeacher->getIdCompany(), $nombreEmpresa);
                     ExternalTeacherController::updateExternalTeacherById(Connection::getConnection(), $internship->getIdExternalTeacher(), $_POST['nombreProfesor'], $_POST['apellidoProfesor'],
                     $_POST['emailProfesor'], $_POST['telefonoProfesor']);
                     echo '<script> window.location.replace("'.VIEWINTERNSHIPCOORD."?niu=".$internship->getNiuStudent().'")</script>';
                 }else{
-                    //HAY QUE INTRODUCIR UNA EMPRESA NUEVA Y UN PROFESOR EXTERNO ASIGNADO A ESA EMPRESA
+                  
+                    Connection::openConnection();
                     CompanyController::insertCompany(Connection::getConnection(), $_POST['empresaProfesor']);
-                    $idEmpresa = CompanyController::getCompanyByName(Connection::getConnection(), $_POST['empresaProfesor']);
-                    //queda insertar el profesor
+                    $empresa = CompanyController::getCompanyByName(Connection::getConnection(), $_POST['empresaProfesor']);
+                   
+                    ExternalTeacherController::insertTeacher(Connection::getConnection(), $_POST['nombreProfesor'], $_POST['apellidoProfesor'], $_POST['telefonoProfesor'],  $_POST['emailProfesor'], $empresa->getCompanyId());
+                    $profesor = ExternalTeacherController::getExternalTeacherByName(Connection::getConnection(), $_POST['nombreProfesor'],  $_POST['apellidoProfesor'] );
+                   
+                    InternshipController::updateInternshipTeacherAndCompany(Connection::getConnection(), $internship->getNiuStudent(), $profesor->getIdTeacher(), $empresa->getCompanyId());
+                    echo '<script> window.location.replace("'.VIEWINTERNSHIPCOORD."?niu=".$internship->getNiuStudent().'")</script>';
                 }
                
             }

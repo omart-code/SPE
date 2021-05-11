@@ -26,6 +26,14 @@ class ExternalTeacherController {
         CompanyModel::updateCompanyNameById($conn, $id_empresa, $nombre);
     }
 
+    public function insertTeacher($conn, $nombre, $apellido, $telefono, $email, $id_empresa){
+        ExternalTeacherModel::insertTeacher($conn, $nombre, $apellido, $telefono, $email, $id_empresa);
+    }
+
+    public function getExternalTeacherByName($conn, $nombre, $apellido){
+        ExternalTeacherModel::getExternalTeacherByName($conn, $nombre, $apellido);
+    }
+
 }
 ?>
 

@@ -11,7 +11,8 @@ class CompanyController {
     }
 
     public function getCompanyByName($conn, $nombre){
-        CompanyModel::getCompanyByName($conn, $nombre);
+       $empresa = CompanyModel::getCompanyByName($conn, $nombre);
+       return $empresa;
     }
 
 }

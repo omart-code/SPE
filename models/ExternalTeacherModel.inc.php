@@ -74,6 +74,59 @@
     
             return $empresa;
         }
+
+        
+    //Inserta un profesor externo en la BD
+    public static function insertTeacher($conn, $nombre, $apellido, $telefono, $email, $id_empresa){
+        
+        if(isset($conn)){
+            try{
+              
+                $sql = "INSERT INTO tutores_externos (nombre, apellido, email, telefono, id_empresa)
+                VALUES (:nombre, :apellido, :email, :telefono, :id_empresa)";
+                $stmt = $conn -> prepare($sql);
+                $stmt ->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+                $stmt ->bindParam(':apellido', $apellido, PDO::PARAM_STR);
+                $stmt ->bindParam(':telefono', $telefono, PDO::PARAM_STR);
+                $stmt ->bindParam(':email', $email, PDO::PARAM_STR);
+                $stmt ->bindParam(':id_empresa', $id_empresa, PDO::PARAM_STR);
+                $stmt -> execute();
+                
+            }catch (PDOException $ex){
+                echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+            }
+        }
+
+       
+    }
+
+    public function getExternalTeacherByName($conn, $nombre, $apellido){
+        $teacher = null;
+    
+        if(isset($conn)){
+            try{
+                include_once '../entities/ExternalTeacher.inc.php';
+                $sql = "SELECT * FROM tutores_externos WHERE nombre = :nombre AND apellido = :apellido";
+                $stmt = $conn -> prepare($sql);
+                $stmt ->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+                $stmt ->bindParam(':apellido', $apellido, PDO::PARAM_STR);
+                $stmt -> execute();
+                $res = $stmt-> fetch();
+
+                if(!empty($res)){
+                    $teacher =  new ExternalTeacher(
+                        $res['id_tutor_externo'], $res['nombre'], $res['apellido'], $res['email'], 
+                        $res['telefono'], $res['id_empresa'],
+                        );
+                }
+            }catch (PDOException $ex){
+                echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+            }
+        }
+
+        return $teacher;
+    }
+
         
  }
 
