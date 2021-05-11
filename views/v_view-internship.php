@@ -585,12 +585,12 @@ $( document ).ready(function() {
     $(".taskDone").click(function () {
     
        $(this).css('background-color', '#D4EDDA');
-       console.log(this);
+      
        var id = this.getAttribute('id');
        var estancia = this.getAttribute('estancia');
-       console.log(id)
+     
        var task = id.split('-')
-       console.log(task)
+     
        var tasca = task[0];
        var fecha = task[1];
        var dataActual = new Date();/* 
@@ -603,7 +603,7 @@ $( document ).ready(function() {
         $.ajax({
             type: "POST",
             url: "../ajax/updateActionDate.php",
-            data: { id_estancia: estancia, id_tarea: tasca, actionDate: fecha, currentDate: dataActual},
+            data: { estancia: estancia, tarea: tasca, actionDate: fecha, currentDate: dataActual},
             dataType: "json",
             success: function(data){
                 console.log(data);
