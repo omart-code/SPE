@@ -72,6 +72,18 @@ class InternshipTaskController {
 
     }
 
+    public function updateTaskDate1($conn, $id_tarea, $id_estancia, $fechaAction1){
+        InternshipTaskModel::updateTaskDate1($conn, $id_tarea, $id_estancia, $fechaAction1);
+    }
+
+    public function updateTaskDate2($conn, $id_tarea, $id_estancia, $fechaAction2){
+        InternshipTaskModel::updateTaskDate2($conn, $id_tarea, $id_estancia, $fechaAction2);
+    }
+
+    public function updateTaskDate3($conn, $id_tarea, $id_estancia, $fechaAction3){
+        InternshipTaskModel::updateTaskDate3($conn, $id_tarea, $id_estancia, $fechaAction3);
+    }
+
  
 
 }

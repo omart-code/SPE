@@ -116,6 +116,69 @@
             }
         }
 
+        public static function updateTaskDate1($conn, $id_tarea, $id_estancia, $fechaAction1){
+            
+    
+            if(isset($conn)){
+                try{
+                   
+                    $sql = "UPDATE tareas_estancias SET fecha_realiz_accion1=:fechaAction1 WHERE id_tarea = :id_tarea AND id_estancia = :id_estancia";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':id_tarea', $id_tarea, PDO::PARAM_STR);
+                    $stmt ->bindParam(':id_estancia', $id_estancia, PDO::PARAM_STR);
+                    $stmt ->bindParam(':fechaAction1', $fechaAction1, PDO::PARAM_STR);
+                   
+                    $stmt -> execute();
+                  
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
+        }
+
+        public static function updateTaskDate2($conn, $id_tarea, $id_estancia, $fechaAction2){
+            
+    
+            if(isset($conn)){
+                try{
+                   
+                    $sql = "UPDATE tareas_estancias SET fecha_realiz_accion2=:fechaAction2 WHERE id_tarea = :id_tarea AND id_estancia = :id_estancia";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':id_tarea', $id_tarea, PDO::PARAM_STR);
+                    $stmt ->bindParam(':id_estancia', $id_estancia, PDO::PARAM_STR);
+                    $stmt ->bindParam(':fechaAction2', $fechaAction2, PDO::PARAM_STR);
+                   
+                    $stmt -> execute();
+                  
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
+        }
+
+        public static function updateTaskDate3($conn, $id_tarea, $id_estancia, $fechaAction3){
+            
+    
+            if(isset($conn)){
+                try{
+                   
+                    $sql = "UPDATE tareas_estancias SET fecha_realiz_accion3=:fechaAction3 WHERE id_tarea = :id_tarea AND id_estancia = :id_estancia";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':id_tarea', $id_tarea, PDO::PARAM_STR);
+                    $stmt ->bindParam(':id_estancia', $id_estancia, PDO::PARAM_STR);
+                    $stmt ->bindParam(':fechaAction3', $fechaAction3, PDO::PARAM_STR);
+                   
+                    $stmt -> execute();
+                  
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
+        }
+
+
+
+
  
 
     }

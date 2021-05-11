@@ -50,7 +50,7 @@ class InternshipTask{
     public function getAction1Date(){
      
         if ($this->fecha_realiz_accion1 == '0000-00-00'){
-            return;
+            return ;
         }else{
             $taskAct1 = DateTime::createFromFormat('Y-m-d', $this->fecha_realiz_accion1);
             $taskAct1 = $taskAct1->format('d-m-Y');
