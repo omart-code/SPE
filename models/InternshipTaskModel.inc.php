@@ -118,15 +118,16 @@
 
         public static function updateTaskDate1($conn, $id_tarea, $id_estancia, $fechaAction1){
             
-           
+            echo $id_estancia; 
             if(isset($conn)){
+                
                 try{
                    
-                    $sql = "UPDATE tareas_estancias SET fecha_realiz_accion1=:fechaAction1 WHERE id_tarea = :id_tarea AND id_estancia = :id_estancia";
+                    $sql = "UPDATE tareas_estancias SET prueba = :fechaAction1 WHERE id_tarea = :id_tarea AND id_estancia = :id_estancia";
                     $stmt = $conn -> prepare($sql);
                     $stmt ->bindParam(':id_tarea', $id_tarea, PDO::PARAM_STR);
                     $stmt ->bindParam(':id_estancia', $id_estancia, PDO::PARAM_STR);
-                    $stmt ->bindParam(':fechaAction1', $fechaAction1, PDO::PARAM_STR);
+                    $stmt ->bindParam(':fechaAction1', "hola", PDO::PARAM_STR);
                    
                     $stmt -> execute();
                   

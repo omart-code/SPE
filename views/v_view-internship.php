@@ -603,7 +603,7 @@ $( document ).ready(function() {
         $.ajax({
             type: "POST",
             url: "../ajax/updateActionDate.php",
-            data: { estancia: estancia, tarea: tasca, actionDate: fecha},
+            data: { estancia: estancia, tarea: tasca, actionDate: fecha, fechaActual: '2021'},
             dataType: "json",
             success: function(data){
                 console.log(data);
