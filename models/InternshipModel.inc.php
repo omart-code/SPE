@@ -195,7 +195,7 @@ class InternshipModel {
         if(isset($conn)){
             try{
               
-                $sql = "UPDATE estancias SET id_tutor_externo=:id_tutor_Externo, id_empresa=:id_empresa WHERE niu_estudiante = :niu_estudiante";
+                $sql = "UPDATE estancias SET id_tutor_externo=:id_tutor_externo, id_empresa=:id_empresa WHERE niu_estudiante = :niu_estudiante";
                 $stmt = $conn -> prepare($sql);
                 $stmt ->bindParam(':niu_estudiante', $niu_estudiante, PDO::PARAM_STR);
                 $stmt ->bindParam(':id_tutor_externo', $id_tutor_externo, PDO::PARAM_STR);

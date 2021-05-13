@@ -10,8 +10,9 @@ class InternshipTask{
     private $fecha_realiz_accion1;
     private $fecha_realiz_accion2;
     private $fecha_realiz_accion3;
+    private $finalizada;
    
-    public function __construct($id_tarea_estancia , $id_estancia, $id_tarea,  $fecha_prevista_tarea,  $fecha_realiz_accion1,  $fecha_realiz_accion2, $fecha_realiz_accion3){
+    public function __construct($id_tarea_estancia , $id_estancia, $id_tarea,  $fecha_prevista_tarea,  $fecha_realiz_accion1,  $fecha_realiz_accion2, $fecha_realiz_accion3, $finalizada){
         $this -> id_tarea_estancia = $id_tarea_estancia;
         $this -> id_estancia = $id_estancia;
         $this -> id_tarea = $id_tarea;
@@ -19,6 +20,7 @@ class InternshipTask{
         $this -> fecha_realiz_accion1 = $fecha_realiz_accion1;
         $this -> fecha_realiz_accion2 = $fecha_realiz_accion2;
         $this -> fecha_realiz_accion3 = $fecha_realiz_accion3;
+        $this -> finalizada = $finalizada;
         
        
     }
@@ -46,6 +48,16 @@ class InternshipTask{
         }
        
     }
+    
+    public function getNormalTaskDate(){
+        if ($this->fecha_prevista_tarea == '0000-00-00'){
+            return;
+        }else{
+            $date = new DateTime($this->fecha_prevista_tarea);
+            return  $date;
+        }
+       
+    }
 
     public function getAction1Date(){
      
@@ -56,6 +68,16 @@ class InternshipTask{
             $taskAct1 = $taskAct1->format('d-m-Y');
              return $taskAct1;
         }
+    }
+
+    public function getNormalAction1Date(){
+        if ($this->fecha_realiz_accion1 == '0000-00-00'){
+            return;
+        }else{
+            $date = new DateTime($this->fecha_realiz_accion1);
+            return  $date;
+        }
+       
     }
 
     public function getAction2Date(){
@@ -70,6 +92,16 @@ class InternshipTask{
        
     }
 
+    public function getNormalAction2Date(){
+        if ($this->fecha_realiz_accion2 == '0000-00-00'){
+            return;
+        }else{
+            $date = new DateTime($this->fecha_realiz_accion2);
+            return  $date;
+        }
+       
+    }
+
     public function getAction3Date(){
         if ($this->fecha_realiz_accion3 == '0000-00-00'){
             return;
@@ -79,6 +111,20 @@ class InternshipTask{
             return $taskAct3;
         }
        
+    }
+
+    public function getNormalAction3Date(){
+        if ($this->fecha_realiz_accion3 == '0000-00-00'){
+            return;
+        }else{
+            $date = new DateTime($this->fecha_realiz_accion3);
+            return  $date;
+        }
+       
+    }
+
+    public function getFinished(){
+        return $this -> finalizada;
     }
 
 

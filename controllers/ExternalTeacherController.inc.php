@@ -31,7 +31,8 @@ class ExternalTeacherController {
     }
 
     public function getExternalTeacherByName($conn, $nombre, $apellido){
-        ExternalTeacherModel::getExternalTeacherByName($conn, $nombre, $apellido);
+        $teacher = ExternalTeacherModel::getExternalTeacherByName($conn, $nombre, $apellido);
+        return $teacher;
     }
 
 }

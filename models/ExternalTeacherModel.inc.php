@@ -101,9 +101,11 @@
     }
 
     public function getExternalTeacherByName($conn, $nombre, $apellido){
-        $teacher = null;
-    
+        Connection::openConnection();
+        $conn = Connection::getConnection();
+       
         if(isset($conn)){
+           
             try{
                 include_once '../entities/ExternalTeacher.inc.php';
                 $sql = "SELECT * FROM tutores_externos WHERE nombre = :nombre AND apellido = :apellido";
@@ -112,7 +114,7 @@
                 $stmt ->bindParam(':apellido', $apellido, PDO::PARAM_STR);
                 $stmt -> execute();
                 $res = $stmt-> fetch();
-
+               
                 if(!empty($res)){
                     $teacher =  new ExternalTeacher(
                         $res['id_tutor_externo'], $res['nombre'], $res['apellido'], $res['email'], 
@@ -123,7 +125,7 @@
                 echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
             }
         }
-
+       
         return $teacher;
     }
 

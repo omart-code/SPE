@@ -23,7 +23,7 @@ include_once '../app/Connection.inc.php';
                         foreach($res as $intTask){
                             //TIENES QUE MODIFICAR ESTO
                             $internshipTasks[] = new InternshipTask(null, null, $intTask['id_tarea'],  $intTask['fecha_prevista_tarea'], $intTask['fecha_realiz_accion1'],$intTask['fecha_realiz_accion2'], 
-                            $intTask['fecha_realiz_accion3'],
+                            $intTask['fecha_realiz_accion3'], null,
                                 );
                         } 
                      }else{
@@ -54,7 +54,7 @@ include_once '../app/Connection.inc.php';
                      if(count($res)){
                          foreach($res as $intTask){
                              $internshipTasks[] = new InternshipTask($intTask['id_tarea_estancia'],  $intTask['id_estancia'], $intTask['id_tarea'],  $intTask['fecha_prevista_tarea'], $intTask['fecha_realiz_accion1'],$intTask['fecha_realiz_accion2'], 
-                                 $intTask['fecha_realiz_accion3'],
+                                 $intTask['fecha_realiz_accion3'],$intTask['finalizada'],
                                  );
                          } 
                       }else{
