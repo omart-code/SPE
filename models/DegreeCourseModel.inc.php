@@ -69,7 +69,7 @@
                     include_once '../entities/DegreeCourse.inc.php';
                     $sql = "SELECT * FROM cursos_grados WHERE id_curso_grado = :id_curso_grado";
                     $stmt = $conn -> prepare($sql);
-                    $stmt ->bindParam(':id_curso_grado', $id_grado, PDO::PARAM_STR);
+                    $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
                     $stmt -> execute();
                     $res = $stmt-> fetchAll();
                     if(count($res)){

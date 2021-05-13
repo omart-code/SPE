@@ -15,32 +15,43 @@
 <body>
     <?php include '../includes/navbar.inc.php'; ?>
     <div class="container">
-    <h1>VISTA DE ESTADES DE PRÀCTIQUES</h1>
+    
     <br>
     <div class="container">
 <br>
-    <h1>Estades del curs</h1>
+<h1>Estades del curs</h1>
     <br>
     <br>
     <?php
     Connection::openConnection();
     //TIENES LIO CON ESTE SELECT DEBES COGER TODOS LOS PROFESORES CURSOS GRADOS DE ESTE NIU, COGES SU ID_CURSO_GRADO
     //TAMBIEN TIENES QUE MOSTRAR EL CONTENIDO DE LA TABLA EN FUNCION DEL SELECT MIRA COORDINATOR QUE ESTÁ HECHO
-    $degreeCourses = DegreeCourseTeacherController::getDegreeCourseTeacherByNiu(Connection::getConnection(), $_SESSION['niu']);
+    $idGradosProfesor = DegreeCourseTeacherController::getDegreeCourseTeacherByNiu(Connection::getConnection(), $_SESSION['niu']);
+    
+   
+      
+        $degreeCourses = DegreeCourseController::getDegreeCoursesById(Connection::getConnection(), $idGradosProfesor);
+       
+  
+    
     ?>
+    
+
 
    
          <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
             <select id="cursosEstancias" class="selectpicker form-control" name="cursogradoEstancias" required="true">
             
-                <?php 
+             
             
-                Connection::openConnection();
-               
-                $degreeCoursesByDegree = DegreeCourseController::getDegreeCoursesByDegree(Connection::getConnection(), 1);?> <!-- QUEDA COGERLO EL ID_GRADO DE PROFESOR MEDIANTE PROFESOR CURSO -->
+             
+              
+              
                         <option value="null" selected>Sel·lecciona un curs i grau</option>
-                    
-                  <?php  foreach ($degreeCoursesByDegree as $degreeCourse) { ?>
+                   <!--  //ESTAS CERCA DE ARREGLARLO EL PROBLEMA ES QUE TIENES UN ARRAY DE ARRAYS Y AL ITERAR CON EL FOREACH NO SE HACE BIEN -->
+                  <?php 
+                  Connection::openConnection();
+                   foreach ($degreeCourses[0] as $degreeCourse) { ?>
                         <option value="<?php echo $degreeCourse->getDegreeCourseId()?>"><?php echo $degreeCourse->getDegreeCourseName()?></option>
                     <?php }?>
                 

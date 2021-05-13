@@ -14,8 +14,12 @@ class DegreeCourseController {
        return $degrees;
     }
 
-    public function getDegreeCoursesById($conn, $id_curso_grado){
-        $degrees = DegreeCourseModel:: getDegreeCoursesById($conn, $id_curso_grado);
+    public function getDegreeCoursesById($conn, $id_cursos_grado){
+        foreach($id_cursos_grado as $id_curso_grado){
+           $degree = DegreeCourseModel::getDegreeCoursesById($conn, $id_curso_grado);
+           $degrees[] = $degree;
+        }
+       
         return $degrees;
     }
 
