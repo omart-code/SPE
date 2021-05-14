@@ -22,37 +22,21 @@
 <h1>Estades del curs</h1>
     <br>
     <br>
-    <?php
-    Connection::openConnection();
-    //TIENES LIO CON ESTE SELECT DEBES COGER TODOS LOS PROFESORES CURSOS GRADOS DE ESTE NIU, COGES SU ID_CURSO_GRADO
-    //TAMBIEN TIENES QUE MOSTRAR EL CONTENIDO DE LA TABLA EN FUNCION DEL SELECT MIRA COORDINATOR QUE ESTÁ HECHO
-    $idGradosProfesor = DegreeCourseTeacherController::getDegreeCourseTeacherByNiu(Connection::getConnection(), $_SESSION['niu']);
-    
+
    
-      
-        $degreeCourses = DegreeCourseController::getDegreeCoursesById(Connection::getConnection(), $idGradosProfesor);
-       
+    
   
-    
-    ?>
-    
 
-
-   
          <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
             <select id="cursosEstancias" class="selectpicker form-control" name="cursogradoEstancias" required="true">
             
-             
-            
-             
-              
-              
                         <option value="null" selected>Sel·lecciona un curs i grau</option>
-                   <!--  //ESTAS CERCA DE ARREGLARLO EL PROBLEMA ES QUE TIENES UN ARRAY DE ARRAYS Y AL ITERAR CON EL FOREACH NO SE HACE BIEN -->
+                  
                   <?php 
                   Connection::openConnection();
-                   foreach ($degreeCourses[0] as $degreeCourse) { ?>
-                        <option value="<?php echo $degreeCourse->getDegreeCourseId()?>"><?php echo $degreeCourse->getDegreeCourseName()?></option>
+                  $degreeCourses = DegreeCourseController::getDepartmentByDegree(Connection::getConnection(), $_SESSION['niu']);
+                   foreach ($degreeCourses as $degreeCourse) { ?>
+                        <option value="<?php echo $degreeCourse['id_curso_grado']?>"><?php echo $degreeCourse['nombre']?></option>
                     <?php }?>
                 
             </select>
@@ -65,18 +49,24 @@
          </form>
         
 </div>
-    <div>
-    <table id="internships" class="table table-bordered">
+ <!--  YA SE COGE EL CURSO GRADO DEL SELECT DE ARRIBA, SE PUEDE PULIR -->
+ <?php  if(isset($_POST['cercaEstades'])){
+       if($_POST['cursogradoEstancias'] != 'null'){?>
+            <div class="container ">
+                <table id="internships" class="table table-bordered">
                     <thead>
                         <tr>
                         <th scope="col">Nom</th>
                         <?php Connection::openConnection();
-                             $tasks = TaskController::getTasksByDegreeCourse(Connection::getConnection(), 1); //SE DEBE PASAR CURSO GRADO POR SELECT DE LA PÁGINA
-                             foreach ($tasks as $task) {
+                             $tasks = TaskController::getTasksByDegreeCourse(Connection::getConnection(), $_POST['cursogradoEstancias']);
+                             if(!empty($tasks)){
+                                foreach ($tasks as $task) {
                         
                                
-                                echo "<th>" .$task->getTaskName();"</th>";
-                            
+                                    echo "<th>" .$task->getTaskName();"</th>";
+                                 }
+                             } else {
+                                echo "<b>No s'han definit tasques encara per aquest curs</b><br>";
                             } 
                                
                              ?> 
@@ -90,27 +80,73 @@
                     
                        
                         Connection::openConnection(); 
-                        $infos = InternshipController::getInfoInternshipsByTeacher(Connection::getConnection(), $_SESSION['niu']);
-                        foreach ($infos as $info) { ?>
-                        
-                            <tr>
-                            <th scope='row'><a style="text-decoration:none;" href="./v_view-internship.php?niu=<?php echo $info['niu_estudiante']?>"> <?php echo $info['nombre'].' '.$info['apellido'] ?> </a></td>
-                            <?php $tasksInternship = InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(), $info['id_estancia']);
-                            foreach ($tasksInternship as $taskInternship){ ?>
-                                <td><?php echo $taskInternship->getTaskDate(); ?></td>
-                            <?php } ?>
-                             
-                            <?php echo "</tr>";
-                           
+                        $infos = InternshipController::getInfoInternships(Connection::getConnection(), $_POST['cursogradoEstancias']);
+                        if(!empty($infos)){
+                            foreach ($infos as $info) { ?>
+                                
+                                <tr>
+                                <th scope='row'><a style="text-decoration:none;" href="./v_view-internship_coord.php?niu=<?php echo $info['niu_estudiante']?>"> <?php echo $info['nombre'].' '.$info['apellido'] ?> </a></td>
+                                <?php $tasksInternship = InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(), $info['id_estancia']);
+                                foreach ($tasksInternship as $taskInternship){ ?>
+                                    <td><?php echo $taskInternship->getTaskDate(); ?></td>
+                                <?php } ?>
+                                
+                                <?php echo "</tr>";
+                            
 
 
+                            }
+                        }else{
+                            echo "<b>No hi ha informació disponible encara de les estancies</b><br><br><br><br>";
                         }
               
                     ?>
-        </tbody>
-    </table>   
+                    </tbody>
+                </table>   
 
-    </div>
+            </div>
+      <?php } else{ ?>
+                <div class="container"><b>No hi ha estancies a mostrar per aquest curs i grau</b></div>
+               <br>
+            <?php }
+        }?>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
  </div>
 
         

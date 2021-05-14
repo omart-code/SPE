@@ -90,6 +90,36 @@
            
         }
 
+
+         //Devuelve los nombres de cursos grados que tiene asignados un profesor
+         public static function getDepartmentByDegree($conn, $niu_profesor){
+            $degreeCourses = null;
+    
+            if(isset($conn)){
+                try{
+                   
+                    $sql = "SELECT cg.nombre, cg.id_curso_grado, cg.id_grado FROM profesores_curso_grado pc INNER JOIN cursos_grados cg ON
+                     cg.id_curso_grado = pc.id_curso_grado WHERE pc.niu_profesor = :niu_profesor";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':niu_profesor', $niu_profesor, PDO::PARAM_STR);
+                    $stmt -> execute();
+                    $res = $stmt-> fetchAll();
+                    if(count($res)){
+                        foreach($res as $dg){
+                            $degreeCourses[] = $dg;
+                        } 
+                     }else{
+                            print 'No hi ha departaments disponibles';
+                        }
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
+    
+            return $degreeCourses;
+        }
+       
+
     }
 
 ?>
