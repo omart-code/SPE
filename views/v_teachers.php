@@ -79,7 +79,7 @@ include_once '../controllers/TeacherController.inc.php';
            <!-- FALTA MOSTRAR PROFES EN FUNCION DEL GRADO Y CURSO CON SU DEPARTAMENTO ALUMNOS ASIGNADOS Y MÁXIMO ALUMNOS Y FILTRAR -->
         <br>
         <br>
-        <table id="teachers" class="table table-striped table-bordered">
+        <table id="teachers" class="table  table-bordered dt-responsive" style="width:100%">
         <thead>
             <tr>
             <th scope="col">Nom</th>

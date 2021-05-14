@@ -26,6 +26,10 @@ class TaskController {
         return $actions;
     }
 
+    public function insertTasksByDegreeCourse($conn, $id_curso_grado){
+        TaskModel::insertTasksByDegreeCourse($conn, $id_curso_grado);
+    }
+
 
 }
 ?>

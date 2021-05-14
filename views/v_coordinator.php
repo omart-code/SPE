@@ -56,7 +56,7 @@ include_once '../controllers/CoordinatorController.inc.php';
    <?php  if(isset($_POST['cercaEstades'])){
        if($_POST['cursogradoEstancias'] !== 'null'){?>
             <div class="container ">
-                <table id="internships" class="table table-bordered">
+                <table id="internships" class="table table-bordered dt-responsive" style="width:100%">
                     <thead>
                         <tr>
                         <th scope="col">Nom</th>
@@ -225,8 +225,13 @@ include_once '../controllers/CoordinatorController.inc.php';
                InternshipController::insertInternship(Connection::getConnection(), $_POST['niuEstudiant'], $_POST['profesorSelec'], 
                 $_POST['fechaInicio'], $_POST['fechaFinal'], $_POST['grauCursSelec']);
 
-                //Inserta el estudiante
-                StudentController::insertStudent(Connection::getConnection(), $_POST['niuEstudiant'],$_POST['nomEstudiant'], $_POST['cognomEstudiant']);
+                //Cojo el curso i el grado a partir del curso_grado
+                $degreeCourse = DegreeCourseController::getDegreeCourseById(Connection::getConnection(), $_POST['grauCursSelec']);
+                $grado = $degreeCourse-> getDegreeCourseDegree();
+                $curso = $degreeCourse-> getDegreeCourseCourse();
+              
+               //Inserta el estudiante
+                StudentController::insertStudent(Connection::getConnection(), $_POST['niuEstudiant'],$_POST['nomEstudiant'], $_POST['cognomEstudiant'], $grado);
                 //Inserta este estudiante en los usuarios
                 UserController::insertUser(Connection::getConnection(), $_POST['niuEstudiant'], $_POST['nomEstudiant'],$_POST['cognomEstudiant'], '', '', 2);
                 //Recupera la ultima estancia introducida gracias al niu estudiante
@@ -237,7 +242,7 @@ include_once '../controllers/CoordinatorController.inc.php';
                 $internshipTasks= InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(),$internship->getIdInternship());
                 //Calculo sus fechas previstas y las actualizo
                 InternshipTaskController::updateTasksDates($internship->getNormalStartDate(), $internship->getNormalEndDate(), $internshipTasks);
-
+ 
                 //echo '<script>window.location.replace("'.COORDINATOR.'")</script>';
 
               /*   QUEDA HACER UN MODAL DE LOADING Y QUE COMPRUEBE SI REALMENTE SE PUEDE INSERTAR LA ESTANCIA Y MOSTRAR UN ALERT DE QUE NO SE HA PODIDO */

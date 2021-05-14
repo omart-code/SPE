@@ -74,7 +74,7 @@
                     $res = $stmt-> fetchAll();
                     if(count($res)){
                         foreach($res as $degree){
-                            $degrees[] = new DegreeCourse(
+                            $degrees = new DegreeCourse(
                                 $degree['id_curso_grado'], $degree['id_curso'], $degree['id_grado'], $degree['nombre'], $degree['activo']);
                         } 
                      }else{
@@ -86,6 +86,34 @@
             }
     
             return $degrees;
+    
+           
+        }
+
+        public static function getDegreeCourseByCourseAndDegree($conn, $id_curso, $id_grado){
+           
+    
+            $degree = null;
+    
+            if(isset($conn)){
+                try{
+                    include_once '../entities/DegreeCourse.inc.php';
+                    $sql = "SELECT * FROM cursos_grados WHERE id_curso = :id_curso AND id_grado = :id_grado";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':id_curso', $id_curso, PDO::PARAM_STR);
+                    $stmt ->bindParam(':id_grado', $id_grado, PDO::PARAM_STR);
+                    $stmt -> execute();
+                    $res = $stmt-> fetch();
+                    
+                    if(!empty($res)){
+                        $degree = new DegreeCourse( $res['id_curso_grado'],$res['id_curso'],$res['id_grado'], $res['nombre'], $res['activo']);
+                    }
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
+    
+            return $degree;
     
            
         }

@@ -29,8 +29,8 @@ class StudentController {
         return $mentionId;
     }
 
-    public function insertStudent($conn, $niu_estudiante, $nombre, $apellido){
-        StudentModel::insertStudent($conn, $niu_estudiante, $nombre, $apellido);
+    public function insertStudent($conn, $niu_estudiante, $nombre, $apellido, $id_grado){
+        StudentModel::insertStudent($conn, $niu_estudiante, $nombre, $apellido, $id_grado);
     }
 }
 ?>

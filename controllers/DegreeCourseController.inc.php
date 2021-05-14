@@ -23,9 +23,23 @@ class DegreeCourseController {
         return $degrees;
     }
 
+    public function getDegreeCourseById($conn, $id_curso_grado){
+        
+           $degree = DegreeCourseModel::getDegreeCoursesById($conn, $id_curso_grado);
+          
+        
+       
+        return $degree;
+    }
+
     public function getDepartmentByDegree($conn, $niu_profesor){
         $degreeCourses = DegreeCourseModel::getDepartmentByDegree($conn, $niu_profesor);
         return $degreeCourses;
+    }
+
+    public function getDegreeCourseByCourseAndDegree($conn, $id_curso, $id_grado){
+        $degree = DegreeCourseModel::getDegreeCourseByCourseAndDegree($conn, $id_curso, $id_grado);
+        return $degree;
     }
 
 }

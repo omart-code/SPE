@@ -124,18 +124,19 @@
 
 
          //función que inserta un nuevo estudiante, aunque no todos los campos..
-        public static function insertStudent($conn, $niu_estudiante, $nombre, $apellido){
+        public static function insertStudent($conn, $niu_estudiante, $nombre, $apellido, $id_grado){
             
         
             if(isset($conn)){
                 try{
                     
-                    $sql = "INSERT INTO estudiantes (niu_estudiante, nombre, apellido)
-                    VALUES (:niu_estudiante, :nombre, :apellido)";
+                    $sql = "INSERT INTO estudiantes (niu_estudiante, nombre, apellido, id_grado)
+                    VALUES (:niu_estudiante, :nombre, :apellido, :id_grado)";
                     $stmt = $conn -> prepare($sql);
                     $stmt ->bindParam(':niu_estudiante', $niu_estudiante, PDO::PARAM_STR);
                     $stmt ->bindParam(':nombre', $nombre, PDO::PARAM_STR);
                     $stmt ->bindParam(':apellido', $apellido, PDO::PARAM_STR);
+                    $stmt ->bindParam(':id_grado', $id_grado, PDO::PARAM_STR);
                     
                 
                     $stmt -> execute();

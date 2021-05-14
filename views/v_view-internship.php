@@ -425,7 +425,7 @@
             <?php  Connection::openConnection(); 
                $comments = CommentController:: getComments(Connection::getConnection(), $internship->getIdInternship());  
                if($comments !== null) {?>
-            <table id="comentaris-tutor" class="table table-striped table-bordered">
+            <table id="comentaris-tutor" class="table table-bordered">
                     <thead>
                         <tr>
                         <th scope="col">Data</th>

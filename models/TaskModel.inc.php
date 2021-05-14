@@ -117,6 +117,44 @@
     
             return $actions;
         }
+
+        //Inserta 9 tareas para un curso grado
+        public static function insertTasksByDegreeCourse($conn, $id_curso_grado){
+            if(isset($conn)){
+                try{
+                    
+                    $sql = "INSERT INTO tareas ( id_etapa, id_curso_grado, nombre, informacion, mensaje, accion1, accion2, accion3, numero_acciones, porcentaje)
+                    VALUES 
+                     ( '1', :id_curso_grado, 'Contacte inicial amb el estudiant', '1-Enviar mail al estudiant.
+                        2-Rebre la seva resposta al nostre correu. ', ' ', '1', '2', '0', '2', '5'),
+                        ( '1', :id_curso_grado, 'Contacte inicial amb la empresa', '1-Enviar mail al tutor de la empresa. 2-Rebre la seva resposta al nostre correu.',
+                         ' ', '3', '4', '0', '2', '5'),
+                        ( '2', :id_curso_grado, 'Primera entrevista de seguiment amb el estudiant', '1-Enviar mail o trucar al estudiant per quedar. 2-Rebre la seva resposta al nostre correu i concretar el dia de la trobada. 3-Entrevista de seguiment ',
+                         ' ', '5', '6', '7', '3', '30'),
+                        ( '2', :id_curso_grado, 'Seguiment amb el tutor extern', '1-Enviar mail al tutor extern per poder fer una trucada o entrevista online.
+                        2-Rebre la seva resposta al nostre correu i concretar el dia de trobada.
+                        3-Entrevista de seguiment', ' ', '8', '9', '10', '3', '50'),
+                        ( '2', :id_curso_grado, 'Segona entrevista de seguiment amb el estudiant', '1-Enviar mail o trucar al estudiant per quedar. 2-Rebre la seva resposta al nostre correu i concretar el dia de la trobada.
+                        3-Entrevista de seguiment', ' ', '11', '12', '13', '3', '60'),
+                        ( '3', :id_curso_grado, 'Avís al estudiant de la finalització de la estada', '1-Enviar mail al estudiant.
+                        2-Rebre memòria de la estada.
+                        3-Confirmació de recepció.', ' ', '14', '15', '16', '3', '90'),
+                        ( '3', :id_curso_grado, 'Avís al tutor extern de la finalització de la estada', '1-Enviar mail a la persona tutora de la entitat amb el informe que ha de omplir.
+                        2-Rebre confirmació del correu.
+                        3-Rebre informe de valoració de la estada del estudiant i enviar agraïment per el informe ', ' ', '17', '18', '19', '3', '90'),
+                        ( '3', :id_curso_grado, 'Notificació de la nota final al alumne', 'Enviar mail amb la nota final. Per calcular la nota ha de fer servir el document Excel de càlcul de notes.',
+                         ' ', '20', '', '', '1', '100'),
+                        ( '3', :id_curso_grado, 'Enviament de informes al coordinador', '1-Enviar mail a la coordinació adjuntant els tres documents: memòria estudiant, informe entitat i informe nostre. ',
+                         ' ', '21', '', '', '1', '100'); ";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
+                    $stmt -> execute();
+                    
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
+        }
        
     }
 

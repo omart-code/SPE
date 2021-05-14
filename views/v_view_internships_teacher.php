@@ -52,11 +52,12 @@
  <!--  YA SE COGE EL CURSO GRADO DEL SELECT DE ARRIBA, SE PUEDE PULIR -->
  <?php  if(isset($_POST['cercaEstades'])){
        if($_POST['cursogradoEstancias'] != 'null'){?>
-            <div class="container ">
-                <table id="internships" class="table table-bordered">
+            <div class="container">
+           
+                <table id="internships"  class="table table-bordered dt-responsive display compact" width="100%">
                     <thead>
                         <tr>
-                        <th scope="col">Nom</th>
+                        <th>Nom</th>
                         <?php Connection::openConnection();
                              $tasks = TaskController::getTasksByDegreeCourse(Connection::getConnection(), $_POST['cursogradoEstancias']);
                              if(!empty($tasks)){
@@ -85,7 +86,7 @@
                             foreach ($infos as $info) { ?>
                                 
                                 <tr>
-                                <th scope='row'><a style="text-decoration:none;" href="./v_view-internship_coord.php?niu=<?php echo $info['niu_estudiante']?>"> <?php echo $info['nombre'].' '.$info['apellido'] ?> </a></td>
+                                <th><a style="text-decoration:none;" href="./v_view-internship.php?niu=<?php echo $info['niu_estudiante']?>"> <?php echo $info['nombre'].' '.$info['apellido'] ?> </a></td>
                                 <?php $tasksInternship = InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(), $info['id_estancia']);
                                 foreach ($tasksInternship as $taskInternship){ ?>
                                     <td><?php echo $taskInternship->getTaskDate(); ?></td>
@@ -103,6 +104,7 @@
                     ?>
                     </tbody>
                 </table>   
+
 
             </div>
       <?php } else{ ?>
@@ -158,6 +160,7 @@
 
         $(document).ready(function() {
             $('#internships').DataTable({
+                responsive: true,
                 "language": {
                 "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Catalan.json"
              }

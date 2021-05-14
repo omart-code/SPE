@@ -89,7 +89,7 @@ include_once '../controllers/CourseController.inc.php';
                 { ?>
                     <br>
                     <br>
-                    <table id="departments" class="table table-striped table-bordered">
+                    <table id="departments" class="table  table-bordered dt-responsive" style="width:100%">
                     <thead>
                         <tr>
                         <th scope="col">Nom</th>
