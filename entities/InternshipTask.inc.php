@@ -59,6 +59,18 @@ class InternshipTask{
        
     }
 
+    
+    public function getStringTaskDate(){
+        if ($this->fecha_prevista_tarea == '0000-00-00'){
+            return;
+        }else{
+           
+            return  $this->fecha_prevista_tarea;
+        }
+       
+    }
+
+
     public function getAction1Date(){
      
         if ($this->fecha_realiz_accion1 == '0000-00-00'){

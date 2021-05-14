@@ -6,7 +6,8 @@ $( document ).ready(function() {
      var id = this.getAttribute('id');
      var estancia = this.getAttribute('estancia');
      var niu = this.getAttribute('niu');
-   
+     var dataAction =  this.getAttribute('fecha');
+      
      var task = id.split('-')
    
      var tasca = task[0];
@@ -28,15 +29,27 @@ $( document ).ready(function() {
       {
           mm='0'+mm;
       } 
-      today = dd+'-'+mm+'-'+yyyy;
-      console.log(today);
-      this.innerHTML= today;
+      today = new Date(yyyy, mm, dd);
+      todayCell = dd+'-'+mm+'-'+yyyy;
 
-     if(today > fecha){ 
-        $(this).css('background-color', '#f2c4c9');
+      this.innerHTML= todayCell;
+
+      var dates = dataAction.split('-');
+      var year = dates[0];
+      var month = dates[1];
+      var day = dates[2];
+       
+      var fechaPrevista = new Date(year,month,day);
+
+     if(today < fechaPrevista){ 
+      
+       
+      $(this).css('background-color', '#c2e5ca');
+
       }else{
-        $(this).css('background-color', '#c2e5ca');
-
+      
+        $(this).css('background-color', '#f2c4c9');
+        
       }
       
     $.ajax({
@@ -45,7 +58,8 @@ $( document ).ready(function() {
           data: "niu="+niu+"& estancia="+estancia+"& tarea="+tasca+"& actionDate="+fecha,
          
           success: async function(data){
-            console.log(data);
+            console.log('dataAction -'+ dataAction);
+           
            // await window.location.replace("http://localhost/spe/views/v_view-internship.php?niu="+niu);
           },
           error: function(err){
