@@ -41,7 +41,7 @@
                     if(count($res)){
                         foreach($res as $depart){
                             $departments[] = new Department(
-                                $depart['id_departamento'], $depart['nombre'], $depart['siglas']);
+                                $depart['id_departamento'], $depart['nombre'], $depart['siglas'], $depart['identificador']);
                         } 
                      }else{
                             print 'No hi ha departaments disponibles';

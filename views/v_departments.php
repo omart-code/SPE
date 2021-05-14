@@ -59,14 +59,13 @@ include_once '../controllers/CourseController.inc.php';
         </select>
         </div> -->
 
-        <br>
-        <br>
 
         <?php Connection::openConnection(); 
         $degrees = DegreeController::getDegrees(Connection::getConnection()); ?>
         <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
         <div> 
         <h5>Sel·lecciona Grau</h5>
+        <br>
         <select name="selectDegreeDepartment" class="form-control" aria-label=".form-select-lg example">
         <option selected>Sel·lecciona un grau</option>
         <?php foreach ($degrees as $key => $degree) { ?>

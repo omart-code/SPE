@@ -15,7 +15,12 @@ class TeacherController {
         $teachers = TeacherModel::getTeachers($conn);
         return $teachers;
             
-        }
+    }
+
+    public function getTeachersInfo($conn, $id_curso_grado){
+        $teachersInfo = TeacherModel::getTeachersInfo($conn, $id_curso_grado);
+        return $teachersInfo;
+    }
 
 }
 ?>

@@ -59,7 +59,7 @@ class TeacherModel{
 
     //Inserta un profesor en la BD
     public static function insertTeacher($conn, $nombre, $apellido, $niu_profesor,  $telefono, $email, $id_departamento){
-        //TAL VEZ TAMBIEN TIENES QUE HACER EL INSERT EN LA TABLA USUARIOS, NO SOLO EN PROFESORES!!!!!!
+      
 
         if(isset($conn)){
             try{
@@ -82,6 +82,34 @@ class TeacherModel{
 
        
     }
+
+    public static function getTeachersInfo($conn, $id_curso_grado){
+        $teachersInfo = null;
+    
+        if(isset($conn)){
+            try{
+               
+                $sql = "SELECT pc.niu_profesor, p.nombre, p.apellido, d.nombre as nombre_departamento, d.siglas as siglas, pc.estudiantes_asignados, pc.max_estudiantes FROM profesores p INNER JOIN departamentos d ON d.id_departamento = p.id_departamento INNER JOIN profesores_curso_grado pc ON pc.niu_profesor = p.niu_profesor WHERE pc.id_curso_grado = :id_curso_grado";
+                $stmt = $conn -> prepare($sql);
+                $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
+                $stmt -> execute();
+                $res = $stmt-> fetchAll();
+                if(count($res)){
+                    foreach($res as $teacher){
+                        $teachersInfo[] = $teacher;
+                    } 
+                 }else{
+                        print 'No hi ha informació de profesors tutors disponible';
+                    }
+            }catch (PDOException $ex){
+                echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+            }
+        }
+
+        return $teachersInfo;
+    }
+   
+    
 }
 
 

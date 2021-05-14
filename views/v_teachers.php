@@ -6,6 +6,8 @@ include_once '../app/Connection.inc.php';
 include_once '../controllers/DegreeController.inc.php';
 include_once '../controllers/CourseController.inc.php';
 include_once '../controllers/TeacherController.inc.php';
+include_once '../controllers/CoordinatorController.inc.php';
+include_once '../controllers/DegreeCourseController.inc.php';
 
 ?>
 
@@ -47,62 +49,77 @@ include_once '../controllers/TeacherController.inc.php';
         <br>
         <br>
 
-        <?php Connection::openConnection(); 
-        $courses = CourseController::getCoursesName(Connection::getConnection());  ?>
-        <div> 
-        <h5>Sel·lecciona Curs</h5>
-        <select class="form-control" aria-label=".form-select-lg example">
-        <option selected>Sel·lecciona un curs</option>
-        <?php foreach ($courses as $key => $course) { ?>
-            <option value="<?php echo $key?>"><?php echo $course['nombre'] ?></option>
-        <?php } ?>
-           
-        </select>
-        </div>
+        <?php
+    Connection::openConnection();
+    $coordinator = CoordinatorController::getCoordinatorByNiu( Connection::getConnection() , $_SESSION['niu']);
+    ?>
 
-        <br>
-        <br>
-        <?php Connection::openConnection(); 
-        $degrees = DegreeController::getDegrees(Connection::getConnection());  ?>
-        <div> 
-        <h5>Sel·lecciona Grau</h5>
-        <select class="form-control" aria-label=".form-select-lg example">
-        <option selected>Sel·lecciona un grau</option>
-        <?php foreach ($degrees as $key => $degree) { ?>
-            <option value="<?php echo $key?>"><?php echo $degree->getDegreeName() ?></option>
-        <?php } ?>
-           
-        </select>
-        </div>
-
+<?php 
+            
+            Connection::openConnection();
+            $degreeCoursesByDegree = DegreeCourseController::getDegreeCoursesByDegree(Connection::getConnection(), $coordinator->getCoordinatorDegreeId()); ?>
+         <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+            <h5>Sel·lecciona Grau i Curs</h5>
+            <br>
+            <select id="cursoGradoProfesores" class="selectpicker form-control" name="cursoGradoProfesores" required="true">
+            
+               
+                        <option value="null" selected>Sel·lecciona un curs i grau</option>
+                    
+                  <?php  foreach ($degreeCoursesByDegree as $degreeCourse) { ?>
+                        <option value="<?php echo $degreeCourse->getDegreeCourseId()?>"><?php echo $degreeCourse->getDegreeCourseName()?></option>
+                    <?php }?>
+                
+            </select>
+            <br>
+            <div class="text-right">
+                 <button type="submit" class="btn btn-success" name="cercaProfessors">Cerca Professors</button>
+            </div>
+            <br>
+       
+         </form>
+         <br>
+         <br>
           <!--   FALTA QUE CUANDO ESCOJAS CURSO Y GRADO, EL PROFESOR SEA DE ESE CURSO Y GRADO -->
            <!-- FALTA MOSTRAR PROFES EN FUNCION DEL GRADO Y CURSO CON SU DEPARTAMENTO ALUMNOS ASIGNADOS Y MÁXIMO ALUMNOS Y FILTRAR -->
-        <br>
-        <br>
-        <table id="teachers" class="table  table-bordered dt-responsive" style="width:100%">
-        <thead>
-            <tr>
-            <th scope="col">Nom</th>
-            <th scope="col">Departament</th>
+           <?php  
+           if(isset($_POST['cercaProfessors'])){
+                        if($_POST['cursoGradoProfesores'] !== 'null'){?>
+                            <table id="teachers" class="table  table-bordered  dt-responsive" style="width:100%">
+                                    <thead>
+                                    <tr>
+                                     <th scope="col">Nom</th>
+                                     <th scope="col">Departament</th>
+                                     <th scope="col">Alumnes Assignats</th>
+                                     <th scope="col">Màxim Alumnes</th>
           
-            </tr>
-        </thead>
-         <tbody>
+                                     </tr>
+                                     </thead>
+                                <tbody>
                      <?php
-                         Connection::openConnection(); 
-                         $teachers = TeacherController::getTeachers(Connection::getConnection()); 
-                        foreach ($teachers as $teacher) {
-                        
-                            echo "<tr>";
-                            echo "<th scope='row'>".$teacher->getTeacherName(). " " .$teacher->getTeacherSurname(). "</td>";
-                            echo "<td>".$teacher->getTeacherDepartment()."</td>";
-                            
-                            echo "</tr>";
-                        }
+                                    Connection::openConnection(); 
+                                    $teachers = TeacherController::getTeachersInfo(Connection::getConnection(), $_POST['cursoGradoProfesores']); 
+                                    
+                                        foreach ($teachers as $teacher) {
+                                    
+                                        echo "<tr>";
+                                        echo "<th scope='row'>".$teacher['nombre']. " " .$teacher['apellido']. "</td>";
+                                        echo "<td>".$teacher['siglas']."</td>";
+                                        echo "<td>".$teacher['estudiantes_asignados']."</td>";
+                                        echo "<td>".$teacher['max_estudiantes']."</td>";
+                                        
+                                        echo "</tr>";
+                                    }
                         
                     ?>
-        </tbody>
-    </table>   
+                                </tbody>
+                            </table>   
+                        
+                        <?php }else{ 
+                            echo "<b>No hi ha professors a mostrar</b><br><br><br><br>";
+                         }
+           }?>
+        
     <script>
 
 $(document).ready(function() {

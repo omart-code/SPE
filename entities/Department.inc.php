@@ -50,7 +50,7 @@ class Department {
     }
 
     public function setDepartmentIdentificator($identificador){
-        $this->siglas = $identificador;
+        $this->identificador = $identificador;
     }
 
 

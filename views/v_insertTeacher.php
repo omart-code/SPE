@@ -18,7 +18,7 @@ include_once '../includes/navbar.inc.php';
             Connection::openConnection(); 
             $department = DepartmentController::getDepartmentByName(Connection::getConnection(), $_POST['departamentProfessor']);
             $departmentId = $department->getDepartmentId();
-            echo $departmentId;
+           
             TeacherController::insertTeacher(Connection::getConnection(), $_POST["nomProfessor"], $_POST["cognomProfessor"], $_POST["niuProfessor"], 
              $_POST["telefonProfessor"], $_POST["emailProfessor"], $departmentId);
              UserController::insertUser(Connection::getConnection(), $_POST["niuProfessor"], $_POST["nomProfessor"], $_POST["cognomProfessor"],
@@ -62,31 +62,31 @@ include_once '../includes/navbar.inc.php';
 
             <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Nom</label>
+                <label for="exampleFormControlInput1" class="form-label"><b>Nom</b></label>
                 <input type="text" class="form-control" name="nomProfessor" placeholder="ex: Joan">
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Cognom/s</label>
+                <label for="exampleFormControlTextarea1" class="form-label"><b>Cognom/s</b></label>
                 <input type="text" class="form-control" name="cognomProfessor" placeholder="ex: Martorell" ></input>
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">NIU</label>
+                <label for="exampleFormControlInput1" class="form-label"><b>NIU</b></label>
                 <input type="text" class="form-control" name="niuProfessor" placeholder="ex: 1111111">
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">E-mail</label>
+                <label for="exampleFormControlTextarea1" class="form-label"><b>E-mail</b></label>
                 <input type="email" class="form-control" name="emailProfessor" placeholder="ex: joanmartorel@gmail.com"></input>
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Telèfon</label>
+                <label for="exampleFormControlInput1" class="form-label"><b>Telèfon</b></label>
                 <input type="text" class="form-control" name="telefonProfessor" placeholder="ex: 666666666">
             </div>
             <?php Connection::openConnection(); 
             $departments = DepartmentController::getDepartments(Connection::getConnection());  ?>
             <div> 
-            <label>Departament</label>
+            <label><b>Departament</b></label>
             <select name="departamentProfessor" class="form-control" aria-label=".form-select-lg example">
-            <option selected>Sel·lecciona un departament</option>
+            <option selected value="null">Sel·lecciona un departament</option>
             <?php foreach ($departments as $key => $dep) { ?>
                 <option value="<?php echo $dep->getDepartmentName()?>"><?php echo $dep->getDepartmentName() ?></option>
             <?php } ?>
@@ -102,6 +102,8 @@ include_once '../includes/navbar.inc.php';
 </div>
 
         <div class="container">
+        <br>
+        <br>
         <button type="button" class=" btn btn-secondary" onclick="history.back(-1)"><i class="fas fa-arrow-left"></i> Torna Enrere</button>
         </div>
       
