@@ -108,6 +108,49 @@ class TeacherModel{
 
         return $teachersInfo;
     }
+
+    public static function getNumStudents($conn, $niu_profesor, $id_curso_grado){
+        $numStudents = null;
+    
+        if(isset($conn)){
+            try{
+               
+                $sql = "SELECT COUNT(id_estancia) as estudiantes_asignados FROM `estancias` WHERE niu_profesor = :niu_profesor AND id_curso_grado = :id_curso_grado";
+                $stmt = $conn -> prepare($sql);
+                $stmt ->bindParam(':niu_profesor', $niu_profesor, PDO::PARAM_STR);
+                $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
+                $stmt -> execute();
+                $res = $stmt-> fetch();
+              
+                if(!empty($res)){
+                    $numStudents = $res;
+                }
+            }catch (PDOException $ex){
+                echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+            }
+        }
+
+        return $numStudents;
+    }
+
+    public function updateNumStudents($conn, $niu_profesor, $id_curso_grado, $numStudents){
+
+        if(isset($conn)){
+            try{
+               
+                $sql = "UPDATE profesores_curso_grado SET estudiantes_asignados=:numStudents WHERE niu_profesor = :niu_profesor AND id_curso_grado = :id_curso_grado";
+                $stmt = $conn -> prepare($sql);
+                $stmt ->bindParam(':numStudents', $numStudents, PDO::PARAM_STR);
+                $stmt ->bindParam(':niu_profesor', $niu_profesor, PDO::PARAM_STR);
+                $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
+               
+                $stmt -> execute();
+              
+            }catch (PDOException $ex){
+                echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+            }
+        }
+    }
    
     
 }

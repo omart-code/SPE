@@ -144,7 +144,7 @@
                     <tbody>
                                 <?php
                                 Connection::openConnection();
-                                $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 1);
+                                $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 1, $internship->getIdDegreeCourse());
                               
                                 $tasksInternship = InternshipTaskController::getInternshipTasksByPhase(Connection::getConnection(), $internship->getIdInternship(), 1);
                                
@@ -239,7 +239,7 @@
                     <tbody>
                     <?php
                                 Connection::openConnection();
-                                $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 2);
+                                $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 2, $internship->getIdDegreeCourse());
                                 $tasksInternship = InternshipTaskController::getInternshipTasksByPhase(Connection::getConnection(), $internship->getIdInternship(), 2);
                                
                                 foreach($tasks as $task){ ?>
@@ -334,7 +334,7 @@
                     <tbody>
                     <?php
                                 Connection::openConnection();
-                                $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 3);
+                                $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 3, $internship->getIdDegreeCourse());
                                 $tasksInternship = InternshipTaskController::getInternshipTasksByPhase(Connection::getConnection(), $internship->getIdInternship(), 3);
                                
                                 foreach($tasks as $task){ ?>

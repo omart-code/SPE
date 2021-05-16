@@ -22,5 +22,14 @@ class TeacherController {
         return $teachersInfo;
     }
 
+    public function getNumStudents($conn, $niu_profesor, $id_curso_grado){
+        $numStudents = TeacherModel::getNumStudents($conn, $niu_profesor, $id_curso_grado);
+        return $numStudents;
+    }
+
+    public function updateNumStudents($conn, $niu_profesor, $id_curso_grado, $numStudents){
+        TeacherModel::updateNumStudents($conn, $niu_profesor, $id_curso_grado, $numStudents);
+    }
+
 }
 ?>

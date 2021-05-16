@@ -80,8 +80,7 @@ include_once '../controllers/DegreeCourseController.inc.php';
          </form>
          <br>
          <br>
-          <!--   FALTA QUE CUANDO ESCOJAS CURSO Y GRADO, EL PROFESOR SEA DE ESE CURSO Y GRADO -->
-           <!-- FALTA MOSTRAR PROFES EN FUNCION DEL GRADO Y CURSO CON SU DEPARTAMENTO ALUMNOS ASIGNADOS Y MÁXIMO ALUMNOS Y FILTRAR -->
+          
            <?php  
            if(isset($_POST['cercaProfessors'])){
                         if($_POST['cursoGradoProfesores'] !== 'null'){?>
@@ -101,11 +100,13 @@ include_once '../controllers/DegreeCourseController.inc.php';
                                     $teachers = TeacherController::getTeachersInfo(Connection::getConnection(), $_POST['cursoGradoProfesores']); 
                                     
                                         foreach ($teachers as $teacher) {
-                                    
+                                            $estudiantes_asignados = TeacherController::getNumStudents(Connection::getConnection(), $teacher['niu_profesor'], $_POST['cursoGradoProfesores']);
+                                            $estudiantes_asignados = $estudiantes_asignados['estudiantes_asignados'];
+                                            TeacherController::updateNumStudents(Connection::getConnection(), $teacher['niu_profesor'], $_POST['cursoGradoProfesores'],  $estudiantes_asignados);
                                         echo "<tr>";
                                         echo "<th scope='row'>".$teacher['nombre']. " " .$teacher['apellido']. "</td>";
                                         echo "<td>".$teacher['siglas']."</td>";
-                                        echo "<td>".$teacher['estudiantes_asignados']."</td>";
+                                        echo "<td>".$estudiantes_asignados."</td>";
                                         echo "<td>".$teacher['max_estudiantes']."</td>";
                                         
                                         echo "</tr>";

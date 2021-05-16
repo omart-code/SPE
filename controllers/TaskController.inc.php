@@ -3,9 +3,9 @@ include_once '../models/TaskModel.inc.php';
 
 class TaskController {
 
-    public function getTasksByPhase($conn, $id_etapa){
+    public function getTasksByPhase($conn, $id_etapa, $id_curso_grado){
         $tasks = [];
-        $tasks = TaskModel::getTasksByPhase($conn, $id_etapa);
+        $tasks = TaskModel::getTasksByPhase($conn, $id_etapa, $id_curso_grado);
         return $tasks;
         
     }

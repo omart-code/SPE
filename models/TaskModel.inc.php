@@ -3,15 +3,16 @@
     class TaskModel{
 
         //Devuelve todas las tareas que pertenecen a una fase
-        public static function getTasksByPhase($conn, $id_etapa){ //TAL VEZ TAMBIEN DEBAS PASAR CURSO GRADO, NO?
+        public static function getTasksByPhase($conn, $id_etapa, $id_curso_grado){ 
             $tasks = null;
     
             if(isset($conn)){
                 try{
                     include_once '../entities/Task.inc.php';
-                    $sql = "SELECT * FROM tareas WHERE id_etapa = :id_etapa";
+                    $sql = "SELECT * FROM tareas WHERE id_etapa = :id_etapa and id_curso_grado = :id_curso_grado";
                     $stmt = $conn -> prepare($sql);
                     $stmt ->bindParam(':id_etapa', $id_etapa, PDO::PARAM_STR);
+                    $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
                     $stmt -> execute();
                     $res = $stmt-> fetchAll();
     
