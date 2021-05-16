@@ -11,6 +11,10 @@ class DegreeCourseTeacherController {
         
     }
 
+    public function insertDegreeCourseTeacher($conn, $id_curso_grado, $niu_profesor){
+        DegreeCourseTeacherModel::insertDegreeCourseTeacher($conn, $id_curso_grado, $niu_profesor);
+    }
+
 }
 ?>
 

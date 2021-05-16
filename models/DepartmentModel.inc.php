@@ -110,6 +110,32 @@
     
             return $departments;
         }
+
+        public static function getDepartmentsInfo($conn, $id_curso_grado){
+            $deptsInfo = null;
+        
+            if(isset($conn)){
+                try{
+                   
+                    $sql = "SELECT d.nombre as nombre_departamento, d.siglas as siglas, SUM(pc.estudiantes_asignados) as estudiantes_asignados, SUM( pc.max_estudiantes) as max_estudiantes FROM profesores p INNER JOIN departamentos d ON d.id_departamento = p.id_departamento INNER JOIN profesores_curso_grado pc ON pc.niu_profesor = p.niu_profesor WHERE pc.id_curso_grado = :id_curso_grado GROUP BY d.nombre ";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
+                    $stmt -> execute();
+                    $res = $stmt-> fetchAll();
+                    if(count($res)){
+                        foreach($res as $dept){
+                            $deptsInfo[] = $dept;
+                        } 
+                     }else{
+                            print 'No hi ha informació de departaments disponible';
+                        }
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
+    
+            return $deptsInfo;
+        }
        
        
     }

@@ -26,6 +26,29 @@
     
             return $teachers;
         }
+
+          //Inserta un nuevo departamento_grado
+          public static function insertDegreeCourseTeacher($conn, $id_curso_grado, $niu_profesor){
+           
+    
+            if(isset($conn)){
+                try{
+                  
+                    $sql = "INSERT INTO profesores_curso_grado (id_curso_grado, niu_profesores)
+                    VALUES (:id_curso_grado, :niu_profesor, 15)";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
+                    $stmt ->bindParam(':niu_profesor', $niu_profesor, PDO::PARAM_STR);
+                   
+                    $stmt -> execute();
+                    
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
+    
+           
+        }
        
        
     }

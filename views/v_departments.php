@@ -6,6 +6,9 @@ include_once '../app/Connection.inc.php';
 include_once '../controllers/DepartmentController.inc.php';
 include_once '../controllers/DegreeController.inc.php';
 include_once '../controllers/CourseController.inc.php';
+include_once '../controllers/CoordinatorController.inc.php';
+include_once '../controllers/DegreeCourseController.inc.php';
+include_once '../controllers/TeacherController.inc.php';
 ?>
 
 <?php include_once '../includes/navbar.inc.php'; ?>
@@ -45,85 +48,82 @@ include_once '../controllers/CourseController.inc.php';
         <br>
         <br>
 
-       <!--  <?php
-       /* Connection::openConnection(); 
-        $courses = CourseController::getCourses(Connection::getConnection());  ?>
-        <div>
-        <h5>Sel·lecciona Curs</h5>
-        <select name="selectCourseDepartment" class="form-control" aria-label=".form-select-lg example">
-        <option selected>Sel·lecciona un curs</option>
-        <?php foreach ($courses as $key => $course) { ?>
-            <option value="<?php echo $key?>"><?php echo $course->getCourseName() ?></option>
-        <?php } */ ?>
-           
-        </select>
-        </div> -->
 
 
-        <?php Connection::openConnection(); 
-        $degrees = DegreeController::getDegrees(Connection::getConnection()); ?>
-        <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
-        <div> 
-        <h5>Sel·lecciona Grau</h5>
-        <br>
-        <select name="selectDegreeDepartment" class="form-control" aria-label=".form-select-lg example">
-        <option selected>Sel·lecciona un grau</option>
-        <?php foreach ($degrees as $key => $degree) { ?>
-            <option value="<?php echo $degree->getDegreeId()?>"><?php echo $degree->getDegreeName() ?></option>
-        <?php }
-         ?>
-           
-        </select>
-        <br>
-        <button type="submit" class="btn btn-success" name="cercaDep">Cerca Departaments</button>
-        </form>
-        </div>
+        <?php
+    Connection::openConnection();
+    $coordinator = CoordinatorController::getCoordinatorByNiu( Connection::getConnection() , $_SESSION['niu']);
+    ?>
+
+<?php 
+            
+            Connection::openConnection();
+            $degreeCoursesByDegree = DegreeCourseController::getDegreeCoursesByDegree(Connection::getConnection(), $coordinator->getCoordinatorDegreeId()); ?>
+         <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+            <h5>Sel·lecciona Grau i Curs</h5>
+            <br>
+            <select id="cursoGradoProfesores" class="selectpicker form-control" name="cursoGradoProfesores" required="true">
+            
+               
+                        <option value="null" selected>Sel·lecciona un curs i grau</option>
+                    
+                  <?php  foreach ($degreeCoursesByDegree as $degreeCourse) { ?>
+                        <option value="<?php echo $degreeCourse->getDegreeCourseId()?>"><?php echo $degreeCourse->getDegreeCourseName()?></option>
+                    <?php }?>
+                
+            </select>
+            <br>
+            <div class="text-right">
+                 <button type="submit" class="btn btn-success" name="cercaDep">Cerca Departaments</button>
+            </div>
+            <br>
+       
+         </form>
+         <br>
+         <br>
+          
 
         <!--   FALTA QUE CUANDO ESCOJAS CURSO Y GRADO, EL PROFESOR SEA DE ESE CURSO Y GRADO -->
         <!-- FALTA MOSTRAR DEPARTAMENTOS EN FUNCION DEL GRADO Y CURSO TOTAL ESTUDIANTES, MAXIMO ESTUDIANTES  -->
 
-            <?php  if(isset($_POST['cercaDep']))
-            {
-                if($_POST['selectDegreeDepartment'] !== 'Sel·lecciona un grau')
-                { ?>
-                    <br>
-                    <br>
-                    <table id="departments" class="table  table-bordered dt-responsive" style="width:100%">
-                    <thead>
-                        <tr>
-                        <th scope="col">Nom</th>
-                        <th scope="col">Sigles</th>
-                    
-                        </tr>
-                    </thead>
-                    <tbody>
-    
-                    <?php
-                    
-                        /* HAS CONSEGUIDO CARGAR LOS DEPARTAMENTOS EN FUNCION DEL GRADO, PERO CON PHP, RETO JAVASCRIPT*/
-                        Connection::openConnection(); 
-                        $departments = DepartmentController:: getDepartmentByDegree(Connection::getConnection(), $_POST['selectDegreeDepartment']); 
-                        foreach ($departments as $department) {
-                        
-                            echo "<tr>";
-                            echo "<th scope='row'>".$department['nombre']."</td>";
-                            echo "<td>".$department['siglas']."</td>";
-                            
-                            echo "</tr>";
-                        }
-                }else
-                {
-                    echo "No hi ha departaments a mostrar";
-                }
-            }
-                   
+        <?php  
+           if(isset($_POST['cercaDep'])){
+                        if($_POST['cursoGradoProfesores'] !== 'null'){?>
+                            <table id="departments" class="table  table-bordered  dt-responsive" style="width:100%">
+                                    <thead>
+                                    <tr>
+                                     <th scope="col">Nom</th>
+                                     <th scope="col">Sigles</th>
+                                     <th scope="col">Alumnes Assignats</th>
+                                     <th scope="col">Màxim Alumnes</th>
+          
+                                     </tr>
+                                     </thead>
+                                <tbody>
+                     <?php
+                                    Connection::openConnection(); 
+                                    $depts = DepartmentController::getDepartmentsInfo(Connection::getConnection(), $_POST['cursoGradoProfesores']); 
+                                    
+                                        foreach ($depts as $dept) {
+                                           
+                                           
+                                        echo "<tr>";
+                                        echo "<th scope='row'>".$dept['nombre_departamento']."</td>";
+                                        echo "<td>".$dept['siglas']."</td>";
+                                        echo "<td>".$dept['estudiantes_asignados']."</td>";
+                                        echo "<td>".$dept['max_estudiantes']."</td>";
+                                        
+                                        echo "</tr>";
+                                    }
                         
                     ?>
-        </tbody>
-    </table>   
-
-
-    </div>
+                                </tbody>
+                            </table>   
+                        
+                        <?php }else{ 
+                            echo "<b>No hi ha professors a mostrar</b><br><br><br><br>";
+                         }
+           }?>
 
         <script>
 

@@ -10,6 +10,7 @@ include_once '../controllers/InternshipTaskController.inc.php';
 include_once '../controllers/StudentController.inc.php';
 include_once '../controllers/UserController.inc.php';
 include_once '../controllers/DegreeCourseController.inc.php';
+include_once '../controllers/DegreeCourseTeacherController.inc.php';
 include_once '../controllers/CoordinatorController.inc.php';
 ?>
 <?php include_once '../includes/navbar.inc.php'; ?>
@@ -244,6 +245,8 @@ include_once '../controllers/CoordinatorController.inc.php';
                 InternshipTaskController::updateTasksDates($internship->getNormalStartDate(), $internship->getNormalEndDate(), $internshipTasks);
                 //genero sus 9 tareas para su estancia
                 TaskController::insertTasksByDegreeCourse(Connection::getConnection(), $internship->getIdDegreeCourse());
+                //inserto el profesor en profesor curso grado
+                DegreeCourseTeacherController::insertDegreeCourseTeacher(Connection::getConnection(),$internship->getIdDegreeCourse(),$internship-> getNiuTeacher());
  
                 //echo '<script>window.location.replace("'.COORDINATOR.'")</script>';
 
