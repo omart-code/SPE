@@ -236,12 +236,14 @@ include_once '../controllers/CoordinatorController.inc.php';
                 UserController::insertUser(Connection::getConnection(), $_POST['niuEstudiant'], $_POST['nomEstudiant'],$_POST['cognomEstudiant'], '', '', 2);
                 //Recupera la ultima estancia introducida gracias al niu estudiante
                 $internship = InternshipController::getStudentInternship(Connection::getConnection(), $_POST['niuEstudiant']);
-                //Creo sus 9 tareas para esa estancia
+                //Creo sus 9 tareas estancia para esa estancia
                 InternshipTaskController::insertInternshipTasksByInternship(Connection::getConnection(), $internship->getIdInternship());
                 //Recupero sus 9 tareas acabadas de crear
                 $internshipTasks= InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(),$internship->getIdInternship());
                 //Calculo sus fechas previstas y las actualizo
                 InternshipTaskController::updateTasksDates($internship->getNormalStartDate(), $internship->getNormalEndDate(), $internshipTasks);
+                //genero sus 9 tareas para su estancia
+                TaskController::insertTasksByDegreeCourse(Connection::getConnection(), $internship->getIdDegreeCourse());
  
                 //echo '<script>window.location.replace("'.COORDINATOR.'")</script>';
 
