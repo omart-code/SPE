@@ -167,7 +167,7 @@
                                                                      <?php  }else{ ?>
                                                                           background-color: #c2e5ca; 
                                                                    <?php  } 
-                                                                   } ?>" class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"> <?php if($taskInternship->getAction1Date() != null){
+                                                                   } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"> <?php if($taskInternship->getAction1Date() != null){
                                                      echo $taskInternship->getAction1Date();
                                                    }else{ ?>
                                                        <div class="check text-center" >
@@ -182,7 +182,7 @@
                                                                      <?php  }else{ ?>
                                                                           background-color: #c2e5ca; 
                                                                    <?php  } 
-                                                                   } ?>" class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>"><?php if($taskInternship->getAction2Date() != null){
+                                                                   } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>"><?php if($taskInternship->getAction2Date() != null){
                                                      echo $taskInternship->getAction2Date();
                                                    }else{ ?>
                                                        <div class="check text-center">
@@ -196,7 +196,7 @@
                                                                      <?php  }else{ ?>
                                                                           background-color: #c2e5ca; 
                                                                    <?php  } 
-                                                                   } ?>" class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"> <?php if($taskInternship->getAction3Date() != null){
+                                                                   } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"> <?php if($taskInternship->getAction3Date() != null){
                                                      echo $taskInternship->getAction3Date();
                                                    }else{ ?>
                                                        <div class="taskDone" class="check text-center">
@@ -207,7 +207,8 @@
                                                    <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId()."&niu=".$internship->getNiuStudent() ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>      
                                                 </tr>
                                           
-                                      <?php }
+                                      <?php 
+                                       }
                                      
                                   }
                                   
@@ -262,7 +263,7 @@
                                                                      <?php  }else{ ?>
                                                                           background-color: #c2e5ca; 
                                                                    <?php  } 
-                                                                   } ?>" class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"> <?php if($taskInternship->getAction1Date() != null){
+                                                                   } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"> <?php if($taskInternship->getAction1Date() != null){
                                                      echo $taskInternship->getAction1Date();
                                                    }else{ ?>
                                                        <div class="check text-center" >
@@ -277,7 +278,7 @@
                                                                      <?php  }else{ ?>
                                                                           background-color: #c2e5ca; 
                                                                    <?php  } 
-                                                                   } ?>" class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>"><?php if($taskInternship->getAction2Date() != null){
+                                                                   } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>"><?php if($taskInternship->getAction2Date() != null){
                                                      echo $taskInternship->getAction2Date();
                                                    }else{ ?>
                                                        <div class="check text-center">
@@ -291,7 +292,7 @@
                                                                      <?php  }else{ ?>
                                                                           background-color: #c2e5ca; 
                                                                    <?php  } 
-                                                                   } ?>" class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"> <?php if($taskInternship->getAction3Date() != null){
+                                                                   } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"> <?php if($taskInternship->getAction3Date() != null){
                                                      echo $taskInternship->getAction3Date();
                                                    }else{ ?>
                                                        <div class="taskDone" class="check text-center">
@@ -302,7 +303,8 @@
                                                    <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId()."&niu=".$internship->getNiuStudent() ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>      
                                                 </tr>
                                           
-                                      <?php }
+                                      <?php 
+                                       }
                                      
                                   }
                                   
@@ -357,7 +359,7 @@
                                                                      <?php  }else{ ?>
                                                                           background-color: #c2e5ca; 
                                                                    <?php  } 
-                                                                   } ?>" class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"> <?php if($taskInternship->getAction1Date() != null){
+                                                                   } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"> <?php if($taskInternship->getAction1Date() != null){
                                                      echo $taskInternship->getAction1Date();
                                                    }else{ ?>
                                                        <div class="check text-center" >
@@ -372,7 +374,7 @@
                                                                      <?php  }else{ ?>
                                                                           background-color: #c2e5ca; 
                                                                    <?php  } 
-                                                                   } ?>" class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>"><?php if($taskInternship->getAction2Date() != null){
+                                                                   } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>"><?php if($taskInternship->getAction2Date() != null){
                                                      echo $taskInternship->getAction2Date();
                                                    }else{ ?>
                                                        <div class="check text-center">
@@ -386,7 +388,7 @@
                                                                      <?php  }else{ ?>
                                                                           background-color: #c2e5ca; 
                                                                    <?php  } 
-                                                                   } ?>" class="taskDone" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"> <?php if($taskInternship->getAction3Date() != null){
+                                                                   } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"> <?php if($taskInternship->getAction3Date() != null){
                                                      echo $taskInternship->getAction3Date();
                                                    }else{ ?>
                                                        <div class="taskDone" class="check text-center">
@@ -397,7 +399,8 @@
                                                    <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId()."&niu=".$internship->getNiuStudent() ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>      
                                                 </tr>
                                           
-                                      <?php }
+                                      <?php 
+                                       }
                                      
                                   }
                                   

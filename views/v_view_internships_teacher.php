@@ -72,8 +72,9 @@
                                
                              ?> 
 
-                    
+                        <th>Estat</th>
                         </tr>
+                      
                       
                     </thead>
                     <tbody>
@@ -90,7 +91,12 @@
                                 <th><a style="text-decoration:none;" href="./v_view-internship.php?niu=<?php echo $info['niu_estudiante']?>"> <?php echo $info['nombre'].' '.$info['apellido'] ?> </a></td>
                                 <?php $tasksInternship = InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(), $info['id_estancia']);
                                 foreach ($tasksInternship as $taskInternship){ ?>
-                                    <td><?php echo $taskInternship->getTaskDate(); ?></td>
+                                    <td style="<?php if($taskInternship->getFinished() == "0"){?>
+                                                        background-color: #f2c4c9;   
+                                            <?php  }else{ ?>
+                                                        background-color: #c2e5ca; 
+                                                        <?php  
+                                                                    } ?>" ><?php echo $taskInternship->getTaskDate(); ?></td>
                                 <?php } ?>
                                 
                                 <?php echo "</tr>";

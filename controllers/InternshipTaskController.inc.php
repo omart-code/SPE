@@ -26,6 +26,11 @@ class InternshipTaskController {
         InternshipTaskModel::insertInternshipTasksByInternship($conn, $id_estancia);
     }
 
+    public function getInternshipTask($conn, $id_tarea, $id_estancia){
+        $taskInternship = InternshipTaskModel::getInternshipTask($conn, $id_tarea, $id_estancia);
+        return $taskInternship;
+    }
+
 /* 
     //calcula la fecha prevista de una tarea pasando las fechas de la estancia y el porcentaje
     public function calculateTaskDate($fecha_inicio, $fecha_fin, $porcentaje){
@@ -82,6 +87,15 @@ class InternshipTaskController {
 
     public function updateTaskDate3($conn, $id_tarea, $id_estancia, $fechaAction3){
         InternshipTaskModel::updateTaskDate3($conn, $id_tarea, $id_estancia, $fechaAction3);
+    }
+
+    public function updateTaskDone($conn, $id_tarea, $id_estancia){
+        InternshipTaskModel::updateTaskDone($conn, $id_tarea, $id_estancia);
+    }
+
+    public function getNumTasksDone($conn, $id_estancia){
+        $tasksDone = InternshipTaskModel::getNumTasksDone($conn, $id_estancia);
+        return $tasksDone;
     }
 
  

@@ -69,6 +69,32 @@ include_once '../app/Connection.inc.php';
             
          }
 
+         public static function getInternshipTask($conn, $id_tarea, $id_estancia){
+            $internshipTask = '';
+    
+            if(isset($conn)){
+                try{
+                    include_once '../entities/InternshipTask.inc.php';
+                    $sql = "SELECT * FROM tareas_estancias WHERE id_tarea = :id_tarea AND id_estancia = :id_estancia";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':id_tarea', $id_tarea, PDO::PARAM_STR);
+                    $stmt ->bindParam(':id_estancia', $id_estancia, PDO::PARAM_STR);
+                    $stmt -> execute();
+                    $res = $stmt-> fetch();
+    
+                    if(!empty($res)){
+                        $internshipTask = new InternshipTask($res['id_tarea_estancia'],  $res['id_estancia'], $res['id_tarea'],  $res['fecha_prevista_tarea'], $res['fecha_realiz_accion1'],$res['fecha_realiz_accion2'], 
+                        $res['fecha_realiz_accion3'],$res['finalizada'],
+                        );
+                    }
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
+    
+            return $internshipTask;
+        }
+
          //Actualiza o setea las fechas previstas de realicación de las tareas en funcion de la tarea y la estancia
         public static function updateTaskDate($conn, $id_tarea, $id_estancia, $fecha_prevista){
             $student = null;
@@ -119,7 +145,7 @@ include_once '../app/Connection.inc.php';
 
         public static function updateTaskDate1($conn, $id_tarea, $id_estancia, $fechaAction1){
             
-            echo $id_tarea;
+           
 
             if(isset($conn)){
                
@@ -179,6 +205,49 @@ include_once '../app/Connection.inc.php';
                 }
             }
         }
+
+        public static function updateTaskDone($conn, $id_tarea, $id_estancia){
+            if(isset($conn)){
+                try{
+                   
+                    $sql = "UPDATE tareas_estancias SET finalizada=1 WHERE id_tarea = :id_tarea AND id_estancia = :id_estancia";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':id_tarea', $id_tarea, PDO::PARAM_STR);
+                    $stmt ->bindParam(':id_estancia', $id_estancia, PDO::PARAM_STR);
+                   
+                   
+                    $stmt -> execute();
+                  
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
+        }
+
+        public static function getNumTasksDone($conn, $id_estancia){
+            $tasksDone = null;
+     
+             if(isset($conn)){
+                 try{
+                     include_once '../entities/InternshipTask.inc.php';
+                     $sql = "SELECT COUNT(finalizada) as estancias_finalizadas from tareas_estancias WHERE id_estancia = :id_estancia AND finalizada = 1;";
+                     $stmt = $conn -> prepare($sql);
+                     $stmt ->bindParam(':id_estancia', $id_estancia, PDO::PARAM_STR);  
+                     $stmt -> execute();
+                     $res = $stmt-> fetch();
+                     if(count($res)){
+                        
+                             $tasksDone = $res['estancias_finalizadas'];
+                         } 
+                      
+                     
+                 }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                 }
+             }
+             return $tasksDone;
+            
+         }
 
 
 

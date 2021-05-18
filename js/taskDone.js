@@ -7,6 +7,7 @@ $( document ).ready(function() {
      var estancia = this.getAttribute('estancia');
      var niu = this.getAttribute('niu');
      var dataAction =  this.getAttribute('fecha');
+     var numActions =  this.getAttribute('numActions');
       
      var task = id.split('-')
    
@@ -55,11 +56,10 @@ $( document ).ready(function() {
     $.ajax({
           type: "POST",
           url: "../ajax/updateActionDate.php",
-          data: "niu="+niu+"& estancia="+estancia+"& tarea="+tasca+"& actionDate="+fecha,
+          data: "niu="+niu+"& estancia="+estancia+"& tarea="+tasca+"& actionDate="+fecha+"& numActions="+numActions,
          
           success: async function(data){
-            console.log('dataAction -'+ dataAction);
-           
+            console.log('data'+data);
            // await window.location.replace("http://localhost/spe/views/v_view-internship.php?niu="+niu);
           },
           error: function(err){

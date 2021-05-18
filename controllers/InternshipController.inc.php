@@ -111,6 +111,10 @@ class InternshipController {
         $percentage = round($percentage, 2);
         return $percentage;
     }
+   
+    public static function updateInternshipDone($conn, $id_estancia){
+        InternshipModel::updateInternshipDone($conn, $id_estancia);
+    }
 
    
 

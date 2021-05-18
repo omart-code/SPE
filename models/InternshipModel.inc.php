@@ -211,6 +211,26 @@ class InternshipModel {
        
     }
 
+    public static function updateInternshipDone($conn, $id_estancia){
+        
+        if(isset($conn)){
+            try{
+              
+                $sql = "UPDATE estancias SET finalizada='1' WHERE id_estancia = :id_estancia";
+                $stmt = $conn -> prepare($sql);
+                $stmt ->bindParam(':id_estancia', $id_estancia, PDO::PARAM_STR);
+               
+                
+                $stmt -> execute();
+              
+            }catch (PDOException $ex){
+                echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+            }
+        }
+
+       
+    }
+
     
 
 }
