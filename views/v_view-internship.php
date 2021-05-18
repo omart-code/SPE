@@ -107,10 +107,9 @@
                     }else{
                         echo "0";
                     }?> "  aria-valuemin="0" aria-valuemax="100"><?php 
-                         if($percentage ==100){
+                         if($percentage >=100){
                             echo "<b>100%</b>";
-                        }elseif($percentage > 100 || $percentage < 0){
-                            echo "<b>0%</b>";
+                        
                         }else{
                             echo "<b>".$percentage."% </b>";
                         } ?></div>

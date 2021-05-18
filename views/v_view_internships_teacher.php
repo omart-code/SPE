@@ -74,6 +74,7 @@
 
                     
                         </tr>
+                      
                     </thead>
                     <tbody>
     
@@ -105,7 +106,8 @@
                     </tbody>
                 </table>   
 
-
+             <br>
+             <br>           
             </div>
       <?php } else{ ?>
                 <div class="container"><b>No hi ha estancies a mostrar per aquest curs i grau</b></div>

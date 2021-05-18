@@ -75,7 +75,7 @@ include_once '../includes/navbar.inc.php';
             <?php Connection::openConnection(); 
             $degrees = DegreeController::getDegrees(Connection::getConnection());  ?>
             <div> <!-- Recoge los cursos de la bd, haz entity, model y controller y inserta en las options -->
-            <label>Sel·lecciona Grau</label>
+            <label><b>Sel·lecciona Grau</b></label>
             <select name="grauSelec" class="form-control" aria-label=".form-select-lg example">
             <option selected>Sel·lecciona un grau</option>
             <?php foreach ($degrees as $key => $degree) { ?>
@@ -86,15 +86,15 @@ include_once '../includes/navbar.inc.php';
             </div>
             <br>
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Nom</label>
+                <label for="exampleFormControlInput1" class="form-label"><b>Nom</b></label>
                 <input type="text" class="form-control" name="nomCurs" placeholder="ex: 2020-2021">
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Data d'inici</label>
+                <label for="exampleFormControlTextarea1" class="form-label"><b>Data d'inici</b></label>
                 <input type="date" class="form-control" name="dataIniciCurs" placeholder="ex: 09/09/2020" ></input>
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Data de finalització</label>
+                <label for="exampleFormControlInput1" class="form-label"><b>Data de finalització</b></label>
                 <input type="date" class="form-control" name="dataFiCurs" placeholder="ex: 09/07/2021">
             </div>
             

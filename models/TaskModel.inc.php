@@ -124,10 +124,10 @@
             if(isset($conn)){
                 try{
                     
-                    $sql = "INSERT INTO tareas ( id_etapa, id_curso_grado, nombre, informacion, mensaje, accion1, accion2, accion3, numero_acciones, porcentaje)
+                    $sql = "INSERT IGNORE INTO tareas ( id_etapa, id_curso_grado, nombre, informacion, mensaje, accion1, accion2, accion3, numero_acciones, porcentaje)
                     VALUES 
                      ( '1', :id_curso_grado, 'Contacte inicial amb el estudiant', '1-Enviar mail al estudiant.
-                        2-Rebre la seva resposta al nostre correu. ', ' ', '1', '2', '0', '2', '5'),
+                        2-Rebre la seva resposta al nostre correu. ', '', '1', '2', '0', '2', '5'),
                         ( '1', :id_curso_grado, 'Contacte inicial amb la empresa', '1-Enviar mail al tutor de la empresa. 2-Rebre la seva resposta al nostre correu.',
                          ' ', '3', '4', '0', '2', '5'),
                         ( '2', :id_curso_grado, 'Primera entrevista de seguiment amb el estudiant', '1-Enviar mail o trucar al estudiant per quedar. 2-Rebre la seva resposta al nostre correu i concretar el dia de la trobada. 3-Entrevista de seguiment ',
