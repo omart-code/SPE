@@ -92,12 +92,34 @@ include_once '../controllers/CoordinatorController.inc.php';
                                 <th scope='row'><a style="text-decoration:none;" href="./v_view-internship_coord.php?niu=<?php echo $info['niu_estudiante']?>"> <?php echo $info['nombre'].' '.$info['apellido'] ?> </a></td>
                                 <?php $tasksInternship = InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(), $info['id_estancia']);
                                 foreach ($tasksInternship as $taskInternship){ ?>
-                                    <td style="<?php if($taskInternship->getFinished() == "0"){?>
-                                                        background-color: #f2c4c9;   
-                                            <?php  }else{ ?>
-                                                        background-color: #c2e5ca; 
-                                                        <?php  
-                                                                    } ?>"><?php echo $taskInternship->getTaskDate(); ?></td>
+                                    <td style="<?php if($taskInternship->getFinished() == "1"){
+                                                        echo 'background-color: #c2e5ca;'; //si tasca finalitzada verd
+                                                        } 
+                                                        else{  //si no
+                                                            if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate ){ //si encara no ha arribat la data actual a la data prevista 
+                                                                if($taskInternship->getNormalTaskDate()->sub(new DateInterval('P'.$margen.'D'))->format('Y-m-d') <= $currentDate ){
+                                                                    echo 'background-color: #f4cc8b'; //si falten 5 dies o menys de la data i no s'ha realitzat taronja
+                                                                   
+                                                                }
+                                                                else{
+                                                                    echo 'background-color: white;'; //blanc 
+                                                                }
+                                                                
+                                                            }else if($taskInternship->getNormalTaskDate()->format('Y-m-d') < $currentDate ){// si la data actual es pasa de la data prevista
+                                                                if($taskInternship->getNormalTaskDate()->add(new DateInterval('P'.$margen.'D'))->format('Y-m-d') >= $currentDate){ 
+                                                                    echo 'background-color: #f4cc8b'; //si pasen 5 dies o menys de la data i no s'ha realitzat taronja
+                                                                   
+                                                                }else{
+                                                                    echo 'background-color: #f2c4c9;';  //vermell
+                                                                }
+                                                               
+                                                               
+                                                            } 
+                                                        }
+                                                            
+                                                        
+                                                       
+                                                       ?>" ><?php echo $taskInternship->getTaskDate(); ?></td>
                                 <?php } ?>
                                 
                                 <?php echo "</tr>";

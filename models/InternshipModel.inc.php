@@ -143,7 +143,7 @@ class InternshipModel {
         if(isset($conn)){
            try{
                
-               $sql = "SELECT es.nombre, es.apellido, es.niu_estudiante, e.id_estancia, e.id_curso_grado FROM estancias e INNER JOIN estudiantes es ON es.niu_estudiante = e.niu_estudiante WHERE e.niu_profesor LIKE '1%' AND e.id_curso_grado = :id_curso_grado";
+               $sql = "SELECT es.nombre, es.apellido, es.niu_estudiante, e.id_estancia, e.finalizada, e.id_curso_grado FROM estancias e INNER JOIN estudiantes es ON es.niu_estudiante = e.niu_estudiante WHERE e.niu_profesor LIKE '1%' AND e.id_curso_grado = :id_curso_grado";
                $stmt = $conn -> prepare($sql);
                $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
                $stmt -> execute();

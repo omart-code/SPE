@@ -84,6 +84,12 @@
                        
                         Connection::openConnection(); 
                         $infos = InternshipController::getInfoInternships(Connection::getConnection(), $_POST['cursogradoEstancias']);
+                        $currentDate = date('Y-m-d');
+                        $currentDatetime = DateTime::createFromFormat('Y-m-d', $currentDate);
+                        $margen = 5;
+                        
+                        
+                      
                         if(!empty($infos)){
                             foreach ($infos as $info) { ?>
                                 
@@ -91,14 +97,40 @@
                                 <th><a style="text-decoration:none;" href="./v_view-internship.php?niu=<?php echo $info['niu_estudiante']?>"> <?php echo $info['nombre'].' '.$info['apellido'] ?> </a></td>
                                 <?php $tasksInternship = InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(), $info['id_estancia']);
                                 foreach ($tasksInternship as $taskInternship){ ?>
-                                    <td style="<?php if($taskInternship->getFinished() == "0"){?>
-                                                        background-color: #f2c4c9;   
-                                            <?php  }else{ ?>
-                                                        background-color: #c2e5ca; 
-                                                        <?php  
-                                                                    } ?>" ><?php echo $taskInternship->getTaskDate(); ?></td>
+                                    <td  style="<?php if($taskInternship->getFinished() == "1"){
+                                                        echo 'background-color: #c2e5ca;'; //si tasca finalitzada verd
+                                                        } 
+                                                        else{  //si no
+                                                            if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate ){ //si encara no ha arribat la data actual a la data prevista 
+                                                                if($taskInternship->getNormalTaskDate()->sub(new DateInterval('P'.$margen.'D'))->format('Y-m-d') <= $currentDate ){
+                                                                    echo 'background-color: #f4cc8b'; //si falten 5 dies o menys de la data i no s'ha realitzat taronja
+                                                                   
+                                                                }
+                                                                else{
+                                                                    echo 'background-color: white;'; //blanc 
+                                                                }
+                                                                
+                                                            }else if($taskInternship->getNormalTaskDate()->format('Y-m-d') < $currentDate ){// si la data actual es pasa de la data prevista
+                                                                if($taskInternship->getNormalTaskDate()->add(new DateInterval('P'.$margen.'D'))->format('Y-m-d') >= $currentDate){ 
+                                                                    echo 'background-color: #f4cc8b'; //si pasen 5 dies o menys de la data i no s'ha realitzat taronja
+                                                                   
+                                                                }else{
+                                                                    echo 'background-color: #f2c4c9;';  //vermell
+                                                                }
+                                                               
+                                                               
+                                                            } 
+                                                        }
+                                                            
+                                                        
+                                                       
+                                                       ?>" ><?php echo $taskInternship->getTaskDate(); ?></td>
                                 <?php } ?>
-                                
+                                <td><?php if($info['finalizada'] == 0){
+                                    echo "En curs";
+                                }else{
+                                    echo "Finalitzada";
+                                } ?></td>
                                 <?php echo "</tr>";
                             
 
