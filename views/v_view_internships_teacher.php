@@ -17,7 +17,7 @@
     <div class="container">
     
     <br>
-    <div class="container">
+   
 <br>
 <h1>Estades del curs</h1>
     <br>
@@ -52,9 +52,9 @@
  <!--  YA SE COGE EL CURSO GRADO DEL SELECT DE ARRIBA, SE PUEDE PULIR -->
  <?php  if(isset($_POST['cercaEstades'])){
        if($_POST['cursogradoEstancias'] != 'null'){?>
-            <div class="container">
-           
-                <table id="internships"  class="table table-bordered dt-responsive display compact" width="100%">
+          
+                <div class="container">
+                <table id="internships"  class="table display table-bordered compact" >
                     <thead>
                         <tr>
                         <th>Nom</th>
@@ -64,7 +64,7 @@
                                 foreach ($tasks as $task) {
                         
                                
-                                    echo "<th>" .$task->getTaskName();"</th>";
+                                    echo "<th class='dt-body-center'>" .$task->getTaskName();"</th>";
                                  }
                              } else {
                                 echo "<b>No s'han definit tasques encara per aquest curs</b><br>";
@@ -72,7 +72,7 @@
                                
                              ?> 
 
-                        <th>Estat</th>
+                        <th class="dt-body-center">Estat</th>
                         </tr>
                       
                       
@@ -93,11 +93,11 @@
                         if(!empty($infos)){
                             foreach ($infos as $info) { ?>
                                 
-                                <tr>
-                                <th><a style="text-decoration:none;" href="./v_view-internship.php?niu=<?php echo $info['niu_estudiante']?>"> <?php echo $info['nombre'].' '.$info['apellido'] ?> </a></td>
+                                <tr class="dt-body-center">
+                                <th  class="dt-body-center no-wrap"><a style="text-decoration:none;" href="./v_view-internship.php?niu=<?php echo $info['niu_estudiante']?>"> <?php echo $info['nombre'].' '.$info['apellido'] ?> </a></td>
                                 <?php $tasksInternship = InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(), $info['id_estancia']);
                                 foreach ($tasksInternship as $taskInternship){ ?>
-                                    <td  style="<?php if($taskInternship->getFinished() == "1"){
+                                    <td class="dt-body-center" style="<?php if($taskInternship->getFinished() == "1"){
                                                         echo 'background-color: #c2e5ca;'; //si tasca finalitzada verd
                                                         } 
                                                         else{  //si no
@@ -126,7 +126,7 @@
                                                        
                                                        ?>" ><?php echo $taskInternship->getTaskDate(); ?></td>
                                 <?php } ?>
-                                <td><?php if($info['finalizada'] == 0){
+                                <td  class="dt-body-center"><?php if($info['finalizada'] == 0){
                                     echo "En curs";
                                 }else{
                                     echo "Finalitzada";
@@ -143,10 +143,10 @@
                     ?>
                     </tbody>
                 </table>   
-
+                </div>    
              <br>
              <br>           
-            </div>
+           
       <?php } else{ ?>
                 <div class="container"><b>No hi ha estancies a mostrar per aquest curs i grau</b></div>
                <br>
