@@ -22,8 +22,8 @@ class InternshipController {
     }
 
     //Devuelve los nombres y apellidos de los alumnos que hacen estancias de un profesor
-    public function getInfoInternshipsByTeacher($conn, $niu_profesor){
-        $infos = InternshipModel::getInfoInternshipsByTeacher($conn, $niu_profesor);
+    public function getInfoInternshipsByTeacher($conn, $niu_profesor, $id_curso_grado){
+        $infos = InternshipModel::getInfoInternshipsByTeacher($conn, $niu_profesor, $id_curso_grado);
         return $infos;
     }
 

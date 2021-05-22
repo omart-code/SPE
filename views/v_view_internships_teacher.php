@@ -83,7 +83,7 @@
                     
                        
                         Connection::openConnection(); 
-                        $infos = InternshipController::getInfoInternships(Connection::getConnection(), $_POST['cursogradoEstancias']);
+                        $infos = InternshipController::getInfoInternshipsByTeacher(Connection::getConnection(),  $_SESSION['niu'], $_POST['cursogradoEstancias']);
                         $currentDate = date('Y-m-d');
                         $currentDatetime = DateTime::createFromFormat('Y-m-d', $currentDate);
                         $margen = 5;

@@ -89,7 +89,7 @@ class InternshipModel {
             if(isset($conn)){
                 try{
                     include_once '../entities/Internship.inc.php';
-                    $sql = "SELECT * FROM estancias e WHERE e.niu_profesor = :niu_profesor";
+                    $sql = "SELECT * FROM estancias e WHERE e.niu_profesor = :niu_profesor and finalizada = 0";
                     $stmt = $conn -> prepare($sql);
                     $stmt ->bindParam(':niu_profesor', $niu_profesor, PDO::PARAM_STR);
                     $stmt -> execute();
@@ -113,14 +113,15 @@ class InternshipModel {
             return $internships;
      }
 
-     public static function getInfoInternshipsByTeacher($conn, $niu_profesor){
+     public static function getInfoInternshipsByTeacher($conn, $niu_profesor, $id_curso_grado){
          $infos = null;
          if(isset($conn)){
             try{
                 
-                $sql = "SELECT es.nombre, es.apellido, es.niu_estudiante, e.id_estancia FROM estancias e INNER JOIN estudiantes es ON es.niu_estudiante = e.niu_estudiante WHERE e.niu_profesor = :niu_profesor";
+                $sql = "SELECT es.nombre, es.apellido, es.niu_estudiante, e.id_estancia, e.finalizada FROM estancias e INNER JOIN estudiantes es ON es.niu_estudiante = e.niu_estudiante WHERE e.niu_profesor = :niu_profesor AND e.id_curso_grado = :id_curso_grado";
                 $stmt = $conn -> prepare($sql);
                 $stmt ->bindParam(':niu_profesor', $niu_profesor, PDO::PARAM_STR);
+                $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
                 $stmt -> execute();
                 $res = $stmt-> fetchAll();
                 if(count($res)){
