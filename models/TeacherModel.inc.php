@@ -151,6 +151,31 @@ class TeacherModel{
             }
         }
     }
+
+    public function updateTeacher($conn, $niu_profesor, $nombre, $apellido, $email, $telefono, $id_departamento){
+
+        if(isset($conn)){
+            try{
+               
+                $sql = "UPDATE profesores SET niu_profesor=:niu_profesor, nombre=:nombre, apellido=:apellido, email=:email, telefono=:telefono,
+                id_departamento=:id_departamento WHERE niu_profesor = :niu_profesor";
+                $stmt = $conn -> prepare($sql);
+                $stmt ->bindParam(':niu_profesor', $niu_profesor, PDO::PARAM_STR);
+                $stmt ->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+                $stmt ->bindParam(':apellido', $apellido, PDO::PARAM_STR);
+                $stmt ->bindParam(':email', $email, PDO::PARAM_STR);
+                $stmt ->bindParam(':telefono', $telefono, PDO::PARAM_STR);
+                $stmt ->bindParam(':id_departamento', $id_departamento, PDO::PARAM_STR);
+               
+                $stmt -> execute();
+              
+            }catch (PDOException $ex){
+                echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+            }
+        }
+    }
+
+
    
     
 }

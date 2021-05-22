@@ -9,5 +9,10 @@ class DegreeDepartmentController {
      
         }
 
+    public function getDepartmentsByDegree($conn, $id_grado){
+        $departaments = DegreeDepartmentModel::getDepartmentsByDegree($conn, $id_grado);
+        return $departaments;
+    }
+
 }
 ?>

@@ -10,6 +10,15 @@ class TeacherController {
         
     }
 
+    public function getTeacherByNiu($conn, $niu_profesor){
+       $teacher = TeacherModel::getTeacherByNiu($conn, $niu_profesor);
+       return $teacher;
+    }
+
+    public function updateTeacher($conn, $niu_profesor, $nombre, $apellido, $email, $telefono, $id_departamento){
+        TeacherModel::updateTeacher($conn, $niu_profesor, $nombre, $apellido, $email, $telefono, $id_departamento);
+    }
+
     public function getTeachers($conn){
         
         $teachers = TeacherModel::getTeachers($conn);

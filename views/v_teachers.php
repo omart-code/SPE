@@ -36,16 +36,32 @@ include_once '../controllers/DegreeCourseController.inc.php';
 
         <br>
         <br>
-        
-        <div class="card text-center">
+        <div class="row">
+        <div class="card text-center col">
             <div class="card-body">
-                <h5 class="card-title">Professorat</h5>
-                <p class="card-text">Afegeix un nou professor a aquest curs</p>
+               
+                <p class="card-text"><b>Afegeix un nou professor</b></p>
                 <a href="<?php echo ADDTEACHER?>" class="btn btn-success">Afegeix</a>
             </div>
   
         </div>
-
+        <div class="card text-center col">
+            <div class="card-body">
+              
+                <p class="card-text"><b>Modifica un professor existent</b></p>
+                <a href="<?php echo MODIFYTEACHER?>" class="btn btn-success">Modifica</a>
+            </div>
+  
+        </div>
+        <div class="card text-center col">
+            <div class="card-body">
+               
+                <p class="card-text"><b>Elimina un professor existent</b></p>
+                <a href="<?php echo REMOVETEACHER?>" class="btn btn-success">Elimina</a>
+            </div>
+  
+        </div>
+        </div>
         <br>
         <br>
 

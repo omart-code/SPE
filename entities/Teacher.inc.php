@@ -1,5 +1,6 @@
 <?php
-
+include_once '../models/DepartmentModel.inc.php';
+include_once '../app/Connection.inc.php';
 class Teacher {
     private $niu_profesor;
     private $nombre;
@@ -39,6 +40,12 @@ class Teacher {
 
     public function getTeacherDepartment(){
         return $this -> id_departamento;
+    }
+
+    public function getTeacherDepartmentName(){
+        Connection::openConnection();
+        $department = DepartmentModel::getDepartmentById(Connection::getConnection(),  $this ->id_departamento);
+        return $department->getDepartmentName();
     }
 
 

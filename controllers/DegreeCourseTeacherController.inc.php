@@ -15,6 +15,10 @@ class DegreeCourseTeacherController {
         DegreeCourseTeacherModel::insertDegreeCourseTeacher($conn, $id_curso_grado, $niu_profesor);
     }
 
+    public function removeDegreeCourseTeacher($conn, $id_curso_grado, $niu_profesor){
+        DegreeCourseTeacherModel::removeDegreeCourseTeacher($conn, $id_curso_grado, $niu_profesor);
+    }
+
 }
 ?>
 

@@ -80,6 +80,29 @@
             return $department;
         }
 
+        public static function getDepartmentById($conn, $id_departamento){
+            $department = null;
+    
+            if(isset($conn)){
+                try{
+                    include_once '../entities/Department.inc.php';
+                    $sql = "SELECT * FROM departamentos WHERE id_departamento = :id_departamento";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':id_departamento', $id_departamento, PDO::PARAM_STR);
+                    $stmt -> execute();
+                    $res = $stmt-> fetch();
+    
+                    if(!empty($res)){
+                        $department = new Department( $res['id_departamento'],$res['nombre'],$res['siglas'], $res['identificador']);
+                    }
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
+    
+            return $department;
+        }
+
          //Devuelve un departamento a partir del nombre
          public static function getDepartmentByDegree($conn, $id_grado){
             $departments = null;
@@ -88,7 +111,7 @@
                 try{
                     include_once '../entities/Department.inc.php';
                     include_once '../entities/DegreeDepartment.inc.php';
-                    $sql = "SELECT d.nombre, d.siglas
+                    $sql = "SELECT d.id_departamento, d.nombre, d.siglas
                     FROM departamentos_grado dg
                     INNER JOIN departamentos d ON d.id_departamento = dg.id_departamento
                     WHERE dg.id_grado = :id_grado;";

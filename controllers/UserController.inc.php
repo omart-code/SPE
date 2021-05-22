@@ -18,5 +18,9 @@ class UserController {
        UserModel::updateStudentByNiu($conn, $niu, $nombre, $apellido,  $telefono, $email, $id_tipo_usuario);
    }
 
+   public function updateTeacherByNiu($conn, $niu, $nombre, $apellido,  $telefono, $email, $id_tipo_usuario){
+       UserModel::updateTeacherByNiu($conn, $niu, $nombre, $apellido,  $telefono, $email, $id_tipo_usuario);
+   }
+
 }
 ?>

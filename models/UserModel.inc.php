@@ -124,6 +124,30 @@ class UserModel {
         
                
             }
+
+            public static function updateTeacherByNiu($conn, $niu, $nombre, $apellido,  $telefono, $email, $id_tipo_usuario){
+                
+        
+                if(isset($conn)){
+                    try{
+                        include_once '../entities/User.inc.php';
+                        $sql = "UPDATE usuarios SET nombre=:nombre, apellido=:apellido, email=:email, telefono=:telefono WHERE niu = :niu AND id_tipo_usuario=:id_tipo_usuario";
+                        $stmt = $conn -> prepare($sql);
+                        $stmt ->bindParam(':niu', $niu, PDO::PARAM_STR);
+                        $stmt ->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+                        $stmt ->bindParam(':apellido', $apellido, PDO::PARAM_STR);
+                        $stmt ->bindParam(':email', $email, PDO::PARAM_STR);
+                        $stmt ->bindParam(':telefono', $telefono, PDO::PARAM_STR);
+                        $stmt ->bindParam(':id_tipo_usuario', $id_tipo_usuario, PDO::PARAM_STR);
+                        $stmt -> execute();
+                      
+                    }catch (PDOException $ex){
+                        echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                    }
+                }
+        
+               
+            }
    
 
 }

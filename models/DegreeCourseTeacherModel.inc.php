@@ -27,6 +27,8 @@
             return $teachers;
         }
 
+       
+
           //Inserta un nuevo departamento_grado
           public static function insertDegreeCourseTeacher($conn, $id_curso_grado, $niu_profesor){
            
@@ -34,7 +36,7 @@
             if(isset($conn)){
                 try{
                   
-                    $sql = "INSERT INTO profesores_curso_grado (id_curso_grado, niu_profesores)
+                    $sql = "INSERT INTO profesores_curso_grado (id_curso_grado, niu_profesor, max_estudiantes)
                     VALUES (:id_curso_grado, :niu_profesor, 15)";
                     $stmt = $conn -> prepare($sql);
                     $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
@@ -48,6 +50,17 @@
             }
     
            
+        }
+
+        //Elimina a un profesor de profesores curso grado, es de decir como profesor en un curso grado determinado
+        public static function removeDegreeCourseTeacher($conn, $id_curso_grado, $niu_profesor){
+            if(isset($conn)){
+                $sql = "DELETE FROM profesores_curso_grado WHERE niu_profesor = :niu_profesor AND id_curso_grado = :id_curso_grado";
+                $stmt = $conn -> prepare($sql);
+                $stmt ->bindParam(':niu_profesor', $niu_profesor, PDO::PARAM_STR);
+                $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
+                $stmt -> execute();
+            }
         }
        
        
