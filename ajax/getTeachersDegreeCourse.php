@@ -7,7 +7,7 @@ $cursoGrado = $_POST['cursogrado'];
 Connection::openConnection();
 $teachers = TeacherController::getTeachersInfo(Connection::getConnection(), $cursoGrado);  ?>
 
-<option value="">Selecciona un professor a eliminar</option>
+<option value="">Selecciona un professor</option>
 <?php
 
 	foreach($teachers as $teacher) {

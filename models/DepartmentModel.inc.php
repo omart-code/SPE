@@ -168,6 +168,28 @@
                 $stmt -> execute();
             }
         }
+
+        public function updateDepartment($conn, $id_departamento, $nombre, $siglas, $identificador){
+
+            if(isset($conn)){
+                try{
+                   
+                    $sql = "UPDATE departamentos SET id_departamento=:id_departamento, nombre=:nombre, siglas=:siglas,
+                    identificador=:identificador WHERE id_departamento = :id_departamento";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':id_departamento', $id_departamento, PDO::PARAM_STR);
+                    $stmt ->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+                    $stmt ->bindParam(':siglas', $siglas, PDO::PARAM_STR);
+                    $stmt ->bindParam(':identificador', $identificador, PDO::PARAM_STR);
+                   
+                   
+                    $stmt -> execute();
+                  
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
+        }
        
        
     }

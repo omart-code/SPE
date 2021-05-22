@@ -40,7 +40,7 @@ include_once '../includes/navbar.inc.php';
         
         ?>
         <div class="container h-100" id="grado" grado="<?php echo $coordinator->getCoordinatorDegreeId()?>">
-            <h1>VISTA DE MODIFICAR UN PROFESOR</h1>
+            <h1>VISTA DE MODIFICAR UN PROFESSOR</h1>
 
             <br>
             <br>

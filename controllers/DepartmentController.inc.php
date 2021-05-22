@@ -33,5 +33,14 @@ class DepartmentController {
         DepartmentModel::removeDepartment($conn, $id_departamento);
     }
 
+    public function getDepartmentById($conn, $id_departamento){
+       $dept = DepartmentModel::getDepartmentById($conn, $id_departamento);
+       return $dept;
+    }
+
+    public function updateDepartment($conn, $id_departamento, $nombre, $siglas, $identificador){
+        DepartmentModel::updateDepartment($conn, $id_departamento, $nombre, $siglas, $identificador);
+    }
+
 }
 ?>

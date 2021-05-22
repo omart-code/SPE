@@ -12,7 +12,7 @@ $grado = $gradoCurso->getDegreeCourseDegree();
 $departaments = DepartmentController::getDepartmentByDegree(Connection::getConnection(), $grado);
  ?>
 
-<option value="">Selecciona un departament a eliminar</option>
+<option value="">Selecciona un departament</option>
 <?php
 
 	foreach($departaments as $department) {

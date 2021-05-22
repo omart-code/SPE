@@ -24,7 +24,7 @@ include_once '../includes/navbar.inc.php';
             DepartmentController::removeDepartment(Connection::getConnection(), $_POST['nomDepartament']);
             //eliminar de departamentos grado
             DegreeDepartmentController::removeDegreeDepartment(Connection::getConnection(), $_POST['nomDepartament']);
-            //echo '<script>window.location.replace("'.TEACHERS.'")</script>';
+            echo '<script>window.location.replace("'.DEPARTMENTS.'")</script>';
            
           }
       
