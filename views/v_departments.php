@@ -35,15 +35,32 @@ include_once '../controllers/TeacherController.inc.php';
 
         <br>
         <br>
-        
-        <div class="card text-center">
+        <div class="row">
+        <div class="card text-center col">
             <div class="card-body">
-                <h5 class="card-title">Departaments</h5>
-                <p class="card-text">Afegeix un nou departament</p>
+                <p class="card-text"><b>Afegeix un nou departament</b></p>
                 <a href="<?php echo ADDDEPARTMENT?>" class="btn btn-success">Afegeix</a>
             </div>
   
         </div>
+        <div class="card text-center col">
+            <div class="card-body">
+              
+                <p class="card-text"><b>Modifica un departament existent</b></p>
+                <a href="<?php echo MODIFYDEPARTMENT?>" class="btn btn-success">Modifica</a>
+            </div>
+  
+        </div>
+        <div class="card text-center col">
+            <div class="card-body">
+               
+                <p class="card-text"><b>Elimina un departament existent</b></p>
+                <a href="<?php echo REMOVEDEPARTMENT?>" class="btn btn-success">Elimina</a>
+            </div>
+  
+        </div>
+        </div>
+    
 
         <br>
         <br>

@@ -18,6 +18,8 @@ define("ADDTEACHER", SERVER."/views/v_insertTeacher.php");
 define("REMOVETEACHER", SERVER."/views/v_removeTeacher.php");
 define("MODIFYTEACHER", SERVER."/views/v_modifyTeacher.php");
 define("ADDDEPARTMENT", SERVER."/views/v_insertDepartment.php");
+define("REMOVEDEPARTMENT", SERVER."/views/v_removeDepartment.php");
+define("MODIFYDEPARTMENT", SERVER."/views/v_modifyDepartment.php");
 define("ADDCOURSE", SERVER."/views/v_insertCourse.php");
 define("TASK", SERVER."/views/v_view_task.php");
 //resources

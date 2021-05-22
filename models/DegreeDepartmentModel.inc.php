@@ -58,6 +58,15 @@
            
         }
 
+        public static function removeDegreeDepartment($conn, $id_departamento){
+            if(isset($conn)){
+                $sql = "DELETE FROM departamentos_grado WHERE id_departamento = :id_departamento";
+                $stmt = $conn -> prepare($sql);
+                $stmt ->bindParam(':id_departamento', $id_departamento, PDO::PARAM_STR);
+                $stmt -> execute();
+            }
+        }
+
     }
 
 ?>

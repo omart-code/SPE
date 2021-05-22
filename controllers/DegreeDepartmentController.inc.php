@@ -14,5 +14,9 @@ class DegreeDepartmentController {
         return $departaments;
     }
 
+    public function removeDegreeDepartment($conn, $id_departamento){
+        DegreeDepartmentModel::removeDegreeDepartment($conn, $id_departamento);
+    }
+
 }
 ?>

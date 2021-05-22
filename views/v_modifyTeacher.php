@@ -28,7 +28,7 @@ include_once '../includes/navbar.inc.php';
            UserController::updateTeacherByNiu(Connection::getConnection(), $_POST['niuProfessor'],$_POST['nomProfessor'],
            $_POST['cognomProfessor'],$_POST['telefonProfessor'], $_POST['emailProfessor'], 1);
           
-            // echo '<script>window.location.replace("'.TEACHERS.'")</script>';
+            echo '<script>window.location.replace("'.TEACHERS.'")</script>';
         }
           
       

@@ -29,5 +29,9 @@ class DepartmentController {
         return $depts;
     }
 
+    public function removeDepartment($conn, $id_departamento){
+        DepartmentModel::removeDepartment($conn, $id_departamento);
+    }
+
 }
 ?>

@@ -159,6 +159,15 @@
     
             return $deptsInfo;
         }
+
+        public static function removeDepartment($conn, $id_departamento){
+            if(isset($conn)){
+                $sql = "DELETE FROM departamentos WHERE id_departamento = :id_departamento";
+                $stmt = $conn -> prepare($sql);
+                $stmt ->bindParam(':id_departamento', $id_departamento, PDO::PARAM_STR);
+                $stmt -> execute();
+            }
+        }
        
        
     }

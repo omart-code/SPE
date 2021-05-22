@@ -8,6 +8,7 @@ include_once '../controllers/UserController.inc.php';
 include_once '../controllers/DepartmentController.inc.php';
 include_once '../controllers/CoordinatorController.inc.php';
 include_once '../controllers/DegreeCourseController.inc.php';
+include_once '../controllers/DegreeDepartmentController.inc.php';
 include_once '../controllers/DegreeCourseTeacherController.inc.php';
 include_once '../app/Redirection.inc.php';
 include_once '../includes/navbar.inc.php';
@@ -16,13 +17,15 @@ include_once '../includes/navbar.inc.php';
     
         
       <?php
-      if(isset($_POST['eliminarProfessor'])){
-          if(isset($_POST['nomProfessor']) && isset($_POST['cursoGrado']) ){
+      if(isset($_POST['eliminarDepartament'])){
+          if(isset($_POST['nomDepartament']) && isset($_POST['cursoGrado']) ){
             Connection::openConnection(); 
-            //eliminar professor de profesores_curso_grado
-            DegreeCourseTeacherController::removeDegreeCourseTeacher(Connection::getConnection(), $_POST['cursoGrado'], $_POST['nomProfessor']);
-             echo '<script>window.location.replace("'.TEACHERS.'")</script>';
-            //ELIMINAR DE USUARIOS Y PROFESORES TAMBIEN? NO CREO
+            //eliminar departamento de departamentos
+            DepartmentController::removeDepartment(Connection::getConnection(), $_POST['nomDepartament']);
+            //eliminar de departamentos grado
+            DegreeDepartmentController::removeDegreeDepartment(Connection::getConnection(), $_POST['nomDepartament']);
+            //echo '<script>window.location.replace("'.TEACHERS.'")</script>';
+           
           }
       
       }
@@ -33,7 +36,7 @@ include_once '../includes/navbar.inc.php';
         
         ?>
         <div class="container h-100">
-            <h1>VISTA DE ELIMINAR UN PROFESOR</h1>
+            <h1>VISTA DE ELIMINAR UN DEPARTAMENT</h1>
 
             <br>
             <br>
@@ -53,8 +56,8 @@ include_once '../includes/navbar.inc.php';
 
             <div class="card text-center">
                 <div class="card-body">
-                    <h5 class="card-title">Elimina professor</h5>
-                    <p class="card-text">Elimina a un professor com a tutor de pràctiques</p>
+                    <h5 class="card-title">Elimina departament</h5>
+                    <p class="card-text">Elimina un departament del curs acadèmic</p>
                     
                 </div>
             </div>
@@ -68,7 +71,7 @@ include_once '../includes/navbar.inc.php';
                     <label for="exampleFormControlInput1" class="form-label"><b>Sel·lecciona grau i curs</b></label>
                 
             
-                <select id="cursosGraus" class="selectpicker form-control" name="cursoGrado" required="true" onChange="getTeachers()">
+                <select id="cursosGraus" class="selectpicker form-control" name="cursoGrado" required="true" onChange="getDepartments()">
                 
                 <?php 
             
@@ -85,16 +88,17 @@ include_once '../includes/navbar.inc.php';
            
           
            <div class="mb-3">
-                <label><b>Professors:</b></label><br />
-                 <select name="nomProfessor" id="professors" class="selectpicker form-control">
-                    <option value="">Selecciona un professor a eliminar</option>
+                <label><b>Departaments</b></label><br />
+                 <select name="nomDepartament" id="departaments" class="selectpicker form-control">
+                    <option value="">Selecciona un departament a eliminar</option>
                 </select>
                    
             </div>  
-           
+           <br>
+           <br>
             <div class="mb-3">
                     
-              <button type="submit" class="btn btn-success" name="eliminarProfessor">Elimina</button>
+              <button type="submit" class="btn btn-success" name="eliminarDepartament">Elimina</button>
             </div>        
             </form>
            
@@ -111,16 +115,17 @@ include_once '../includes/navbar.inc.php';
       
         
 <script>
-function getTeachers() {
+function getDepartments() {
     var cursGrau = $('select[name=cursoGrado] option').filter(':selected').val()
         console.log(cursGrau);
         
 	$.ajax({          
         	type: "POST",
-        	url: "../ajax/getTeachersDegreeCourse.php",
+        	url: "../ajax/getDepartmentsDegreeCourse.php",
         	data:'cursogrado='+cursGrau,
         	success: async function(data){
-                $("#professors").html(data);
+                console.log('data'+data);
+                $("#departaments").html(data);
            // await window.location.replace("http://localhost/spe/views/v_view-internship.php?niu="+niu);
           },
           error: function(err){
