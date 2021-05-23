@@ -50,7 +50,9 @@ include_once '../controllers/CoordinatorController.inc.php';
             </div>
             <br>
 
-            <div id="estanciasCoordinador"></div>
+            <div id="estanciasCoordinador">
+           <!--  Aqui s'inserta amb ajax les estancias del curs grau -->
+            </div>
        
         
         
@@ -74,7 +76,7 @@ include_once '../controllers/CoordinatorController.inc.php';
                     Connection::openConnection();
                     $coordinator = CoordinatorController::getCoordinatorByNiu( Connection::getConnection() , $_SESSION['niu']);
                     ?>
-                    <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+                    
             
          
                     <div>
@@ -111,7 +113,7 @@ include_once '../controllers/CoordinatorController.inc.php';
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1" class="form-label"><b>Profesor:</b></label>
-                         <!--  SELECT CON TODOS LOS PROFESORES YA COGES SU NIU LO GUARDAS EN EL VALUE -->
+                        
                         <select name="profesorSelec" class="form-control" aria-label=".form-select-lg example">
                             <?php Connection::openConnection();
                                 $teachers = TeacherController::getTeachers(Connection::getConnection()) ?>
@@ -120,7 +122,7 @@ include_once '../controllers/CoordinatorController.inc.php';
                                     <option value="<?php echo $teacher->getTeacherNiu()?>"><?php echo $teacher->getTeacherName().' '. $teacher->getTeacherSurname()?></option>
                                 <?php }?>
                         </select>
-                        <!-- REALMENTE INSERTARÁS EL NIU EN LA BD -->
+                      
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label"><b>Data d'inici:</b></label>
@@ -130,26 +132,17 @@ include_once '../controllers/CoordinatorController.inc.php';
                     <label for="message-text" class="col-form-label"><b>Data de finalització:</b></label>
                     <input class="form-control" type="date" id="fecha-final"  name="fechaFinal"></input>
                     </div>
-                    <!--  <div class="form-group">
-                            <label for="exampleFormControlTextarea1" class="form-label"><b>Empresa:</b></label>
-                            <input type="text" class="form-control" name="identificador" placeholder="ex: MAJESTY SL" ></input>
-                            <!-- HAY DUDAS, PERO SE DEBERIAN MOSTRAR LAS EMPRESAS YA REGISTRADAS Y INSERTAR SU ID
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1" class="form-label"><b>Tutor Empresa</b></label>
-                            <input type="text" class="form-control" name="identificador" placeholder="ex: Carles Vives" ></input>
-                            <!-- HAY DUDAS, PERO SE DEBERIAN MOSTRAR LOS NOMBRES DE LOS TUTOTES YA REGISTRADAS Y INSERTAR SU ID
-                                </div> -->
+                   
                     <br>
                     <br>
                    
                     <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal">Tanca</button>
-                                <button type="submit" id="enviarEstancia" class="btn btn-success" name="EnviarEstancia">Afegeix</button>
+                                <button type="submit" id="enviarEstancia" class="btn btn-success" onClick="insertInternship()" name="EnviarEstancia">Afegeix</button>
                                
                             
                     </div>
-                    </form>
+                   
                             
                         
                            
@@ -160,42 +153,7 @@ include_once '../controllers/CoordinatorController.inc.php';
         </div>
     </div>
 
-<!--     LOGICA DEL MODAL DE INSERTAR ESTANCIA -->
-        <?php 
 
-            if(isset($_POST['EnviarEstancia'])){
-               //Inserta en estancias la estancia
-               InternshipController::insertInternship(Connection::getConnection(), $_POST['niuEstudiant'], $_POST['profesorSelec'], 
-                $_POST['fechaInicio'], $_POST['fechaFinal'], $_POST['grauCursSelec']);
-
-                //Cojo el curso i el grado a partir del curso_grado
-                $degreeCourse = DegreeCourseController::getDegreeCourseById(Connection::getConnection(), $_POST['grauCursSelec']);
-                $grado = $degreeCourse-> getDegreeCourseDegree();
-                $curso = $degreeCourse-> getDegreeCourseCourse();
-              
-               //Inserta el estudiante
-                StudentController::insertStudent(Connection::getConnection(), $_POST['niuEstudiant'],$_POST['nomEstudiant'], $_POST['cognomEstudiant'], $grado);
-                //Inserta este estudiante en los usuarios
-                UserController::insertUser(Connection::getConnection(), $_POST['niuEstudiant'], $_POST['nomEstudiant'],$_POST['cognomEstudiant'], '', '', 2);
-                //Recupera la ultima estancia introducida gracias al niu estudiante
-                $internship = InternshipController::getStudentInternship(Connection::getConnection(), $_POST['niuEstudiant']);
-                //Creo sus 9 tareas estancia para esa estancia
-                InternshipTaskController::insertInternshipTasksByInternship(Connection::getConnection(), $internship->getIdInternship());
-                //Recupero sus 9 tareas acabadas de crear
-                $internshipTasks= InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(),$internship->getIdInternship());
-                //Calculo sus fechas previstas y las actualizo
-                InternshipTaskController::updateTasksDates($internship->getNormalStartDate(), $internship->getNormalEndDate(), $internshipTasks);
-                //genero sus 9 tareas para su estancia
-                TaskController::insertTasksByDegreeCourse(Connection::getConnection(), $internship->getIdDegreeCourse());
-                //inserto el profesor en profesor curso grado
-                DegreeCourseTeacherController::insertDegreeCourseTeacher(Connection::getConnection(),$internship->getIdDegreeCourse(),$internship-> getNiuTeacher());
- 
-                //echo '<script>window.location.replace("'.COORDINATOR.'")</script>';
-
-              /*   QUEDA HACER UN MODAL DE LOADING Y QUE COMPRUEBE SI REALMENTE SE PUEDE INSERTAR LA ESTANCIA Y MOSTRAR UN ALERT DE QUE NO SE HA PODIDO */
-               
-            }
-        ?>
 
         
 
@@ -203,5 +161,6 @@ include_once '../controllers/CoordinatorController.inc.php';
 </body>
 
 <script src="../js/getInternshipsCoordinator.js"></script>
+<script src="../js/insertInternship.js"></script>
 
 </html>
