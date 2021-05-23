@@ -34,8 +34,9 @@ include_once '../includes/navbar.inc.php';
          
       }
        ?>
-        <div class="container">
-            <h1>VISTA DE AFEGIR UN NOU COORDINADOR</h1>
+        <div class="container-fluid" style="width:80%;">
+        <br>
+            <h1>Afegir un coordinador</h1>
 
             <br>
             <br>
@@ -107,7 +108,7 @@ include_once '../includes/navbar.inc.php';
         
         </div>
 
-        <div class="container">
+        <div class="container-fluid" style="width:80%;">
         <button type="button" class=" btn btn-secondary" onclick="history.back(-1)"><i class="fas fa-arrow-left"></i> Torna Enrere</button>
         </div>
         

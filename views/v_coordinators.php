@@ -15,8 +15,9 @@ include_once '../controllers/TeacherController.inc.php';
     
         
       
-    <div class="container h-100">
-      <h1>VISTA DELS COORDINADORS</h1>
+<div class="container-fluid" style="width:80%;">
+<br>
+      <h1>Coordinadors</h1>
       <br>
       <br>
 

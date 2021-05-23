@@ -14,12 +14,11 @@
 </head>
 <body>
     <?php include '../includes/navbar.inc.php'; ?>
-    <div class="container">
+    <div class="container-fluid" style="width:80%;">
     
     <br>
-   
-<br>
-<h1>Estades del curs</h1>
+
+    <h1>Estades del curs</h1>
     <br>
     <br>
 
@@ -53,7 +52,7 @@
  <?php  if(isset($_POST['cercaEstades'])){
        if($_POST['cursogradoEstancias'] != 'null'){?>
           
-                <div class="container">
+          <div class="container-fluid" style="width:80%;">
                 <table id="internships"  class="table display table-bordered compact" >
                     <thead>
                         <tr>
@@ -148,7 +147,7 @@
              <br>           
            
       <?php } else{ ?>
-                <div class="container"><b>No hi ha estancies a mostrar per aquest curs i grau</b></div>
+        <div class="container-fluid" style="width:80%;"><b>No hi ha estancies a mostrar per aquest curs i grau</b></div>
                <br>
             <?php }
         }?>

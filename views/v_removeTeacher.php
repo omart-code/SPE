@@ -32,8 +32,9 @@ include_once '../includes/navbar.inc.php';
          $coordinator = CoordinatorController::getCoordinatorByNiu( Connection::getConnection() , $_SESSION['niu']);
         
         ?>
-        <div class="container h-100">
-            <h1>VISTA DE ELIMINAR UN PROFESOR</h1>
+        <div class="container-fluid" style="width:80%;">
+        <br>
+            <h1>Eliminar un professor</h1>
 
             <br>
             <br>

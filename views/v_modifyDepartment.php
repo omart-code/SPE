@@ -38,8 +38,9 @@ include_once '../includes/navbar.inc.php';
          $coordinator = CoordinatorController::getCoordinatorByNiu( Connection::getConnection() , $_SESSION['niu']);
         
         ?>
-        <div class="container h-100" id="grado" grado="<?php echo $coordinator->getCoordinatorDegreeId()?>">
-            <h1>VISTA DE MODIFICAR UN DEPARTAMENT</h1>
+        <div class="container-fluid" style="width:80%;" id="grado" grado="<?php echo $coordinator->getCoordinatorDegreeId()?>">
+        <br>
+            <h1>Modificar un departament</h1>
 
             <br>
             <br>

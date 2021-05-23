@@ -22,8 +22,9 @@ include_once '../includes/navbar.inc.php';
       
       
        ?>
-        <div class="container h-100">
-            <h1>VISTA DE AFEGIR UN COMENTARI</h1>
+       <div class="container-fluid" style="width:80%;">
+       <br>
+            <h1>Afegir un comentari</h1>
 
             <br>
             <br>
@@ -71,7 +72,7 @@ include_once '../includes/navbar.inc.php';
             </form>
         </div>
         
-        <div class="container">
+        <div class="container-fluid" style="width:80%;">
         <button type="button" class=" btn btn-secondary" onclick="history.back(-1)"><i class="fas fa-arrow-left"></i> Torna Enrere</button>
         </div>
 

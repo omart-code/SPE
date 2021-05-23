@@ -10,8 +10,9 @@ include_once '../controllers/DepartmentController.inc.php';
     
         
       
-    <div class="container h-100">
-      <h1>VISTA DELS CURSOS</h1>
+<div class="container-fluid" style="width:80%;">
+<br>
+      <h1>Nou Curs</h1>
       <br>
       <br>
 
@@ -25,8 +26,8 @@ include_once '../controllers/DepartmentController.inc.php';
                     <li class="nav-item">
                         <a class="nav-link" style="color: #28a745;" href="<?php echo DEPARTMENTS?>"><h6>Departaments</h6></a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" style="color: #28a745;" href="<?php echo COURSES?>"><h6>Nou Curs</h6></a>
+                    <li class="nav-item ">
+                        <a class="nav-link active" style="color: #28a745;" href="<?php echo COURSES?>"><h6>Nou Curs</h6></a>
                     </li>
         </ul>
 

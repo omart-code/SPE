@@ -48,7 +48,7 @@ $title = 'Login';
 include_once '../includes/doc-declaration.inc.php';
 ?>
 
-<div class="container h-100">
+<div class="container-fluid" style="width:80%;">
 <div class="wrapper fadeInDown md-5 p-5">
   <div id="formContent">
    

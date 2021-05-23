@@ -16,10 +16,10 @@ include_once '../controllers/CoordinatorController.inc.php';
 <?php include_once '../includes/navbar.inc.php'; ?>
     
         
-<div class="container">
+<div class="container-fluid" style="width:80%;">
 <br>
     <h1>Estades del curs</h1>
-    <div class="container text-right">
+    <div class="text-right">
         <a  role="button" class="btn btn-success" data-toggle="modal" data-target="#modalEstancia" style="color:white;">Afegir nova estada </a>
     </div>
     <br>
@@ -56,7 +56,7 @@ include_once '../controllers/CoordinatorController.inc.php';
    <!--  YA SE COGE EL CURSO GRADO DEL SELECT DE ARRIBA, SE PUEDE PULIR -->
    <?php  if(isset($_POST['cercaEstades'])){
        if($_POST['cursogradoEstancias'] !== 'null'){?>
-            <div class="container ">
+             <div class="container-fluid" style="width:80%;">
                 <table id="internships" class="table table-bordered dt-responsive" style="width:100%">
                     <thead>
                         <tr>
@@ -149,7 +149,7 @@ include_once '../controllers/CoordinatorController.inc.php';
 
             </div>
       <?php } else{ ?>
-                <div class="container"><b>No hi ha estancies a mostrar per aquest curs i grau</b></div>
+            <div class="container-fluid" style="width:80%;"><b>No hi ha estancies a mostrar per aquest curs i grau</b></div>
                <br>
             <?php }
         }?>
@@ -303,6 +303,7 @@ include_once '../controllers/CoordinatorController.inc.php';
 
         $(document).ready(function() {
             $('#internships').DataTable({
+                responsive: true,
                 "language": {
                 "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Catalan.json"
              }

@@ -40,8 +40,9 @@ include_once '../includes/navbar.inc.php';
          $coordinator = CoordinatorController::getCoordinatorByNiu( Connection::getConnection() , $_SESSION['niu']);
          $departments = DepartmentController::getDepartmentByDegree(Connection::getConnection(), $coordinator->getCoordinatorDegreeId());
         ?>
-        <div class="container h-100">
-            <h1>VISTA DE AFEGIR UN PROFESOR</h1>
+       <div class="container-fluid" style="width:80%;">
+       <br>
+            <h1>Afegir un professor</h1>
 
             <br>
             <br>

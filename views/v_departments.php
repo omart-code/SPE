@@ -15,8 +15,9 @@ include_once '../controllers/TeacherController.inc.php';
     
         
       
-    <div class="container h-100">
-      <h1>VISTA DELS DEPARTAMENTS</h1>
+<div class="container-fluid" style="width:80%;">
+<br>
+      <h1>Departaments</h1>
       <br>
       <br>
 
@@ -39,14 +40,14 @@ include_once '../controllers/TeacherController.inc.php';
         <br>
         <br>
         <div class="row">
-        <div class="card text-center col">
+        <div class="card text-center col-sm">
             <div class="card-body">
                 <p class="card-text"><b>Afegeix un nou departament</b></p>
                 <a href="<?php echo ADDDEPARTMENT?>" class="btn btn-success">Afegeix</a>
             </div>
   
         </div>
-        <div class="card text-center col">
+        <div class="card text-center  col-sm">
             <div class="card-body">
               
                 <p class="card-text"><b>Modifica un departament existent</b></p>
@@ -54,7 +55,7 @@ include_once '../controllers/TeacherController.inc.php';
             </div>
   
         </div>
-        <div class="card text-center col">
+        <div class="card text-center  col-sm">
             <div class="card-body">
                
                 <p class="card-text"><b>Elimina un departament existent</b></p>

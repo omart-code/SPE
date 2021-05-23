@@ -1,17 +1,20 @@
 <?php
 include_once __DIR__ . '/../app/Session.inc.php';
+include_once __DIR__ . '/../includes/libraries.inc.php';
 include_once __DIR__ . '/../app/config.inc.php'; ?>
 <div class="header">
+<!-- FALLA EL COLLAPSE DEL TOGGLER -->
     <div class="custom-navbar">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#"><h1>SPE</h1></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
                         <?php  if(ControlSession::sessionStarted()):
                             if($_SESSION['id_tipo_usuario'] == '1'): ?>
                             <a class="nav-link"  href="http://localhost/spe/views/v_teacher.php"><h3>Inici</h3><span class="sr-only">(current)</span></a>
@@ -46,6 +49,7 @@ include_once __DIR__ . '/../app/config.inc.php'; ?>
                    <?php endif;?>        
                 </ul>
             </div>
+         </div>
         </nav>
     </div>
 </div>

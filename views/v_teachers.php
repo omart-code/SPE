@@ -15,8 +15,9 @@ include_once '../controllers/DegreeCourseController.inc.php';
     
         
       
-    <div class="container h-100">
-      <h1>VISTA DELS PROFESSORS</h1>
+<div class="container-fluid" style="width:80%;">
+<br>
+      <h1>Professors</h1>
       <br>
       <br>
 
@@ -40,7 +41,7 @@ include_once '../controllers/DegreeCourseController.inc.php';
         <br>
         <br>
         <div class="row">
-        <div class="card text-center col">
+        <div class="card text-center col-sm">
             <div class="card-body">
                
                 <p class="card-text"><b>Afegeix un nou professor</b></p>
@@ -48,7 +49,7 @@ include_once '../controllers/DegreeCourseController.inc.php';
             </div>
   
         </div>
-        <div class="card text-center col">
+        <div class="card text-center col-sm">
             <div class="card-body">
               
                 <p class="card-text"><b>Modifica un professor existent</b></p>
@@ -56,7 +57,7 @@ include_once '../controllers/DegreeCourseController.inc.php';
             </div>
   
         </div>
-        <div class="card text-center col">
+        <div class="card text-center col-sm">
             <div class="card-body">
                
                 <p class="card-text"><b>Elimina un professor existent</b></p>

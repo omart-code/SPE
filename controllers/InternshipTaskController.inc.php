@@ -16,6 +16,11 @@ class InternshipTaskController {
         return $internshipTasks;
     }
 
+    public function getMissingInternshipTasksByInternshipId($conn, $id_estancia){
+        $internshipTasks = InternshipTaskModel::getMissingInternshipTasksByInternshipId($conn, $id_estancia);
+        return $internshipTasks;
+    }
+
        //funcion para actualizar la fecha prevista dada una estancia y una tarea
        public function updateTaskDate($conn, $id_tarea, $id_estancia, $fecha_prevista){
         InternshipTaskModel::updateTaskDate($conn, $id_tarea, $id_estancia, $fecha_prevista) ;

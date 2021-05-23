@@ -23,13 +23,15 @@ include_once '../includes/navbar.inc.php';
        
        ?>
       
-        <div class="container">
+      <div class="container-fluid" style="width:80%;">
+      <br>
+      <h1>La teva estada</h1>
         <br>
-        <?php echo "<h4>Hola " . $_SESSION["nombre"]. ",</h4>"?>
+        <?php echo "<h4>Benvingut " . $_SESSION["nombre"]. "</h4>"?>
         <br>
         </div>
         <!-- Datos del estudiante -->
-        <div class="container">
+        <div class="container-fluid" style="width:80%;">
                 <div class="row">
                         <br>
                         <br>
@@ -62,7 +64,7 @@ include_once '../includes/navbar.inc.php';
         </div>
         <br>
         <br>
-        <div class="container">
+        <div class="container-fluid" style="width:80%;">
         <h5>El teu progrés:</h5>
                 <div class="progress">
                         <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo $percentage ?>%"  aria-valuenow="<?php echo $percentage?>"  aria-valuemin="0" aria-valuemax="100"><?php 
@@ -77,7 +79,7 @@ include_once '../includes/navbar.inc.php';
 
     <br>
     <br>
-    <div class="container">
+    <div class="container-fluid" style="width:80%;">
             <h5>Comentaris del tutor/a:</h5> 
             <?php  Connection::openConnection(); 
                $comments = CommentController:: getPublicComments(Connection::getConnection(), $internship->getIdInternship());  

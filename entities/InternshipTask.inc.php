@@ -1,5 +1,7 @@
 <?php
 
+include_once '../app/Connection.inc.php';
+include_once '../models/TaskModel.inc.php';
 class InternshipTask{
 
     private $id_tarea_estancia;
@@ -137,6 +139,12 @@ class InternshipTask{
 
     public function getFinished(){
         return $this -> finalizada;
+    }
+
+    public function getTaskName(){
+        Connection::openConnection();
+        $taskName = TaskModel::getTaskById(Connection::getConnection(), $this ->id_tarea);
+        return $taskName->getTaskName();
     }
 
 

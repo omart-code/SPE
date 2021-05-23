@@ -33,8 +33,9 @@
    $percentage = InternshipController::calculatePercentage(Connection::getConnection(), $_GET['niu']);
    $phases = PhaseController::getPhases(Connection::getConnection());?>
              <!-- Datos del estudiante -->
-             <div class="container">
-             <h1>VISTA DE UNA ESTADA CONCRETA</h1>
+             <div class="container-fluid" style="width:80%;">
+             <br>
+             <h1>Estada de estudiant</h1>
            
             <br>
             <br>
@@ -99,7 +100,7 @@
         </div>
         <br>
         <br>
-        <div class="progress-container container">
+        <div class="container-fluid" style="width:80%;">
         <h5>Progrés del alumne:</h5>
         <div class="progress">
                     <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo $percentage ?>%"  aria-valuenow="<?php if($percentage >0 && $percentage<=100){
@@ -120,7 +121,7 @@
         <br>
       <!--   AQUI TENDRÁS QUE HACER QUE CUANDO UNA FASE SE COMPLETE SE PONGA EN VERDE, Y SI NO ES ASI EN ROJO -->
       <!-- HACER UN ACORDEON QUE MUESTRE POR CADA FASE SU TABLA DE TAREAS, LO HACE PERO FALTA DAR FORMATO Y CONTROLAR CREAR FILAS PESE A NO TENER VALORES-->
-        <div class="container">
+      <div class="container-fluid" style="width:80%;">
         
            
             <div class="alert alert-secondary" role="alert">
@@ -421,7 +422,7 @@
     
         <br>
         <br>
-        <div class="container text-right">
+        <div class="container-fluid  text-right" style="width:80%;">
              <a href="../views/v_insertComment.php?niu=<?php  echo $internship->getNiuStudent() ?>&id=<?php  echo $internship->getIdInternship() ?>" class="btn btn-success escriu-comentari" role="button">Afegir Comentari</a>
         </div>
       

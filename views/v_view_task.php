@@ -16,7 +16,10 @@
 <body>
     <?php include '../includes/navbar.inc.php'; ?>
     <br>
-    <div class="container h-100">
+    <div class="container-fluid" style="width:80%;">
+    <br>
+    <h1>Modificació de la tasca</h1>
+    
         <div class="card text-center">
                 <div class="card-body">
                 <?php
@@ -94,7 +97,7 @@
 
         ?>
 
-        <div class="container">
+<div class="container-fluid" style="width:80%;">
          
             
                 <div class="editor" style="display:none;">
@@ -117,7 +120,7 @@
                 </div>
                    
         </div>
-        <div class="container">
+        <div class="container-fluid" style="width:80%;">
         <button type="button" class=" btn btn-secondary" onclick="gotoInternshipPage()"><i class="fas fa-arrow-left"></i> Torna Enrere</button>
         </div>
        

@@ -8,7 +8,7 @@ include_once 'includes/navbar.inc.php'?>
 
 <body>
 
-        <div class="container">
+        <div class="container-fluid" style="width:80%;">
         <h1>BENVINGUT A LA EINA DE SEGUIMENT DE PRÀCTIQUES EXTERNES</h1>
 
         <h2>Accedeix al sistema fent login a la aplicacició</h2>
