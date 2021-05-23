@@ -43,14 +43,17 @@ include_once '../includes/navbar.inc.php';
             <br>
 
             <ul class="nav nav-tabs ">
-                    <li class="nav-item">
+            <li class="nav-item">
                         <a class="nav-link" style="color: #28a745;" aria-current="page" href="<?php echo TEACHERS?>"><h6>Professorat</h6></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: #28a745;" href="<?php echo COORDINATORS?>"><h6>Coordinadors</h6></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" style="color: #28a745;" href="<?php echo DEPARTMENTS?>"><h6>Departaments</h6></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="color: #28a745;" href="<?php echo COURSES?>"><h6>Nou Curs</h6></a>
+                        <a class="nav-link " style="color: #28a745;" href="<?php echo COURSES?>"><h6>Nou Curs</h6></a>
                     </li>
                 
             </ul>

@@ -12,6 +12,7 @@ define("INTERNSHIPS", SERVER."/views/v_view_internships.php");
 define("VIEWINTERNSHIP", SERVER."/views/v_view-internship.php");
 define("VIEWINTERNSHIPCOORD", SERVER."/views/v_view-internship_coord.php");
 define("TEACHERS", SERVER."/views/v_teachers.php");
+define("COORDINATORS", SERVER."/views/v_coordinators.php");
 define("DEPARTMENTS", SERVER."/views/v_departments.php");
 define("COURSES", SERVER."/views/v_courses.php");
 define("ADDTEACHER", SERVER."/views/v_insertTeacher.php");
@@ -21,6 +22,7 @@ define("ADDDEPARTMENT", SERVER."/views/v_insertDepartment.php");
 define("REMOVEDEPARTMENT", SERVER."/views/v_removeDepartment.php");
 define("MODIFYDEPARTMENT", SERVER."/views/v_modifyDepartment.php");
 define("ADDCOURSE", SERVER."/views/v_insertCourse.php");
+define("ADDCOORDINATOR", SERVER."/views/v_insertCoordinator.php");
 define("TASK", SERVER."/views/v_view_task.php");
 //resources
 define("CSS", SERVER. "/css/");

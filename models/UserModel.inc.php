@@ -51,15 +51,16 @@ class UserModel {
         return $users_total;
     }
 
-    public static function getUserByNiu($conn, $niu){
+    public static function getUserByNiuAndType($conn, $niu, $tipo){
         $user = null;
 
         if(isset($conn)){
             try{
                 include_once '../entities/User.inc.php';
-                $sql = "SELECT * FROM usuarios u WHERE u.niu = :niu";
+                $sql = "SELECT * FROM usuarios u WHERE u.niu = :niu AND id_tipo_usuario = :tipo";
                 $stmt = $conn -> prepare($sql);
                 $stmt ->bindParam(':niu', $niu, PDO::PARAM_STR);
+                $stmt ->bindParam(':tipo', $tipo, PDO::PARAM_STR);
                 $stmt -> execute();
                 $res = $stmt-> fetch();
 

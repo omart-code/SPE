@@ -10,6 +10,11 @@ class UserController {
         return $userList;
     }
 
+    public function getUserByNiuAndType($conn, $niu, $tipo){
+        $user = UserModel::getUserByNiuAndType($conn, $niu, $tipo);
+        return $user;
+    }
+
    public function insertUser($conn, $niu, $nombre, $apellido, $telefono, $email, $id_tipo_usuario){
        UserModel::insertUser($conn, $niu, $nombre, $apellido, $telefono, $email, $id_tipo_usuario);
    }

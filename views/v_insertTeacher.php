@@ -51,6 +51,9 @@ include_once '../includes/navbar.inc.php';
                         <a class="nav-link active" style="color: #28a745;" aria-current="page" href="<?php echo TEACHERS?>"><h6>Professorat</h6></a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" style="color: #28a745;" href="<?php echo COORDINATORS?>"><h6>Coordinadors</h6></a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" style="color: #28a745;" href="<?php echo DEPARTMENTS?>"><h6>Departaments</h6></a>
                     </li>
                     <li class="nav-item">

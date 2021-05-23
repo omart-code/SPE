@@ -21,8 +21,11 @@ include_once '../controllers/TeacherController.inc.php';
       <br>
 
       <ul class="nav nav-tabs ">
+      <li class="nav-item">
+                        <a class="nav-link" style="color: #28a745;" aria-current="page" href="<?php echo TEACHERS?>"><h6>Professorat</h6></a>
+                    </li>
                     <li class="nav-item">
-                        <a class="nav-link " style="color: #28a745;" aria-current="page" href="<?php echo TEACHERS?>"><h6>Professorat</h6></a>
+                        <a class="nav-link" style="color: #28a745;" href="<?php echo COORDINATORS?>"><h6>Coordinadors</h6></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" style="color: #28a745;" href="<?php echo DEPARTMENTS?>"><h6>Departaments</h6></a>
@@ -100,9 +103,7 @@ include_once '../controllers/TeacherController.inc.php';
          <br>
           
 
-        <!--   FALTA QUE CUANDO ESCOJAS CURSO Y GRADO, EL PROFESOR SEA DE ESE CURSO Y GRADO -->
-        <!-- FALTA MOSTRAR DEPARTAMENTOS EN FUNCION DEL GRADO Y CURSO TOTAL ESTUDIANTES, MAXIMO ESTUDIANTES  -->
-
+      
         <?php  
            if(isset($_POST['cercaDep'])){
                         if($_POST['cursoGradoProfesores'] !== 'null'){?>

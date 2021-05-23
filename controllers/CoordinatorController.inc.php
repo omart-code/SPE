@@ -10,6 +10,15 @@ class CoordinatorController {
         
     }
 
+    public function getCoordinatorsAndDegrees($conn){
+        $coordinators = CoordinatorModel::getCoordinatorsAndDegrees($conn);
+        return $coordinators;
+    }
+
+    public function insertCoordinator($conn, $niu_coordinador, $id_grado){
+        CoordinatorModel::insertCoordinator($conn, $niu_coordinador, $id_grado);
+    }
+
 
 }
 ?>
