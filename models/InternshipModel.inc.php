@@ -128,9 +128,7 @@ class InternshipModel {
                     foreach($res as $info){
                         $infos[] = $info;
                     } 
-                 }else{
-                        print 'No hi ha info disponible';
-                    }
+                 }
                 
             }catch (PDOException $ex){
                 echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
