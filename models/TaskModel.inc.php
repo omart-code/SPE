@@ -33,15 +33,15 @@
         }
 
         //Devuelve todas las tareas en función del curso grado correspondiente
-        public static function getTasksByDegreeCourse($conn, $id_curso_grado){
+        public static function getTasksByDegreeCourse($conn){
             $tasks = null;
     
             if(isset($conn)){
                 try{
                     include_once '../entities/Task.inc.php';
-                    $sql = "SELECT * FROM tareas WHERE id_curso_grado = :id_curso_grado";
+                    $sql = "SELECT * FROM tareas";
                     $stmt = $conn -> prepare($sql);
-                    $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
+                   
                     $stmt -> execute();
                     $res = $stmt-> fetchAll();
     

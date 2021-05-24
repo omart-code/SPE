@@ -23,7 +23,7 @@
                         <tr>
                         <th scope="col">Nom</th>
                         <?php Connection::openConnection();
-                             $tasks = TaskController::getTasksByDegreeCourse(Connection::getConnection(),$cursoGrado);
+                             $tasks = TaskController::getTasksByDegreeCourse(Connection::getConnection());
                              if(!empty($tasks)){
                                 foreach ($tasks as $task) {
                         
