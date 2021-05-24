@@ -18,9 +18,8 @@ $.ajax({
             +'&fechaInicio='+fechaInicio+'&fechaFinal='+fechaFinal,
         	success: async function(data){
                 console.log(data)
-                window.location.replace("http://localhost/spe/views/v_coordinator.php")
-                //$("#estanciasCoordinador").html(data);
-           // await window.location.replace("http://localhost/spe/views/v_view-internship.php?niu="+niu);
+                //window.location.replace("http://localhost/spe/views/v_coordinator.php")
+              
           },
           error: function(err){
               console.log('error:'+err);

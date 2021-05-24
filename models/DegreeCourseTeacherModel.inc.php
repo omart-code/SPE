@@ -26,6 +26,31 @@
     
             return $teachers;
         }
+        public static function getTeacherByNiuAndDegreeCourse($conn, $id_curso_grado, $niu_profesor){
+            $teacher = null;
+    
+            if(isset($conn)){
+                try{
+                    include_once '../entities/DegreeCourseTeacher.inc.php';
+                    $sql = "SELECT * FROM profesores_curso_grado p WHERE p.niu_profesor = :niu_profesor AND id_curso_grado = :id_curso_grado";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':niu_profesor', $niu_profesor, PDO::PARAM_STR);
+                    $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
+                    $stmt -> execute();
+                    $res = $stmt-> fetch();
+                    if(count($res)){
+                        
+                            $teacher = $res;
+                        
+                    } 
+                   
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
+    
+            return $teacher;
+        }
 
        
 

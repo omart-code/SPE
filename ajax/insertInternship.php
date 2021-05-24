@@ -51,8 +51,12 @@ $fechaFinal =  $_POST['fechaFinal'];
       TaskController::insertTasksByDegreeCourse(Connection::getConnection(), $internship->getIdDegreeCourse());
     } */
    
-    //inserto el profesor en profesor curso grado
-    DegreeCourseTeacherController::insertDegreeCourseTeacher(Connection::getConnection(),$internship->getIdDegreeCourse(),$internship-> getNiuTeacher());
+    //inserto el profesor en profesor curso grado si no existe ya
+    $teacher = DegreeCourseTeacherController::getTeacherByNiuAndDegreeCourse(Connection::getConnection(), $cursoGrado, $internship-> getNiuTeacher());
+    if($teacher ==null){
+      DegreeCourseTeacherController::insertDegreeCourseTeacher(Connection::getConnection(),$internship->getIdDegreeCourse(),$internship-> getNiuTeacher());
+    }
+   
 
     
 
