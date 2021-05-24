@@ -29,7 +29,7 @@
                     
                     <?php 
                     Connection::openConnection();
-                    $degreeCourses = DegreeCourseController::getDepartmentByDegree(Connection::getConnection(), $_SESSION['niu']);
+                    $degreeCourses = DegreeCourseController::getDegreeCourseByDegree(Connection::getConnection(), $_SESSION['niu']);
                     foreach ($degreeCourses as $degreeCourse) { ?>
                             <option value="<?php echo $degreeCourse['id_curso_grado']?>"><?php echo $degreeCourse['nombre']?></option>
                         <?php }?>

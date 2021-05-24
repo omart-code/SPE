@@ -26,6 +26,28 @@
             return $message;
         }
 
+        public static function insertTeacherMessage($conn, $id_tarea, $mensaje, $niu_profesor){
+            
+            if(isset($conn)){
+                try{
+                    
+                    $sql = "INSERT INTO mensajes_profesor (id_tarea, mensaje, niu_profesor)
+                    VALUES (:id_tarea, :mensaje, :niu_profesor)";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':id_tarea', $id_tarea, PDO::PARAM_STR);
+                    $stmt ->bindParam(':mensaje', $mensaje, PDO::PARAM_STR);
+                    $stmt ->bindParam(':niu_profesor', $niu_profesor, PDO::PARAM_STR);
+                   
+                    
+                
+                    $stmt -> execute();
+                    
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
+        }
+
         //Actualiza el mensaje de la tarea que el profesor ha modificado
         public static function updateTeacherMessageByTask($conn, $id_tarea, $mensaje, $niu_profesor){
     
@@ -47,15 +69,18 @@
            
         }
 
+       
+
         //Restablece el mensaje del profesor a su valor original
-        public static function restoreMessageByTask($conn, $id_tarea){
+        public static function restoreMessageByTask($conn, $id_tarea, $niu_profesor){
     
             if(isset($conn)){
                 try{
                     include_once '../entities/TeacherMessage.inc.php';
-                    $sql = "UPDATE mensajes_profesor mp INNER JOIN tareas t ON mp.id_tarea = t.id_tarea SET mp.mensaje = t.mensaje WHERE t.id_tarea = :id_tarea";
+                    $sql = "UPDATE mensajes_profesor mp INNER JOIN plantillas_mensajes p ON mp.id_tarea = p.id_tarea SET mp.mensaje = p.mensaje WHERE mp.id_tarea = :id_tarea AND mp.niu_profesor = :niu_profesor ";
                     $stmt = $conn -> prepare($sql);
                     $stmt ->bindParam(':id_tarea', $id_tarea, PDO::PARAM_STR);
+                    $stmt ->bindParam(':niu_profesor', $niu_profesor, PDO::PARAM_STR);
                     $stmt -> execute();
                   
                 }catch (PDOException $ex){

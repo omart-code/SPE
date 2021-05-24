@@ -32,8 +32,8 @@ class DegreeCourseController {
         return $degree;
     }
 
-    public function getDepartmentByDegree($conn, $niu_profesor){
-        $degreeCourses = DegreeCourseModel::getDepartmentByDegree($conn, $niu_profesor);
+    public function getDegreeCourseByDegree($conn, $niu_profesor){
+        $degreeCourses = DegreeCourseModel::getDegreeCourseByDegree($conn, $niu_profesor);
         return $degreeCourses;
     }
 

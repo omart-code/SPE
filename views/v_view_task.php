@@ -9,6 +9,7 @@
      include '../includes/doc-declaration.inc.php';
      include_once '../controllers/TaskController.inc.php';
      include_once '../controllers/TeacherMessageController.inc.php';
+     include_once '../controllers/TemplateMessageController.inc.php';
      include_once '../app/Redirection.inc.php';
      include_once '../app/Connection.inc.php'; 
     ?>
@@ -24,7 +25,9 @@
                 <div class="card-body">
                 <?php
                    Connection::openConnection();
+
                    $task = TaskController::getTaskById(Connection::getConnection(), $_GET['task']);
+                   
                 ?>
                     <h2 class="card-text"><b>Informació de la tasca - <?php echo $task->getTaskName(); ?></b> </h2>
                    
@@ -33,36 +36,35 @@
          </div>
          <br>
          <br>
-         <div class="info">
-         <h3>Accions a realitzar:</h3>
-         <ol>
-            <?php
-              Connection::openConnection();
-              $actions = TaskController::getTasksActions(Connection::getConnection(), $_GET['task']);
-              
-              foreach ($actions as $key => $act) {
-                 echo "<li>".$act-> getActionDescription(). "</li>";
-              }
-
-            ?>
-         </ol>
+        
          
          
-         </div>
+        
          <br>
          <br>
-         <div class="mensaje">
+         <div >
              <?php
                 Connection::openConnection();
-                $message = TeacherMessageController::getTeacherMessageById(Connection::getConnection(), $_GET['task'], $_SESSION["niu"]);
+                $teacherMessage = TeacherMessageController::getTeacherMessageById(Connection::getConnection(), $task->getTaskId(),$_SESSION['niu']);
                
-                echo $message->getTeacherMessageMessage();
+                if($teacherMessage != null){
+                    
+                    echo $teacherMessage->getTeacherMessageMessage();
+                }else{
+                    $message = TemplateMessageController::getTemplateMessageById(Connection::getConnection(), $task->getTaskId());
+                  
+                    echo $message;
+                }
+               
+               /*  $message = TeacherMessageController::getTeacherMessageById(Connection::getConnection(), $_GET['task'], $_SESSION["niu"]);
+               
+                echo $message->getTeacherMessageMessage(); */
                
 
             ?>
 
             <?php  if(isset($_POST['restablecer'])){
-                     TeacherMessageController::restoreMessageByTask(Connection::getConnection(),$_GET['task']);
+                     TeacherMessageController::restoreMessageByTask(Connection::getConnection(),$_GET['task'], $_SESSION['niu']);
                      echo '<script>window.location.replace("'.TASK."?task=".$_GET['task']."&niu=".$_GET['niu'].'")</script>';
             }
 
@@ -90,7 +92,16 @@
         <?php 
         
              if(isset($_POST['aceptarMensaje'])){
+               // TeacherMessageController::updateTeacherMessageByTask(Connection::getConnection(), $_GET['task'], $_POST['editordata'], $_SESSION["niu"]);
+               $teacherMessage = TeacherMessageController::getTeacherMessageById(Connection::getConnection(), $task->getTaskId(),$_SESSION['niu']);
+               
+               if($teacherMessage != null){
                 TeacherMessageController::updateTeacherMessageByTask(Connection::getConnection(), $_GET['task'], $_POST['editordata'], $_SESSION["niu"]);
+                 
+               }else{
+                TeacherMessageController::insertTeacherMessage(Connection::getConnection(), $_GET['task'],$_POST['editordata'],$_SESSION["niu"]);
+               }
+               
                 echo '<script>window.location.replace("'.TASK."?task=".$_GET['task']."&niu=".$_GET['niu'].'")</script>';
                
              }
@@ -104,7 +115,13 @@
                     <form class="form" method="post">
                     <label name="guia"><b>Guia:</b></label><br><br>
                         <textarea id="summernote" name="editordata">
-                        <?php echo $message->getTeacherMessageMessage() ?>
+                        <?php 
+                        if($teacherMessage !=null){
+                            echo $teacherMessage->getTeacherMessageMessage();
+                        }else{
+                            echo $message;
+                        }
+                       ?>
                         </textarea>
                 
                     <br><br>
