@@ -122,19 +122,19 @@ include_once '../controllers/TeacherController.inc.php';
                      <?php
                                     Connection::openConnection(); 
                                     $depts = DepartmentController::getDepartmentsInfo(Connection::getConnection(), $_POST['cursoGradoProfesores']); 
-                                    
-                                        foreach ($depts as $dept) {
-                                           
-                                           
-                                        echo "<tr>";
-                                        echo "<th scope='row'>".$dept['nombre_departamento']."</td>";
-                                        echo "<td>".$dept['siglas']."</td>";
-                                        echo "<td>".$dept['estudiantes_asignados']."</td>";
-                                        echo "<td>".$dept['max_estudiantes']."</td>";
-                                        
-                                        echo "</tr>";
-                                    }
-                        
+                                        if($depts !=null){
+                                            foreach ($depts as $dept) {
+                                            
+                                            
+                                            echo "<tr>";
+                                            echo "<th scope='row'>".$dept['nombre_departamento']."</td>";
+                                            echo "<td>".$dept['siglas']."</td>";
+                                            echo "<td>".$dept['estudiantes_asignados']."</td>";
+                                            echo "<td>".$dept['max_estudiantes']."</td>";
+                                            
+                                            echo "</tr>";
+                                        }
+                                    }   
                     ?>
                                 </tbody>
                             </table>   

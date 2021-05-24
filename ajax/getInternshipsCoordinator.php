@@ -56,7 +56,7 @@
                                 
                              
                                 <tr class="dt-body-center">
-                                <th  class="dt-body-center"><a style="text-decoration:none;" href="./v_view-internship.php?niu=<?php echo $info['niu_estudiante']?>"> <?php echo $info['nombre'].' '.$info['apellido'] ?> </a></td>
+                                <th  class="dt-body-center"><a style="text-decoration:none;" href="./v_view-internship_coord.php?niu=<?php echo $info['niu_estudiante']?>"> <?php echo $info['nombre'].' '.$info['apellido'] ?> </a></td>
                                 <?php $tasksInternship = InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(), $info['id_estancia']);
                                 foreach ($tasksInternship as $taskInternship){ ?>
                                     <td class="dt-body-center" style="<?php if($taskInternship->getFinished() == "1"){

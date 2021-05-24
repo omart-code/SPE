@@ -10,8 +10,8 @@ class UserController {
         return $userList;
     }
 
-    public function getUserByNiu($conn, $niu){
-        $user = UserModel::getUserByNiu($conn, $niu);
+    public function getUserByNiu($conn, $niu, $pass){
+        $user = UserModel::getUserByNiu($conn, $niu, $pass);
         return $user;
     }
 

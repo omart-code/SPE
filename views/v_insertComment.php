@@ -12,16 +12,9 @@ include_once '../includes/navbar.inc.php';
     
       <?php
       $_SESSION['internshipId'] = $_GET['id'];
-      $_SESSION['niuStudent'] = $_GET['niu'];
-      if(isset($_POST['enviarComentari'])){
-         
-            Connection::openConnection(); 
-            CommentController::insertComment(Connection::getConnection(),$_POST['textoComentario'], $_POST['tipoComentario'],$_SESSION['internshipId'], $_POST['categoriaComentario']);
-            echo '<script> window.location.replace("'.VIEWINTERNSHIP."?niu=".$_SESSION['niuStudent'].'")</script>';
-          }
+      $_SESSION['niuStudent'] = $_GET['niu'];   ?>
       
-      
-       ?>
+    
        <div class="container-fluid" style="width:80%;">
        <br>
             <h1>Afegir un comentari</h1>
@@ -43,7 +36,7 @@ include_once '../includes/navbar.inc.php';
             <br>
             <br>
 
-            <form method="POST">
+            
           
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label"><b>Tipus de comentari:</b></label>
@@ -68,16 +61,20 @@ include_once '../includes/navbar.inc.php';
                     
                     
                         
-            <button type="submit" class="btn btn-success" name="enviarComentari">Afegeix</button>
-            </form>
+            <button type="submit" class="btn btn-success" onClick="insertComment(<?php echo  $_SESSION['internshipId']?>, <?php echo $_SESSION['niuStudent'] ?> )" name="enviarComentari">Afegeix</button>
+            <br>
         </div>
         
         <div class="container-fluid" style="width:80%;">
-        <button type="button" class=" btn btn-secondary" onclick="history.back(-1)"><i class="fas fa-arrow-left"></i> Torna Enrere</button>
+        <br>
+        <button type="button" class=" btn btn-secondary" onclick="goBack(<?php echo $_SESSION['niuStudent'] ?>)"><i class="fas fa-arrow-left"></i> Torna Enrere</button>
         </div>
 
 
 <script>
+function goBack(niuStudent){
+    window.location.replace("http://localhost/spe/views/v_view-internship.php?niu="+niuStudent);
+}
 $('#summernote').summernote({
     toolbar: [
     // [groupName, [list of button]]
@@ -90,4 +87,5 @@ $('#summernote').summernote({
   ]
       })
 </script>
+<script src="../js/insertComment.js"></script>
 

@@ -118,7 +118,7 @@ include_once '../controllers/DegreeCourseController.inc.php';
                      <?php
                                     Connection::openConnection(); 
                                     $teachers = TeacherController::getTeachersInfo(Connection::getConnection(), $_POST['cursoGradoProfesores']); 
-                                    
+                                        if($teachers !=null){
                                         foreach ($teachers as $teacher) {
                                             $estudiantes_asignados = TeacherController::getNumStudents(Connection::getConnection(), $teacher['niu_profesor'], $_POST['cursoGradoProfesores']);
                                             $estudiantes_asignados = $estudiantes_asignados['estudiantes_asignados'];
@@ -130,8 +130,8 @@ include_once '../controllers/DegreeCourseController.inc.php';
                                         echo "<td>".$teacher['max_estudiantes']."</td>";
                                         
                                         echo "</tr>";
+                                        }
                                     }
-                        
                     ?>
                                 </tbody>
                             </table>   

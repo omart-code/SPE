@@ -123,7 +123,7 @@
       <!--   AQUI TENDRÁS QUE HACER QUE CUANDO UNA FASE SE COMPLETE SE PONGA EN VERDE, Y SI NO ES ASI EN ROJO -->
       <!-- HACER UN ACORDEON QUE MUESTRE POR CADA FASE SU TABLA DE TAREAS, LO HACE PERO FALTA DAR FORMATO Y CONTROLAR CREAR FILAS PESE A NO TENER VALORES-->
       <div class="container-fluid" style="width:80%;">
-        
+      <?php  ?>
            
             <div class="alert alert-secondary" role="alert">
                 <h4>Fase Inicial</h4>
@@ -145,7 +145,7 @@
                     <tbody>
                                 <?php
                                 Connection::openConnection();
-                                $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 1, $internship->getIdDegreeCourse());
+                                $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 1);
                                
                                 $tasksInternship = InternshipTaskController::getInternshipTasksByPhase(Connection::getConnection(), $internship->getIdInternship(), 1);
                                
@@ -158,7 +158,7 @@
                                                  <td> 
                                                  <?php if($taskInternship->getTaskDate() != null){
                                                         echo "<b>".$taskInternship->getTaskDate()."</b>"   ;
-                                                 }else{ echo "Sense data";
+                                                 }else{ echo ' ';
                                                  } ?>
                                                  </td>
                                                  <td  style="<?php if($taskInternship->getNormalAction1Date() != ""){

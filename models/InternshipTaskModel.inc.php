@@ -23,8 +23,7 @@ include_once '../app/Connection.inc.php';
                         foreach($res as $intTask){
                             //TIENES QUE MODIFICAR ESTO
                             $internshipTasks[] = new InternshipTask(null, null, $intTask['id_tarea'],  $intTask['fecha_prevista_tarea'], $intTask['fecha_realiz_accion1'],$intTask['fecha_realiz_accion2'], 
-                            $intTask['fecha_realiz_accion3'], null,
-                                );
+                            $intTask['fecha_realiz_accion3'], null);
                         } 
                      }else{
                             print '';

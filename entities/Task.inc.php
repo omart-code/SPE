@@ -4,7 +4,6 @@ class Task {
 
     private $id_tarea;
     private $id_etapa;
-    private $id_curso_grado;
     private $nombre;
     private $informacion;
     private $mensaje;
@@ -14,10 +13,9 @@ class Task {
     private $numero_acciones;
     private $porcentaje;
    
-    public function __construct($id_tarea, $id_etapa, $id_curso_grado, $nombre,  $informacion, $mensaje,  $accion1, $accion2,  $accion3,  $numero_acciones, $porcentaje ){
+    public function __construct($id_tarea, $id_etapa, $nombre,  $informacion, $mensaje,  $accion1, $accion2,  $accion3,  $numero_acciones, $porcentaje ){
         $this -> id_tarea = $id_tarea;
         $this -> id_etapa = $id_etapa;
-        $this -> id_curso_grado = $id_curso_grado;
         $this -> nombre = $nombre;
         $this -> informacion = $informacion;
         $this -> mensaje = $mensaje;
@@ -39,9 +37,6 @@ class Task {
     }
 
 
-    public function getTaskDegreeCourse(){
-        return $this -> id_curso_grado;
-    }
 
     
     public function getTaskName(){

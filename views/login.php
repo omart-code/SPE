@@ -14,6 +14,7 @@ if(isset($_POST['enviar'])){
   
   Connection::openConnection(); 
   $validator = new LoginValidator($_POST['niu'], $_POST['password'], Connection::getConnection());
+  var_dump($_POST);
   if($validator ->getError() === '' && !is_null($validator ->getUser())){
  //Iniciar sessio
  //Redirigir a la pagina que toque
@@ -69,6 +70,7 @@ include_once '../includes/doc-declaration.inc.php';
             $validator -> showError();
             }
           ?>
+     
       <input type="submit" role="button" name="enviar" class="fadeIn fourth btn btn-success" value="Log In">
     </form>
 

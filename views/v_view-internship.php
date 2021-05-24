@@ -16,6 +16,7 @@
     include_once '../controllers/ExternalTeacherController.inc.php';
     include_once '../controllers/InternshipTaskController.inc.php';
     include_once '../controllers/TaskController.inc.php';
+    include_once '../controllers/CompanyController.inc.php';
     include_once '../models/InternshipModel.inc.php';
     include_once '../app/Connection.inc.php'; 
     include_once '../app/Redirection.inc.php';?>
@@ -471,6 +472,8 @@
     <?php }else{ 
         echo "<h6> No hi ha comentaris a mostrar </h6>";
     } ?>
+    <br>
+     <br>
         </div>
         
        
@@ -552,13 +555,14 @@
                         <label for="message-text" class="col-form-label"><b>Menció:</b></label>
                         <select name="mencionAlumno" class="form-control" aria-label=".form-select-lg example">
                         <?php $mentions = StudentController::getMentionsByStudentDegree(Connection::getConnection(),$student->getStudentDegree()) ;
-                        
+                            if($mentions !=null){
                             foreach ($mentions as $key => $mention) { ?>
                                     <option <?php if($mention['id_mencion'] == $student->getStudentMention()){
                                         echo 'selected';
                                     } ?>> <?php echo  $mention['nombre'] ?></option>
                                 
-                        <?php  } ?>
+                        <?php  }
+                        } ?>
                     
                         </select>
                             
@@ -591,25 +595,27 @@
                     <form id="profesorForm" method="POST"  name="profesor" role="form">
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label"><b>Nom:</b></label>
-                            <input type="text" class="form-control" id="nombre-profesor" name="nombreProfesor" value="<?php echo $extTeacher->getName(); ?>">
+                            <input type="text" class="form-control" id="nombre-profesor" name="nombreProfesor" value="<?php if (isset($extTeacher)){echo $extTeacher->getName();} ?>">
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label"><b>Cognom:</b></label>
-                            <input class="form-control" id="apellido-profesor" name="apellidoProfesor" value="<?php echo $extTeacher->getSurname(); ?>"></input>
+                            <input class="form-control" id="apellido-profesor" name="apellidoProfesor" value="<?php if (isset($extTeacher)){echo $extTeacher->getSurname();} ?>"></input>
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label"><b>Email:</b></label>
-                            <input class="form-control" id="email-profesor" name="emailProfesor" value="<?php echo $extTeacher->getEmail(); ?>"></input>
+                            <input class="form-control" id="email-profesor" name="emailProfesor" value="<?php if (isset($extTeacher)){echo $extTeacher->getEmail();} ?>"></input>
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label"><b>Telèfon:<b></label>
-                            <input class="form-control" id="telefono-profesor" name="telefonoProfesor" value="<?php echo $extTeacher->getTelf(); ?>"></input>
+                            <input class="form-control" id="telefono-profesor" name="telefonoProfesor" value="<?php if (isset($extTeacher)){ echo $extTeacher->getTelf();}?>"></input>
                         </div>
                         <div class="form-group">
-                             <?php $idEmpresa = $extTeacher->getIdCompany(); 
-                                    $nombreEmpresa = ExternalTeacherController::getExternalTeacherCompany(Connection::getConnection(), $idEmpresa)?>
+                             <?php if (isset($extTeacher)){
+                                    $idEmpresa = $extTeacher->getIdCompany(); 
+                                    $nombreEmpresa = ExternalTeacherController::getExternalTeacherCompany(Connection::getConnection(), $idEmpresa); }?>
+                                   
                             <label for="message-text" class="col-form-label"><b>Empresa:<b></label>
-                            <input class="form-control" id="empresa-profesor" name="empresaProfesor" value="<?php echo $nombreEmpresa ?>"></input>
+                            <input class="form-control" id="empresa-profesor" name="empresaProfesor" value="<?php if (isset($nombreEmpresa)){echo $nombreEmpresa;} ?>"></input>
                         </div>
                        
                    

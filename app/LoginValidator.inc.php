@@ -13,7 +13,7 @@ class LoginValidator{
             $this->user = null;
             $this -> error = "Has d'introduir niu i paraula de pas";
         }else{
-            $this -> user = UserModel::getUserByNiu($conn, $niu);
+            $this -> user = UserModel::getUserByNiu($conn, $niu, $password);
             if(is_null($this->user) || $password !== $this->user->getUserPassword()){
                 $this->error = "Dades incorrectes" ;
             }

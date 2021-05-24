@@ -3,23 +3,23 @@
     class TaskModel{
 
         //Devuelve todas las tareas que pertenecen a una fase
-        public static function getTasksByPhase($conn, $id_etapa, $id_curso_grado){ 
+        public static function getTasksByPhase($conn, $id_etapa){ 
             $tasks = null;
     
             if(isset($conn)){
                 try{
                     include_once '../entities/Task.inc.php';
-                    $sql = "SELECT * FROM tareas WHERE id_etapa = :id_etapa and id_curso_grado = :id_curso_grado";
+                    $sql = "SELECT * FROM tareas WHERE id_etapa = :id_etapa";
                     $stmt = $conn -> prepare($sql);
                     $stmt ->bindParam(':id_etapa', $id_etapa, PDO::PARAM_STR);
-                    $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
+                   
                     $stmt -> execute();
                     $res = $stmt-> fetchAll();
     
                     if(count($res)){
                         foreach($res as $task){
                             $tasks[] = new Task(
-                                $task['id_tarea'], $task['id_etapa'], $task['id_curso_grado'],$task['nombre'],$task['informacion'],
+                                $task['id_tarea'], $task['id_etapa'],$task['nombre'],$task['informacion'],
                                 $task['mensaje'],$task['accion1'],$task['accion2'],$task['accion3'], $task['numero_acciones'], $task['porcentaje']);
                             }}else{
                                 print '';
@@ -48,7 +48,7 @@
                     if(count($res)){
                         foreach($res as $task){
                             $tasks[] = new Task(
-                                $task['id_tarea'], $task['id_etapa'], $task['id_curso_grado'],$task['nombre'],$task['informacion'],
+                                $task['id_tarea'], $task['id_etapa'],$task['nombre'],$task['informacion'],
                                 $task['mensaje'],$task['accion1'],$task['accion2'],$task['accion3'], $task['numero_acciones'], $task['porcentaje']);
                             }}else{
                                 print '';
@@ -77,7 +77,7 @@
 
                     if(!empty($res)){
                         $task = new Task(
-                            $res['id_tarea'], $res['id_etapa'], $res['id_curso_grado'],$res['nombre'],$res['informacion'],
+                            $res['id_tarea'], $res['id_etapa'],$res['nombre'],$res['informacion'],
                             $res['mensaje'],$res['accion1'],$res['accion2'],$res['accion3'], $res['numero_acciones'], $res['porcentaje']);
                     }
                 }catch (PDOException $ex){

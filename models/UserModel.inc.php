@@ -51,16 +51,16 @@ class UserModel {
         return $users_total;
     }
 
-    public static function getUserByNiu($conn, $niu){
+    public static function getUserByNiu($conn, $niu, $pass){
         $user = null;
 
         if(isset($conn)){
             try{
                 include_once '../entities/User.inc.php';
-                $sql = "SELECT * FROM usuarios u WHERE u.niu = :niu ";
+                $sql = "SELECT * FROM usuarios u WHERE u.niu = :niu AND u.password = :pass ";
                 $stmt = $conn -> prepare($sql);
                 $stmt ->bindParam(':niu', $niu, PDO::PARAM_STR);
-             
+                $stmt ->bindParam(':pass', $pass, PDO::PARAM_STR);
                 $stmt -> execute();
                 $res = $stmt-> fetch();
 
@@ -88,7 +88,7 @@ class UserModel {
                 $res = $stmt-> fetch();
 
                 if(!empty($res)){
-                    $user = new User(  $res['id_usuario'], $res['niu'], $res['password'], $res['nombre'], $res['apellido'], $res['email'], $res['telefono'], $res['id_tipo_usuario']);
+                    $user = new User(  $user['id_usuario'], $res['niu'], $res['password'], $res['nombre'], $res['apellido'], $res['email'], $res['telefono'], $res['id_tipo_usuario']);
                 }
             }catch (PDOException $ex){
                 echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";

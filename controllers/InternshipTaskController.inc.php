@@ -5,7 +5,6 @@ include_once '../models/TaskModel.inc.php';
 class InternshipTaskController {
 
     public function getInternshipTasksByPhase($conn, $id_estancia, $id_etapa){
-        $internshipTasks = [];
         $internshipTasks = InternshipTaskModel::getInternshipTasksByPhase($conn, $id_estancia, $id_etapa);
         return $internshipTasks;
         

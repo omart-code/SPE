@@ -17,7 +17,7 @@ $profesorSelec = $_POST['profesorSelec'];
 $fechaInicio = $_POST['fechaInicio'];
 $fechaFinal =  $_POST['fechaFinal'];
 
-var_dump($cursoGrado, $niuEstudiant, $nomEstudiant, $cognomEstudiant, $profesorSelec, $fechaInicio, $fechaFinal)
+
 ?>
 
 <!--     LOGICA DEL MODAL DE INSERTAR ESTANCIA -->
@@ -45,8 +45,12 @@ var_dump($cursoGrado, $niuEstudiant, $nomEstudiant, $cognomEstudiant, $profesorS
     $internshipTasks= InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(),$internship->getIdInternship());
     //Calculo sus fechas previstas y las actualizo
     InternshipTaskController::updateTasksDates($internship->getNormalStartDate(), $internship->getNormalEndDate(), $internshipTasks);
-    //genero sus 9 tareas para su estancia
-    TaskController::insertTasksByDegreeCourse(Connection::getConnection(), $internship->getIdDegreeCourse());
+    /* //genero sus 9 tareas para su estancia
+    $tasksByDegree = TaskController::getTasksByDegreeCourse(Connection::getConnection(), $cursoGrado);
+    if($tasksByDegree == null){ //crea las tareas solo no hay tareas ya para ese curso grado
+      TaskController::insertTasksByDegreeCourse(Connection::getConnection(), $internship->getIdDegreeCourse());
+    } */
+   
     //inserto el profesor en profesor curso grado
     DegreeCourseTeacherController::insertDegreeCourseTeacher(Connection::getConnection(),$internship->getIdDegreeCourse(),$internship-> getNiuTeacher());
 
