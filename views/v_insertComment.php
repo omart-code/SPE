@@ -27,7 +27,7 @@ include_once '../includes/navbar.inc.php';
             <div class="card text-center">
                 <div class="card-body">
                     <h5 class="card-title">Nou Comentari</h5>
-                    <p class="card-text">Afegeix un nou comentari a la estancia</p>
+                    <p class="card-text">Afegeix un nou comentari a la estada</p>
                     
                 </div>
             </div>

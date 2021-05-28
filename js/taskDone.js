@@ -42,7 +42,7 @@ $( document ).ready(function() {
        
       var fechaPrevista = new Date(year,month,day);
 
-     if(today < fechaPrevista){ 
+    /*  if(today < fechaPrevista){ 
       
        
       $(this).css('background-color', '#c2e5ca');
@@ -51,7 +51,7 @@ $( document ).ready(function() {
       
         $(this).css('background-color', '#f2c4c9');
         
-      }
+      } */
       
     $.ajax({
           type: "POST",

@@ -21,14 +21,15 @@
              <table id="estancias"  class="table display table-bordered compact responsive" >
                     <thead>
                         <tr>
-                        <th scope="col">Nom</th>
+                        <th scope="col" class="text-center">Alumne/a</th>
+                        <th scope="col" class="text-center">Professor/a</th>
                         <?php Connection::openConnection();
                              $tasks = TaskController::getTasksByDegreeCourse(Connection::getConnection());
                              if(!empty($tasks)){
                                 foreach ($tasks as $task) {
                         
                                
-                                    echo "<th>" .$task->getTaskName();"</th>";
+                                    echo "<th class='dt-body-center'>" .$task->getTaskName();"</th>";
                                  }
                              } else {
                                 echo "<b>No s'han definit tasques encara per aquest curs</b><br>";
@@ -55,8 +56,9 @@
                             foreach ($infos as $info) { ?>
                                 
                              
-                                <tr class="dt-body-center">
-                                <th  class="dt-body-center"><a style="text-decoration:none;" href="./v_view-internship_coord.php?niu=<?php echo $info['niu_estudiante']?>"> <?php echo $info['nombre'].' '.$info['apellido'] ?> </a></td>
+                                <tr class="dt-body-center  nowrap">
+                                <th  class="dt-body-center nowrap"><a style="text-decoration:none;" href="./v_view-internship_coord.php?niu=<?php echo $info['niu_estudiante']?>"> <?php echo $info['apellido'].', '.$info['nombre'] ?> </a></th>
+                                <td class="nowrap"><?php echo $info['apellido_profesor'].', '.$info['nombre_profesor'] ?></td>
                                 <?php $tasksInternship = InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(), $info['id_estancia']);
                                 foreach ($tasksInternship as $taskInternship){ ?>
                                     <td class="dt-body-center" style="<?php if($taskInternship->getFinished() == "1"){

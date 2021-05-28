@@ -10,7 +10,7 @@ include_once '../app/Connection.inc.php';
             if(isset($conn)){
                 try{
                     include_once '../entities/InternshipTask.inc.php';
-                    $sql = "SELECT t.id_tarea, te.fecha_prevista_tarea, te.fecha_realiz_accion1, te.fecha_realiz_accion2, te.fecha_realiz_accion3
+                    $sql = "SELECT t.id_tarea, te.fecha_prevista_tarea, te.fecha_realiz_accion1, te.fecha_realiz_accion2, te.fecha_realiz_accion3, te.finalizada
                     FROM tareas t
                     INNER JOIN tareas_estancias te ON te.id_tarea = t.id_tarea
                     WHERE t.id_etapa = :id_etapa AND te.id_estancia = :id_estancia;";
@@ -23,7 +23,7 @@ include_once '../app/Connection.inc.php';
                         foreach($res as $intTask){
                             //TIENES QUE MODIFICAR ESTO
                             $internshipTasks[] = new InternshipTask(null, null, $intTask['id_tarea'],  $intTask['fecha_prevista_tarea'], $intTask['fecha_realiz_accion1'],$intTask['fecha_realiz_accion2'], 
-                            $intTask['fecha_realiz_accion3'], null);
+                            $intTask['fecha_realiz_accion3'], $intTask['finalizada']);
                         } 
                      }else{
                             print '';

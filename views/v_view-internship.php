@@ -44,14 +44,14 @@
             <div class="row">
                         <br>
                         <br>
-                        <div class="col-md-4"><h4><b>Alumne
+                        <div class="col-md-4"><h4><b>Alumne/a
                         <a type="button" class="button" data-toggle="modal" data-target="#modalAlumno" style="color: #28a745">
                         <i class="fa fa-edit"></i>
                         </a>
                         </b></h4>
                         
                         </div>
-                        <div class="col-md-4"><h4><b>Tutor extern
+                        <div class="col-md-4"><h4><b>Tutor/a extern/a
                         <a type="button" class="button" data-toggle="modal" data-target="#modalProfesor" style="color: #28a745">
                         <i class="fa fa-edit"></i>
                         </a></b></h4></div>
@@ -102,7 +102,7 @@
         <br>
         <br>
         <div class="container-fluid" style="width:80%;">
-        <h5>Progrés del alumne:</h5>
+        <h5>Progrés de l'alumne/a:</h5>
         <div class="progress">
                     <div class="progress-bar bg-success" role="progressbar" style="width: <?php echo $percentage ?>%"  aria-valuenow="<?php if($percentage >0 && $percentage<=100){
                         echo $percentage;
@@ -144,6 +144,8 @@
                     </thead>
                     <tbody>
                                 <?php
+                                $currentDate = date('Y-m-d');
+                                $currentDatetime = DateTime::createFromFormat('Y-m-d', $currentDate);
                                 Connection::openConnection();
                                 $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 1, $internship->getIdDegreeCourse());
                                 $tasksInternship = InternshipTaskController::getInternshipTasksByPhase(Connection::getConnection(), $internship->getIdInternship(), 1);
@@ -156,55 +158,67 @@
                                     <?php foreach ($tasksInternship as $taskInternship) {
                                       
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
-                                                  <td> 
+                                                  <td  style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
+                                                                            echo 'background-color: white;';
+                                                                    }else{ //data_prevista anterior data_actual
+                                                                        if($taskInternship->getFinished() == "1"){ //si tasca completada
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{ //si no completada
+                                                                            echo 'background-color: #f2c4c9;'; //vermell
+                                                                        }
+                                                                    } ?>" >
                                                   <?php if($taskInternship->getTaskDate() != null){
                                                          echo "<b>".$taskInternship->getTaskDate()."</b>"   ;
-                                                  }else{ echo "Sense data";
-                                                  } ?>
+                                                        }else{
+                                                            echo "";
+                                                        } ?>
                                                   </td>
-                                                  <td  style="<?php if($taskInternship->getNormalAction1Date() != ""){
-                                                                        if($taskInternship->getNormalTaskDate() < $taskInternship->getNormalAction1Date()){?>
-                                                                                        background-color: #f2c4c9;   
-                                                                      <?php  }else{ ?>
-                                                                           background-color: #c2e5ca; 
-                                                                    <?php  } 
-                                                                    } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"> <?php if($taskInternship->getAction1Date() != null){
-                                                      echo $taskInternship->getAction1Date();
-                                                    }else{ ?>
-                                                        <div class="check text-center" >
-                                                      
-                                                        </div>
-                                                      
-                                                    <?php } ?>
+                                                  <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
+                                                                            echo 'background-color: white;';
+                                                                    }else{ //data_prevista anterior data_actual
+                                                                        if($taskInternship->getFinished() == "1"){ //si tasca completada
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{ //si no completada
+                                                                            echo 'background-color: #f2c4c9;'; //vermell
+                                                                        }
+                                                                    } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"><?php if($taskInternship->getNormalAction1Date() != ""){ 
+                                                            echo $taskInternship->getAction1Date();
+                                                            } else { 
+                                                                echo ""; //va el boton
+                                                            }
+                                                        ?>
                                                     </td>
-                                                  <td style="<?php if($taskInternship->getNormalAction2Date() != ""){
-                                                                        if($taskInternship->getNormalTaskDate()< $taskInternship->getNormalAction2Date()){?>
-                                                                                        background-color: #f2c4c9;   
-                                                                      <?php  }else{ ?>
-                                                                           background-color: #c2e5ca; 
-                                                                    <?php  } 
-                                                                    } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>"><?php if($taskInternship->getAction2Date() != null){
-                                                      echo $taskInternship->getAction2Date();
-                                                    }else{ ?>
-                                                        <div class="check text-center">
-                                                      
-                                                        </div>
-                                                      
-                                                    <?php } ?></td>
-                                                  <td style="<?php if($taskInternship->getNormalAction3Date() != ""){
-                                                                        if($taskInternship->getNormalTaskDate()< $taskInternship->getNormalAction3Date()){?>
-                                                                                        background-color: #f2c4c9;   
-                                                                      <?php  }else{ ?>
-                                                                           background-color: #c2e5ca; 
-                                                                    <?php  } 
-                                                                    } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"> <?php if($taskInternship->getAction3Date() != null){
-                                                      echo $taskInternship->getAction3Date();
-                                                    }else{ ?>
-                                                        <div class="taskDone" class="check text-center">
-                                                       
-                                                        </div>
-                                                      
-                                                    <?php } ?></td>
+                                                  <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
+                                                                            echo 'background-color: white;';
+                                                                    }else{ //data_prevista anterior data_actual
+                                                                        if($taskInternship->getFinished() == "1"){ //si tasca completada
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{ //si no completada
+                                                                            echo 'background-color: #f2c4c9;'; //vermell
+                                                                        }
+                                                                    } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>"><?php if($taskInternship->getNormalAction2Date() != ""){ 
+                                                            echo $taskInternship->getAction2Date();
+                                                            } else { 
+                                                                echo ""; //va el boton
+                                                            }
+                                                        ?>
+                                                  
+                                                  </td>
+                                                  <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
+                                                                            echo 'background-color: white;';
+                                                                    }else{ //data_prevista anterior data_actual
+                                                                        if($taskInternship->getFinished() == "1"){ //si tasca completada
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{ //si no completada
+                                                                            echo 'background-color: #f2c4c9;'; //vermell
+                                                                        }
+                                                                    } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"><?php if($taskInternship->getNormalAction3Date() != ""){ 
+                                                            echo $taskInternship->getAction3Date();
+                                                            } else { 
+                                                                echo ""; //va el boton
+                                                            }
+                                                        ?>
+                                                  </td>
                                                     <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId()."&niu=".$internship->getNiuStudent() ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>      
                                                  </tr>
                                            
@@ -251,55 +265,67 @@
                                     <?php foreach ($tasksInternship as $taskInternship) {
                                       
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
-                                                  <td> 
+                                                    <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
+                                                                            echo 'background-color: white;';
+                                                                    }else{ //data_prevista anterior data_actual
+                                                                        if($taskInternship->getFinished() == "1"){ //si tasca completada
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{ //si no completada
+                                                                            echo 'background-color: #f2c4c9;'; //vermell
+                                                                        }
+                                                                    } ?>" > 
                                                   <?php if($taskInternship->getTaskDate() != null){
                                                          echo "<b>".$taskInternship->getTaskDate()."</b>"   ;
-                                                  }else{ echo "Sense data";
-                                                  } ?>
+                                                        }else{
+                                                            echo "";
+                                                        } ?>
                                                   </td>
-                                                  <td  style="<?php if($taskInternship->getNormalAction1Date() != ""){
-                                                                        if($taskInternship->getNormalTaskDate() < $taskInternship->getNormalAction1Date()){?>
-                                                                                        background-color: #f2c4c9;   
-                                                                      <?php  }else{ ?>
-                                                                           background-color: #c2e5ca; 
-                                                                    <?php  } 
-                                                                    } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"> <?php if($taskInternship->getAction1Date() != null){
-                                                      echo $taskInternship->getAction1Date();
-                                                    }else{ ?>
-                                                        <div class="check text-center" >
-                                                      
-                                                        </div>
-                                                      
-                                                    <?php } ?>
+                                                  <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
+                                                                            echo 'background-color: white;';
+                                                                    }else{ //data_prevista anterior data_actual
+                                                                        if($taskInternship->getFinished() == "1"){ //si tasca completada
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{ //si no completada
+                                                                            echo 'background-color: #f2c4c9;'; //vermell
+                                                                        }
+                                                                    } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"><?php if($taskInternship->getNormalAction1Date() != ""){ 
+                                                            echo $taskInternship->getAction1Date();
+                                                            } else { 
+                                                                echo ""; //va el boton
+                                                            }
+                                                        ?>
                                                     </td>
-                                                  <td style="<?php if($taskInternship->getNormalAction2Date() != ""){
-                                                                        if($taskInternship->getNormalTaskDate()< $taskInternship->getNormalAction2Date()){?>
-                                                                                        background-color: #f2c4c9;   
-                                                                      <?php  }else{ ?>
-                                                                           background-color: #c2e5ca; 
-                                                                    <?php  } 
-                                                                    } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>"><?php if($taskInternship->getAction2Date() != null){
-                                                      echo $taskInternship->getAction2Date();
-                                                    }else{ ?>
-                                                        <div class="check text-center">
-                                                      
-                                                        </div>
-                                                      
-                                                    <?php } ?></td>
-                                                  <td style="<?php if($taskInternship->getNormalAction3Date() != ""){
-                                                                        if($taskInternship->getNormalTaskDate()< $taskInternship->getNormalAction3Date()){?>
-                                                                                        background-color: #f2c4c9;   
-                                                                      <?php  }else{ ?>
-                                                                           background-color: #c2e5ca; 
-                                                                    <?php  } 
-                                                                    } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"> <?php if($taskInternship->getAction3Date() != null){
-                                                      echo $taskInternship->getAction3Date();
-                                                    }else{ ?>
-                                                        <div class="taskDone" class="check text-center">
-                                                       
-                                                        </div>
-                                                      
-                                                    <?php } ?></td>
+                                                  <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
+                                                                            echo 'background-color: white;';
+                                                                    }else{ //data_prevista anterior data_actual
+                                                                        if($taskInternship->getFinished() == "1"){ //si tasca completada
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{ //si no completada
+                                                                            echo 'background-color: #f2c4c9;'; //vermell
+                                                                        }
+                                                                    } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>"><?php if($taskInternship->getNormalAction2Date() != ""){ 
+                                                            echo $taskInternship->getAction2Date();
+                                                            } else { 
+                                                                echo ""; //va el boton
+                                                            }
+                                                        ?>
+                                                  
+                                                  </td>
+                                                  <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
+                                                                            echo 'background-color: white;';
+                                                                    }else{ //data_prevista anterior data_actual
+                                                                        if($taskInternship->getFinished() == "1"){ //si tasca completada
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{ //si no completada
+                                                                            echo 'background-color: #f2c4c9;'; //vermell
+                                                                        }
+                                                                    } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"><?php if($taskInternship->getNormalAction3Date() != ""){ 
+                                                            echo $taskInternship->getAction3Date();
+                                                            } else { 
+                                                                echo ""; //va el boton
+                                                            }
+                                                        ?>
+                                                  </td>
                                                     <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId()."&niu=".$internship->getNiuStudent() ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>      
                                                  </tr>
                                            
@@ -348,56 +374,68 @@
                                     <?php foreach ($tasksInternship as $taskInternship) {
                                       
                                        if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
-                                                  <td> 
+                                                    <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
+                                                                            echo 'background-color: white;';
+                                                                    }else{ //data_prevista anterior data_actual
+                                                                        if($taskInternship->getFinished() == "1"){ //si tasca completada
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{ //si no completada
+                                                                            echo 'background-color: #f2c4c9;'; //vermell
+                                                                        }
+                                                                    } ?>" > 
                                                   <?php if($taskInternship->getTaskDate() != null){
                                                          echo "<b>".$taskInternship->getTaskDate()."</b>"   ;
-                                                  }else{ echo "Sense data";
-                                                  } ?>
+                                                        }else{
+                                                            echo "";
+                                                        } ?>
                                                   </td>
-                                                  <td  style="<?php if($taskInternship->getNormalAction1Date() != ""){
-                                                                        if($taskInternship->getNormalTaskDate() < $taskInternship->getNormalAction1Date()){?>
-                                                                                        background-color: #f2c4c9;   
-                                                                      <?php  }else{ ?>
-                                                                           background-color: #c2e5ca; 
-                                                                    <?php  } 
-                                                                    } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"> <?php if($taskInternship->getAction1Date() != null){
-                                                      echo $taskInternship->getAction1Date();
-                                                    }else{ ?>
-                                                        <div class="check text-center" >
-                                                      
-                                                        </div>
-                                                      
-                                                    <?php } ?>
+                                                  <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
+                                                                            echo 'background-color: white;';
+                                                                    }else{ //data_prevista anterior data_actual
+                                                                        if($taskInternship->getFinished() == "1"){ //si tasca completada
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{ //si no completada
+                                                                            echo 'background-color: #f2c4c9;'; //vermell
+                                                                        }
+                                                                    } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"><?php if($taskInternship->getNormalAction1Date() != ""){ 
+                                                            echo $taskInternship->getAction1Date();
+                                                            } else { 
+                                                                echo ""; //va el boton
+                                                            }
+                                                        ?>
                                                     </td>
-                                                  <td style="<?php if($taskInternship->getNormalAction2Date() != ""){
-                                                                        if($taskInternship->getNormalTaskDate()< $taskInternship->getNormalAction2Date()){?>
-                                                                                        background-color: #f2c4c9;   
-                                                                      <?php  }else{ ?>
-                                                                           background-color: #c2e5ca; 
-                                                                    <?php  } 
-                                                                    } ?>" class="taskDone"numActions="<?php echo $task->getTaskNumActions() ?>"  niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>"><?php if($taskInternship->getAction2Date() != null){
-                                                      echo $taskInternship->getAction2Date();
-                                                    }else{ ?>
-                                                        <div class="check text-center">
-                                                      
-                                                        </div>
-                                                      
-                                                    <?php } ?></td>
-                                                  <td style="<?php if($taskInternship->getNormalAction3Date() != ""){
-                                                                        if($taskInternship->getNormalTaskDate()< $taskInternship->getNormalAction3Date()){?>
-                                                                                        background-color: #f2c4c9;   
-                                                                      <?php  }else{ ?>
-                                                                           background-color: #c2e5ca; 
-                                                                    <?php  } 
-                                                                    } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"> <?php if($taskInternship->getAction3Date() != null){
-                                                      echo $taskInternship->getAction3Date();
-                                                    }else{ ?>
-                                                        <div class="taskDone" class="check text-center">
-                                                       
-                                                        </div>
-                                                      
-                                                    <?php } ?></td>
-                                                    <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId()."&niu=".$internship->getNiuStudent() ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>      
+                                                  <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
+                                                                            echo 'background-color: white;';
+                                                                    }else{ //data_prevista anterior data_actual
+                                                                        if($taskInternship->getFinished() == "1"){ //si tasca completada
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{ //si no completada
+                                                                            echo 'background-color: #f2c4c9;'; //vermell
+                                                                        }
+                                                                    } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>"><?php if($taskInternship->getNormalAction2Date() != ""){ 
+                                                            echo $taskInternship->getAction2Date();
+                                                            } else { 
+                                                                echo ""; //va el boton
+                                                            }
+                                                        ?>
+                                                  
+                                                  </td>
+                                                  <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
+                                                                            echo 'background-color: white;';
+                                                                    }else{ //data_prevista anterior data_actual
+                                                                        if($taskInternship->getFinished() == "1"){ //si tasca completada
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{ //si no completada
+                                                                            echo 'background-color: #f2c4c9;'; //vermell
+                                                                        }
+                                                                    } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"><?php if($taskInternship->getNormalAction3Date() != ""){ 
+                                                            echo $taskInternship->getAction3Date();
+                                                            } else { 
+                                                                echo ""; //va el boton
+                                                            }
+                                                        ?>
+                                                  </td>
+                                                <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId()."&niu=".$internship->getNiuStudent() ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>      
                                                  </tr>
 
                                               
@@ -428,7 +466,7 @@
         </div>
       
         
-        <div class="comentaries-tutor container">
+        <div class="comentaries-tutor container-fluid" style="width:80%;">
             <h5>Comentaris del tutor/a:</h5> 
             <?php  Connection::openConnection(); 
                $comments = CommentController:: getComments(Connection::getConnection(), $internship->getIdInternship());  

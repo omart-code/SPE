@@ -14,7 +14,7 @@ if($cursoGrado != 'null'){?>
           <table id="estancias"  class="table display table-bordered compact responsive" >
               <thead>
                   <tr>
-                  <th>Nom</th>
+                  <th class="text-center">Alumne/a</th>
                   <?php Connection::openConnection();
                        $tasks = TaskController::getTasksByDegreeCourse(Connection::getConnection());
                        if(!empty($tasks)){
@@ -29,7 +29,7 @@ if($cursoGrado != 'null'){?>
                          
                        ?> 
 
-                  <th class="dt-body-center">Estat</th>
+                  <th class="text-center">Estat</th>
                   </tr>
                 
                 
@@ -50,11 +50,12 @@ if($cursoGrado != 'null'){?>
                   if(!empty($infos)){
                       foreach ($infos as $info) { ?>
                           
-                          <tr class="dt-body-center">
-                          <th  class="dt-body-center"><a style="text-decoration:none;" href="./v_view-internship.php?niu=<?php echo $info['niu_estudiante']?>"> <?php echo $info['nombre'].' '.$info['apellido'] ?> </a></td>
+                          <tr class="dt-body-center  nowrap">
+                          <th  class="dt-body-center"><a style="text-decoration:none;" href="./v_view-internship.php?niu=<?php echo $info['niu_estudiante']?>"> <?php echo $info['apellido'].', '.$info['nombre'] ?> </a></th>
+
                           <?php $tasksInternship = InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(), $info['id_estancia']);
                           foreach ($tasksInternship as $taskInternship){ ?>
-                              <td class="dt-body-center" style="<?php if($taskInternship->getFinished() == "1"){
+                              <td class="text-center" style="<?php if($taskInternship->getFinished() == "1"){
                                                   echo 'background-color: #c2e5ca;'; //si tasca finalitzada verd
                                                   } 
                                                   else{  //si no
