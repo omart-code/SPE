@@ -1,12 +1,12 @@
 function getInternshipsTeacher() {
-    var cursoGrado = $('select[name=cursogradoEstancias] option').filter(':selected').val()
+   var cursoGrado = $('select[name=cursogradoEstancias] option').filter(':selected').val()
     var element = document.getElementById("cercaEstades");
     var niuProfesor = element.getAttribute("niu");
    
   
-   
+  
         
-	$.proc({          
+	 $.ajax({          
         	type: "POST",
         	url: "../proc/getInternshipsTeacher.php",
         	data:'cursoGrado='+cursoGrado+'&niuProfesor='+niuProfesor,
@@ -19,4 +19,5 @@ function getInternshipsTeacher() {
               console.log('error:'+err);
           }
 	}); 
+
 }

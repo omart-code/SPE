@@ -59,27 +59,27 @@ include_once '../includes/navbar.inc.php';
             <form method="POST" action="../proc/insertTeacher.php">
             
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"><b>Nom</b></label>
+                <label for="exampleFormControlInput1" class="form-label"><b>Nom:</b></label>
                 <input type="text" class="form-control" name="nomProfessor" placeholder="ex: Joan">
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label"><b>Cognom/s</b></label>
+                <label for="exampleFormControlTextarea1" class="form-label"><b>Cognom/s;</b></label>
                 <input type="text" class="form-control" name="cognomProfessor" placeholder="ex: Martorell" ></input>
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"><b>NIU</b></label>
+                <label for="exampleFormControlInput1" class="form-label"><b>NIU:</b></label>
                 <input type="text" class="form-control" name="niuProfessor" placeholder="ex: 1111111">
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label"><b>E-mail</b></label>
+                <label for="exampleFormControlTextarea1" class="form-label"><b>E-mail:</b></label>
                 <input type="email" class="form-control" name="emailProfessor" placeholder="ex: joanmartorel@gmail.com"></input>
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"><b>Telèfon</b></label>
+                <label for="exampleFormControlInput1" class="form-label"><b>Telèfon:</b></label>
                 <input type="text" class="form-control" name="telefonProfessor" placeholder="ex: 666666666">
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"><b>Contrasenya</b></label>
+                <label for="exampleFormControlInput1" class="form-label"><b>Contrasenya:</b></label>
                 <input type="password" class="form-control" name="contrasenyaProfessor">
             </div>
             <?php Connection::openConnection(); 

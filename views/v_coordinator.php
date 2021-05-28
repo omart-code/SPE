@@ -162,6 +162,6 @@ include_once '../controllers/CoordinatorController.inc.php';
 </body>
 
 <script src="../js/getInternshipsCoordinator.js"></script>
-<script src="../js/insertInternship.js"></script>
+
 
 </html>

@@ -1,10 +1,10 @@
 function getInternshipsCoordinator() {
     var cursoGrado = $('select[name=cursogradoEstancias] option').filter(':selected').val()
-    
+   
   
    
        
-	$.proc({          
+	$.ajax({          
         	type: "POST",
         	url: "../proc/getInternshipsCoordinator.php",
         	data:'cursoGrado='+cursoGrado,
@@ -17,4 +17,6 @@ function getInternshipsCoordinator() {
               console.log('error:'+err);
           }
 	});  
+
+
 }

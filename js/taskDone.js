@@ -53,7 +53,7 @@ $( document ).ready(function() {
         
       } */
       
-    $.proc({
+    $.ajax({
           type: "POST",
           url: "../proc/updateActionDate.php",
           data: "niu="+niu+"& estancia="+estancia+"& tarea="+tasca+"& actionDate="+fecha+"& numActions="+numActions,

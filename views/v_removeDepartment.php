@@ -123,7 +123,7 @@ function getDepartments() {
     var cursGrau = $('select[name=cursoGrado] option').filter(':selected').val()
         console.log(cursGrau);
         
-	$.proc({          
+	$.ajax({          
         	type: "POST",
         	url: "../proc/getDepartmentsDegreeCourse.php",
         	data:'cursogrado='+cursGrau,

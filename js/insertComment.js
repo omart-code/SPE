@@ -9,7 +9,7 @@ function insertComment(internshipId, niuStudent){
    
   
        
-$.proc({          
+$.ajax({          
         	type: "POST",
         	url: "../proc/insertComment.php",
         	data:'tipoComentario='+tipoComentario+'&categoriaComentario='+categoriaComentario+'&comentario='+comentario+

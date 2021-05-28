@@ -131,6 +131,9 @@
                 </div>
             </div>
             <div style="display:none;" class="faseInicial" >
+            <div class="row justify-content-center">
+              
+            </div>
                 <table class="table table-bordered text-center table-sm" >
                         <thead>
                         <tr>
@@ -173,7 +176,7 @@
                                                                     } ?>" >
                                                   <?php if($taskInternship->getTaskDate() != null){
                                                          echo "<b>".$taskInternship->getTaskDate()."</b>"   ;
-                                                        }else{
+                                                        }else{ 
                                                             echo "";
                                                         } ?>
                                                   </td>
