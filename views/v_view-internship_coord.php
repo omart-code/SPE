@@ -132,7 +132,7 @@
                 </div>
             </div>
             <div  style="display:none;" class="faseInicial table-responsive" >
-                <table class="table  table-bordered" >
+                <table class="table  table-bordered text-center table-sm" >
                         <thead>
                         <tr>
                         <th scope="col">Nom tasca</th>
@@ -157,8 +157,13 @@
                                     <?php foreach ($tasksInternship as $taskInternship) {
                                       
                                       if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
-                                                  <td  style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
-                                                                            echo 'background-color: white;';
+                                                  <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
+                                                                        if($taskInternship->getFinished() == "1"){
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{
+                                                                            echo 'background-color: white;';    
+                                                                        }
+                                                                           
                                                                     }else{ //data_prevista anterior data_actual
                                                                         if($taskInternship->getFinished() == "1"){ //si tasca completada
                                                                             echo 'background-color: #c2e5ca;'; //verd
@@ -173,7 +178,12 @@
                                                         } ?>
                                                   </td>
                                                   <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
-                                                                            echo 'background-color: white;';
+                                                                        if($taskInternship->getFinished() == "1"){
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{
+                                                                            echo 'background-color: white;';    
+                                                                        }
+                                                                           
                                                                     }else{ //data_prevista anterior data_actual
                                                                         if($taskInternship->getFinished() == "1"){ //si tasca completada
                                                                             echo 'background-color: #c2e5ca;'; //verd
@@ -188,7 +198,12 @@
                                                         ?>
                                                     </td>
                                                   <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
-                                                                            echo 'background-color: white;';
+                                                                        if($taskInternship->getFinished() == "1"){
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{
+                                                                            echo 'background-color: white;';    
+                                                                        }
+                                                                           
                                                                     }else{ //data_prevista anterior data_actual
                                                                         if($taskInternship->getFinished() == "1"){ //si tasca completada
                                                                             echo 'background-color: #c2e5ca;'; //verd
@@ -204,7 +219,12 @@
                                                   
                                                   </td>
                                                   <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
-                                                                            echo 'background-color: white;';
+                                                                        if($taskInternship->getFinished() == "1"){
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{
+                                                                            echo 'background-color: white;';    
+                                                                        }
+                                                                           
                                                                     }else{ //data_prevista anterior data_actual
                                                                         if($taskInternship->getFinished() == "1"){ //si tasca completada
                                                                             echo 'background-color: #c2e5ca;'; //verd
@@ -240,7 +260,7 @@
                 </div>
             </div>
             <div  style="display:none;" class="faseSeguiment table-responsive" >
-                <table class="table table-bordered"  >
+                <table class="table table-bordered text-center table-sm"  >
                         <thead>
                         <tr>
                         <th scope="col">Nom tasca</th>
@@ -265,7 +285,12 @@
                                       
                                       if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
                                                   <td  style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
-                                                                            echo 'background-color: white;';
+                                                                        if($taskInternship->getFinished() == "1"){
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{
+                                                                            echo 'background-color: white;';    
+                                                                        }
+                                                                           
                                                                     }else{ //data_prevista anterior data_actual
                                                                         if($taskInternship->getFinished() == "1"){ //si tasca completada
                                                                             echo 'background-color: #c2e5ca;'; //verd
@@ -280,7 +305,12 @@
                                                         } ?>
                                                   </td>
                                                   <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
-                                                                            echo 'background-color: white;';
+                                                                        if($taskInternship->getFinished() == "1"){
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{
+                                                                            echo 'background-color: white;';    
+                                                                        }
+                                                                           
                                                                     }else{ //data_prevista anterior data_actual
                                                                         if($taskInternship->getFinished() == "1"){ //si tasca completada
                                                                             echo 'background-color: #c2e5ca;'; //verd
@@ -295,7 +325,12 @@
                                                         ?>
                                                     </td>
                                                   <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
-                                                                            echo 'background-color: white;';
+                                                                        if($taskInternship->getFinished() == "1"){
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{
+                                                                            echo 'background-color: white;';    
+                                                                        }
+                                                                           
                                                                     }else{ //data_prevista anterior data_actual
                                                                         if($taskInternship->getFinished() == "1"){ //si tasca completada
                                                                             echo 'background-color: #c2e5ca;'; //verd
@@ -311,7 +346,12 @@
                                                   
                                                   </td>
                                                   <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
-                                                                            echo 'background-color: white;';
+                                                                        if($taskInternship->getFinished() == "1"){
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{
+                                                                            echo 'background-color: white;';    
+                                                                        }
+                                                                           
                                                                     }else{ //data_prevista anterior data_actual
                                                                         if($taskInternship->getFinished() == "1"){ //si tasca completada
                                                                             echo 'background-color: #c2e5ca;'; //verd
@@ -347,7 +387,7 @@
                 </div>
             </div>
             <div  style="display:none;" class="faseFinal table-responsive" >
-                <table class="table table-bordered"  >
+                <table class="table table-bordered text-center table-sm"  >
                         <thead>
                         <tr>
                         <th scope="col">Nom tasca</th>
@@ -371,8 +411,13 @@
                                     <?php foreach ($tasksInternship as $taskInternship) {
                                       
                                       if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
-                                                  <td  style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
-                                                                            echo 'background-color: white;';
+                                                  <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
+                                                                        if($taskInternship->getFinished() == "1"){
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{
+                                                                            echo 'background-color: white;';    
+                                                                        }
+                                                                           
                                                                     }else{ //data_prevista anterior data_actual
                                                                         if($taskInternship->getFinished() == "1"){ //si tasca completada
                                                                             echo 'background-color: #c2e5ca;'; //verd
@@ -387,7 +432,12 @@
                                                         } ?>
                                                   </td>
                                                   <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
-                                                                            echo 'background-color: white;';
+                                                                        if($taskInternship->getFinished() == "1"){
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{
+                                                                            echo 'background-color: white;';    
+                                                                        }
+                                                                           
                                                                     }else{ //data_prevista anterior data_actual
                                                                         if($taskInternship->getFinished() == "1"){ //si tasca completada
                                                                             echo 'background-color: #c2e5ca;'; //verd
@@ -402,7 +452,12 @@
                                                         ?>
                                                     </td>
                                                   <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
-                                                                            echo 'background-color: white;';
+                                                                        if($taskInternship->getFinished() == "1"){
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{
+                                                                            echo 'background-color: white;';    
+                                                                        }
+                                                                           
                                                                     }else{ //data_prevista anterior data_actual
                                                                         if($taskInternship->getFinished() == "1"){ //si tasca completada
                                                                             echo 'background-color: #c2e5ca;'; //verd
@@ -418,7 +473,12 @@
                                                   
                                                   </td>
                                                   <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
-                                                                            echo 'background-color: white;';
+                                                                        if($taskInternship->getFinished() == "1"){
+                                                                            echo 'background-color: #c2e5ca;'; //verd
+                                                                        }else{
+                                                                            echo 'background-color: white;';    
+                                                                        }
+                                                                           
                                                                     }else{ //data_prevista anterior data_actual
                                                                         if($taskInternship->getFinished() == "1"){ //si tasca completada
                                                                             echo 'background-color: #c2e5ca;'; //verd
