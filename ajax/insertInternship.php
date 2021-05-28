@@ -8,8 +8,9 @@ include_once '../controllers/InternshipTaskController.inc.php';
 include_once '../controllers/TaskController.inc.php';
 include_once '../controllers/DegreeCourseTeacherController.inc.php';
 include_once '../app/Connection.inc.php'; 
+include_once '../app/Redirection.inc.php'; 
 
-$cursoGrado = $_POST['cursoGrado'];
+$cursoGrado = $_POST['grauCursSelec'];
 $niuEstudiant = $_POST['niuEstudiant'];
 $nomEstudiant = $_POST['nomEstudiant'];
 $cognomEstudiant =  $_POST['cognomEstudiant'];
@@ -56,6 +57,8 @@ $fechaFinal =  $_POST['fechaFinal'];
     if($teacher ==null){
       DegreeCourseTeacherController::insertDegreeCourseTeacher(Connection::getConnection(),$internship->getIdDegreeCourse(),$internship-> getNiuTeacher());
     }
+
+    Redirection::redirect(COORDINATOR);
    
 
     

@@ -78,7 +78,7 @@ include_once '../controllers/CoordinatorController.inc.php';
                     ?>
                     
             
-         
+                    <form action="../ajax/insertInternship.php" method="POST">
                     <div>
                         <label><b>Sel·lecciona Grau i Curs:</b></label>
                         <?php Connection::openConnection();
@@ -138,10 +138,11 @@ include_once '../controllers/CoordinatorController.inc.php';
                    
                     <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal">Tanca</button>
-                                <button type="submit" id="enviarEstancia" class="btn btn-success" onClick="insertInternship()" name="EnviarEstancia">Afegeix</button>
+                                <button type="submit" id="enviarEstancia" class="btn btn-success" name="EnviarEstancia">Afegeix</button>
                                
                             
                     </div>
+                    </form>
                    
                             
                         
