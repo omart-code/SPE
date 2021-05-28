@@ -20,8 +20,8 @@ class UserController {
         return $user;
     }
 
-   public function insertUser($conn, $niu, $nombre, $apellido, $telefono, $email, $id_tipo_usuario){
-       UserModel::insertUser($conn, $niu, $nombre, $apellido, $telefono, $email, $id_tipo_usuario);
+   public function insertUser($conn, $niu, $nombre, $apellido, $telefono, $email, $id_tipo_usuario, $password){
+       UserModel::insertUser($conn, $niu, $nombre, $apellido, $telefono, $email, $id_tipo_usuario, $password);
    }
 
    public function updateStudentByNiu($conn, $niu, $nombre, $apellido,  $telefono, $email, $id_tipo_usuario){

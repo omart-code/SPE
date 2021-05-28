@@ -15,26 +15,7 @@ include_once '../includes/navbar.inc.php';
 
     
         
-      <?php
-      if(isset($_POST['enviarProfessor'])){
-          if(isset($_POST['departamentProfessor']) && isset($_POST['cursoGrado']) ){
-            Connection::openConnection(); 
-            $department = DepartmentController::getDepartmentByName(Connection::getConnection(), $_POST['departamentProfessor']);
-            $departmentId = $department->getDepartmentId();
-           
-            TeacherController::insertTeacher(Connection::getConnection(), $_POST["nomProfessor"], $_POST["cognomProfessor"], $_POST["niuProfessor"], 
-             $_POST["telefonProfessor"], $_POST["emailProfessor"], $departmentId);
-             UserController::insertUser(Connection::getConnection(), $_POST["niuProfessor"], $_POST["nomProfessor"], $_POST["cognomProfessor"],
-             $_POST["telefonProfessor"], $_POST["emailProfessor"], 1);
-             //Insertar ahora el profesor curso grado
-            DegreeCourseTeacherController::insertDegreeCourseTeacher(Connection::getConnection(),$_POST['cursoGrado'], $_POST["niuProfessor"]);
-
-             echo '<script>window.location.replace("'.TEACHERS.'")</script>';
-    
-          }
-      
-      }
-       ?>
+     
        <?php
          Connection::openConnection(); 
          $coordinator = CoordinatorController::getCoordinatorByNiu( Connection::getConnection() , $_SESSION['niu']);
@@ -75,25 +56,8 @@ include_once '../includes/navbar.inc.php';
             <br>
             <br>
 
-            <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
-            <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label"><b>Sel·lecciona grau i curs</b></label>
-                
+            <form method="POST" action="../proc/insertTeacher.php">
             
-                <select id="cursosGraus" class="selectpicker form-control" name="cursoGrado" required="true">
-                
-                <?php 
-            
-                Connection::openConnection();
-                $degreeCoursesByDegree = DegreeCourseController::getDegreeCoursesByDegree(Connection::getConnection(), $coordinator->getCoordinatorDegreeId());?>
-                        <option value="null" selected>Sel·lecciona un curs i grau</option>
-                    
-                <?php  foreach ($degreeCoursesByDegree as $degreeCourse) { ?>
-                        <option value="<?php echo $degreeCourse->getDegreeCourseId()?>"><?php echo $degreeCourse->getDegreeCourseName()?></option>
-                    <?php }?>
-                
-                </select> 
-            </div>  
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label"><b>Nom</b></label>
                 <input type="text" class="form-control" name="nomProfessor" placeholder="ex: Joan">
@@ -113,6 +77,10 @@ include_once '../includes/navbar.inc.php';
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label"><b>Telèfon</b></label>
                 <input type="text" class="form-control" name="telefonProfessor" placeholder="ex: 666666666">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"><b>Contrasenya</b></label>
+                <input type="password" class="form-control" name="contrasenyaProfessor">
             </div>
             <?php Connection::openConnection(); 
             $departments = DepartmentController::getDepartmentByDegree(Connection::getConnection(), $coordinator->getCoordinatorDegreeId())  ?>

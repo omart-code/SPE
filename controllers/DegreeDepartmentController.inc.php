@@ -7,7 +7,12 @@ class DegreeDepartmentController {
         
         DegreeDepartmentModel::insertDegreeDepartment($conn, $id_departamento, $id_grado);
      
-        }
+    }
+
+    public function getDepartmentsByDegreeAndDepartment($conn, $id_grado, $id_departamento){
+        $depart = DegreeDepartmentModel::getDepartmentsByDegreeAndDepartment($conn, $id_grado, $id_departamento);
+        return $depart;
+    }
 
     public function getDepartmentsByDegree($conn, $id_grado){
         $departaments = DegreeDepartmentModel::getDepartmentsByDegree($conn, $id_grado);

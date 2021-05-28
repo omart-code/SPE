@@ -16,6 +16,7 @@ define("COORDINATORS", SERVER."/views/v_coordinators.php");
 define("DEPARTMENTS", SERVER."/views/v_departments.php");
 define("COURSES", SERVER."/views/v_courses.php");
 define("ADDTEACHER", SERVER."/views/v_insertTeacher.php");
+define("ASSIGNTEACHER", SERVER."/views/v_asignTeacher.php");
 define("REMOVETEACHER", SERVER."/views/v_removeTeacher.php");
 define("MODIFYTEACHER", SERVER."/views/v_modifyTeacher.php");
 define("ADDDEPARTMENT", SERVER."/views/v_insertDepartment.php");

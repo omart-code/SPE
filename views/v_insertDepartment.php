@@ -12,30 +12,15 @@ include_once '../includes/navbar.inc.php';
 
 
     
-        
-      <?php
-      if(isset($_POST['enviarDepartament'])){
-        if(isset($_POST['grauSelec'])){
+     
             
-            Connection::openConnection(); 
-            //inserto en departamento
-            DepartmentController::insertDepartment(Connection::getConnection(), $_POST["nomDepartament"], $_POST["siglas"], $_POST["identificador"]);
-            //obtengo grado a partir de su nombre
-            $degree = DegreeController::getDegreeByName(Connection::getConnection(), $_POST["grauSelec"]);
-            //obtengo su id
-            $degreeId = $degree->getDegreeId();
-            //obtengo id  del departamento antes insertado
-            $department = DepartmentController::getDepartmentByName(Connection::getConnection(), $_POST["nomDepartament"]);
-            $departmentId = $department ->getDepartmentId();
-            //inserto en departamentos_grado su id departamento y su id grado
-            DegreeDepartmentController::insertDegreeDepartment(Connection::getConnection(), $departmentId, $degreeId);
-            echo '<script>window.location.replace("'.DEPARTMENTS.'")</script>';
-        }
+           
+        
       
 
          
-      }
-       ?>
+      
+       
        <div class="container-fluid" style="width:80%;">
        <br>
             <h1>Afegir un departament</h1>
@@ -74,20 +59,8 @@ include_once '../includes/navbar.inc.php';
 
         
 
-            <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+            <form method="POST" action="../proc/insertDepartment.php">
             
-            <?php Connection::openConnection(); 
-            $degrees = DegreeController::getDegrees(Connection::getConnection());  ?>
-            <div> <!-- Recoge los cursos de la bd, haz entity, model y controller y inserta en las options -->
-            <label><b>Sel·lecciona Grau</b></label>
-            <select name="grauSelec" class="form-control" aria-label=".form-select-lg example">
-            <option selected>Sel·lecciona un grau</option>
-            <?php foreach ($degrees as $key => $degree) { ?>
-                <option value="<?php echo $degree->getDegreeName()?>"><?php echo $degree->getDegreeName() ?></option>
-            <?php } ?>
-            
-            </select>
-            </div>
             <br>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label"><b>Nom Departament</b></label>

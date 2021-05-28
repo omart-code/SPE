@@ -58,6 +58,37 @@
            
         }
 
+        public static function getDepartmentsByDegreeAndDepartment($conn, $id_grado, $id_departamento){
+           
+    
+            $depart = null;
+    
+            if(isset($conn)){
+                try{
+                    include_once '../entities/DegreeDepartment.inc.php';
+                    $sql = "SELECT * FROM departamentos_grado  WHERE id_grado = :id_grado AND id_departamento = :id_departamento";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':id_grado', $id_grado, PDO::PARAM_STR);
+                    $stmt ->bindParam(':id_departamento', $id_departamento, PDO::PARAM_STR);
+                    $stmt -> execute();
+                    $res = $stmt-> fetch();
+                    if(count($res)){
+                      
+                            $depart = $res;
+                        
+                     }else{
+                            print 'No hi ha departaments disponibles';
+                        }
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
+    
+            return $depart;
+    
+           
+        }
+
         public static function removeDegreeDepartment($conn, $id_departamento){
             if(isset($conn)){
                 $sql = "DELETE FROM departamentos_grado WHERE id_departamento = :id_departamento";

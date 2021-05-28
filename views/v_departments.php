@@ -50,7 +50,7 @@ include_once '../controllers/TeacherController.inc.php';
         <div class="card text-center  col-sm">
             <div class="card-body">
               
-                <p class="card-text"><b>Modifica un departament existent</b></p>
+                <p class="card-text"><b>Assigna un departament a un grau</b></p>
                 <a href="<?php echo MODIFYDEPARTMENT?>" class="btn btn-success">Modifica</a>
             </div>
   

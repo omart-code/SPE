@@ -99,14 +99,14 @@ class UserModel {
     }
 
         //Inserta un user en la BD
-        public static function insertUser($conn,$niu, $nombre, $apellido, $telefono, $email, $id_tipo_usuario){
+        public static function insertUser($conn,$niu, $nombre, $apellido, $telefono, $email, $id_tipo_usuario, $password = null){
             
     
             if(isset($conn)){
                 try{
                     include_once '../entities/User.inc.php';
-                    $sql = "INSERT INTO usuarios (niu, nombre, apellido, telefono, email, id_tipo_usuario)
-                    VALUES (:niu, :nombre, :apellido, :telefono, :email, :id_tipo_usuario)";
+                    $sql = "INSERT INTO usuarios (niu, nombre, apellido, telefono, email, id_tipo_usuario, password)
+                    VALUES (:niu, :nombre, :apellido, :telefono, :email, :id_tipo_usuario, :password)";
                     $stmt = $conn -> prepare($sql);
                     $stmt ->bindParam(':niu', $niu, PDO::PARAM_STR);
                     $stmt ->bindParam(':nombre', $nombre, PDO::PARAM_STR);
@@ -114,6 +114,7 @@ class UserModel {
                     $stmt ->bindParam(':telefono', $telefono, PDO::PARAM_STR);
                     $stmt ->bindParam(':email', $email, PDO::PARAM_STR);
                     $stmt ->bindParam(':id_tipo_usuario', $id_tipo_usuario, PDO::PARAM_STR);
+                    $stmt ->bindParam(':password', $password, PDO::PARAM_STR);
                     $stmt -> execute();
                     
                 }catch (PDOException $ex){

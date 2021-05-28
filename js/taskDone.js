@@ -53,9 +53,9 @@ $( document ).ready(function() {
         
       } */
       
-    $.ajax({
+    $.proc({
           type: "POST",
-          url: "../ajax/updateActionDate.php",
+          url: "../proc/updateActionDate.php",
           data: "niu="+niu+"& estancia="+estancia+"& tarea="+tasca+"& actionDate="+fecha+"& numActions="+numActions,
          
           success: async function(data){

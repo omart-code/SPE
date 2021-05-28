@@ -119,9 +119,9 @@ function getTeachers() {
     var cursGrau = $('select[name=cursoGrado] option').filter(':selected').val()
         console.log(cursGrau);
         
-	$.ajax({          
+	$.proc({          
         	type: "POST",
-        	url: "../ajax/getTeachersDegreeCourse.php",
+        	url: "../proc/getTeachersDegreeCourse.php",
         	data:'cursogrado='+cursGrau,
         	success: async function(data){
                 $("#professors").html(data);

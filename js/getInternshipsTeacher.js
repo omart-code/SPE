@@ -6,9 +6,9 @@ function getInternshipsTeacher() {
   
    
         
-	$.ajax({          
+	$.proc({          
         	type: "POST",
-        	url: "../ajax/getInternshipsTeacher.php",
+        	url: "../proc/getInternshipsTeacher.php",
         	data:'cursoGrado='+cursoGrado+'&niuProfesor='+niuProfesor,
         	success: async function(data){
              

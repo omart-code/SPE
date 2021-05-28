@@ -38,7 +38,7 @@
                     $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
                     $stmt -> execute();
                     $res = $stmt-> fetch();
-                    if(count($res)){
+                    if($res){
                         
                             $teacher = $res;
                         
@@ -55,17 +55,18 @@
        
 
           //Inserta un nuevo departamento_grado
-          public static function insertDegreeCourseTeacher($conn, $id_curso_grado, $niu_profesor){
+          public static function insertDegreeCourseTeacher($conn, $id_curso_grado, $niu_profesor, $max_estudiantes){
            
     
             if(isset($conn)){
                 try{
                   
                     $sql = "INSERT INTO profesores_curso_grado (id_curso_grado, niu_profesor, max_estudiantes)
-                    VALUES (:id_curso_grado, :niu_profesor, 15)";
+                    VALUES (:id_curso_grado, :niu_profesor, :max_estudiantes)";
                     $stmt = $conn -> prepare($sql);
                     $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
                     $stmt ->bindParam(':niu_profesor', $niu_profesor, PDO::PARAM_STR);
+                    $stmt ->bindParam(':max_estudiantes', $max_estudiantes, PDO::PARAM_STR);
                    
                     $stmt -> execute();
                     

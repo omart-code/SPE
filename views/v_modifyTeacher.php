@@ -16,24 +16,8 @@ include_once '../includes/navbar.inc.php';
 
     
         
-      <?php
-      if(isset($_POST['ModificaProfessor'])){
-         if(isset($_POST['departamentProfessor'])){
-            
-            Connection::openConnection(); 
-           //modificar de profesores
-           TeacherController::updateTeacher(Connection::getConnection(),$_POST['niuProfessor'],$_POST['nomProfessor'],
-           $_POST['cognomProfessor'], $_POST['emailProfessor'], $_POST['telefonProfessor'], $_POST['departamentProfessor']);
-           //modificar en usuarios
-           UserController::updateTeacherByNiu(Connection::getConnection(), $_POST['niuProfessor'],$_POST['nomProfessor'],
-           $_POST['cognomProfessor'],$_POST['telefonProfessor'], $_POST['emailProfessor'], 1);
-          
-            echo '<script>window.location.replace("'.TEACHERS.'")</script>';
-        }
-          
-      
-      }
-       ?>
+     
+       
        <?php
          Connection::openConnection(); 
          $coordinator = CoordinatorController::getCoordinatorByNiu( Connection::getConnection() , $_SESSION['niu']);
@@ -74,7 +58,7 @@ include_once '../includes/navbar.inc.php';
             <br>
             <br>
 
-            <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+            <form method="POST" action="../proc/modifyTeacher.php">
             <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label"><b>Sel·lecciona grau i curs</b></label>
                 
@@ -149,7 +133,7 @@ function getTeachers() {
         
 	$.ajax({          
         	type: "POST",
-        	url: "../ajax/getTeachersDegreeCourse.php",
+        	url: "../proc/getTeachersDegreeCourse.php",
         	data:'cursogrado='+cursGrau,
         	success: async function(data){
                 $("#professors").html(data);
@@ -168,7 +152,7 @@ function getTeacherInfo() {
         
 	$.ajax({          
         	type: "POST",
-        	url: "../ajax/getTeacherInfo.php",
+        	url: "../proc/getTeacherInfo.php",
         	data:'niuProfesor='+teacher+'&grado='+grado,
         	success: async function(data){
                 console.log('data:' + data)

@@ -9,9 +9,9 @@ function insertComment(internshipId, niuStudent){
    
   
        
-$.ajax({          
+$.proc({          
         	type: "POST",
-        	url: "../ajax/insertComment.php",
+        	url: "../proc/insertComment.php",
         	data:'tipoComentario='+tipoComentario+'&categoriaComentario='+categoriaComentario+'&comentario='+comentario+
             '&internshipId='+internshipId+ '&niuStudent='+niuStudent,
         	success: async function(data){

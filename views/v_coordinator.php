@@ -51,7 +51,7 @@ include_once '../controllers/CoordinatorController.inc.php';
             <br>
 
             <div id="estanciasCoordinador">
-           <!--  Aqui s'inserta amb ajax les estancias del curs grau -->
+           <!--  Aqui s'inserta amb proc les estancias del curs grau -->
             </div>
        
         
@@ -78,7 +78,7 @@ include_once '../controllers/CoordinatorController.inc.php';
                     ?>
                     
             
-                    <form action="../ajax/insertInternship.php" method="POST">
+                    <form action="../proc/insertInternship.php" method="POST">
                     <div>
                         <label><b>Sel·lecciona Grau i Curs:</b></label>
                         <?php Connection::openConnection();
