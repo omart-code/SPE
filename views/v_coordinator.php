@@ -85,7 +85,7 @@ include_once '../controllers/CoordinatorController.inc.php';
                         $degreeCoursesByDegree = DegreeCourseController::getDegreeCoursesByDegree(Connection::getConnection(), $coordinator->getCoordinatorDegreeId()); 
                          ?>
         
-                        <select name="grauCursSelec" class="form-control" aria-label=".form-select-lg example">
+                        <select name="grauCursSelec" onChange="getTeachers()" class="form-control" aria-label=".form-select-lg example">
                        
                             <?php 
                     
@@ -111,15 +111,15 @@ include_once '../controllers/CoordinatorController.inc.php';
                         <label for="exampleFormControlInput1" class="form-label"><b>Cognoms Estudiant:</b></label>
                         <input type="text" class="form-control" name="cognomEstudiant" placeholder="ex: Martínez Pérez">
                     </div>
-                    <div class="form-group">
+                    <div id="teacherSelect" class="form-group">
                         <label for="exampleFormControlTextarea1" class="form-label"><b>Profesor:</b></label>
-                        
-                        <select name="profesorSelec" class="form-control" aria-label=".form-select-lg example">
+                       
+                        <select  name="profesorSelec" class="form-control" aria-label=".form-select-lg example">
                             <?php Connection::openConnection();
-                                $teachers = TeacherController::getTeachers(Connection::getConnection()) ?>
+                                $teachers = TeacherController::getTeachersInfo(Connection::getConnection(), $degreeCourse->getDegreeCourseId()) ?>
                                     <option selected>Sel·lecciona un professor</option>
                                     <?php foreach ($teachers as $teacher) { ?>
-                                    <option value="<?php echo $teacher->getTeacherNiu()?>"><?php echo $teacher->getTeacherName().' '. $teacher->getTeacherSurname()?></option>
+                                    <option value="<?php echo $teacher['niu_profesor']?>"><?php echo $teacher['nombre'].' '. $teacher['apellido']?></option>
                                 <?php }?>
                         </select>
                       
@@ -162,6 +162,26 @@ include_once '../controllers/CoordinatorController.inc.php';
 </body>
 
 <script src="../js/getInternshipsCoordinator.js"></script>
+<script>
+function getTeachers(){
+    var cursoGrado = $('select[name=grauCursSelec] option').filter(':selected').val()
+    console.log(cursoGrado);
 
+    $.ajax({          
+        	type: "POST",
+        	url: "../proc/getDegreeCourseTeachers.php",
+        	data:'cursoGrado='+cursoGrado,
+        	success: async function(data){
+           
+                $("#teacherSelect").html(data);
+           // await window.location.replace("http://localhost/spe/views/v_view-internship.php?niu="+niu);
+          },
+          error: function(err){
+              console.log('error:'+err);
+          }
+	});  
+}
+
+</script>
 
 </html>
