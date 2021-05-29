@@ -13,6 +13,8 @@ include_once '../controllers/InternshipTaskController.inc.php';
       <?php   
        Connection::openConnection(); 
        $internships = InternshipController::getTeacherInternships(Connection::getConnection(), $_SESSION["niu"]); 
+       $currentDate = date('Y-m-d');
+     
         ?>
        
         <div class="container-fluid" style="width:80%;">
@@ -25,10 +27,11 @@ include_once '../controllers/InternshipTaskController.inc.php';
                 <br>
                 <div class="row">
                     <?php
-                    //AQUI MUESTRAS TODAS LAS ESTANCIAS DE UN PROFESOR, FALTA CONTROLAR LAS QUE TENGAN TAREAS PENDIENTES.
+                    
                   
                         foreach ($internships as $internship) { 
-                        $student = InternshipController::getInternshipStudent(Connection::getConnection(),  $internship->getNiuStudent());
+                        $student = InternshipController::getInternshipStudent(Connection::getConnection(),  $internship['niu_estudiante']);
+                        
                         ?>
                         <br>
                        
@@ -38,14 +41,14 @@ include_once '../controllers/InternshipTaskController.inc.php';
                                 <?php echo "<h5>".$student->getStudentName(). " ". $student->getStudentSurname()."</h5>" ?>
                                 </div>
                                 <div class="card-body">
-                                    <h6 class="card-title">Data d'inici: <?php echo $internship->getStartDate() ?></h6>
-                                    <h6 class="card-title">Data de finalització: <?php echo $internship->getEndDate() ?></h6>
+                                    <h6 class="card-title">Data d'inici: <?php echo $internship['fecha_inicio'] ?></h6>
+                                    <h6 class="card-title">Data de finalització: <?php echo $internship['fecha_fin'] ?></h6>
                                     <div class="row">
                                    
                                         <a  name="tasques" class="btn btn-success buttonTasques ml-2" style="color:white;">Mostra detalls</a>
                                    
                                    
-                                        <a href="./v_view-internship.php?niu=<?php  echo  $internship->getNiuStudent(); ?>"  name="revisa" class="btn btn-success ml-2" student-niu="<?php echo  $internship->getNiuStudent(); ?>">Revisa</a>
+                                        <a href="./v_view-internship.php?niu=<?php  echo  $internship['niu_estudiante'] ?>"  name="revisa" class="btn btn-success ml-2" student-niu="<?php echo  $internship['niu_estudiante'] ?>">Revisa</a>
                                   
                                        
                                     </div>
@@ -53,9 +56,8 @@ include_once '../controllers/InternshipTaskController.inc.php';
                                     <div class="tasques" style="display: none;">
                                         <br>
                                         <h6>Tasques pendents:</h6>
-                                        <?php $internshipTasks = InternshipTaskController::getMissingInternshipTasksByInternshipId(Connection::getConnection(), $internship->getIdInternship());
-                                             $currentDate = date('Y-m-d');
-                                             $currentDatetime = DateTime::createFromFormat('Y-m-d', $currentDate);
+                                        <?php $internshipTasks = InternshipTaskController::getMissingInternshipTasksByInternshipId(Connection::getConnection(), $internship['id_estancia']);
+                                            
                                              $pendents = false;
                                            ?>
                                         <ul class="list-group">

@@ -85,21 +85,21 @@ class InternshipModel {
      //Muestra las estancias que pertenecen a un profesor
      public static function getTeacherInternships($conn, $niu_profesor){
         $internships = null;
-
+        $currentDate = date('Y-m-d');
+       
             if(isset($conn)){
                 try{
                     include_once '../entities/Internship.inc.php';
-                    $sql = "SELECT * FROM estancias e WHERE e.niu_profesor = :niu_profesor and finalizada = 0";
+                    $sql = "SELECT e.id_estancia, e.niu_estudiante, e.niu_profesor, e.fecha_inicio, e.fecha_fin, e.finalizada, te.fecha_prevista_tarea, te.finalizada as tarea_finalizada FROM 
+                    estancias e INNER JOIN tareas_estancias te ON te.id_estancia = e.id_estancia WHERE e.niu_profesor = :niu_profesor and e.finalizada = 0 AND te.fecha_prevista_tarea < :currentDate AND te.finalizada = 0 GROUP BY e.niu_estudiante";
                     $stmt = $conn -> prepare($sql);
                     $stmt ->bindParam(':niu_profesor', $niu_profesor, PDO::PARAM_STR);
+                    $stmt ->bindParam(':currentDate', $currentDate, PDO::PARAM_STR);
                     $stmt -> execute();
                     $res = $stmt-> fetchAll();
                     if(count($res)){
                         foreach($res as $intern){
-                            $internships[] = new Internship(
-                                $intern['id_estancia'], $intern['niu_estudiante'], $intern['niu_profesor'], $intern['fecha_inicio'], 
-                                $intern['fecha_fin'], $intern['id_tutor_externo'], $intern['id_empresa'], $intern['nota'], $intern['finalizada'], $intern['id_curso_grado']
-                                );
+                            $internships[] = $intern;
                         } 
                      }else{
                             print 'No hi ha estancies disponibles';

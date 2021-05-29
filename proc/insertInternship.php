@@ -37,7 +37,7 @@ $fechaFinal =  $_POST['fechaFinal'];
    //Inserta el estudiante
     StudentController::insertStudent(Connection::getConnection(), $niuEstudiant, $nomEstudiant, $cognomEstudiant, $grado);
     //Inserta este estudiante en los usuarios
-    UserController::insertUser(Connection::getConnection(), $niuEstudiant, $nomEstudiant, $cognomEstudiant, '', '', 2);
+    UserController::insertUser(Connection::getConnection(), $niuEstudiant, $nomEstudiant, $cognomEstudiant, '', '', 2, '');
     //Recupera la ultima estancia introducida gracias al niu estudiante
     $internship = InternshipController::getStudentInternship(Connection::getConnection(), $niuEstudiant);
     //Creo sus 9 tareas estancia para esa estancia
