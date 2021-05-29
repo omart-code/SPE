@@ -14,7 +14,8 @@ include_once '../includes/navbar.inc.php';
 
     Connection::openConnection(); 
     //inserto en departamento
-    DepartmentController::insertDepartment(Connection::getConnection(), $_POST["nomDepartament"], $_POST["siglas"], $_POST["identificador"]);
+    DepartmentController::insertDepartment(Connection::getConnection(), htmlentities($_POST["nomDepartament"], ENT_QUOTES | ENT_HTML5, 'UTF-8'),
+     htmlentities($_POST["siglas"], ENT_QUOTES | ENT_HTML5, 'UTF-8'), htmlentities($_POST["identificador"], ENT_QUOTES | ENT_HTML5, 'UTF-8') );
 
     echo '<script>window.location.replace("'.DEPARTMENTS.'")</script>';
 

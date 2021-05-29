@@ -26,6 +26,7 @@ $fechaFinal =  $_POST['fechaFinal'];
 
     Connection::openConnection();
    //Inserta en estancias la estancia
+
    InternshipController::insertInternship(Connection::getConnection(),$niuEstudiant,$profesorSelec, 
    $fechaInicio, $fechaFinal, $cursoGrado);
 
@@ -41,11 +42,16 @@ $fechaFinal =  $_POST['fechaFinal'];
     //Recupera la ultima estancia introducida gracias al niu estudiante
     $internship = InternshipController::getStudentInternship(Connection::getConnection(), $niuEstudiant);
     //Creo sus 9 tareas estancia para esa estancia
-    InternshipTaskController::insertInternshipTasksByInternship(Connection::getConnection(), $internship->getIdInternship());
-    //Recupero sus 9 tareas acabadas de crear
-    $internshipTasks= InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(),$internship->getIdInternship());
-    //Calculo sus fechas previstas y las actualizo
-    InternshipTaskController::updateTasksDates($internship->getNormalStartDate(), $internship->getNormalEndDate(), $internshipTasks);
+    $existInternship = InternshipController::getInternshipById(Connection::getConnection(), $internship->getIdInternship());
+   
+  
+      InternshipTaskController::insertInternshipTasksByInternship(Connection::getConnection(), $internship->getIdInternship());
+      //Recupero sus 9 tareas acabadas de crear
+      $internshipTasks= InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(),$internship->getIdInternship());
+      //Calculo sus fechas previstas y las actualizo
+      InternshipTaskController::updateTasksDates($internship->getNormalStartDate(), $internship->getNormalEndDate(), $internshipTasks);
+    
+    
     /* //genero sus 9 tareas para su estancia
     $tasksByDegree = TaskController::getTasksByDegreeCourse(Connection::getConnection(), $cursoGrado);
     if($tasksByDegree == null){ //crea las tareas solo no hay tareas ya para ese curso grado
@@ -55,7 +61,7 @@ $fechaFinal =  $_POST['fechaFinal'];
     //inserto el profesor en profesor curso grado si no existe ya
     $teacher = DegreeCourseTeacherController::getTeacherByNiuAndDegreeCourse(Connection::getConnection(), $cursoGrado, $internship-> getNiuTeacher());
     if($teacher ==null){
-      DegreeCourseTeacherController::insertDegreeCourseTeacher(Connection::getConnection(),$internship->getIdDegreeCourse(),$internship-> getNiuTeacher());
+      DegreeCourseTeacherController::insertDegreeCourseTeacher(Connection::getConnection(),$internship->getIdDegreeCourse(),$internship-> getNiuTeacher(), 1);
     }
 
     Redirection::redirect(COORDINATOR);

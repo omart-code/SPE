@@ -16,6 +16,10 @@ class InternshipController {
 
         return $internships;
     }
+    public function getInternshipById($conn, $id_estancia){
+        $inter = InternshipModel::getInternshipById($conn, $id_estancia);
+        return $inter;
+    }
     //Inserta una nueva estancia, aunque no todos los campos
     public function insertInternship($conn, $niu_estudiante, $niu_profesor, $fecha_inicio, $fecha_fin, $id_curso_grado){
         InternshipModel::insertInternship($conn, $niu_estudiante, $niu_profesor, $fecha_inicio, $fecha_fin, $id_curso_grado);

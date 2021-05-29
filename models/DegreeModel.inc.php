@@ -57,6 +57,29 @@
             return $degree;
         }
 
+        public static function getDegreeById($conn, $id_grado){
+            $degree = null;
+    
+            if(isset($conn)){
+                try{
+                    include_once '../entities/Degree.inc.php';
+                    $sql = "SELECT * FROM grados WHERE id_grado = :id_grado";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':id_grado', $id_grado, PDO::PARAM_STR);
+                    $stmt -> execute();
+                    $res = $stmt-> fetch();
+    
+                    if(!empty($res)){
+                        $degree = new Degree( $res['id_grado'],$res['nombre'],$res['siglas'], $res['horas'], $res['codigo_asignatura']);
+                    }
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
+    
+            return $degree;
+        }
+
          
        
     }

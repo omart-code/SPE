@@ -15,13 +15,17 @@
             if($department != null){
                 $departmentId = $department->getDepartmentId();
            
-                TeacherController::insertTeacher(Connection::getConnection(), $_POST["nomProfessor"], $_POST["cognomProfessor"], $_POST["niuProfessor"], 
-                 $_POST["telefonProfessor"], $_POST["emailProfessor"], $departmentId);
-                 UserController::insertUser(Connection::getConnection(), $_POST["niuProfessor"], $_POST["nomProfessor"], $_POST["cognomProfessor"],
-                 $_POST["telefonProfessor"], $_POST["emailProfessor"], 1, $_POST['contrasenyaProfessor']);
+                TeacherController::insertTeacher(Connection::getConnection(),htmlentities($_POST["nomProfessor"], ENT_QUOTES | ENT_HTML5, 'UTF-8'),htmlentities( $_POST["cognomProfessor"], ENT_QUOTES | ENT_HTML5, 'UTF-8'), 
+                htmlentities( $_POST["niuProfessor"], ENT_QUOTES | ENT_HTML5, 'UTF-8'), htmlentities( $_POST["telefonProfessor"], ENT_QUOTES | ENT_HTML5, 'UTF-8'),
+                htmlentities( $_POST["emailProfessor"], ENT_QUOTES | ENT_HTML5, 'UTF-8') , $departmentId);
+                 /* UserController::insertUser(Connection::getConnection(),  htmlentities( $_POST["niuProfessor"], ENT_QUOTES | ENT_HTML5, 'UTF-8'), 
+                 htmlentities($_POST["nomProfessor"], ENT_QUOTES | ENT_HTML5, 'UTF-8'),
+                 htmlentities( $_POST["cognomProfessor"],ENT_QUOTES | ENT_HTML5, 'UTF-8'),
+                 htmlentities( $_POST["telefonProfessor"], ENT_QUOTES | ENT_HTML5, 'UTF-8'),
+                 htmlentities( $_POST["emailProfessor"], ENT_QUOTES | ENT_HTML5, 'UTF-8') , 1,  htmlentities( $_POST['contrasenyaProfessor'], ENT_QUOTES | ENT_HTML5, 'UTF-8'));
                  //Insertar ahora el profesor curso grado
-                DegreeCourseTeacherController::insertDegreeCourseTeacher(Connection::getConnection(),$_POST['cursoGrado'], $_POST["niuProfessor"]);
-    
+                DegreeCourseTeacherController::insertDegreeCourseTeacher(Connection::getConnection(), htmlentities($_POST['cursoGrado'], ENT_QUOTES | ENT_HTML5, 'UTF-8'),  htmlentities( $_POST["niuProfessor"], ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+     */
                  echo '<script>window.location.replace("'.TEACHERS.'")</script>';
             }
            

@@ -15,5 +15,10 @@ class DegreeController {
         return $degree;
     }
 
+    public function  getDegreeById($conn, $id_grado){
+        $degree =  DegreeModel::getDegreeById($conn, $id_grado);
+        return $degree;
+    }
+
 }
 ?>

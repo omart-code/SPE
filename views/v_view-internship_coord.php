@@ -193,7 +193,7 @@
                                                                     } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"><?php if($taskInternship->getNormalAction1Date() != ""){ 
                                                             echo $taskInternship->getAction1Date();
                                                             } else { 
-                                                                echo ""; //va el boton
+                                                                echo "<input type='checkbox'>"; //va el boton
                                                             }
                                                         ?>
                                                     </td>
@@ -213,7 +213,7 @@
                                                                     } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>"><?php if($taskInternship->getNormalAction2Date() != ""){ 
                                                             echo $taskInternship->getAction2Date();
                                                             } else { 
-                                                                echo ""; //va el boton
+                                                                echo "<input type='checkbox'>"; //va el boton
                                                             }
                                                         ?>
                                                   
@@ -231,10 +231,10 @@
                                                                         }else{ //si no completada
                                                                             echo 'background-color: #f2c4c9;'; //vermell
                                                                         }
-                                                                    } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"><?php if($taskInternship->getNormalAction3Date() != ""){ 
+                                                                    } ?>" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"><?php if($taskInternship->getNormalAction3Date() != ""){ 
                                                             echo $taskInternship->getAction3Date();
                                                             } else { 
-                                                                echo ""; //va el boton
+                                                                echo ""; //no va el boton
                                                             }
                                                         ?>
                                                   </td>
@@ -320,7 +320,7 @@
                                                                     } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"><?php if($taskInternship->getNormalAction1Date() != ""){ 
                                                             echo $taskInternship->getAction1Date();
                                                             } else { 
-                                                                echo ""; //va el boton
+                                                                echo "<input type='checkbox'>"; //va el boton
                                                             }
                                                         ?>
                                                     </td>
@@ -340,7 +340,7 @@
                                                                     } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>"><?php if($taskInternship->getNormalAction2Date() != ""){ 
                                                             echo $taskInternship->getAction2Date();
                                                             } else { 
-                                                                echo ""; //va el boton
+                                                                echo "<input type='checkbox'>"; //va el boton
                                                             }
                                                         ?>
                                                   
@@ -361,7 +361,7 @@
                                                                     } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"><?php if($taskInternship->getNormalAction3Date() != ""){ 
                                                             echo $taskInternship->getAction3Date();
                                                             } else { 
-                                                                echo ""; //va el boton
+                                                                echo "<input type='checkbox'>"; //va el boton
                                                             }
                                                         ?>
                                                   </td>
@@ -447,7 +447,7 @@
                                                                     } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-1"?>"><?php if($taskInternship->getNormalAction1Date() != ""){ 
                                                             echo $taskInternship->getAction1Date();
                                                             } else { 
-                                                                echo ""; //va el boton
+                                                                echo "<input type='checkbox'>"; //va el boton
                                                             }
                                                         ?>
                                                     </td>
@@ -467,7 +467,9 @@
                                                                     } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-2"?>"><?php if($taskInternship->getNormalAction2Date() != ""){ 
                                                             echo $taskInternship->getAction2Date();
                                                             } else { 
-                                                                echo ""; //va el boton
+                                                                if($taskInternship->getTaskId() == '6' || $taskInternship->getTaskId() == '7' ){
+                                                                    echo "<input type='checkbox'>"; //va el boton
+                                                                } //va el boton
                                                             }
                                                         ?>
                                                   
@@ -488,7 +490,9 @@
                                                                     } ?>" class="taskDone" numActions="<?php echo $task->getTaskNumActions() ?>" niu="<?php echo $internship->getNiuStudent() ?>" fecha="<?php echo $taskInternship->getStringTaskDate() ?>" estancia="<?php echo $internship->getIdInternship() ?>" id="<?php echo $task->getTaskId()."-3"?>"><?php if($taskInternship->getNormalAction3Date() != ""){ 
                                                             echo $taskInternship->getAction3Date();
                                                             } else { 
-                                                                echo ""; //va el boton
+                                                                if($taskInternship->getTaskId() == '6' || $taskInternship->getTaskId() == '7' ){
+                                                                    echo "<input type='checkbox'>"; //va el boton
+                                                                }//va el boton
                                                             }
                                                         ?>
                                                   </td>
