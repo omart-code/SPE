@@ -53,13 +53,26 @@ include_once '../controllers/InternshipTaskController.inc.php';
                                     <div class="tasques" style="display: none;">
                                         <br>
                                         <h6>Tasques pendents:</h6>
+                                        <?php $internshipTasks = InternshipTaskController::getMissingInternshipTasksByInternshipId(Connection::getConnection(), $internship->getIdInternship());
+                                             $currentDate = date('Y-m-d');
+                                             $currentDatetime = DateTime::createFromFormat('Y-m-d', $currentDate);
+                                             $pendents = false;
+                                           ?>
                                         <ul class="list-group">
-                                            <?php $internshipTasks = InternshipTaskController::getMissingInternshipTasksByInternshipId(Connection::getConnection(), $internship->getIdInternship());
+                                            <?php 
+
                                                 foreach ($internshipTasks as $key => $internshipTask) {
-                                                echo "<li class='list-group-item list-group-item-danger'>" .$internshipTask->getTaskName(). "</li>";
+                                                    if($internshipTask->getNormalTaskDate()->format('Y-m-d') < $currentDate){ 
+                                                        $pendents = true;
+                                                        echo "<li class='list-group-item list-group-item-danger'>" .$internshipTask->getTaskName(). "</li>";
+                                                    }
+                                              
                                                 }
                                             ?>
                                         </ul>
+                                        <?php if($pendents == false){
+                                            echo "No hi han tasques pendents";
+                                        }?>
                                     </div>
                                 </div>
                             </div>
