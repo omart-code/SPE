@@ -55,14 +55,7 @@ include_once '../controllers/TeacherController.inc.php';
             </div>
   
         </div>
-        <div class="card text-center  col-sm">
-            <div class="card-body">
-               
-                <p class="card-text"><b>Elimina un departament existent</b></p>
-                <a href="<?php echo REMOVEDEPARTMENT?>" class="btn btn-success">Elimina</a>
-            </div>
-  
-        </div>
+        
         </div>
     
 
