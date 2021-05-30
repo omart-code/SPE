@@ -19,6 +19,7 @@ include_once '../includes/navbar.inc.php';
      //modificar en usuarios
      UserController::updateTeacherByNiu(Connection::getConnection(), $_POST['niuProfessor'],$_POST['nomProfessor'],
      $_POST['cognomProfessor'],$_POST['telefonProfessor'], $_POST['emailProfessor'], 1);
+     DegreeCourseTeacherController::updateDegreeCourseTeacherMaxStudents(Connection::getConnection(), $_POST['cursoGrado'], $_POST['niuProfessor'], $_POST['maximAlumnesProfessor']);
     
       echo '<script>window.location.replace("'.TEACHERS.'")</script>';
   

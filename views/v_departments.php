@@ -80,10 +80,9 @@ include_once '../controllers/TeacherController.inc.php';
             
             Connection::openConnection();
             $degreeCoursesByDegree = DegreeCourseController::getDegreeCoursesByDegree(Connection::getConnection(), $coordinator->getCoordinatorDegreeId()); ?>
-         <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
             <h5>Sel·lecciona Grau i Curs</h5>
             <br>
-            <select id="cursoGradoProfesores" class="selectpicker form-control" name="cursoGradoProfesores" required="true">
+            <select id="cursoGradoProfesores" class="selectpicker form-control" name="cursoGradoDepartamentos" required="true">
             
                
                         <option value="null" selected>Sel·lecciona un curs i grau</option>
@@ -95,66 +94,19 @@ include_once '../controllers/TeacherController.inc.php';
             </select>
             <br>
             <div class="text-right">
-                 <button type="submit" class="btn btn-success" name="cercaDep">Cerca Departaments</button>
+                 <button type="submit" class="btn btn-success" name="cercaDep" onClick="searchDepartments()">Cerca Departaments</button>
             </div>
             <br>
        
          </form>
          <br>
          <br>
-          
+          <div id="departments"></div>
 
       
-        <?php  
-           if(isset($_POST['cercaDep'])){
-                        if($_POST['cursoGradoProfesores'] !== 'null'){?>
-                            <table id="departments" class="table  table-bordered  dt-responsive" style="width:100%">
-                                    <thead>
-                                    <tr>
-                                     <th scope="col">Nom</th>
-                                     <th scope="col">Sigles</th>
-                                     <th scope="col">Alumnes Assignats</th>
-                                     <th scope="col">Màxim Alumnes</th>
-          
-                                     </tr>
-                                     </thead>
-                                <tbody>
-                     <?php
-                                    Connection::openConnection(); 
-                                    $depts = DepartmentController::getDepartmentsInfo(Connection::getConnection(), $_POST['cursoGradoProfesores']); 
-                                        if($depts !=null){
-                                            foreach ($depts as $dept) {
-                                            
-                                            
-                                            echo "<tr>";
-                                            echo "<th scope='row'>".$dept['nombre_departamento']."</td>";
-                                            echo "<td>".$dept['siglas']."</td>";
-                                            echo "<td>".$dept['estudiantes_asignados']."</td>";
-                                            echo "<td>".$dept['max_estudiantes']."</td>";
-                                            
-                                            echo "</tr>";
-                                        }
-                                    }   
-                    ?>
-                                </tbody>
-                            </table>   
-                        
-                        <?php }else{ 
-                            echo "<b>No hi ha professors a mostrar</b><br><br><br><br>";
-                         }
-           }?>
+       
 
-        <script>
-
-        $(document).ready(function() {
-            $('#departments').DataTable({
-                "language": {
-                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Catalan.json"
-             }
-            });
-           
-        } );
-        </script>
+        <script src="../js/searchDepartments.js"></script>
         
       
        

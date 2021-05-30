@@ -1,6 +1,7 @@
 <?php
 include_once '../controllers/TeacherController.inc.php';
 include_once '../controllers/DegreeDepartmentController.inc.php';
+include_once '../controllers/DegreeCourseTeacherController.inc.php';
 include_once '../app/Connection.inc.php'; 
 
 $niuProfesor = $_POST['niuProfesor'];
@@ -10,6 +11,7 @@ $grado = $_POST['grado'];
 Connection::openConnection();
 $teacher = TeacherController::getTeacherByNiu(Connection::getConnection(), $niuProfesor);
 $departaments = DegreeDepartmentController::getDepartmentsByDegree(Connection::getConnection(), $grado);
+$degreeCourseTeacher = DegreeCourseTeacherController::getTeacherByNiuAndDegreeCourse(Connection::getConnection(), $grado, $niuProfesor)
 
  ?>
 <label for="exampleFormControlInput1" class="form-label"><b>Modifica les dades actuals del professor</b></label>
@@ -46,5 +48,10 @@ $departaments = DegreeDepartmentController::getDepartmentsByDegree(Connection::g
                         <?php  } ?>
                     
                         </select>
+                        <br>
+<div class="mb-3">
+<label for="exampleFormControlInput1" class="form-label"><b>Màxim alumnes</b></label>
+<input type="text" class="form-control" name="maximAlumnesProfessor" value="<?php echo $degreeCourseTeacher['max_estudiantes'] ?>">
+</div>
 </div>
 

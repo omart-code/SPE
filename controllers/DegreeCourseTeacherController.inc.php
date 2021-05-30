@@ -23,6 +23,10 @@ class DegreeCourseTeacherController {
         DegreeCourseTeacherModel::removeDegreeCourseTeacher($conn, $id_curso_grado, $niu_profesor);
     }
 
+    public function updateDegreeCourseTeacherMaxStudents($conn, $id_curso_grado, $niu_profesor, $max_estudiantes){
+        DegreeCourseTeacherModel::updateDegreeCourseTeacherMaxStudents($conn, $id_curso_grado, $niu_profesor, $max_estudiantes);
+    }
+
 }
 ?>
 

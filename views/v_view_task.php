@@ -78,7 +78,7 @@
          <br>
          <br>
          <form method="POST">
-         <button class="btn btn-success" id="restablecer" name="restablecer" role="button">
+         <button class="btn btn-success" id="restablecer" name="restablecer" role="button" onClick="return restoreMessage()">
               Restablir
          </button>
          </form>
@@ -164,4 +164,16 @@ function gotoInternshipPage(){
     console.log('se clica el boton');
     window.location.replace("<?php echo VIEWINTERNSHIP.'?niu='.$_GET['niu'] ?> ")
 }
+</script>
+
+<script>
+function  restoreMessage(){
+    var respuesta = confirm("Realment desitja restablir a la plantilla original?");
+    if(respuesta == true){
+        return true
+    }else{
+        return false
+    }
+}
+
 </script>

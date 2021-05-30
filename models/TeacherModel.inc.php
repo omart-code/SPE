@@ -89,7 +89,11 @@ class TeacherModel{
         if(isset($conn)){
             try{
                
-                $sql = "SELECT pc.niu_profesor, p.nombre, p.apellido, d.nombre as nombre_departamento, d.siglas as siglas, pc.estudiantes_asignados, pc.max_estudiantes FROM profesores p INNER JOIN departamentos d ON d.id_departamento = p.id_departamento INNER JOIN profesores_curso_grado pc ON pc.niu_profesor = p.niu_profesor WHERE pc.id_curso_grado = :id_curso_grado";
+                $sql = "SELECT pc.niu_profesor, cg.nombre as curso_grado, p.nombre, p.apellido, d.nombre as nombre_departamento, d.siglas as siglas, pc.estudiantes_asignados, pc.max_estudiantes FROM profesores p
+                 INNER JOIN departamentos d ON d.id_departamento = p.id_departamento
+                 INNER JOIN profesores_curso_grado pc ON pc.niu_profesor = p.niu_profesor
+                 INNER JOIN cursos_grados cg ON cg.id_curso_grado = pc.id_curso_grado
+                  WHERE pc.id_curso_grado = :id_curso_grado";
                 $stmt = $conn -> prepare($sql);
                 $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
                 $stmt -> execute();

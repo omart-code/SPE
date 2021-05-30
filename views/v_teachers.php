@@ -77,7 +77,7 @@ include_once '../controllers/DegreeCourseController.inc.php';
             
             Connection::openConnection();
             $degreeCoursesByDegree = DegreeCourseController::getDegreeCoursesByDegree(Connection::getConnection(), $coordinator->getCoordinatorDegreeId()); ?>
-         <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+       
             <h5>Sel·lecciona Grau i Curs</h5>
             <br>
             <select id="cursoGradoProfesores" class="selectpicker form-control" name="cursoGradoProfesores" required="true">
@@ -92,22 +92,23 @@ include_once '../controllers/DegreeCourseController.inc.php';
             </select>
             <br>
             <div class="text-right">
-                 <button type="submit" class="btn btn-success" name="cercaProfessors">Cerca Professors</button>
+                 <button type="submit" class="btn btn-success" name="cercaProfessors" onClick="searchTeachers()">Cerca Professors</button>
             </div>
             <br>
        
-         </form>
+       
          <br>
          <br>
-          
+          <div id="teachers"></div>
            <?php  
-           if(isset($_POST['cercaProfessors'])){
+          /*  if(isset($_POST['cercaProfessors'])){
                         if($_POST['cursoGradoProfesores'] !== 'null'){?>
                             <table id="teachers" class="table  table-bordered  dt-responsive" style="width:100%">
                                     <thead>
                                     <tr>
                                      <th scope="col">Nom</th>
                                      <th scope="col">Departament</th>
+                                     <th scope='col'>Curs/Grau</th>
                                      <th scope="col">Alumnes Assignats</th>
                                      <th scope="col">Màxim Alumnes</th>
           
@@ -125,6 +126,7 @@ include_once '../controllers/DegreeCourseController.inc.php';
                                         echo "<tr>";
                                         echo "<th scope='row'>".$teacher['nombre']. " " .$teacher['apellido']. "</td>";
                                         echo "<td>".$teacher['siglas']."</td>";
+                                        echo "<td>".$teacher['curso_grado']."</td>";
                                         echo "<td>".$estudiantes_asignados."</td>";
                                         echo "<td>".$teacher['max_estudiantes']."</td>";
                                         
@@ -138,20 +140,14 @@ include_once '../controllers/DegreeCourseController.inc.php';
                         <?php }else{ 
                             echo "<b>No hi ha professors a mostrar</b><br><br><br><br>";
                          }
-           }?>
+           } */?>
         
     <script>
 
-$(document).ready(function() {
-    $('#teachers').DataTable({
-                "language": {
-                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Catalan.json"
-             }
-            });
-           
-        } );;
+
 
 </script>
+<script src="../js/searchTeachers.js"></script>
     
 
     </div>

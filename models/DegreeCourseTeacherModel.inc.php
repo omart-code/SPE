@@ -78,6 +78,23 @@
            
         }
 
+        public static function updateDegreeCourseTeacherMaxStudents($conn, $id_curso_grado, $niu_profesor, $max_estudiantes){
+            if(isset($conn)){
+                try{
+                    $sql = "UPDATE profesores_curso_grado SET max_estudiantes=:max_estudiantes WHERE niu_profesor =:niu_profesor AND id_curso_grado = :id_curso_grado";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':niu_profesor', $niu_profesor, PDO::PARAM_STR);
+                    $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
+                    $stmt ->bindParam(':max_estudiantes', $max_estudiantes, PDO::PARAM_STR);
+                    $stmt -> execute();
+                  
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
+
+        }
+
         //Elimina a un profesor de profesores curso grado, es de decir como profesor en un curso grado determinado
         public static function removeDegreeCourseTeacher($conn, $id_curso_grado, $niu_profesor){
             if(isset($conn)){

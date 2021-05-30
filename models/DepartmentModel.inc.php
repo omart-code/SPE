@@ -140,7 +140,11 @@
             if(isset($conn)){
                 try{
                    
-                    $sql = "SELECT d.nombre as nombre_departamento, d.siglas as siglas, SUM(pc.estudiantes_asignados) as estudiantes_asignados, SUM( pc.max_estudiantes) as max_estudiantes FROM profesores p INNER JOIN departamentos d ON d.id_departamento = p.id_departamento INNER JOIN profesores_curso_grado pc ON pc.niu_profesor = p.niu_profesor WHERE pc.id_curso_grado = :id_curso_grado GROUP BY d.nombre ";
+                    $sql = "SELECT d.nombre as nombre_departamento, cg.nombre as curso_grado, d.siglas as siglas, SUM(pc.estudiantes_asignados) as estudiantes_asignados, 
+                    SUM( pc.max_estudiantes) as max_estudiantes FROM profesores p INNER JOIN departamentos d ON d.id_departamento = p.id_departamento
+                    INNER JOIN profesores_curso_grado pc ON pc.niu_profesor = p.niu_profesor 
+                    INNER JOIN cursos_grados cg ON cg.id_curso_grado = pc.id_curso_grado
+                    WHERE pc.id_curso_grado = :id_curso_grado GROUP BY d.nombre ";
                     $stmt = $conn -> prepare($sql);
                     $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
                     $stmt -> execute();
