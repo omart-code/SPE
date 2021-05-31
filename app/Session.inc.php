@@ -2,13 +2,14 @@
 
 class ControlSession{
 
-    public static function startSession($niu, $id_tipo_usuario, $nombre){
+    public static function startSession($niu, $id_tipo_usuario, $id_tipo_usuario2, $nombre){
         if(session_id() == ''){
             session_start();
         }
 
         $_SESSION['niu'] = $niu;
         $_SESSION['id_tipo_usuario'] = $id_tipo_usuario;
+        $_SESSION['id_tipo_usuario2'] = $id_tipo_usuario2;
         $_SESSION['nombre'] = $nombre;
        
     }
@@ -23,6 +24,9 @@ class ControlSession{
         if(isset($_SESSION['id_tipo_usuario'])){
             unset($_SESSION['id_tipo_usuario']);
         }
+        if(isset($_SESSION['id_tipo_usuario2'])){
+            unset($_SESSION['id_tipo_usuario2']);
+        }
         if(isset($_SESSION['nombre'])){
             unset($_SESSION['nombre']);
         }
@@ -34,7 +38,7 @@ class ControlSession{
         if(session_id() == ''){
             session_start();
         }
-        if(isset($_SESSION['niu']) && isset($_SESSION['id_tipo_usuario']) && isset($_SESSION['nombre'])){
+        if(isset($_SESSION['niu']) && isset($_SESSION['id_tipo_usuario']) && isset($_SESSION['id_tipo_usuario2']) && isset($_SESSION['nombre'])){
             return true;
         }else{
             return false;

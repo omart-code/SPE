@@ -15,21 +15,25 @@ if(isset($_POST['enviar'])){
   
   Connection::openConnection(); 
   $validator = new LoginValidator($_POST['niu'], $_POST['password'], Connection::getConnection());
-  var_dump($_POST);
   if($validator ->getError() === '' && !is_null($validator ->getUser())){
  //Iniciar sessio
  //Redirigir a la pagina que toque
+   
 
-
-    ControlSession::startSession($validator->getUser()->getUserNiu(), $validator->getUser()->getUserType(), $validator->getUser()->getUserName());
+    ControlSession::startSession($validator->getUser()->getUserNiu(), $validator->getUser()->getUserType(), $validator->getUser()->getUserType2(), $validator->getUser()->getUserName());
+  
     if($_SESSION['id_tipo_usuario'] == '1'){
+      
       Redirection::redirect(TEACHER);
     }
     else if ($_SESSION['id_tipo_usuario'] == '2'){
       Redirection::redirect(STUDENT);
     }
-    else if ($_SESSION['id_tipo_usuario'] == '3'){
+    else if ($_SESSION['id_tipo_usuario'] == '3' && $_SESSION['id_tipo_usuario2'] == '0'){
       Redirection::redirect(COORDINATOR);
+    }
+    else if ($_SESSION['id_tipo_usuario'] == '3' && $_SESSION['id_tipo_usuario2'] == '1'){
+      Redirection::redirect(CHOOSE);
     }
     else if ($_SESSION['id_tipo_usuario'] == '4'){
       Redirection::redirect(ADMIN);

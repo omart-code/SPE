@@ -8,9 +8,10 @@ class User {
     private $apellido;
     private $email;
     private $telefono;
-    private $tipo_usuario;
+    private $id_tipo_usuario;
+    private $id_tipo_usuario2;
 
-    public function __construct($id_usuario, $niu, $password, $nombre, $apellido, $email, $telefono, $tipo_usuario){
+    public function __construct($id_usuario, $niu, $password, $nombre, $apellido, $email, $telefono, $id_tipo_usuario, $id_tipo_usuario2){
         $this -> id_usuario = $id_usuario;
         $this -> niu = $niu;
         $this -> password = $password;
@@ -18,7 +19,8 @@ class User {
         $this -> apellido = $apellido;
         $this -> email = $email;
         $this -> telefono = $telefono;
-        $this -> tipo_usuario= $tipo_usuario;
+        $this -> id_tipo_usuario= $id_tipo_usuario;
+        $this -> id_tipo_usuario2= $id_tipo_usuario2;
     }
 
     public function getUserId(){
@@ -50,7 +52,11 @@ class User {
     }
 
     public function getUserType(){
-        return $this -> tipo_usuario;
+        return $this -> id_tipo_usuario;
+    }
+
+    public function getUserType2(){
+        return $this -> id_tipo_usuario2;
     }
 
     public function setUserNiu($niu){

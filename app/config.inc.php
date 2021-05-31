@@ -7,7 +7,7 @@ define("LOGOUT", SERVER."/views/logout.php");
 define("TEACHER", SERVER."/views/v_teacher.php");
 define("STUDENT", SERVER."/views/v_student.php");
 define("COORDINATOR", SERVER."/views/v_coordinator.php");
-define("ADMIN", SERVER."/views/v_admin.php");
+define("CHOOSE", SERVER."/views/v_chooseProfile.php");
 define("INTERNSHIPS", SERVER."/views/v_view_internships.php");
 define("VIEWINTERNSHIP", SERVER."/views/v_view-internship.php");
 define("VIEWINTERNSHIPCOORD", SERVER."/views/v_view-internship_coord.php");
