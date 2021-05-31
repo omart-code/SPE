@@ -32,5 +32,9 @@ class UserController {
        UserModel::updateTeacherByNiu($conn, $niu, $nombre, $apellido,  $telefono, $email, $id_tipo_usuario);
    }
 
+   public function updateTeacherToCoord($conn, $niu, $id_tipo_usuario){
+       UserModel::updateTeacherToCoord($conn, $niu, $id_tipo_usuario);
+   }
+
 }
 ?>

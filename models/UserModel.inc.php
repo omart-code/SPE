@@ -176,6 +176,26 @@ class UserModel {
         
                
             }
+
+            public static function updateTeacherToCoord($conn, $niu, $id_tipo_usuario){
+                
+        
+                if(isset($conn)){
+                    try{
+                        include_once '../entities/User.inc.php';
+                        $sql = "UPDATE usuarios SET id_tipo_usuario2 = 3 WHERE niu = :niu AND id_tipo_usuario=:id_tipo_usuario";
+                        $stmt = $conn -> prepare($sql);
+                        $stmt ->bindParam(':niu', $niu, PDO::PARAM_STR);
+                        $stmt ->bindParam(':id_tipo_usuario', $id_tipo_usuario, PDO::PARAM_STR);
+                        $stmt -> execute();
+                      
+                    }catch (PDOException $ex){
+                        echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                    }
+                }
+        
+               
+            }
    
 
 }

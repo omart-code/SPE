@@ -22,11 +22,11 @@ if(isset($_POST['enviar'])){
 
     ControlSession::startSession($validator->getUser()->getUserNiu(), $validator->getUser()->getUserType(), $validator->getUser()->getUserType2(), $validator->getUser()->getUserName());
   
-    if($_SESSION['id_tipo_usuario'] == '1'){
+    if($_SESSION['id_tipo_usuario'] == '1' && $_SESSION['id_tipo_usuario2'] == '0'){
       
       Redirection::redirect(TEACHER);
     }
-    else if ($_SESSION['id_tipo_usuario'] == '2'){
+    else if ($_SESSION['id_tipo_usuario'] == '2' && $_SESSION['id_tipo_usuario2'] == '0'){
       Redirection::redirect(STUDENT);
     }
     else if ($_SESSION['id_tipo_usuario'] == '3' && $_SESSION['id_tipo_usuario2'] == '0'){
@@ -35,16 +35,17 @@ if(isset($_POST['enviar'])){
     else if ($_SESSION['id_tipo_usuario'] == '3' && $_SESSION['id_tipo_usuario2'] == '1'){
       Redirection::redirect(CHOOSE);
     }
-    else if ($_SESSION['id_tipo_usuario'] == '4'){
-      Redirection::redirect(ADMIN);
+    else if ($_SESSION['id_tipo_usuario'] == '1' && $_SESSION['id_tipo_usuario2'] == '3'){
+      Redirection::redirect(CHOOSE);
     }
+   
 
     
 
      
     
   }else{
-    echo 'inicio KO';
+        echo '<script>alert("Error al iniciar la sessió")</script>';
   } 
 
   Connection::closeConnection();

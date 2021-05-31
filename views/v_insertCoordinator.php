@@ -21,12 +21,12 @@ include_once '../includes/navbar.inc.php';
         if(isset($_POST['grauSelec']) && isset($_POST['professorSelec'])){
             
             Connection::openConnection(); 
-            //inserto en coordinadores, SE DEBERIA CONTROLAR QUE NO HUBIERA 2 COORDINADORES DEL MISMO GRADO O DUPLICADOS
             CoordinatorController::insertCoordinator(Connection::getConnection(), $_POST['professorSelec'],$_POST['grauSelec']);
             //inserto en usuarios como coordinador.
             //obtengo los datos de usuario por el  niu profesor
             $user = UserController::getUserByNiuAndType(Connection::getConnection(), $_POST['professorSelec'], 1 );
-            UserController::insertUser(Connection::getConnection(), $user->getUserNiu(), $user->getUserName(),$user->getUserSurname(), $user->getUserTelf(),$user->getUserEmail(), 3);
+           //actualizo el campo de tipo 2 de ese profesor y pongo un 3
+            UserController::updateTeacherToCoord(Connection::getConnection(), $_POST['professorSelec'], 1);
             echo '<script>window.location.replace("'.COORDINATORS.'")</script>';
         }
       

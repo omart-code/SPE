@@ -22,13 +22,17 @@ include_once '../controllers/InternshipTaskController.inc.php';
 
                 <?php echo "<h5>Benvingut " . $_SESSION["nombre"]. "</h5>"?>
                 <br>
+                <?php if($internships !=null){?>
                 <h3>Disposes de <?php echo count($internships) ?> estades pendents de revisar</h3>
+                <?php } ?>
                 <br>
                 <br>
                 <div class="row">
                     <?php
                     
-                  
+                        if($internships){
+
+                      
                         foreach ($internships as $internship) { 
                         $student = InternshipController::getInternshipStudent(Connection::getConnection(),  $internship['niu_estudiante']);
                         
@@ -80,7 +84,10 @@ include_once '../controllers/InternshipTaskController.inc.php';
                             </div>
                         </div>  
                             
-                        <?php }?>
+                        <?php }
+                        }else{ ?>
+                                <h5>No tens estancies assignades</h5>
+                      <?php  }?>
                         
                 </div>
            

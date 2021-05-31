@@ -96,9 +96,7 @@ class InternshipModel {
                                 $intern['fecha_fin'], $intern['id_tutor_externo'], $intern['id_empresa'], $intern['nota'], $intern['finalizada'], $intern['id_curso_grado'],
                                 );
                         } 
-                     }else{
-                            print 'No hi ha estancies disponibles';
-                        }
+                     }
                     
                 }catch (PDOException $ex){
                     echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
@@ -127,9 +125,7 @@ class InternshipModel {
                         foreach($res as $intern){
                             $internships[] = $intern;
                         } 
-                     }else{
-                            print 'No hi ha estancies disponibles';
-                        }
+                     }
                     
                 }catch (PDOException $ex){
                     echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";

@@ -147,8 +147,7 @@
                                 Connection::openConnection();
                                 $currentDate = date('Y-m-d');
                                 $currentDatetime = DateTime::createFromFormat('Y-m-d', $currentDate);
-                                $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 1);
-                               
+                                $tasks = TaskController::getTasksByPhase(Connection::getConnection(), 1, $internship->getIdDegreeCourse());
                                 $tasksInternship = InternshipTaskController::getInternshipTasksByPhase(Connection::getConnection(), $internship->getIdInternship(), 1);
                                
                                foreach($tasks as $task){ ?>
@@ -156,7 +155,7 @@
                                     <td class='text-justify'><b><?php echo $task->getTaskName(); ?></b></td>
                                     <?php foreach ($tasksInternship as $taskInternship) {
                                       
-                                      if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
+                                      if($task->getNumTask() == $taskInternship->getTaskId()){ ?>
                                                   <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
                                                                         if($taskInternship->getFinished() == "1"){
                                                                             echo 'background-color: #c2e5ca;'; //verd
@@ -283,7 +282,7 @@
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
                                       
-                                      if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
+                                      if($task->getNumTask() == $taskInternship->getTaskId()){ ?>
                                                   <td  style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
                                                                         if($taskInternship->getFinished() == "1"){
                                                                             echo 'background-color: #c2e5ca;'; //verd
@@ -410,7 +409,7 @@
                                     
                                     <?php foreach ($tasksInternship as $taskInternship) {
                                       
-                                      if($task->getTaskId() == $taskInternship->getTaskId()){ ?>
+                                      if($task->getNumTask() == $taskInternship->getTaskId()){ ?>
                                                   <td style="<?php if($taskInternship->getNormalTaskDate()->format('Y-m-d') > $currentDate){ //data_prevista posterior data actual
                                                                         if($taskInternship->getFinished() == "1"){
                                                                             echo 'background-color: #c2e5ca;'; //verd

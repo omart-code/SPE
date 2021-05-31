@@ -104,7 +104,7 @@ if($cursoGrado != 'null'){?>
        <br>           
      
 <?php } else{ ?>
-  <div ><b>No hi ha estancies a mostrar per aquest curs i grau</b></div>
+  
          <br>
       <?php }
   ?>
