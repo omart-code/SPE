@@ -6,6 +6,7 @@ include_once '../app/LoginValidator.inc.php';
 include_once '../app/Redirection.inc.php';
 include_once '../app/Session.inc.php';
 
+
 if(ControlSession::sessionStarted()){
   Redirection::redirect(SERVER);
 }
@@ -48,40 +49,30 @@ if(isset($_POST['enviar'])){
 $title = 'Login';
 include_once '../includes/doc-declaration.inc.php';
 ?>
-
-<div class="container-fluid" style="width:80%;">
-<div class="wrapper fadeInDown md-5 p-5">
-  <div id="formContent">
-   
-    <!-- Login Form -->
-   <h1>Login</h1>
-
-   
-    <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
-      <input type="text" id="niu" class="fadeIn second" name="niu" placeholder="niu" >
+<head>
+<link rel="stylesheet" href="../css/login.scss">
+</head>
+<div class="wrapper">
+    <form class="form-signin"  method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">       
+      <h2 class="form-signin-heading">Accedeix a la aplicació</h2>
+      <br>
+      <input type="text" class="form-control" name="niu" placeholder="niu"  required="" autofocus="" />
       <?php
         if (isset($_POST['enviar']) && isset($_POST['niu']) && !empty($_POST['niu'])){
           echo 'value="' . $_POST['niu'] . '"';
         }
         ?>
-      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" >
+      <br>
+      <input type="password" class="form-control" name="password" placeholder="password" required=""/>
       <?php
             if (isset($_POST['enviar'])){
             $validator -> showError();
             }
           ?>
-     
-      <input type="submit" role="button" name="enviar" class="fadeIn fourth btn btn-success" value="Log In">
+      <br>      
+      <button class="btn btn-lg btn-success btn-block" name="enviar" type="submit">Login</button>   
     </form>
-
-    <!-- Remind Passowrd -->
-    <div id="formFooter">
-      <a class="underlineHover" href="#">Olvidaste de la contraseña?</a>
-    </div>
-
   </div>
-</div>
-</div>
 
 </body>
 </html>

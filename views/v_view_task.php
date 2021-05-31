@@ -167,13 +167,16 @@ function gotoInternshipPage(){
 </script>
 
 <script>
-function  restoreMessage(){
-    var respuesta = confirm("Realment desitja restablir a la plantilla original?");
+    function restoreMessage(){
+        var respuesta = confirm("Realment desitja restablir a la plantilla original?");
     if(respuesta == true){
         return true
     }else{
         return false
     }
-}
+    }
+  
+  
+
 
 </script>
