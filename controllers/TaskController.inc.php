@@ -29,6 +29,12 @@ class TaskController {
         TaskModel::insertTasksByDegreeCourse($conn, $id_curso_grado);
     }
 
+    public function getTaskByNumAndDegreeCourse($conn, $num_tarea, $id_curso_grado){
+
+        $task= TaskModel::getTaskByNumAndDegreeCourse($conn, $num_tarea, $id_curso_grado);
+        return $task;
+    }
+
 
 }
 ?>

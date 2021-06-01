@@ -8,6 +8,7 @@
     include '../includes/libraries.inc.php';
      include '../includes/doc-declaration.inc.php';
      include_once '../controllers/TaskController.inc.php';
+     include_once '../controllers/InternshipController.inc.php';
      include_once '../controllers/TeacherMessageController.inc.php';
      include_once '../controllers/TemplateMessageController.inc.php';
      include_once '../app/Redirection.inc.php';
@@ -25,8 +26,10 @@
                 <div class="card-body">
                 <?php
                    Connection::openConnection();
-
-                   $task = TaskController::getTaskById(Connection::getConnection(), $_GET['task']);
+                    $internship = InternshipController::getStudentInternship(Connection::getConnection(), $_GET['niu']);
+                    $cursoGrado = $internship-> getIdDegreeCourse();
+                  
+                   $task = TaskController::getTaskByNumAndDegreeCourse(Connection::getConnection(), $_GET['task'], $cursoGrado);
                    
                 ?>
                     <h2 class="card-text"><b>Informació de la tasca - <?php echo $task->getTaskName(); ?></b> </h2>
@@ -45,15 +48,14 @@
          <div >
              <?php
                 Connection::openConnection();
-                $teacherMessage = TeacherMessageController::getTeacherMessageById(Connection::getConnection(), $task->getTaskId(),$_SESSION['niu']);
+                $teacherMessage = TeacherMessageController::getTeacherMessageByNum(Connection::getConnection(), $_GET['task'],$_SESSION['niu']);
                
                 if($teacherMessage != null){
-                    
-                    echo $teacherMessage->getTeacherMessageMessage();
+                   
+                    echo $teacherMessage->getTeacherMessageMessage(); //muestra el mensaje modificado si lo ha sido
                 }else{
-                    $message = TemplateMessageController::getTemplateMessageById(Connection::getConnection(), $task->getTaskId());
-                  
-                    echo $message;
+                   //muestra el mensaje original de la tarea
+                    echo $task->getTaskMessage();
                 }
                
                /*  $message = TeacherMessageController::getTeacherMessageById(Connection::getConnection(), $_GET['task'], $_SESSION["niu"]);
@@ -64,8 +66,9 @@
             ?>
 
             <?php  if(isset($_POST['restablecer'])){
-                     TeacherMessageController::restoreMessageByTask(Connection::getConnection(),$_GET['task'], $_SESSION['niu']);
-                     echo '<script>window.location.replace("'.TASK."?task=".$_GET['task']."&niu=".$_GET['niu'].'")</script>';
+                     Connection::openConnection();
+                     TeacherMessageController::restoreMessageByTask(Connection::getConnection(), $_GET['task'], $_SESSION['niu'], $cursoGrado);
+                    echo '<script>window.location.replace("'.TASK."?task=".$_GET['task']."&niu=".$_GET['niu'].'")</script>';
             }
 
             ?>
@@ -93,10 +96,10 @@
         
              if(isset($_POST['aceptarMensaje'])){
                // TeacherMessageController::updateTeacherMessageByTask(Connection::getConnection(), $_GET['task'], $_POST['editordata'], $_SESSION["niu"]);
-               $teacherMessage = TeacherMessageController::getTeacherMessageById(Connection::getConnection(), $task->getTaskId(),$_SESSION['niu']);
-               
-               if($teacherMessage != null){
-                TeacherMessageController::updateTeacherMessageByTask(Connection::getConnection(), $_GET['task'], $_POST['editordata'], $_SESSION["niu"]);
+               $teacherMessage = TeacherMessageController::getTeacherMessageByNum(Connection::getConnection(),$_GET['task'],$_SESSION['niu']);
+             
+              if($teacherMessage != null){
+                TeacherMessageController::updateTeacherMessageByNum(Connection::getConnection(),$_GET['task'], $_POST['editordata'], $_SESSION["niu"]);
                  
                }else{
                 TeacherMessageController::insertTeacherMessage(Connection::getConnection(), $_GET['task'],$_POST['editordata'],$_SESSION["niu"]);
@@ -119,7 +122,7 @@
                         if($teacherMessage !=null){
                             echo $teacherMessage->getTeacherMessageMessage();
                         }else{
-                            echo $message;
+                            echo $task->getTaskMessage();
                         }
                        ?>
                         </textarea>

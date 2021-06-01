@@ -88,6 +88,33 @@
             return $task;
         }
 
+        public static function getTaskByNumAndDegreeCourse($conn, $num_tarea, $id_curso_grado){ 
+        
+            $task = null;
+
+            if(isset($conn)){
+                try{
+                    include_once '../entities/Task.inc.php';
+                    $sql = "SELECT * FROM tareas t WHERE t.num_tarea = :num_tarea AND id_curso_grado = :id_curso_grado";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':num_tarea', $num_tarea, PDO::PARAM_STR);
+                    $stmt ->bindParam(':id_curso_grado', $id_curso_grado, PDO::PARAM_STR);
+                    $stmt -> execute();
+                    $res = $stmt-> fetch();
+
+                    if(!empty($res)){
+                        $task = new Task(
+                            $res['id_tarea'], $task['num_tarea'], $res['id_etapa'],$res['nombre'],$res['informacion'],
+                            $res['mensaje'],$res['accion1'],$res['accion2'],$res['accion3'], $res['numero_acciones'], $res['porcentaje']);
+                    }
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
+
+            return $task;
+        }
+
         //Devuelve las acciones de una tarea
         public static function getTasksActions($conn, $id_tarea){ 
             $actions = null;
