@@ -24,7 +24,7 @@
                         <th scope="col" class="text-center">Alumne/a</th>
                         <th scope="col" class="text-center">Professor/a</th>
                         <?php Connection::openConnection();
-                             $tasks = TaskController::getTasksByDegreeCourse(Connection::getConnection());
+                             $tasks = TaskController::getTasksByDegreeCourse(Connection::getConnection(), $cursoGrado);
                              if(!empty($tasks)){
                                 foreach ($tasks as $task) {
                         

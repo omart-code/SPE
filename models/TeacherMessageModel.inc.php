@@ -77,7 +77,7 @@
             if(isset($conn)){
                 try{
                     include_once '../entities/TeacherMessage.inc.php';
-                    $sql = "UPDATE mensajes_profesor mp INNER JOIN plantillas_mensajes p ON mp.id_tarea = p.id_tarea SET mp.mensaje = p.mensaje WHERE mp.id_tarea = :id_tarea AND mp.niu_profesor = :niu_profesor ";
+                    $sql = "UPDATE mensajes_profesor mp INNER JOIN plantillas_tareas p ON mp.id_tarea = p.id_tarea SET mp.mensaje = p.mensaje WHERE mp.id_tarea = :id_tarea AND mp.niu_profesor = :niu_profesor ";
                     $stmt = $conn -> prepare($sql);
                     $stmt ->bindParam(':id_tarea', $id_tarea, PDO::PARAM_STR);
                     $stmt ->bindParam(':niu_profesor', $niu_profesor, PDO::PARAM_STR);

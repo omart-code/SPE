@@ -60,7 +60,7 @@ include_once '../controllers/DegreeCourseController.inc.php';
         <div class="card text-center col-sm">
             <div class="card-body">
                
-                <p class="card-text"><b>Assigna un profesor a un curs i grau</b></p>
+                <p class="card-text"><b>Assigna un professor a un curs i grau</b></p>
                 <a href="<?php echo ASSIGNTEACHER?>" class="btn btn-success">Assigna</a>
             </div>
         </div>

@@ -9,7 +9,7 @@
             if(isset($conn)){
                 try{
                  
-                    $sql = "SELECT mensaje FROM plantillas_mensajes WHERE id_tarea= :id_tarea";
+                    $sql = "SELECT mensaje FROM plantillas_tareas WHERE id_tarea= :id_tarea";
                     $stmt = $conn -> prepare($sql);
                     $stmt ->bindParam(':id_tarea', $id_tarea, PDO::PARAM_STR);
                     $stmt -> execute();
