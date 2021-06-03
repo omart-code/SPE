@@ -12,7 +12,7 @@
 
             Connection::openConnection(); 
             $department = DepartmentController::getDepartmentByName(Connection::getConnection(), $_POST['departamentProfessor']);
-            if($department != null){
+            if(filter_var($_POST['emailProfessor'], FILTER_VALIDATE_EMAIL)){
                 $departmentId = $department->getDepartmentId();
            
                 TeacherController::insertTeacher(Connection::getConnection(),htmlentities($_POST["nomProfessor"], ENT_QUOTES | ENT_HTML5, 'UTF-8'),htmlentities( $_POST["cognomProfessor"], ENT_QUOTES | ENT_HTML5, 'UTF-8'), 
@@ -25,11 +25,13 @@
                  htmlentities( $_POST["emailProfessor"], ENT_QUOTES | ENT_HTML5, 'UTF-8') , 1,  htmlentities( $_POST['contrasenyaProfessor'], ENT_QUOTES | ENT_HTML5, 'UTF-8'));
                  //Insertar ahora el profesor curso grado
                 //DegreeCourseTeacherController::insertDegreeCourseTeacher(Connection::getConnection(), htmlentities($_POST['cursoGrado'], ENT_QUOTES | ENT_HTML5, 'UTF-8'),  htmlentities( $_POST["niuProfessor"], ENT_QUOTES | ENT_HTML5, 'UTF-8'), 0);
-     
-                 echo '<script>window.location.replace("'.TEACHERS.'")</script>';
+                echo "<script>alert('Professor afegit correctament')</script>";
+                echo '<script>window.location.replace("'.TEACHERS.'")</script>';
+               
             }
+               echo "<script>alert('Professor no afegit perquè el correu es erroni')</script>";
+               echo '<script>window.location.replace("'.TEACHERS.'")</script>';
            
-    
           
       
       

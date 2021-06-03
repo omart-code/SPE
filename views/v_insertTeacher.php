@@ -60,34 +60,33 @@ include_once '../includes/navbar.inc.php';
             
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label"><b>Nom:</b></label>
-                <input type="text" class="form-control" name="nomProfessor" placeholder="ex: Joan">
+                <input type="text" class="form-control" name="nomProfessor" placeholder="ex: Joan" required>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label"><b>Cognom/s;</b></label>
-                <input type="text" class="form-control" name="cognomProfessor" placeholder="ex: Martorell" ></input>
+                <input type="text" class="form-control" name="cognomProfessor" placeholder="ex: Martorell" required></input>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label"><b>NIU:</b></label>
-                <input type="text" class="form-control" name="niuProfessor" placeholder="ex: 1111111">
+                <input type="text" class="form-control" name="niuProfessor" pattern="[0-9]{7}" title="El niu ha de tenir 7 digits" placeholder="ex: 1111111">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label"><b>E-mail:</b></label>
-                <input type="email" class="form-control" name="emailProfessor" placeholder="ex: joanmartorel@gmail.com"></input>
+                <input type="email" class="form-control" name="emailProfessor" placeholder="ex: joanmartorel@gmail.com" required></input>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label"><b>Telèfon:</b></label>
-                <input type="text" class="form-control" name="telefonProfessor" placeholder="ex: 666666666">
+                <input type="text" class="form-control" name="telefonProfessor" placeholder="ex: 666666666" pattern="[0-9]{9}" title="El telèfon ha de contenir 9 digits numèrics" required>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label"><b>Contrasenya:</b></label>
-                <input type="password" class="form-control" name="contrasenyaProfessor">
+                <input type="password" class="form-control" required pattern=".{5,}" title="La contrasenya ha de tenir 5 o més caracters alfanumèrics" name="contrasenyaProfessor">
             </div>
             <?php Connection::openConnection(); 
             $departments = DepartmentController::getDepartmentByDegree(Connection::getConnection(), $coordinator->getCoordinatorDegreeId())  ?>
             <div> 
                 <label><b>Departament</b></label>
-                <select name="departamentProfessor" class="form-control" aria-label=".form-select-lg example">
-                <option selected value="null">Sel·lecciona un departament</option>
+                <select name="departamentProfessor" class="form-control" aria-label=".form-select-lg example" required>
                 <?php foreach ($departments as $key => $dep) { ?>
                     <option value="<?php echo $dep["nombre"]?>"><?php echo $dep['nombre'] ?></option>
                 <?php } ?>

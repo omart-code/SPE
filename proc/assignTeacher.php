@@ -13,9 +13,14 @@ include_once '../includes/navbar.inc.php';
     $teacher = DegreeCourseTeacherController::getTeacherByNiuAndDegreeCourse(Connection::getConnection(), $_POST['grauCursSelec'], $_POST['profesor']);
     if($teacher == null){
         DegreeCourseTeacherController::insertDegreeCourseTeacher(Connection::getConnection(), $_POST['grauCursSelec'], $_POST['profesor'], $_POST['maxEstudiants']);
+        echo "<script>alert('Professor assignat correctament')</script>";    
+        echo '<script>window.location.replace("'.TEACHERS.'")</script>';
+    }else{
+        echo "<script>alert('Professor no assignat perque ja està assignat a un curs i grau')</script>";    
+        echo '<script>window.location.replace("'.TEACHERS.'")</script>';
     }
    
-    echo '<script>window.location.replace("'.TEACHERS.'")</script>';
+    
   
 
 

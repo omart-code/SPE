@@ -84,13 +84,12 @@ include_once '../includes/navbar.inc.php';
            <?php $departments = DepartmentController::getDepartments(Connection::getConnection()); ?>
            <div class="mb-3">
                 <label><b>Sel·lecciona el curs i grau:</b></label><br />
-                <select name="grauCursSelec" class="form-control" aria-label=".form-select-lg example">
+                <select name="grauCursSelec" class="form-control" aria-label=".form-select-lg example" required>
                        
                        <?php 
                
                        Connection::openConnection();
                        $degreeCoursesByDegree = DegreeCourseController::getDegreeCoursesByDegree(Connection::getConnection(), $coordinator->getCoordinatorDegreeId()); ?>
-                       <option selected>Sel·lecciona un grau i curs</option>
                            <?php foreach ($degreeCoursesByDegree as $degreeCourse) { ?>
                            <option value="<?php echo $degreeCourse->getDegreeCourseId()?>"><?php echo $degreeCourse->getDegreeCourseName()?></option>
                            <?php }?>
@@ -100,7 +99,7 @@ include_once '../includes/navbar.inc.php';
             </div>
             <div class="mb-3">
             <label><b>Màxim d'estudiants a assignar:</b></label>
-            <input type="number" class="form-control" name="maxEstudiants" placeholder="15">
+            <input type="number" class="form-control" name="maxEstudiants" placeholder="15" max="50" min="5" required>
             <br />
             </div>
 

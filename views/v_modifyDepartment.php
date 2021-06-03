@@ -2,7 +2,7 @@
 
 
 include_once '../includes/libraries.inc.php';
-$title = 'ADD TEACHER';
+$title = 'ASSIGN DEPARTMENT';
 include_once '../includes/doc-declaration.inc.php'; 
 include_once '../app/Connection.inc.php';
 include_once '../controllers/TeacherController.inc.php';
@@ -50,8 +50,8 @@ include_once '../includes/navbar.inc.php';
 
             <div class="card text-center">
                 <div class="card-body">
-                    <h5 class="card-title">Modifica departament</h5>
-                    <p class="card-text">Modifica les dades d'un departament</p>
+                    <h5 class="card-title">Assigna un departament</h5>
+                    <p class="card-text">Assigna un departament a un grau</p>
                     
                 </div>
             </div>
@@ -72,7 +72,7 @@ include_once '../includes/navbar.inc.php';
                 
             
               
-                        <option value="" selected>Sel·lecciona un grau</option>
+                       
                     
                 <?php  foreach ($degrees as $degree) { ?>
                         <option value="<?php echo $degree->getDegreeId()?>"><?php echo $degree->getDegreeName()?></option>
@@ -85,7 +85,7 @@ include_once '../includes/navbar.inc.php';
            <div class="mb-3">
                 <label><b>Departaments:</b></label><br />
                  <select name="departament" id="departaments" class="selectpicker form-control" required>
-                    <option value="" selected>Selecciona un departament a modificar</option>
+                    
                     <?php  foreach ($departments as $department) { ?>
                         <option value="<?php echo $department->getDepartmentId()?>"><?php echo $department->getDepartmentName()?></option>
                     <?php }?>

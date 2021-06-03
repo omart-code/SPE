@@ -21,6 +21,7 @@ include_once '../includes/navbar.inc.php';
             $depart = DegreeDepartmentController::getDepartmentsByDegreeAndDepartment(Connection::getConnection(),$_POST['grau'], html_entity_decode($_POST['departament'], ENT_QUOTES, 'UTF-8'));
             if( $depart == null && $_POST['departament'] != null && $_POST['grau'] != null){
                 DegreeDepartmentController::insertDegreeDepartment(Connection::getConnection(), $_POST['departament'], $_POST['grau'] );
+                echo "<script>alert('Departament assignat correctament')</script>";
             }
           
           

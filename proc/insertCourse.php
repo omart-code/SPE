@@ -29,8 +29,8 @@ include_once '../includes/navbar.inc.php';
         $degreeCourse = DegreeCourseController::getDegreeCourseByCourseAndDegree(Connection::getConnection(), $courseId,  $degree->getDegreeId());
         //Para este curso grado, añado 9 tareas
         TaskController::insertTasksByDegreeCourse(Connection::getConnection(),  $degreeCourse->getDegreeCourseId());
-
-        //echo '<script>window.location.replace("'.COURSES.'")</script>';
+        echo "<script>alert('Curs afegit correctament correctament')</script>";
+        echo '<script>window.location.replace("'.COURSES.'")</script>';
          
       
        ?>

@@ -68,7 +68,7 @@ include_once '../includes/navbar.inc.php';
             <br>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label"><b>Nom:</b></label>
-                <input type="text" class="form-control" name="nomCurs" placeholder="ex: 2020-2021" required>
+                <input type="text" class="form-control" name="nomCurs" placeholder="ex: 2020-2021" pattern="[0-9]{4}-[0-9]{4}" title="El curs ha de seguir el format especificat yyyy-yyyy" required>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label"><b>Data d'inici:</b></label>
