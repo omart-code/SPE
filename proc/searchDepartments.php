@@ -14,9 +14,11 @@ include_once '../controllers/TeacherController.inc.php';
 
         
                         if($_POST['cursoGrado'] !== 'null'){?>
+                         <h5>Taula de departaments</h5>
+                             <br>
                             <table id="departaments" class="table  table-bordered  dt-responsive" style="width:100%">
                                     <thead>
-                                    <tr>
+                                    <tr style="background-color: #f3f3f3;">
                                      <th scope="col">Nom</th>
                                      <th scope="col">Sigles</th>
                                      <th scope="col">Curs/Grau</th>

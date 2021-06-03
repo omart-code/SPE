@@ -15,6 +15,11 @@ class CompanyController {
        return $empresa;
     }
 
+    public function checkCompany($conn, $nombre){
+        $empresa = CompanyModel::getCompanyByName($conn, $nombre);
+        return $empresa;
+    }
+
 }
 ?>
 

@@ -35,6 +35,11 @@ class ExternalTeacherController {
         return $teacher;
     }
 
+    public function checkExternalTeacher($conn, $email){
+        $teacher = ExternalTeacherModel::checkExternalTeacher($conn, $email);
+        return $teacher;
+    }
+
 }
 ?>
 

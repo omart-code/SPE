@@ -37,33 +37,34 @@ include_once '../includes/navbar.inc.php';
             <br>
 
             
-          
+                    <form action="../proc/insertComment.php" method="post">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label"><b>Tipus de comentari:</b></label>
-                        <select name="tipoComentario" class="form-control" aria-label=".form-select-lg example">
+                        <select name="tipoComentario" class="form-control" aria-label=".form-select-lg example" required>
                             <option selected>Públic</option>
                             <option>Privat</option>
                         </select>
                         <label for="recipient-name" class="col-form-label"><b>Categoria del comentari:</b></label>
-                        <select name="categoriaComentario" class="form-control" aria-label=".form-select-lg example">
+                        <select name="categoriaComentario" class="form-control" aria-label=".form-select-lg example" required>
                             <option selected>Estudiant</option>
                             <option>Empresa</option>
                             <option>Coordinació</option>
                         </select>
                     </div>
-                    <div class="form-group mt-5 mb-5">
+                    <div class="form-group mt-3 mb-5">
                         <label for="message-text" class="col-form-label"><b>Comentari:</b></label>
-                        <textarea  id="summernote" class="form-control" name="textoComentario"></textarea>
-            
-                      
+                        <textarea  id="summernote"  name="textoComentario"></textarea>
                     </div>
+                    <input name="internshipId" hidden value="<?php echo $_SESSION['internshipId']?>" >
+                    <input name="niuStudent" hidden value="<?php echo $_SESSION['niuStudent']?>" >
                   
                     
                     
                         
-            <button type="submit" class="btn btn-success" onClick="insertComment(<?php echo  $_SESSION['internshipId']?>, <?php echo $_SESSION['niuStudent'] ?> )" name="enviarComentari">Afegeix</button>
+            <button type="submit" class="btn btn-success" name="enviarComentari">Afegeix</button>
             <br>
         </div>
+        </form>
         
         <div class="container-fluid" style="width:80%;">
         <br>
@@ -87,5 +88,5 @@ $('#summernote').summernote({
   ]
       })
 </script>
-<script src="../js/insertComment.js"></script>
+
 

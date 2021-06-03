@@ -88,9 +88,7 @@
                     if(count($res)){
                         foreach($res as $mention){
                             $mentions[] = $mention;
-                            }}else{
-                                print 'No hi ha mencions disponibles';
-                            }
+                        }}
                 }catch (PDOException $ex){
                     echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
                 }

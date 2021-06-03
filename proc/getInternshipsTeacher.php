@@ -11,9 +11,9 @@ $niuProfesor = $_POST['niuProfesor'];
 if($cursoGrado != 'null'){?>
           
         <div class="estancias">
-          <table id="estancias"  class="table display table-bordered compact responsive" >
+          <table id="estancias" style="text-align: center; vertical-align: middle;" class="table display table-bordered compact responsive" >
               <thead>
-                  <tr>
+                  <tr style="ext-align: center; vertical-align: middle; background-color: #f3f3f3;">
                   <th class="text-center">Alumne/a</th>
                   <?php Connection::openConnection();
                        $tasks = TaskController::getTasksByDegreeCourse(Connection::getConnection(), $cursoGrado);

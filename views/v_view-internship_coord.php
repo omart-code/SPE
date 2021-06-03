@@ -134,7 +134,7 @@
             <div  style="display:none;" class="faseInicial table-responsive" >
                 <table class="table  table-bordered text-center table-sm" >
                         <thead>
-                        <tr>
+                        <tr style="background-color: #f3f3f3;">
                         <th scope="col">Nom tasca</th>
                         <th >Data prevista</th>
                         <th >Data activitat 1</th>
@@ -261,7 +261,7 @@
             <div  style="display:none;" class="faseSeguiment table-responsive" >
                 <table class="table table-bordered text-center table-sm"  >
                         <thead>
-                        <tr>
+                        <tr style="background-color: #f3f3f3;">
                         <th scope="col">Nom tasca</th>
                         <th scope="col">Data prevista</th>
                         <th scope="col">Data activitat 1</th>
@@ -388,7 +388,7 @@
             <div  style="display:none;" class="faseFinal table-responsive" >
                 <table class="table table-bordered text-center table-sm"  >
                         <thead>
-                        <tr>
+                        <tr style="background-color: #f3f3f3;">
                         <th scope="col">Nom tasca</th>
                         <th scope="col">Data prevista</th>
                         <th scope="col">Data activitat 1</th>
@@ -528,7 +528,7 @@
                if($comments !== null) {?>
             <table id="comentaris-tutor" class="table table-bordered">
                     <thead>
-                        <tr>
+                        <tr style="background-color: #f3f3f3;">
                         <th scope="col">Data</th>
                         <th scope="col">Categoria</th>
                         <th scope="col">Tipus</th>
@@ -578,32 +578,56 @@
                     Connection::openConnection();
                      $mention = $_POST['mencionAlumno'];
                      $mentionId = StudentController::getMentionId(Connection::getConnection(), $mention);
-                    StudentController::updateStudentByNiu(Connection::getConnection(), $internship->getNiuStudent(), $_POST['nombreAlumno'], $_POST['apellidoAlumno'], $_POST['emailAlumno'], $_POST['telefonoAlumno'], $mentionId);
+                     if(filter_var($_POST['emailAlumno'], FILTER_VALIDATE_EMAIL)){
+                        StudentController::updateStudentByNiu(Connection::getConnection(), $internship->getNiuStudent(), htmlentities($_POST['nombreAlumno'], ENT_QUOTES | ENT_HTML5, 'UTF-8') ,
+                        htmlentities($_POST['apellidoAlumno'], ENT_QUOTES | ENT_HTML5, 'UTF-8') ,htmlentities( $_POST['emailAlumno'], ENT_QUOTES | ENT_HTML5, 'UTF-8'),
+                        htmlentities($_POST['telefonoAlumno'], ENT_QUOTES | ENT_HTML5, 'UTF-8') , $mentionId);
+                        UserController::updateStudentByNiu(Connection::getConnection(), $internship->getNiuStudent(),htmlentities($_POST['nombreAlumno'], ENT_QUOTES | ENT_HTML5, 'UTF-8'),
+                        htmlentities($_POST['apellidoAlumno'], ENT_QUOTES | ENT_HTML5, 'UTF-8'), htmlentities($_POST['telefonoAlumno'], ENT_QUOTES | ENT_HTML5, 'UTF-8'),htmlentities( $_POST['emailAlumno'], ENT_QUOTES | ENT_HTML5, 'UTF-8'), 2);
+                     }
                    
-                    UserController::updateStudentByNiu(Connection::getConnection(), $internship->getNiuStudent(),$_POST['nombreAlumno'],$_POST['apellidoAlumno'], $_POST['telefonoAlumno'], $_POST['emailAlumno'], 2);
+                   
+                   
                     echo '<script> window.location.replace("'.VIEWINTERNSHIPCOORD."?niu=".$internship->getNiuStudent().'")</script>';
           
             }
+           
             if(isset($_POST['modificaProfesor'])){
                 Connection::openConnection();
-                $nombreEmpresa = $_POST['empresaProfesor'];
+                $empresaProfesor = htmlentities($_POST['empresaProfesor'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                $nombreProfesor = htmlentities($_POST['nombreProfesor'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                $apellidoProfesor = htmlentities($_POST['apellidoProfesor'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                $telefonoProfesor = htmlentities($_POST['telefonoProfesor'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                $emailProfesor = htmlentities($_POST['emailProfesor'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
                 if($extTeacher != null){
-                    ExternalTeacherController::updateCompanyNameById(Connection::getConnection(), $extTeacher->getIdCompany(), $nombreEmpresa);
-                    ExternalTeacherController::updateExternalTeacherById(Connection::getConnection(), $internship->getIdExternalTeacher(), $_POST['nombreProfesor'], $_POST['apellidoProfesor'],
-                    $_POST['emailProfesor'], $_POST['telefonoProfesor']);
+                    if(filter_var($_POST['emailProfesor'], FILTER_VALIDATE_EMAIL)){
+                    ExternalTeacherController::updateCompanyNameById(Connection::getConnection(), $extTeacher->getIdCompany(), $empresaProfesor);
+                    ExternalTeacherController::updateExternalTeacherById(Connection::getConnection(), $internship->getIdExternalTeacher(), $nombreProfesor, $apellidoProfesor,
+                    $emailProfesor, $telefonoProfesor);
+                    }
                     echo '<script> window.location.replace("'.VIEWINTERNSHIPCOORD."?niu=".$internship->getNiuStudent().'")</script>';
                 }else{
-                  
+                    if(filter_var($_POST['emailProfesor'], FILTER_VALIDATE_EMAIL)){
                     Connection::openConnection();
-                    CompanyController::insertCompany(Connection::getConnection(), $_POST['empresaProfesor']);
-                    $empresa = CompanyController::getCompanyByName(Connection::getConnection(), $_POST['empresaProfesor']);
-                    
-                    ExternalTeacherController::insertTeacher(Connection::getConnection(), $_POST['nombreProfesor'], $_POST['apellidoProfesor'], $_POST['telefonoProfesor'],  $_POST['emailProfesor'], $empresa->getCompanyId());
-                    $profesor =  ExternalTeacherController::getExternalTeacherByName(Connection::getConnection(), $_POST['nombreProfesor'],  $_POST['apellidoProfesor'] );
+                    $checkEmpresa = CompanyController::checkCompany(Connection::getConnection(), $empresaProfesor);
                    
+                    if($checkEmpresa == null ){
+                        CompanyController::insertCompany(Connection::getConnection(), $empresaProfesor);
+                    }
+                    
+                    $empresa = CompanyController::getCompanyByName(Connection::getConnection(), $empresaProfesor);
+                    
+                    //comprobamos si existe ya de antes el profesor con  el correo
+                    $checkTeacher = ExternalTeacherController::checkExternalTeacher(Connection::getConnection(), $emailProfesor);
+                    if($checkTeacher == null){
+                    ExternalTeacherController::insertTeacher(Connection::getConnection(), $nombreProfesor, $apellidoProfesor, $telefonoProfesor,  $emailProfesor, $empresa->getCompanyId());
+                    }
+                    $profesor =  ExternalTeacherController::checkExternalTeacher(Connection::getConnection(), $emailProfesor);
+                  
                     InternshipController::updateInternshipTeacherAndCompany(Connection::getConnection(), $internship->getNiuStudent(), $profesor->getIdTeacher(), $empresa->getCompanyId());
-                    echo '<script> window.location.replace("'.VIEWINTERNSHIPCOORD."?niu=".$internship->getNiuStudent().'")</script>';
                 }
+                   '<script> window.location.replace("'.VIEWINTERNSHIPCOORD."?niu=".$internship->getNiuStudent().'")</script>';
+            }
                
             }
             if(isset($_POST['modificaFechas'])){
@@ -628,24 +652,24 @@
                     <form id="alumnoForm" method="POST"  name="alumno" role="form">
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label"><b>Nom:</b></label>
-                            <input type="text" class="form-control" id="nombre-alumno" value="<?php echo $student->getStudentName() ?>" name="nombreAlumno">
+                            <input type="text" class="form-control" id="nombre-alumno" value="<?php echo $student->getStudentName() ?>" name="nombreAlumno" required>
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label"><b>Cognoms:</b></label>
-                            <input class="form-control" id="apellido-alumno" name="apellidoAlumno" value="<?php echo $student->getStudentSurname() ?>"></input>
+                            <input class="form-control" id="apellido-alumno" name="apellidoAlumno" value="<?php echo $student->getStudentSurname() ?>" required></input>
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label"><b>Email:</b></label>
-                            <input class="form-control" id="email-alumno" name="emailAlumno" value="<?php echo $student->getStudentEmail() ?>"></input>
+                            <input type="email" class="form-control" id="email-alumno" name="emailAlumno" value="<?php echo $student->getStudentEmail() ?>" required></input>
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label"><b>Telèfon:</b></label>
-                            <input class="form-control" id="telefono-alumno" name="telefonoAlumno" value="<?php echo $student->getStudentTelf() ?>"></input>
+                            <input class="form-control" id="telefono-alumno" name="telefonoAlumno" value="<?php echo $student->getStudentTelf() ?>" pattern="[0-9]{9}" title="El telèfon ha de contenir 9 digits numèrics" required></input>
                         </div>
                         
                         <div class="form-group">
                         <label for="message-text" class="col-form-label"><b>Menció:</b></label>
-                        <select name="mencionAlumno" class="form-control" aria-label=".form-select-lg example">
+                        <select name="mencionAlumno" class="form-control" aria-label=".form-select-lg example" required>
                         <?php $mentions = StudentController::getMentionsByStudentDegree(Connection::getConnection(),$student->getStudentDegree()) ;
                         
                             foreach ($mentions as $key => $mention) { ?>
@@ -726,7 +750,7 @@
                             <input class="form-control" id="empresa-profesor" name="empresaProfesor" value="<?php if($extTeacher !=null){
                                  echo $nombreEmpresa;
                                 }else{
-                                 echo " ";
+                                 echo "";
                                 } ?>"> </input>
                         </div>
                        
@@ -758,11 +782,11 @@
                         <form id="fechasForm" method="POST"  name="fechas" role="form">
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label"><b>Data d'inici:</b></label>
-                                <input type="date" class="form-control" id="fecha-inicio"  name="fechaInicio">
+                                <input type="date" class="form-control" id="fecha-inicio"  name="fechaInicio" value="<?php echo $internship->getNormalStartDate();?>" required>
                             </div>
                             <div class="form-group">
                                 <label for="message-text" class="col-form-label"><b>Data de finalització:</b></label>
-                                <input class="form-control" type="date" id="fecha-final"  name="fechaFinal"></input>
+                                <input class="form-control" type="date" id="fecha-final"  name="fechaFinal" value="<?php echo $internship->getNormalEndDate();?>" required></input>
                             </div>
                             
                     

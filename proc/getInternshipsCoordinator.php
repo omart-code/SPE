@@ -18,9 +18,9 @@
  
    <?php if($cursoGrado !== 'null'){?>
              <div class="estancias">
-             <table id="estancias"  class="table display table-bordered compact responsive" >
+             <table id="estancias" class="table display table-bordered compact responsive" >
                     <thead>
-                        <tr>
+                        <tr style="text-align: center; vertical-align: middle; background-color: #f3f3f3;">
                         <th scope="col" class="text-center">Alumne/a</th>
                         <th scope="col" class="text-center">Professor/a</th>
                         <?php Connection::openConnection();

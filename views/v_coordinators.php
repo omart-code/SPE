@@ -70,7 +70,7 @@ include_once '../controllers/TeacherController.inc.php';
                             <br>
                             <table id="coordinadors" class="table  table-bordered  dt-responsive" style="width:100%">
                                     <thead>
-                                    <tr>
+                                    <tr style="background-color: #f3f3f3;">
                                      <th scope="col">Nom</th>
                                      <th scope="col">Grau</th>
                                      

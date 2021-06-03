@@ -20,7 +20,7 @@ include_once '../controllers/InternshipTaskController.inc.php';
         <div class="container-fluid" style="width:80%;">
         <br>
 
-                <?php echo "<h5>Benvingut " . $_SESSION["nombre"]. "</h5>"?>
+                <?php echo "<h4>Benvingut " . $_SESSION["nombre"]. "</h4>"?>
                 <br>
                 <?php if($internships !=null){?>
                 <h3>Disposes de <?php echo count($internships) ?> estades pendents de revisar</h3>

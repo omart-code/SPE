@@ -7,9 +7,11 @@ include_once '../controllers/CoordinatorController.inc.php';
 include_once '../controllers/DegreeCourseController.inc.php';
 
                              if($_POST['cursoGrado'] !== 'null'){?>
+                             <h5>Taula de professors</h5>
+                             <br>
                             <table id="teachersTable" class="table  table-bordered  dt-responsive" style="width:100%">
                                     <thead>
-                                    <tr>
+                                    <tr style="background-color: #f3f3f3;">
                                      <th scope="col">Nom</th>
                                      <th scope="col">Departament</th>
                                      <th scope='col'>Curs/Grau</th>

@@ -86,7 +86,7 @@ include_once '../includes/navbar.inc.php';
                if($comments !== null) {?>
             <table id="comentaris-tutor" class="table  table-bordered dt-responsive" style="width:100%">
                     <thead>
-                        <tr>
+                        <tr style="background-color: #f3f3f3;">
                         <th scope="col">Data</th>
                         <th scope="col">Comentari</th>
                         </tr>

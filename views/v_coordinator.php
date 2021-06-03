@@ -18,6 +18,8 @@ include_once '../controllers/CoordinatorController.inc.php';
         
 <div class="container-fluid" style="width:80%;">
 <br>
+<?php echo "<h4>Benvingut " . $_SESSION["nombre"]. "</h4>"?>
+<br>
     <h1>Estades del curs</h1>
     <div class="text-right">
         <a  role="button" class="btn btn-success" data-toggle="modal" data-target="#modalEstancia" style="color:white;">Afegir nova estada </a>

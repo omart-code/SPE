@@ -27,6 +27,32 @@
         return $ext;
     }
 
+    public static function checkExternalTeacher($conn, $email){
+        $ext = null;
+
+        if(isset($conn)){
+            try{
+                include_once '../entities/ExternalTeacher.inc.php';
+                $sql = "SELECT * FROM tutores_externos t WHERE t.email = :email";
+                $stmt = $conn -> prepare($sql);
+                $stmt ->bindParam(':email', $email, PDO::PARAM_STR);
+                $stmt -> execute();
+                $res = $stmt-> fetch();
+
+                if(!empty($res)){
+                    $ext = new ExternalTeacher(
+                        $res['id_tutor_externo'], $res['nombre'], $res['apellido'], $res['email'], 
+                        $res['telefono'], $res['id_empresa'],
+                        );
+                }
+            }catch (PDOException $ex){
+                echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+            }
+        }
+
+        return $ext;
+    }
+
     
         //Actualiza los datos de un profesor externo en funcion de su id
         public static function updateExternalTeacherById($conn, $id_tutor_externo, $nombre, $apellido, $email, $telefono){
