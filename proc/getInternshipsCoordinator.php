@@ -38,6 +38,7 @@
                              ?> 
 
                         <th class="dt-body-center">Estat</th>   
+                        <th></th>
                         </tr>
                        
                     </thead>
@@ -95,6 +96,7 @@
                                 }else{
                                     echo "Finalitzada";
                                 } ?></td>
+                                <td><i class="fas fa-trash" onClick="removeInternship(<?php echo $info['id_estancia'] ?>)"></i></td>
                                 <?php echo "</tr>";
                             
 
@@ -120,12 +122,20 @@
 
 <script>
   $(document).ready(function() {
-            $('#estancias').DataTable({
-                responsive: true,
-                "language": {
-                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Catalan.json"
-             }
-            });
-           
+    var table = $('#estancias').DataTable({
+
+        responsive: true,
+        "language": {
+        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Catalan.json"
+        }
+        });
+
+$('#estancias tbody').on( 'click', '.fas.fa-trash', function () {
+table
+    .row( $(this).parents('tr') )
+    .remove()
+    .draw();
+} );
         } );;
 </script>
+<script src="../js/removeIntermship.js"></script>

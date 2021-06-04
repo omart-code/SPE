@@ -254,6 +254,15 @@ class InternshipModel {
        
     }
 
+    public static function removeInternship($conn, $id_estancia){
+        if(isset($conn)){
+            $sql = "DELETE FROM estancias WHERE id_estancia = :id_estancia";
+            $stmt = $conn -> prepare($sql);
+            $stmt ->bindParam(':id_estancia', $id_estancia, PDO::PARAM_STR);
+            $stmt -> execute();
+        }
+    }
+
     
 
 }

@@ -30,6 +30,7 @@ if($cursoGrado != 'null'){?>
                        ?> 
 
                   <th class="text-center">Estat</th>
+                  <th></th>
                   </tr>
                 
                 
@@ -89,8 +90,9 @@ if($cursoGrado != 'null'){?>
                           }else{
                               echo "Finalitzada";
                           } ?></td>
+                          <td><i class="fas fa-trash" onClick="removeInternship(<?php echo $info['id_estancia'] ?>)"></i></td>
                           <?php echo "</tr>";
-                      
+                         
 
 
                       }
@@ -112,12 +114,22 @@ if($cursoGrado != 'null'){?>
 <script>
 
 $(document).ready(function() {
-$('#estancias').DataTable({
+var table = $('#estancias').DataTable({
 
     responsive: true,
     "language": {
     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Catalan.json"
     }
 });
+
+$('#estancias tbody').on( 'click', '.fas.fa-trash', function () {
+    table
+        .row( $(this).parents('tr') )
+        .remove()
+        .draw();
 } );
+} );
+
+
 </script>
+<script src="../js/removeIntermship.js"></script>

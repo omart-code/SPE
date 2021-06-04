@@ -120,6 +120,10 @@ class InternshipController {
         InternshipModel::updateInternshipDone($conn, $id_estancia);
     }
 
+    public static function removeInternship($conn, $id_estancia){
+        InternshipModel::removeInternship($conn, $id_estancia);
+    }
+
    
 
 
