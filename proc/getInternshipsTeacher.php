@@ -14,7 +14,7 @@ if($cursoGrado != 'null'){?>
           <table id="estancias" style="text-align: center; vertical-align: middle;" class="table display table-bordered compact responsive" >
               <thead>
                   <tr style="ext-align: center; vertical-align: middle; background-color: #f3f3f3;">
-                  <th class="text-center">Alumne/a</th>
+                  <th style="text-align: center; vertical-align: middle;">Alumne/a</th>
                   <?php Connection::openConnection();
                        $tasks = TaskController::getTasksByDegreeCourse(Connection::getConnection(), $cursoGrado);
                        if(!empty($tasks)){
