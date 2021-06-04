@@ -65,13 +65,6 @@
 
             ?>
 
-            <?php  if(isset($_POST['restablecer'])){
-                     Connection::openConnection();
-                     TeacherMessageController::restoreMessageByTask(Connection::getConnection(), $_GET['task'], $_SESSION['niu'], $cursoGrado);
-                    echo '<script>window.location.replace("'.TASK."?task=".$_GET['task']."&niu=".$_GET['niu'].'")</script>';
-            }
-
-            ?>
 
          </div>
          <div class="buttons text-right">
@@ -80,12 +73,11 @@
          </button>
          <br>
          <br>
-         <form method="POST">
-         <button class="btn btn-success" id="restablecer" name="restablecer" role="button" onClick="return restoreMessage()">
+
+         <button class="btn btn-success restaurar" id="restablecer" name="restablecer" role="button" onClick="restoreMessage(<?php echo  $_GET['task']?>,<?php echo $_SESSION['niu'] ?>,<?php echo $cursoGrado ?>,<?php echo $_GET['niu'] ?>)">
               Restablir
          </button>
-         </form>
-         <!-- TODO: AL HACER RESTABLECER SALE EL MODAL DE RESTABLECER, HACER QUE AL ACEPTAR UPDATE DE TABLA MENSAJES PROFESOR, POR EL CONTENIDO DE MENSAJES PLANTILLA + REFRESH -->
+       
          </div>
 
         <br><br>
@@ -170,16 +162,51 @@ function gotoInternshipPage(){
 </script>
 
 <script>
-    function restoreMessage(){
+ /*    function restoreMessage(){
         var respuesta = confirm("Realment desitja restablir a la plantilla original?");
     if(respuesta == true){
         return true
     }else{
         return false
     }
-    }
-  
-  
-
+} */
+</script>
+<script>
+function restoreMessage(id_tarea, niu, cursoGrado, niuEstudiante){
+ 
+    console.log("restablecer");
+    $.confirm({
+      title: "Atenció!",
+      content:
+        "Es restablirà la plantilla del missatge al missatge original, estàs segur?",
+      buttons: {
+        accepta: {
+          btnClass: "btn-success",
+          action: function () {
+            $.ajax({          
+            type: "POST",
+            url: "../proc/restoreMessage.php",
+            data:'id_tarea='+id_tarea+'&niu='+niu+'&cursoGrado='+cursoGrado+'&niuEstudiante='+niuEstudiante,
+            success: async function(data){
+               
+                await window.location.replace("http://localhost/spe/views/v_view_task.php?task="+id_tarea+"&niu="+niuEstudiante);
+            },
+            error: function(err){
+                console.log('error:'+err);
+            }
+                });
+         
+          },
+        },
+        cancela: {
+          btnClass: "btn-secondary",
+          action: function () {
+            $.alert("Cancel·lat!");
+          },
+        },
+      },
+    });
+ 
+};
 
 </script>

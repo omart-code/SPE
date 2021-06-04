@@ -21,7 +21,7 @@ if($cursoGrado != 'null'){?>
                           foreach ($tasks as $task) {
                   
                          
-                              echo "<th class='dt-body-center'>" .$task->getTaskName();"</th>";
+                              echo "<th style='text-align: center; vertical-align: middle;'>" .$task->getTaskName();"</th>";
                            }
                        } else {
                           echo "<b>No s'han definit tasques encara per aquest curs</b><br>";
@@ -29,7 +29,7 @@ if($cursoGrado != 'null'){?>
                          
                        ?> 
 
-                  <th class="text-center">Estat</th>
+                  <th style="text-align: center; vertical-align: middle;">Estat</th>
                   <th></th>
                   </tr>
                 
@@ -51,8 +51,8 @@ if($cursoGrado != 'null'){?>
                   if(!empty($infos)){
                       foreach ($infos as $info) { ?>
                           
-                          <tr class="dt-body-center  nowrap">
-                          <th  class="dt-body-center"><a style="text-decoration:none;" href="./v_view-internship.php?niu=<?php echo $info['niu_estudiante']?>"> <?php echo $info['apellido'].', '.$info['nombre'] ?> </a></th>
+                          <tr style="text-align: center; vertical-align: middle;">
+                          <th  style="text-align: center; vertical-align: middle;"><a style="text-decoration:none;" href="./v_view-internship.php?niu=<?php echo $info['niu_estudiante']?>"> <?php echo $info['apellido'].', '.$info['nombre'] ?> </a></th>
 
                           <?php $tasksInternship = InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(), $info['id_estancia']);
                           foreach ($tasksInternship as $taskInternship){ ?>
@@ -83,14 +83,14 @@ if($cursoGrado != 'null'){?>
                                                       
                                                   
                                                  
-                                                 ?>" ><?php echo $taskInternship->getTaskDate(); ?></td>
+                                                 ?> text-align: center; vertical-align: middle;" ><?php echo $taskInternship->getTaskDate(); ?></td>
                           <?php } ?>
-                          <td  class="dt-body-center"><?php if($info['finalizada'] == 0){
+                          <td  style="text-align: center; vertical-align: middle;" ><?php if($info['finalizada'] == 0){
                               echo "En curs";
                           }else{
                               echo "Finalitzada";
                           } ?></td>
-                          <td><i class="fas fa-trash" onClick="removeInternship(<?php echo $info['id_estancia'] ?>)"></i></td>
+                          <td  style="vertical-align:middle; text-align:center;"><i class="fas fa-trash" onClick="removeInternship(<?php echo $info['id_estancia'] ?>)"></i></td>
                           <?php echo "</tr>";
                          
 

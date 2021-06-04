@@ -1,6 +1,7 @@
 function removeInternship(id_estancia) {
 
-    $.ajax({          
+    
+   $.ajax({          
         type: "POST",
         url: "../proc/removeInternship.php",
         data:'id_estancia='+id_estancia,

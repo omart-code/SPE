@@ -96,7 +96,7 @@
                                 }else{
                                     echo "Finalitzada";
                                 } ?></td>
-                                <td><i class="fas fa-trash" onClick="removeInternship(<?php echo $info['id_estancia'] ?>)"></i></td>
+                                <td  style="vertical-align:middle; text-align:center;"><i class="fas fa-trash" onClick="removeInternship(<?php echo $info['id_estancia'] ?>)"></i></td>
                                 <?php echo "</tr>";
                             
 
