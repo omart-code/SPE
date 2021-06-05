@@ -137,7 +137,7 @@ function getTeachers() {
         	data:'cursogrado='+cursGrau,
         	success: async function(data){
                 $("#professors").html(data);
-           // await window.location.replace("http://localhost/spe/views/v_view-internship.php?niu="+niu);
+          
           },
           error: function(err){
               console.log('error:'+err);

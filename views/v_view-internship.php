@@ -41,6 +41,7 @@
             <br>
             <br>
         
+            
             <div class="row">
                         <br>
                         <br>
@@ -65,27 +66,35 @@
                         <div class="col-md-4"><?php if($extTeacher !=null){
                                   echo "<h5>".$extTeacher->getName(). " ". $extTeacher->getSurname()."</h5>";
                         }else{
-                            echo "<h5> </h5>";
+                            echo "<h5> Sense Informar </h5>";
                         }
                           ?></div>
                         <div class="col-md-4"></div>
                 </div>
                 
                 <div class="row">
-                        <div class="col-md-4"><?php echo "<b>Correu electrònic: </b> ".$student->getStudentEmail(); ?></div>
+                        <div class="col-md-4"><?php if($student->getStudentEmail()){
+                                    echo "<b>Correu electrònic: </b> ".$student->getStudentEmail();
+                        }else{
+                                    echo "<b>Correu electrònic: </b>Sense informar ";
+                        }  ?></div>
                         <div class="col-md-4"><?php if($extTeacher !=null){
                                   echo "<b>Correu electrònic: </b> " .$extTeacher->getEmail();
                         }else{
-                            echo "<b>Correu electrònic: </b>";
+                            echo "<b>Correu electrònic: </b>Sense informar ";
                         } ?></div>
                         <div class="col-md-4"><?php echo "<b>Data d'inici: </b> ". $internship->getStartDate(); ?></div>
                 </div>
                 <div class="row">
-                        <div class="col-md-4"><?php echo "<b>Telèfon: </b> ".$student->getStudentTelf(); ?></div>
+                        <div class="col-md-4"><?php if($student->getStudentTelf()){
+                            echo "<b>Telèfon: </b> ".$student->getStudentTelf();
+                            }else{
+                                echo "<b>Telèfon: </b>Sense informar ";
+                            } ?></div>
                         <div class="col-md-4"><?php if($extTeacher !=null){
                                   echo "<b>Telèfon: </b> ".$extTeacher->getTelf();
                         }else{
-                            echo "<b>Telèfon: </b>";
+                            echo "<b>Telèfon: </b>Sense informar ";
                         } ?> </div>
                         <div class="col-md-4"><?php echo "<b>Data de finalització: </b> ".$internship->getEndDate(); ?></div>
                 </div>
@@ -94,7 +103,7 @@
                         <div class="col-md-4"><?php if($company !=null){
                                   echo "<b>Empresa: </b> ".$company->getCompanyName();
                         }else{
-                            echo "<b>Empresa: </b>";
+                            echo "<b>Empresa: </b>Sense informar ";
                         }?></div>
                         <div class="col-md-4"></div>
                 </div>
@@ -242,7 +251,7 @@
                                                             }
                                                         ?>
                                                   </td>
-                                                    <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId()."&niu=".$internship->getNiuStudent() ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>      
+                                                    <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId()."&niu=".$internship->getNiuStudent()."&rol=teacher" ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>      
                                                  </tr>
                                            
                                        <?php 
@@ -369,7 +378,7 @@
                                                             }
                                                         ?>
                                                   </td>
-                                                    <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId()."&niu=".$internship->getNiuStudent() ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>      
+                                                    <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId()."&niu=".$internship->getNiuStudent()."&rol=teacher" ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>      
                                                  </tr>
                                            
                                             <?php  
@@ -503,7 +512,7 @@
                                                             }
                                                         ?>
                                                   </td>
-                                                <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId()."&niu=".$internship->getNiuStudent() ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>      
+                                                <td><a href="./v_view_task.php?task=<?php echo $task->getTaskId()."&niu=".$internship->getNiuStudent()."&rol=teacher" ?>" type='button' class='btn btn-info bg-success'><i class='fa fa-info-circle '></i></a></td>      
                                                  </tr>
 
                                               
@@ -530,7 +539,7 @@
         <br>
         <br>
         <div class="container-fluid  text-right" style="width:80%;">
-             <a href="../views/v_insertComment.php?niu=<?php  echo $internship->getNiuStudent() ?>&id=<?php  echo $internship->getIdInternship() ?>" class="btn btn-success escriu-comentari" role="button">Afegir Comentari</a>
+             <a href="../views/v_insertComment.php?niu=<?php  echo $internship->getNiuStudent() ?>&id=<?php  echo $internship->getIdInternship() ?>&rol=teacher" class="btn btn-success escriu-comentari" role="button">Afegir Comentari</a>
         </div>
       
         
@@ -600,7 +609,7 @@
                    UserController::updateStudentByNiu(Connection::getConnection(), $internship->getNiuStudent(),htmlentities($_POST['nombreAlumno'], ENT_QUOTES | ENT_HTML5, 'UTF-8'),
                    htmlentities($_POST['apellidoAlumno'], ENT_QUOTES | ENT_HTML5, 'UTF-8'), htmlentities($_POST['telefonoAlumno'], ENT_QUOTES | ENT_HTML5, 'UTF-8'),htmlentities( $_POST['emailAlumno'], ENT_QUOTES | ENT_HTML5, 'UTF-8'), 2);
                 }
-                    echo '<script> window.location.replace("'.VIEWINTERNSHIP."?niu=".$internship->getNiuStudent().'")</script>';
+                    echo '<script> window.location.replace("'.VIEWINTERNSHIP."&niu=".$internship->getNiuStudent().'")</script>';
           
             }
             if(isset($_POST['modificaProfesor'])){
@@ -616,7 +625,7 @@
                     ExternalTeacherController::updateExternalTeacherById(Connection::getConnection(), $internship->getIdExternalTeacher(), $nombreProfesor, $apellidoProfesor,
                     $emailProfesor, $telefonoProfesor);
                     }
-                    echo '<script> window.location.replace("'.VIEWINTERNSHIPCOORD."?niu=".$internship->getNiuStudent().'")</script>';
+                    echo '<script> window.location.replace("'.VIEWINTERNSHIP."&niu=".$internship->getNiuStudent().'")</script>';
                 }else{
                     if(filter_var($_POST['emailProfesor'], FILTER_VALIDATE_EMAIL)){
                     Connection::openConnection();
@@ -637,14 +646,14 @@
                   
                     InternshipController::updateInternshipTeacherAndCompany(Connection::getConnection(), $internship->getNiuStudent(), $profesor->getIdTeacher(), $empresa->getCompanyId());
                 }
-                   '<script> window.location.replace("'.VIEWINTERNSHIPCOORD."?niu=".$internship->getNiuStudent().'")</script>';
+                   '<script> window.location.replace("'.VIEWINTERNSHIP."&niu=".$internship->getNiuStudent().'")</script>';
             }
             }
             if(isset($_POST['modificaFechas'])){
                 Connection::openConnection();
                    
                 InternshipController::updateInternshipDates(Connection::getConnection(), $internship->getNiuStudent(), $_POST['fechaInicio'], $_POST['fechaFinal']);
-                echo '<script> window.location.replace("'.VIEWINTERNSHIP."?niu=".$internship->getNiuStudent().'")</script>';
+                echo '<script> window.location.replace("'.VIEWINTERNSHIP."&niu=".$internship->getNiuStudent().'")</script>';
             }
        ?>
    <!--     MODAL ALUMNE --> 

@@ -8,7 +8,7 @@
      include_once '../controllers/DegreeCourseController.inc.php';
      include_once '../controllers/DegreeCourseTeacherController.inc.php';
      include_once '../app/Redirection.inc.php';
-     include_once '../includes/navbar.inc.php';
+    
 
             Connection::openConnection(); 
             $department = DepartmentController::getDepartmentByName(Connection::getConnection(), $_POST['departamentProfessor']);

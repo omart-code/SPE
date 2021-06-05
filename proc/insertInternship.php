@@ -65,6 +65,7 @@ $fechaFinal =  $_POST['fechaFinal'];
     }
 
     Redirection::redirect(COORDINATOR);
+    
    
 
     

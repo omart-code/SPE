@@ -9,7 +9,7 @@ include_once '../controllers/DegreeCourseController.inc.php';
 include_once '../controllers/DegreeCourseTeacherController.inc.php';
 include_once '../controllers/UserController.inc.php';
 include_once '../app/Redirection.inc.php';
-include_once '../includes/navbar.inc.php';
+
 
       $niuProfessor =  htmlentities( $_POST["niuProfessor"], ENT_QUOTES | ENT_HTML5, 'UTF-8');
       $nomProfessor =  htmlentities( $_POST["nomProfessor"], ENT_QUOTES | ENT_HTML5, 'UTF-8');

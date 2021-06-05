@@ -7,7 +7,7 @@ include_once '../controllers/DegreeController.inc.php';
 include_once '../controllers/TaskController.inc.php';
 include_once '../controllers/DegreeCourseController.inc.php';
 include_once '../app/Redirection.inc.php';
-include_once '../includes/navbar.inc.php';
+
 
 
      

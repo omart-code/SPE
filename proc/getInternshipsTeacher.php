@@ -52,7 +52,7 @@ if($cursoGrado != 'null'){?>
                       foreach ($infos as $info) { ?>
                           
                           <tr style="text-align: center; vertical-align: middle;">
-                          <th  style="text-align: center; vertical-align: middle;"><a style="text-decoration:none;" href="./v_view-internship.php?niu=<?php echo $info['niu_estudiante']?>"> <?php echo $info['apellido'].', '.$info['nombre'] ?> </a></th>
+                          <th  style="text-align: center; vertical-align: middle;"><a style="text-decoration:none;" href="./v_view-internship.php?niu=<?php echo $info['niu_estudiante']?>&rol=teacher"> <?php echo $info['apellido'].', '.$info['nombre'] ?> </a></th>
 
                           <?php $tasksInternship = InternshipTaskController::getInternshipTasksByInternshipId(Connection::getConnection(), $info['id_estancia']);
                           foreach ($tasksInternship as $taskInternship){ ?>

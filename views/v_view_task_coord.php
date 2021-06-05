@@ -57,6 +57,7 @@
                   
                    //muestra el mensaje original de la tarea
                    echo html_entity_decode($task->getTaskMessage(), ENT_COMPAT, 'UTF-8');
+                   
                 }
                
                /*  $message = TeacherMessageController::getTeacherMessageById(Connection::getConnection(), $_GET['task'], $_SESSION["niu"]);
@@ -179,7 +180,7 @@ function editMessage(id_tarea, niu, niuEstudiante){
             data:'id_tarea='+id_tarea+'&niu='+niu+'&mensaje='+mensaje,
             success: async function(data){
                
-               await window.location.replace("http://localhost/spe/views/v_view_task.php?task="+id_tarea+"&niu="+niuEstudiante+"&rol=teacher");
+               await window.location.replace("http://localhost/spe/views/v_view_task_coord.php?task="+id_tarea+"&niu="+niuEstudiante+"&rol=coordinator");
             },
             error: function(err){
                 console.log('error:'+err);
@@ -218,7 +219,7 @@ function restoreMessage(id_tarea, niu, cursoGrado, niuEstudiante){
             data:'id_tarea='+id_tarea+'&niu='+niu+'&cursoGrado='+cursoGrado+'&niuEstudiante='+niuEstudiante,
             success: async function(data){
                
-                await window.location.replace("http://localhost/spe/views/v_view_task.php?task="+id_tarea+"&niu="+niuEstudiante+"&rol=teacher");
+                await window.location.replace("http://localhost/spe/views/v_view_task_coord.php?task="+id_tarea+"&niu="+niuEstudiante+"&rol=coordinator");
             },
             error: function(err){
                 console.log('error:'+err);
@@ -243,6 +244,6 @@ function restoreMessage(id_tarea, niu, cursoGrado, niuEstudiante){
 <script>
 function gotoInternshipPage(){
    
-    window.location.replace("<?php echo VIEWINTERNSHIP.'&niu='.$_GET['niu']; ?> ")
+    window.location.replace("<?php echo VIEWINTERNSHIPCOORD.'&niu='.$_GET['niu']; ?> ")
 }
 </script>

@@ -16,6 +16,6 @@ include_once '../controllers/CommentController.inc.php';
                 CommentController::insertComment(Connection::getConnection(),$comentario, $tipoComentario,$internshipId, $categoriaComentario);
             }
            
-            echo '<script> window.location.replace("'.VIEWINTERNSHIP."?niu=".$niuStudent.'")</script>';
+            echo '<script> window.location.replace("'.VIEWINTERNSHIP."&niu=".$niuStudent.'")</script>';
 
 ?>

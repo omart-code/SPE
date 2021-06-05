@@ -7,7 +7,7 @@ include_once '../controllers/DegreeCourseTeacherController.inc.php';
 include_once '../controllers/DegreeDepartmentController.inc.php';
 include_once '../app/Redirection.inc.php';
 include '../includes/libraries.inc.php';
-include_once '../includes/navbar.inc.php';
+
 
 
     Connection::openConnection();

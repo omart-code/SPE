@@ -176,7 +176,7 @@ function getTeachers(){
         	success: async function(data){
            
                 $("#teacherSelect").html(data);
-           // await window.location.replace("http://localhost/spe/views/v_view-internship.php?niu="+niu);
+           
           },
           error: function(err){
               console.log('error:'+err);

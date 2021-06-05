@@ -74,7 +74,7 @@ include_once '../includes/navbar.inc.php';
 
 <script>
 function goBack(niuStudent){
-    window.location.replace("http://localhost/spe/views/v_view-internship.php?niu="+niuStudent);
+    window.location.replace("http://localhost/spe/views/v_view-internship.php?niu="+niuStudent+'&rol=teacher');
 }
 $('#summernote').summernote({
     toolbar: [

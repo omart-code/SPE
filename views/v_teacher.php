@@ -52,7 +52,7 @@ include_once '../controllers/InternshipTaskController.inc.php';
                                         <a  name="tasques" class="btn btn-success buttonTasques ml-2" style="color:white;">Mostra detalls</a>
                                    
                                    
-                                        <a href="./v_view-internship.php?niu=<?php  echo  $internship['niu_estudiante'] ?>"  name="revisa" class="btn btn-success ml-2" student-niu="<?php echo  $internship['niu_estudiante'] ?>">Revisa</a>
+                                        <a href="./v_view-internship.php?niu=<?php  echo  $internship['niu_estudiante'] ?>&rol=teacher"  name="revisa" class="btn btn-success ml-2" student-niu="<?php echo  $internship['niu_estudiante'] ?>">Revisa</a>
                                   
                                        
                                     </div>

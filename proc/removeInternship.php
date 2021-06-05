@@ -8,6 +8,7 @@ $id_estancia = $_POST['id_estancia'];
 if($id_estancia){
     Connection::openConnection();
     InternshipController::removeInternship(Connection::getConnection(), $id_estancia);
+    echo "<script>alert('Estada eliminada correctament')</script>";
 }
 
 

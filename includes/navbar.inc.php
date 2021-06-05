@@ -16,27 +16,29 @@ include_once __DIR__ . '/../app/config.inc.php'; ?>
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
                         <?php  if(ControlSession::sessionStarted()):
-                            if($_SESSION['id_tipo_usuario'] == '1'): ?>
-                            <a class="nav-link"  href="http://localhost/spe/views/v_teacher.php"><h3>Inici</h3><span class="sr-only">(current)</span></a>
-                            <?php elseif($_SESSION['id_tipo_usuario'] == '3'):?>
-                            <a class="nav-link" href="http://localhost/spe/views/v_coordinator.php"><h3>Inici</h3><span class="sr-only">(current)</span></a>
-                            <?php elseif($_SESSION['id_tipo_usuario'] == '4'):?>
-                            <a class="nav-link" href="http://localhost/spe/views/v_admin.php"><h3>Inici</h3><span class="sr-only">(current)</span></a>
+                            if($_SESSION['id_tipo_usuario'] == '1' && $_SESSION['id_tipo_usuario2'] == '0'): ?>
+                            <a class="nav-link"  href="http://localhost/spe/views/v_teacher.php?rol=teacher"><h3>Inici</h3><span class="sr-only">(current)</span></a>
+                            <?php elseif($_SESSION['id_tipo_usuario'] == '1' &&  $_SESSION['id_tipo_usuario2'] == '3'  && $_GET['rol'] == 'teacher'):?>
+                                <a class="nav-link"  href="http://localhost/spe/views/v_teacher.php?rol=teacher"><h3>Inici</h3><span class="sr-only">(current)</span></a>
+                            <?php elseif($_SESSION['id_tipo_usuario'] == '1' &&  $_SESSION['id_tipo_usuario2'] == '3'  && $_GET['rol'] == 'coordinator'):?>
+                                <a class="nav-link"  href="http://localhost/spe/views/v_coordinator.php?rol=coordinator"><h3>Inici</h3><span class="sr-only">(current)</span></a>
+                            <?php elseif($_SESSION['id_tipo_usuario'] == '3' || $_SESSION['id_tipo_usuario2'] == '0'):?>
+                                <a class="nav-link"  href="http://localhost/spe/views/v_coordinator.php?rol=coordinator"><h3>Inici</h3><span class="sr-only">(current)</span></a>
                             <?php else:?>
-                                <a class="nav-link" href="http://localhost/spe/views/v_student.php"><h3>Inici</h3><span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="http://localhost/spe/views/v_student.php?rol=student"><h3>Inici</h3><span class="sr-only">(current)</span></a>
                             <?php endif;?>
                         <?php endif;?>
                         
                     </li>
                     <?php if(ControlSession::sessionStarted()):
-                        if($_SESSION['id_tipo_usuario'] == '1'):?>
+                        if($_SESSION['id_tipo_usuario'] == '1' && $_SESSION['id_tipo_usuario2'] == '0' || $_SESSION['id_tipo_usuario'] == '1' && $_SESSION['id_tipo_usuario2'] == '3' && $_GET['rol'] == 'teacher'  ):?>
                         <li class="nav-item">
-                            <a class="nav-link" href="http://localhost/spe/views/v_view_internships_teacher.php"><h3>Estades</h3></a>
+                            <a class="nav-link" href="http://localhost/spe/views/v_view_internships_teacher.php?rol=teacher"><h3>Estades</h3></a>
                         </li>
                        <?php endif;?>
-                       <?php if($_SESSION['id_tipo_usuario'] == '3' || $_SESSION['id_tipo_usuario'] == '4'):?>
+                       <?php if($_SESSION['id_tipo_usuario'] == '3' || $_GET['rol'] == 'coordinator'):?>
                        <li class="nav-item">
-                       <a class="nav-link" href="http://localhost/spe/views/v_teachers.php"><h3>Administració</h3></a>
+                       <a class="nav-link" href="http://localhost/spe/views/v_teachers.php?rol=coordinator"><h3>Administració</h3></a>
                         </li>
                         <?php endif;?>
                         <li class="nav-item">
@@ -53,3 +55,4 @@ include_once __DIR__ . '/../app/config.inc.php'; ?>
         </nav>
     </div>
 </div>
+

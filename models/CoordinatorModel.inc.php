@@ -38,7 +38,7 @@
                     FROM coordinadores c
                     INNER JOIN grados g ON g.id_grado = c.id_grado
                     INNER JOIN usuarios u  ON c.niu_coordinador = u.niu
-                    WHERE u.id_tipo_usuario = 3;";
+                    WHERE u.id_tipo_usuario = 3 OR u.id_tipo_usuario2 = 3";
                     $stmt = $conn -> prepare($sql);
                     $stmt -> execute();
                     $res = $stmt-> fetchAll();
