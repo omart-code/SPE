@@ -80,6 +80,28 @@
             return $degree;
         }
 
+        public static function insertDegree($conn, $nombre, $siglas, $codigo_asignatura ){
+           
+    
+            if(isset($conn)){
+                try{
+                   
+                    $sql = "INSERT INTO grados (nombre, siglas, codigo_asignatura)
+                    VALUES (:nombre, :siglas, :codigo_asignatura)";
+                    $stmt = $conn -> prepare($sql);
+                    $stmt ->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+                    $stmt ->bindParam(':siglas', $siglas, PDO::PARAM_STR);
+                    $stmt ->bindParam(':codigo_asignatura', $codigo_asignatura, PDO::PARAM_STR);
+                    $stmt -> execute();
+                    
+                }catch (PDOException $ex){
+                    echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
+                }
+            }
+    
+           
+        }
+
          
        
     }

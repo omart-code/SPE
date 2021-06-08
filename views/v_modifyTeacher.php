@@ -1,6 +1,6 @@
 <?php 
 include_once '../includes/libraries.inc.php';
-$title = 'ADD TEACHER';
+$title = 'MODIFY TEACHER';
 include_once '../includes/doc-declaration.inc.php'; 
 include_once '../app/Connection.inc.php';
 include_once '../controllers/TeacherController.inc.php';
@@ -42,6 +42,9 @@ include_once '../includes/navbar.inc.php';
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" style="color: #28a745;" href="<?php echo COURSES?>"><h6>Nou Curs</h6></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" style="color: #28a745;" href="<?php echo DEGREES?>"><h6>Nou Grau</h6></a>
                     </li>
                 
               </ul>

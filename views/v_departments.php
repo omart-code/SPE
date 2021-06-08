@@ -34,6 +34,9 @@ include_once '../controllers/TeacherController.inc.php';
                     <li class="nav-item">
                         <a class="nav-link" style="color: #28a745;" href="<?php echo COURSES?>"><h6>Nou Curs</h6></a>
                     </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" style="color: #28a745;" href="<?php echo DEGREES?>"><h6>Nou Grau</h6></a>
+                    </li>
                 
         </ul>
 

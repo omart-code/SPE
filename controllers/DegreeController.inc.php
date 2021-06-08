@@ -20,5 +20,9 @@ class DegreeController {
         return $degree;
     }
 
+    public function  insertDegree($conn, $nombre, $siglas, $codigo_asignatura){
+        DegreeModel::insertDegree($conn, $nombre, $siglas, $codigo_asignatura);
+    }
+
 }
 ?>

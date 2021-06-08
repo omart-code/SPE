@@ -1,6 +1,6 @@
 <?php 
 include_once '../includes/libraries.inc.php';
-$title = 'COURSES';
+$title = 'DEGREES';
 include_once '../includes/doc-declaration.inc.php'; 
 include_once '../app/Connection.inc.php';
 include_once '../controllers/DepartmentController.inc.php';
@@ -12,7 +12,7 @@ include_once '../controllers/DepartmentController.inc.php';
       
 <div class="container-fluid" style="width:80%;">
 <br>
-      <h1>Nou Curs</h1>
+      <h1>Nou Grau</h1>
       <br>
       <br>
 
@@ -27,10 +27,10 @@ include_once '../controllers/DepartmentController.inc.php';
                         <a class="nav-link" style="color: #28a745;" href="<?php echo DEPARTMENTS?>"><h6>Departaments</h6></a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link active" style="color: #28a745;" href="<?php echo COURSES?>"><h6>Nou Curs</h6></a>
+                        <a class="nav-link" style="color: #28a745;" href="<?php echo COURSES?>"><h6>Nou Curs</h6></a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" style="color: #28a745;" href="<?php echo DEGREES?>"><h6>Nou Grau</h6></a>
+                        <a class="nav-link active" style="color: #28a745;" href="<?php echo DEGREES?>"><h6>Nou Grau</h6></a>
                     </li>
         </ul>
 
@@ -39,9 +39,9 @@ include_once '../controllers/DepartmentController.inc.php';
         
         <div class="card text-center">
             <div class="card-body">
-                <h5 class="card-title">Cursos</h5>
-                <p class="card-text">Afegeix un nou curs</p>
-                <a href="<?php echo ADDCOURSE?>" class="btn btn-success">Afegeix</a>
+                <h5 class="card-title">Grau</h5>
+                <p class="card-text">Afegeix un nou grau</p>
+                <a href="<?php echo ADDDEGREE?>" class="btn btn-success">Afegeix</a>
             </div>
   
         </div>
@@ -63,5 +63,3 @@ include_once '../controllers/DepartmentController.inc.php';
        
 
     </div>
-        
-      

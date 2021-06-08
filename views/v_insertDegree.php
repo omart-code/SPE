@@ -1,6 +1,6 @@
 <?php 
 include_once '../includes/libraries.inc.php';
-$title = 'ADD COURSE';
+$title = 'ADD DEGREE';
 include_once '../includes/doc-declaration.inc.php'; 
 include_once '../app/Connection.inc.php';
 include_once '../controllers/CourseController.inc.php';
@@ -14,11 +14,11 @@ include_once '../includes/navbar.inc.php';
 
 
     
-    <!-- LÓGICA DE AÑADIR UN NUEVO CURSO -->
+    <!-- LÓGICA DE AÑADIR UN NUEVO GRADO -->
      
         <div class="container-fluid" style="width:80%;">
         <br>
-            <h1>Afegir un curs</h1>
+            <h1>Afegir un grau</h1>
 
             <br>
             <br>
@@ -34,10 +34,10 @@ include_once '../includes/navbar.inc.php';
                         <a class="nav-link" style="color: #28a745;" href="<?php echo DEPARTMENTS?>"><h6>Departaments</h6></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link  active" style="color: #28a745;" href="<?php echo COURSES?>"><h6>Nou Curs</h6></a>
+                        <a class="nav-link" style="color: #28a745;" href="<?php echo COURSES?>"><h6>Nou Curs</h6></a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" style="color: #28a745;" href="<?php echo DEGREES?>"><h6>Nou Grau</h6></a>
+                        <a class="nav-link active" style="color: #28a745;" href="<?php echo DEGREES?>"><h6>Nou Grau</h6></a>
                     </li>
                 
              </ul>
@@ -45,7 +45,7 @@ include_once '../includes/navbar.inc.php';
             <div class="card text-center">
                 <div class="card-body">
                    
-                    <p class="card-text"><h5>Afegeix un nou curs a aquest grau</h5></p>
+                    <p class="card-text"><h5>Afegeix un nou grau</h5></p>
                     
                 </div>
             </div>
@@ -54,35 +54,24 @@ include_once '../includes/navbar.inc.php';
             <br>
             <br>
 
-            <form method="POST" action="../proc/insertCourse.php">
-            <?php Connection::openConnection(); 
-            $coordinator = CoordinatorController::getCoordinatorByNiu( Connection::getConnection() , $_SESSION['niu']);
-            $degreeId = $coordinator->getCoordinatorDegreeId();
-            $degree = DegreeController::getDegreeById(Connection::getConnection(), $degreeId) ?>
-            <div> 
-            <label><b>Grau:</b></label>
-            <select name="grauSelec" class="form-control" aria-label=".form-select-lg example">
+            <form method="POST" action="../proc/insertDegree.php">
+            <?php Connection::openConnection(); ?>
             
-            <option selected value="<?php echo $degree->getDegreeId()?>"><?php echo $degree->getDegreeName()?></option>
-            
-            
-            </select>
-            </div>
             <br>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label"><b>Nom:</b></label>
-                <input type="text" class="form-control" name="nomCurs" placeholder="ex: 2020-2021" pattern="[0-9]{4}-[0-9]{4}" title="El curs ha de seguir el format especificat yyyy-yyyy" required>
+                <input type="text" class="form-control" name="nomGrau" placeholder="ex: Grau en Intel·ligència artificial" required>
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label"><b>Data d'inici:</b></label>
-                <input type="date" class="form-control" name="dataIniciCurs" placeholder="ex: 09/09/2020"  required></input>
+                <label for="exampleFormControlTextarea1" class="form-label"><b>Sigles:</b></label>
+                <input type="text" class="form-control" name="siglesGrau" placeholder="ex: GIA"  pattern="[A-Z]{2-10}" title="Les sigles han de ser en majuscules i entre 2 i 10 caràcters" required></input>
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"><b>Data de finalització:</b></label>
-                <input type="date" class="form-control" name="dataFiCurs" placeholder="ex: 09/07/2021" required>
+                <label for="exampleFormControlInput1" class="form-label"><b>Codi Assignatura:</b></label>
+                <input type="number" class="form-control" name="assignaturaGrau" placeholder="ex: 21120" pattern="[0-9]{5}" title="El codi ha d'estar format per 5 digits" required>
             </div>
             
-            <button type="submit" class="btn btn-success" name="enviarCurs">Afegeix</button>
+            <button type="submit" class="btn btn-success" name="enviarGrau">Afegeix</button>
             </form>
       
         </div>
@@ -91,4 +80,3 @@ include_once '../includes/navbar.inc.php';
         <button type="button" class=" btn btn-secondary" onclick="history.back(-1)"><i class="fas fa-arrow-left"></i> Torna Enrere</button>
         </div>
         
-      

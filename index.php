@@ -9,7 +9,7 @@ $parts = explode("/", $route);
 if($parts[1] == 'spe'){
     include_once 'views/home.php';
 }else{
-    echo '404 error';
+    echo 'FALLA EL INDEX';
 
 } 
 

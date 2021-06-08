@@ -14,7 +14,7 @@ include_once __DIR__ . '/../app/config.inc.php'; ?>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <?php  if(ControlSession::sessionStarted()):
                             if($_SESSION['id_tipo_usuario'] == '1' && $_SESSION['id_tipo_usuario2'] == '0'): ?>
                             <a class="nav-link"  href="http://localhost/spe/views/v_teacher.php?rol=teacher"><h3>Inici</h3><span class="sr-only">(current)</span></a>

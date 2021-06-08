@@ -29,7 +29,7 @@ include_once '../app/Redirection.inc.php';
         $degreeCourse = DegreeCourseController::getDegreeCourseByCourseAndDegree(Connection::getConnection(), $courseId,  $degree->getDegreeId());
         //Para este curso grado, añado 9 tareas
         TaskController::insertTasksByDegreeCourse(Connection::getConnection(),  $degreeCourse->getDegreeCourseId());
-        echo "<script>alert('Curs afegit correctament correctament')</script>";
+        echo "<script>alert('Curs afegit correctament')</script>";
         echo '<script>window.location.replace("'.COURSES.'")</script>';
          
       
