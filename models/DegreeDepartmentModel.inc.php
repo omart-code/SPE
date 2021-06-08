@@ -72,12 +72,12 @@
                     $stmt ->bindParam(':id_departamento', $id_departamento, PDO::PARAM_STR);
                     $stmt -> execute();
                     $res = $stmt-> fetch();
-                    if(count($res)){
+                    if($res){
                       
                             $depart = $res;
                         
                      }else{
-                            print 'No hi ha departaments disponibles';
+                           
                         }
                 }catch (PDOException $ex){
                     echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";

@@ -25,7 +25,11 @@ include_once '../app/Redirection.inc.php';
             $user = UserController::getUserByNiuAndType(Connection::getConnection(), $_POST['professorSelec'], 1 );
            //actualizo el campo de tipo 2 de ese profesor y pongo un 3
             UserController::updateTeacherToCoord(Connection::getConnection(), $_POST['professorSelec'], 1);
-            echo "<script>alert('Coordinador/a de grau afegit/da correctament')</script>";
-            echo '<script>window.location.replace("'.COORDINATORS.'")</script>';
+            echo '<div class="container"><div class="alert alert-success text-center" style="padding:40px; margin-top:20px;">
+            <strong style="font-size: 20px;">Coordinador/a de grau afegit/da correctament!</strong>
+          </div></div> ';
+          
+            echo '<script> setTimeout(function(){ window.location.href= "'.COORDINATORS.'";}, 2000)();</script>';
+           
        
        ?>

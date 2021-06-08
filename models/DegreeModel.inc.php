@@ -18,7 +18,7 @@
                     if(count($res)){
                         foreach($res as $degree){
                             $degrees[] = new Degree(
-                                $degree['id_grado'], $degree['nombre'], $degree['siglas'], $degree['horas'], $degree['codigo_asignatura']);
+                                $degree['id_grado'], $degree['nombre'], $degree['siglas'], $degree['codigo_asignatura']);
                         } 
                      }else{
                             print 'No hi ha graus disponibles';
@@ -47,7 +47,7 @@
                     $res = $stmt-> fetch();
     
                     if(!empty($res)){
-                        $degree = new Degree( $res['id_grado'],$res['nombre'],$res['siglas'], $res['horas'], $res['codigo_asignatura']);
+                        $degree = new Degree( $res['id_grado'],$res['nombre'],$res['siglas'], $res['codigo_asignatura']);
                     }
                 }catch (PDOException $ex){
                     echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
@@ -70,7 +70,7 @@
                     $res = $stmt-> fetch();
     
                     if(!empty($res)){
-                        $degree = new Degree( $res['id_grado'],$res['nombre'],$res['siglas'], $res['horas'], $res['codigo_asignatura']);
+                        $degree = new Degree( $res['id_grado'],$res['nombre'],$res['siglas'], $res['codigo_asignatura']);
                     }
                 }catch (PDOException $ex){
                     echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";

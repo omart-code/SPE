@@ -9,7 +9,7 @@ include_once '../controllers/TaskController.inc.php';
 include_once '../controllers/DegreeCourseTeacherController.inc.php';
 include_once '../app/Connection.inc.php'; 
 include_once '../app/Redirection.inc.php'; 
-
+include_once '../includes/libraries.inc.php';
 $cursoGrado = $_POST['grauCursSelec'];
 $niuEstudiant = $_POST['niuEstudiant'];
 $nomEstudiant = $_POST['nomEstudiant'];

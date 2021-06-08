@@ -1,6 +1,7 @@
 <?php
 include_once '../includes/doc-declaration.inc.php'; 
 include_once '../app/Connection.inc.php';
+include_once '../includes/libraries.inc.php';
 include_once '../controllers/TeacherController.inc.php';
 include_once '../controllers/UserController.inc.php';
 include_once '../controllers/DepartmentController.inc.php';
@@ -30,11 +31,17 @@ include_once '../app/Redirection.inc.php';
      UserController::updateTeacherByNiu(Connection::getConnection(), $niuProfessor,$nomProfessor,
      $cognomProfessor,$telefonProfessor, $emailProfessor, 1);
      DegreeCourseTeacherController::updateDegreeCourseTeacherMaxStudents(Connection::getConnection(), $_POST['cursoGrado'], $niuProfessor, $maximAlumnesProfessor);
-     echo "<script>alert('Professor modificat correctament')</script>";      
-      echo '<script>window.location.replace("'.TEACHERS.'")</script>';
+     echo '<div class="container"><div class="alert alert-success text-center" style="padding:40px; margin-top:20px;">
+                <strong style="font-size: 20px;">Professor/a modificat/da correctament!</strong>
+                 </div></div> ';
+  
+                 echo '<script> setTimeout(function(){ window.location.href= "'.TEACHERS.'";}, 2000)();</script>';
       }else{
-            echo "<script>alert('Professor no modificat perquè el correu es erroni')</script>";
-            echo '<script>window.location.replace("'.TEACHERS.'")</script>';
+            echo '<div class="container"><div class="alert alert-danger text-center" style="padding:40px; margin-top:20px;">
+                <strong style="font-size: 20px;">Professor/a no modificat/da perquè el correu es erroni.</strong>
+              </div></div> ';
+              
+                echo '<script> setTimeout(function(){ window.location.href= "'.TEACHERS.'";}, 2000)();</script>';
       }
 
 ?>

@@ -2,6 +2,7 @@
 include_once '../controllers/TeacherController.inc.php';
 include_once '../controllers/DepartmentController.inc.php';
 include_once '../app/Connection.inc.php'; 
+include_once '../includes/libraries.inc.php';
 
 $id_departamento = $_POST['departament'];
 $grado = $_POST['grado'];

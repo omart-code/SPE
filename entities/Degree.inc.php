@@ -5,15 +5,13 @@ class Degree {
     private $id_grado;
     private $nombre;
     private $siglas;
-    private $horas;
     private $codigo_asignatura;
  
 
-    public function __construct($id_grado, $nombre, $siglas, $horas, $codigo_asignatura){
+    public function __construct($id_grado, $nombre, $siglas, $codigo_asignatura){
         $this -> id_grado = $id_grado;
         $this -> nombre = $nombre;
         $this -> siglas = $siglas;
-        $this -> horas = $horas;
         $this -> codigo_asignatura = $codigo_asignatura;
        
     }
