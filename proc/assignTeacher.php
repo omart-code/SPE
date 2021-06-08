@@ -15,12 +15,18 @@ include '../includes/libraries.inc.php';
     if($teacher == null){
         DegreeCourseTeacherController::insertDegreeCourseTeacher(Connection::getConnection(), $_POST['grauCursSelec'], $_POST['profesor'], $_POST['maxEstudiants']);?>
       
-      <?php echo "<script>alert('Professor assignat correctament')</script>";     
-       echo '<script>window.location.replace("'.TEACHERS.'")</script>';
+    <?php   echo '<div class="container"><div class="alert alert-success text-center" style="padding:40px; margin-top:20px;">
+                <strong style="font-size: 20px;">Professor/a assignat/da correctament!</strong>
+                 </div></div> ';
+  
+                 echo '<script> setTimeout(function(){ window.location.href= "'.TEACHERS.'";}, 2000)();</script>';
      
     }else{
-        echo "<script>alert('Professor no assignat perque ja està assignat a un curs i grau')</script>";    
-        echo '<script>window.location.replace("'.TEACHERS.'")</script>';
+        echo '<div class="container"><div class="alert alert-danger text-center" style="padding:40px; margin-top:20px;">
+                <strong style="font-size: 20px;">Professor/a no assginat/da perque ja està assignat/da a un curs grau!</strong>
+                 </div></div> ';
+  
+                 echo '<script> setTimeout(function(){ window.location.href= "'.TEACHERS.'";}, 2000)();</script>';
     }
    
     
