@@ -6,16 +6,16 @@ class DegreeCourse {
     private $id_curso;
     private $id_grado;
     private $nombre;
-    private $activo;
+ 
     
  
 
-    public function __construct($id_curso_grado, $id_curso, $id_grado, $nombre, $activo){
+    public function __construct($id_curso_grado, $id_curso, $id_grado, $nombre){
         $this -> id_curso_grado = $id_curso_grado;
         $this -> id_curso = $id_curso;
         $this -> id_grado = $id_grado;
         $this -> nombre = $nombre;
-        $this -> activo = $activo;
+     
         
     }
 
@@ -35,9 +35,7 @@ class DegreeCourse {
         return $this -> nombre;
     }
 
-    public function getDegreeCourseActive(){
-        return $this -> activo;
-    }
+  
 
 
 
@@ -59,9 +57,6 @@ class DegreeCourse {
         $this->nombre = $nombre;
     }
 
-    public function setDegreeCourseActive($activo){
-        $this->activo = $activo;
-    }
 
 
 }

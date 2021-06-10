@@ -19,7 +19,7 @@
                     if(count($res)){
                         foreach($res as $task){
                             $tasks[] = new Task(
-                                $task['id_tarea'], $task['num_tarea'], $task['id_etapa'],$task['nombre'],$task['informacion'],
+                                $task['id_tarea'], $task['num_tarea'], $task['id_etapa'],$task['nombre'],
                                 $task['mensaje'],$task['accion1'],$task['accion2'],$task['accion3'], $task['numero_acciones'], $task['porcentaje']);
                             }}else{
                                 print '';
@@ -48,7 +48,7 @@
                     if(count($res)){
                         foreach($res as $task){
                             $tasks[] = new Task(
-                                $task['id_tarea'], $task['num_tarea'], $task['id_etapa'],$task['nombre'],$task['informacion'],
+                                $task['id_tarea'], $task['num_tarea'], $task['id_etapa'],$task['nombre'],
                                 $task['mensaje'],$task['accion1'],$task['accion2'],$task['accion3'], $task['numero_acciones'], $task['porcentaje']);
                             }}else{
                                 print '';
@@ -77,7 +77,7 @@
 
                     if(!empty($res)){
                         $task = new Task(
-                            $res['id_tarea'], $task['num_tarea'], $res['id_etapa'],$res['nombre'],$res['informacion'],
+                            $res['id_tarea'], $task['num_tarea'], $res['id_etapa'],$res['nombre'],
                             $res['mensaje'],$res['accion1'],$res['accion2'],$res['accion3'], $res['numero_acciones'], $res['porcentaje']);
                     }
                 }catch (PDOException $ex){
@@ -104,7 +104,7 @@
 
                     if(!empty($res)){
                         $task = new Task(
-                            $res['id_tarea'], $task['num_tarea'], $res['id_etapa'],$res['nombre'],$res['informacion'],
+                            $res['id_tarea'], $task['num_tarea'], $res['id_etapa'],$res['nombre'],
                             $res['mensaje'],$res['accion1'],$res['accion2'],$res['accion3'], $res['numero_acciones'], $res['porcentaje']);
                     }
                 }catch (PDOException $ex){

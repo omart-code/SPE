@@ -8,12 +8,11 @@ class Internship {
     private $fecha_fin;
     private $id_tutor_externo;
     private $id_empresa;
-    private $nota;
     private $finalizada;
     private $id_curso_grado;
 
     public function __construct($id_estancia, $niu_estudiante, $niu_profesor, $fecha_inicio,
-     $fecha_fin, $id_tutor_externo, $id_empresa, $nota, $finalizada, $id_curso_grado) {
+     $fecha_fin, $id_tutor_externo, $id_empresa, $finalizada, $id_curso_grado) {
 
         $this -> id_estancia = $id_estancia;
         $this -> niu_estudiante = $niu_estudiante;
@@ -22,7 +21,6 @@ class Internship {
         $this -> fecha_fin = $fecha_fin;
         $this -> id_tutor_externo = $id_tutor_externo;
         $this -> id_empresa = $id_empresa;
-        $this -> nota = $nota;
         $this -> finalizada = $finalizada;
         $this -> id_curso_grado = $id_curso_grado;
     }
@@ -67,9 +65,7 @@ class Internship {
         return $this -> id_empresa;
     }
 
-    public function getNote(){
-        return $this -> nota;
-    }
+
 
     public function getFinished(){
         return $this -> finalizada;
@@ -107,9 +103,6 @@ class Internship {
         $this -> id_empresa = $id_empresa;
     }
 
-    public function setNote($nota){
-        $this -> nota = $nota;
-    }
 
     public function setFinished($finalizada){
         $this -> finalizada = $finalizada;

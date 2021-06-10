@@ -6,7 +6,6 @@ class Task {
     private $num_tarea;
     private $id_etapa;
     private $nombre;
-    private $informacion;
     private $mensaje;
     private $accion1;
     private $accion2;
@@ -14,12 +13,11 @@ class Task {
     private $numero_acciones;
     private $porcentaje;
    
-    public function __construct($id_tarea, $num_tarea, $id_etapa, $nombre,  $informacion, $mensaje,  $accion1, $accion2,  $accion3,  $numero_acciones, $porcentaje ){
+    public function __construct($id_tarea, $num_tarea, $id_etapa, $nombre, $mensaje,  $accion1, $accion2,  $accion3,  $numero_acciones, $porcentaje ){
         $this -> id_tarea = $id_tarea;
         $this -> num_tarea = $num_tarea;
         $this -> id_etapa = $id_etapa;
         $this -> nombre = $nombre;
-        $this -> informacion = $informacion;
         $this -> mensaje = $mensaje;
         $this -> accion1 = $accion1;
         $this -> accion2 = $accion2;
@@ -49,10 +47,6 @@ class Task {
         return $this -> nombre;
     }
 
-    
-    public function getTaskInfo(){
-        return $this -> informacion;
-    }
 
     
     public function getTaskMessage(){
@@ -93,9 +87,6 @@ class Task {
         $this->nombre = $nombre;
     }
 
-    public function setTaskInfo($informacion){
-        $this->informacion = $informacion;
-    }
     public function setTaskMessage($mensaje){
         $this->mensaje = $mensaje;
     }

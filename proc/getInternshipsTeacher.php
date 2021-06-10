@@ -30,7 +30,7 @@ if($cursoGrado != 'null'){?>
                        ?> 
 
                   <th style="text-align: center; vertical-align: middle;">Estat</th>
-                  <th></th>
+                
                   </tr>
                 
                 
@@ -90,7 +90,7 @@ if($cursoGrado != 'null'){?>
                           }else{
                               echo "Finalitzada";
                           } ?></td>
-                          <td  style="vertical-align:middle; text-align:center;"><i class="fas fa-trash" onClick="removeInternship(<?php echo $info['id_estancia'] ?>)"></i></td>
+                         
                           <?php echo "</tr>";
                          
 

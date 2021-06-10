@@ -16,7 +16,7 @@
                     $res = $stmt-> fetch();
     
                     if(!empty($res)){
-                        $company = new Company( $res['id_empresa'], $res['nif'], $res['nombre'], $res['email'], $res['telefono'], $res['direccion'], $res['responsable']);
+                        $company = new Company( $res['id_empresa'], $res['nif'], $res['nombre'], $res['email'], $res['telefono']);
                     }
                 }catch (PDOException $ex){
                     echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";
@@ -79,7 +79,7 @@
                     $res = $stmt-> fetch();
     
                     if(!empty($res)){
-                        $company = new Company( $res['id_empresa'], $res['nif'], $res['nombre'], $res['email'], $res['telefono'], $res['direccion'], $res['responsable']);
+                        $company = new Company( $res['id_empresa'], $res['nif'], $res['nombre'], $res['email'], $res['telefono']);
                     }
                 }catch (PDOException $ex){
                     echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";

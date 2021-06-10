@@ -16,7 +16,7 @@ class UserModel {
 
                 if(count($res)){
                     foreach($res as $user){
-                        $users[] = new User( $user['id_usuario'],
+                        $users[] = new User(
                             $user['niu'], $user['password'], $user['nombre'], $user['apellido'], $user['email'], $user['telefono'], $user['id_tipo_usuario'],
                             $user['id_tipo_usuario2']
                         );
@@ -66,7 +66,7 @@ class UserModel {
                 $res = $stmt-> fetch();
 
                 if(!empty($res)){
-                    $user = new User($res['id_usuario'], $res['niu'], $res['password'], $res['nombre'], $res['apellido'], $res['email'], $res['telefono'], $res['id_tipo_usuario'],
+                    $user = new User( $res['niu'], $res['password'], $res['nombre'], $res['apellido'], $res['email'], $res['telefono'], $res['id_tipo_usuario'],
                     $res['id_tipo_usuario2']);
                 }
             }catch (PDOException $ex){
@@ -90,7 +90,7 @@ class UserModel {
                 $res = $stmt-> fetch();
 
                 if(!empty($res)){
-                    $user = new User(  $user['id_usuario'], $res['niu'], $res['password'], $res['nombre'], $res['apellido'], $res['email'], $res['telefono'], $res['id_tipo_usuario'],
+                    $user = new User( $res['niu'], $res['password'], $res['nombre'], $res['apellido'], $res['email'], $res['telefono'], $res['id_tipo_usuario'],
                     $res['id_tipo_usuario2']);
                 }
             }catch (PDOException $ex){

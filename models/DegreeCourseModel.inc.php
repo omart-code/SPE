@@ -3,19 +3,19 @@
     class DegreeCourseModel{
 
         //Inserta un nuevo departamento_grado
-        public static function insertDegreeCourse($conn, $id_curso, $id_grado, $nombre, $activo ){
+        public static function insertDegreeCourse($conn, $id_curso, $id_grado, $nombre){
            
     
             if(isset($conn)){
                 try{
                     include_once '../entities/DegreeCourse.inc.php';
-                    $sql = "INSERT INTO cursos_grados (id_curso, id_grado, nombre, activo)
-                    VALUES (:id_curso, :id_grado, :nombre, :activo)";
+                    $sql = "INSERT INTO cursos_grados (id_curso, id_grado, nombre)
+                    VALUES (:id_curso, :id_grado, :nombre)";
                     $stmt = $conn -> prepare($sql);
                     $stmt ->bindParam(':id_curso', $id_curso, PDO::PARAM_STR);
                     $stmt ->bindParam(':id_grado', $id_grado, PDO::PARAM_STR);
                     $stmt ->bindParam(':nombre', $nombre, PDO::PARAM_STR);
-                    $stmt ->bindParam(':activo', $activo, PDO::PARAM_STR);
+                  
                    
                     $stmt -> execute();
                     
@@ -43,7 +43,7 @@
                     if(count($res)){
                         foreach($res as $degree){
                             $degrees[] = new DegreeCourse(
-                                $degree['id_curso_grado'], $degree['id_curso'], $degree['id_grado'], $degree['nombre'], $degree['activo']);
+                                $degree['id_curso_grado'], $degree['id_curso'], $degree['id_grado'], $degree['nombre']);
                         } 
                      }else{
                             print 'No hi ha cursos graus disponibles';
@@ -75,7 +75,7 @@
                     if(count($res)){
                         foreach($res as $degree){
                             $degrees = new DegreeCourse(
-                                $degree['id_curso_grado'], $degree['id_curso'], $degree['id_grado'], $degree['nombre'], $degree['activo']);
+                                $degree['id_curso_grado'], $degree['id_curso'], $degree['id_grado'], $degree['nombre']);
                         } 
                      }else{
                             print 'No hi ha cursos graus disponibles';
@@ -106,7 +106,7 @@
                     $res = $stmt-> fetch();
                     
                     if(!empty($res)){
-                        $degree = new DegreeCourse( $res['id_curso_grado'],$res['id_curso'],$res['id_grado'], $res['nombre'], $res['activo']);
+                        $degree = new DegreeCourse( $res['id_curso_grado'],$res['id_curso'],$res['id_grado'], $res['nombre']);
                     }
                 }catch (PDOException $ex){
                     echo "<div class='container'>ERROR". $ex->getMessage()."</div><br>";

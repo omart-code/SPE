@@ -1,7 +1,6 @@
 <?php
 
 class User {
-    private $id_usuario;
     private $niu;
     private $password;
     private $nombre;
@@ -11,8 +10,8 @@ class User {
     private $id_tipo_usuario;
     private $id_tipo_usuario2;
 
-    public function __construct($id_usuario, $niu, $password, $nombre, $apellido, $email, $telefono, $id_tipo_usuario, $id_tipo_usuario2){
-        $this -> id_usuario = $id_usuario;
+    public function __construct( $niu, $password, $nombre, $apellido, $email, $telefono, $id_tipo_usuario, $id_tipo_usuario2){
+
         $this -> niu = $niu;
         $this -> password = $password;
         $this -> nombre = $nombre;
@@ -23,9 +22,7 @@ class User {
         $this -> id_tipo_usuario2= $id_tipo_usuario2;
     }
 
-    public function getUserId(){
-        return $this->id_usuario;
-    }
+    
 
     public function getUserNiu(){
         return $this -> niu;
