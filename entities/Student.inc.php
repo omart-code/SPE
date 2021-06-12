@@ -1,5 +1,6 @@
 <?php
-
+include_once '../models/StudentModel.inc.php';
+include_once '../app/Connection.inc.php';
 class Student {
     private $niu_estudiante;
     private $nombre;
@@ -42,6 +43,12 @@ class Student {
 
     public function getStudentMention(){
         return $this -> id_mencion;
+    }
+
+    public function getStudentMentionName(){
+        Connection::openConnection();
+        $mention = StudentModel::getStudentMention(Connection::getConnection(),$this -> id_mencion);
+        return $mention;
     }
 
     public function getStudentDegree(){

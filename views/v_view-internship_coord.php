@@ -39,71 +39,70 @@
             <br>
             <br>
         
-             <div class="row">
-                        <br>
-                        <br>
-                        <div class="col-md-4"><h4><b>Alumne/a
-                        <a type="button" class="button" data-toggle="modal" data-target="#modalAlumno" style="color: #28a745">
+            <div class="card-columns">
+                <div class="card" style="border:none;">
+                        <h4 class="card-title"><b>Alumne/a </b><a type="button" class="button" data-toggle="modal" data-target="#modalAlumno" style="color: #28a745">
                         <i class="fa fa-edit"></i>
-                        </a>
-                        </b></h4>
-                        
-                        </div>
-                        <div class="col-md-4"><h4><b>Tutor/a extern/a
-                        <a type="button" class="button" data-toggle="modal" data-target="#modalProfesor" style="color: #28a745">
-                        <i class="fa fa-edit"></i>
-                        </a></b></h4></div>
-                        <div class="col-md-4"><h4><b>Dates de l'estada</b>
-                        <a type="button" class="button" data-toggle="modal" data-target="#modalFechas" style="color: #28a745">
-                        <i class="fa fa-edit"></i>
-                        </a></h4></div>
-                </div>
-                <div class="row">
-                        <div class="col-md-4"><?php echo "<h5>".$student->getStudentName(). " ". $student->getStudentSurname()."</h5>" ?></div>
-                        <div class="col-md-4"><?php if($extTeacher !=null){
-                                  echo "<h5>".$extTeacher->getName(). " ". $extTeacher->getSurname()."</h5>";
-                        }else{
-                            echo "<h5> Sense Informar </h5>";
-                        }
-                          ?></div>
-                        <div class="col-md-4"></div>
-                </div>
+                        </a></h4>
+                        <h5 class="card-subtitle mb-2"><?php echo $student->getStudentName(). " ". $student->getStudentSurname(); ?></h5>
                 
-                <div class="row">
-                        <div class="col-md-4"><?php if($student->getStudentEmail()){
+                        <div><?php if($student->getStudentEmail()){
                                     echo "<b>Correu electrònic: </b> ".$student->getStudentEmail();
                         }else{
                                     echo "<b>Correu electrònic: </b>Sense informar ";
                         }  ?></div>
-                        <div class="col-md-4"><?php if($extTeacher !=null){
-                                  echo "<b>Correu electrònic: </b> " .$extTeacher->getEmail();
-                        }else{
-                            echo "<b>Correu electrònic: </b>Sense informar ";
-                        } ?></div>
-                        <div class="col-md-4"><?php echo "<b>Data d'inici: </b> ". $internship->getStartDate(); ?></div>
-                </div>
-                <div class="row">
-                        <div class="col-md-4"><?php if($student->getStudentTelf()){
+                        <div><?php if($student->getStudentTelf()){
                             echo "<b>Telèfon: </b> ".$student->getStudentTelf();
                             }else{
                                 echo "<b>Telèfon: </b>Sense informar ";
                             } ?></div>
-                        <div class="col-md-4"><?php if($extTeacher !=null){
+                             <div><?php if($student->getStudentMentionName()){
+                            echo "<b>Menció: </b> ".$student->getStudentMentionName();
+                            }else{
+                                echo "<b>Menció: </b>Sense informar ";
+                            } ?></div>
+                        
+                </div>
+
+                <div class="card" style="border:none;">
+                <h4 class="card-title"><b>Tutor/a extern/a </b><a type="button" class="button" data-toggle="modal" data-target="#modalProfesor" style="color: #28a745">
+                        <i class="fa fa-edit"></i>
+                        </a></h4>
+                        <h5 class="card-subtitle mb-2"><?php if($extTeacher){
+                                  echo "<h5>".$extTeacher->getName(). " ". $extTeacher->getSurname()."</h5>";
+                        }else{
+                            echo "<h5> Sense Informar </h5>";
+                        }?>
+                      
+                        <div><?php if($extTeacher !=null){
+                                  echo "<b>Correu electrònic: </b> " .$extTeacher->getEmail();
+                        }else{
+                            echo "<b>Correu electrònic: </b>Sense informar ";
+                        } ?></div>
+                        <div><?php if($extTeacher !=null){
                                   echo "<b>Telèfon: </b> ".$extTeacher->getTelf();
                         }else{
                             echo "<b>Telèfon: </b>Sense informar ";
                         } ?> </div>
-                        <div class="col-md-4"><?php echo "<b>Data de finalització: </b> ".$internship->getEndDate(); ?></div>
-                </div>
-                <div class="row">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4"><?php if($company !=null){
+                        <div><?php if($company !=null){
                                   echo "<b>Empresa: </b> ".$company->getCompanyName();
                         }else{
                             echo "<b>Empresa: </b>Sense informar ";
                         }?></div>
-                        <div class="col-md-4"></div>
+                      
+						
                 </div>
+                
+                <div class="card" style="border:none;">
+                      
+                        <h4 class="card-title"><b>Dates de l'estada </b><a type="button" class="button" data-toggle="modal" data-target="#modalFechas" style="color: #28a745">
+                        <i class="fa fa-edit"></i>
+                        </a></h4>
+                        <div><?php echo "<b>Data d'inici: </b> ". $internship->getStartDate(); ?></div>
+                        <div><?php echo "<b>Data de finalització: </b> ".$internship->getEndDate(); ?></div>
+                </div>
+               
+
         </div>
         <br>
         <br>
@@ -127,8 +126,7 @@
         </div>
         <br>
         <br>
-      <!--   AQUI TENDRÁS QUE HACER QUE CUANDO UNA FASE SE COMPLETE SE PONGA EN VERDE, Y SI NO ES ASI EN ROJO -->
-      <!-- HACER UN ACORDEON QUE MUESTRE POR CADA FASE SU TABLA DE TAREAS, LO HACE PERO FALTA DAR FORMATO Y CONTROLAR CREAR FILAS PESE A NO TENER VALORES-->
+     
       <div class="container-fluid" style="width:80%;">
       <?php  ?>
            
@@ -632,8 +630,9 @@
                     $profesor =  ExternalTeacherController::checkExternalTeacher(Connection::getConnection(), $emailProfesor);
                   
                     InternshipController::updateInternshipTeacherAndCompany(Connection::getConnection(), $internship->getNiuStudent(), $profesor->getIdTeacher(), $empresa->getCompanyId());
-                }
+                    
                    '<script> window.location.replace("'.VIEWINTERNSHIPCOORD."&niu=".$internship->getNiuStudent().'")</script>';
+                }
             }
                
             }

@@ -40,10 +40,11 @@ include_once '../includes/navbar.inc.php';
                         <div><?php echo "<b>Correu electrònic: </b> ".$teacher->getTeacherEmail(); ?></div>
                         <div><?php echo "<b>Telèfon: </b> ".$teacher->getTeacherTelf(); ?></div>
                         
+                        
                 </div>
 
                 <div class="card" style="border:none;">
-                        <h4 class="card-title"><b>Tutor extern</b></h4>
+                        <h4 class="card-title"><b>Tutor/a extern/a</b></h4>
                         <h5 class="card-subtitle mb-2"><?php echo $extTeacher->getName(). " ". $extTeacher->getSurname()?></h5>
                       
                         <div><?php echo "<b>Correu electrònic: </b> ".$extTeacher->getEmail(); ?></div>
