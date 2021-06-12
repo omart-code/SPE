@@ -2,7 +2,7 @@
 include_once 'includes/libraries.inc.php';
 include_once 'app/config.inc.php';
 include_once 'app/Connection.inc.php';
-$title = 'INDEX';
+$title = 'SPE';
 include_once 'includes/doc-declaration.inc.php'; 
 include_once 'includes/navbar.inc.php'?>
 

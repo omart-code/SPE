@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>VIEW INTERNSHIP COORDINATOR</title>
     <?php 
     include_once '../includes/doc-declaration.inc.php';
     include '../includes/libraries.inc.php';

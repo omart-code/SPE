@@ -51,7 +51,7 @@ if(isset($_POST['enviar'])){
   Connection::closeConnection();
  
 }
-$title = 'Login';
+$title = 'SPE';
 include_once '../includes/doc-declaration.inc.php';
 ?>
 <head>

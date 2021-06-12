@@ -5,7 +5,7 @@ include_once '../controllers/InternshipController.inc.php';
 include_once '../models/InternshipModel.inc.php';
 include_once '../controllers/CommentController.inc.php';
 include_once '../app/Connection.inc.php';
-$title = 'STUDENT';
+$title = 'SPE';
 include_once '../includes/doc-declaration.inc.php';
 include_once '../includes/navbar.inc.php';
 
@@ -32,34 +32,34 @@ include_once '../includes/navbar.inc.php';
         </div>
         <!-- Datos del estudiante -->
         <div class="container-fluid" style="width:80%;">
-                <div class="row">
-                        <br>
-                        <br>
-                        <div class="col-md-4"><h4><b>Tutor acadèmic</b></h4></div>
-                        <div class="col-md-4"><h4><b>Tutor extern</b></h4></div>
-                        <div class="col-md-4"><h4><b>Dates de l'estada</b></h4></div>
+        <div class="card-columns">
+                <div class="card" style="border:none;">
+                        <h4 class="card-title"><b>Tutor acadèmic</b></h4>
+                        <h5 class="card-subtitle mb-2"><?php echo $teacher->getTeacherName(). " ". $teacher->getTeacherSurname() ?></h5>
+                
+                        <div><?php echo "<b>Correu electrònic: </b> ".$teacher->getTeacherEmail(); ?></div>
+                        <div><?php echo "<b>Telèfon: </b> ".$teacher->getTeacherTelf(); ?></div>
+                        
                 </div>
-                <div class="row">
-                        <div class="col-md-4"><?php echo "<h5>".$teacher->getTeacherName(). " ". $teacher->getTeacherSurname()."</h5>" ?></div>
-                        <div class="col-md-4"><?php echo "<h5>".$extTeacher->getName(). " ". $extTeacher->getSurname()."</h5>"?></div>
-                        <div class="col-md-4"><h4></h4></div>
+
+                <div class="card" style="border:none;">
+                        <h4 class="card-title"><b>Tutor extern</b></h4>
+                        <h5 class="card-subtitle mb-2"><?php echo $extTeacher->getName(). " ". $extTeacher->getSurname()?></h5>
+                      
+                        <div><?php echo "<b>Correu electrònic: </b> ".$extTeacher->getEmail(); ?></div>
+                        <div><?php echo "<b>Telèfon: </b> ".$extTeacher->getTelf();?></div>
+                        <div><?php echo "<b>Empresa: </b> ".$company->getCompanyName();?></div>
+                      
+						
                 </div>
                 
-                <div class="row">
-                        <div class="col-md-4"><?php echo "<b>Correu electrònic: </b> ".$teacher->getTeacherEmail(); ?></div>
-                        <div class="col-md-4"><?php echo "<b>Correu electrònic: </b> ".$extTeacher->getEmail(); ?></div>
-                        <div class="col-md-4"><?php echo "<b>Data d'inici: </b> ". $internship->getStartDate(); ?></div>
+                <div class="card" style="border:none;">
+                      
+                        <h4 class="card-title"><b>Dates de l'estada</b></h4>
+                        <div><?php echo "<b>Data d'inici: </b> ". $internship->getStartDate(); ?></div>
+                        <div><?php echo "<b>Data de finalització: </b> ".$internship->getEndDate(); ?></div>
                 </div>
-                <div class="row">
-                        <div class="col-md-4"><?php echo "<b>Telèfon: </b> ".$teacher->getTeacherTelf(); ?></div>
-                        <div class="col-md-4"><?php echo "<b>Telèfon: </b> ".$extTeacher->getTelf(); ?> </div>
-                        <div class="col-md-4"><?php echo "<b>Data de finalització: </b> ".$internship->getEndDate(); ?></div>
-                </div>
-                <div class="row">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4"><?php echo "<b>Empresa: </b> ".$company->getCompanyName(); ?></div>
-                        <div class="col-md-4"></div>
-                </div>
+               
 
         </div>
         <br>

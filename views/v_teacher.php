@@ -1,6 +1,6 @@
 <?php 
 include_once '../includes/libraries.inc.php';
-$title = 'TEACHER';
+$title = 'SPE';
 include_once '../includes/doc-declaration.inc.php'; 
 include_once '../app/Connection.inc.php';
 include_once '../controllers/InternshipController.inc.php';

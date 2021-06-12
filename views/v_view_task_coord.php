@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php
-    $title = 'TASK';
+    $title = 'SPE';
     include '../includes/libraries.inc.php';
      include '../includes/doc-declaration.inc.php';
      include_once '../controllers/TaskController.inc.php';
